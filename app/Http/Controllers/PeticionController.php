@@ -127,4 +127,11 @@ class PeticionController extends Controller
         */
     }
 
+    public function CargarDatos2(){
+        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->get();//where('estado_del','1')->get();
+//        $peticiones = Peticion::with('prioridad','estado','tipo_peticion')->get();//where('estado_del','1')->get();
+        //dd($peticiones);
+    //return;
+        return response()->json($peticiones);
+    }
 }

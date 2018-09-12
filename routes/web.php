@@ -35,7 +35,27 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 //Rutas de Maron Vera
-//holaaaaaa  nonnooooooooo maron es zorro
+//holaaaaaa  nonnooooooooo maron es zorrocd
 Route::resource('/peticiones','PeticionController');
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
+
+
+/*###################*GESTIONES DE USUARIOS*###########################*/
+
+/*RUTA PARA HACER USO DE LOS CONTROLADORES DE USUARIOS*/
+Route::resource('/GestionUsuarios', 'UsuariosController');
+/*PARA EXTRAER TODOS LOS USUARIOS*/
+Route::GET('/usuariosMostrar', 'UsuariosController@listadeUsuarios');
+/*PARA PREPARAR ACTUALIZACIÓN DATOS DEL USUARIO*/
+Route::GET('/prepararactualizar/{id}', 'UsuariosController@preparactualizar');
+
+/*###################*GESTIONES DE TIPO USUARIOS*###########################*/
+Route::GET('/mostrartiposusuarios', 'TipoUsuarioController@mostrartiposusuarios');
+
+Route::GET('/mostrarextratecnico', 'ExtraTecnicoController@mostrarextratecnico');
+
+Route::GET('/mostrarareas', 'AreaController@mostrarareas');
+Route::resource('/extratecnico', 'ExtraTecnicoController');
+
+Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');

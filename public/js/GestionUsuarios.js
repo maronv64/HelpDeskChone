@@ -38,7 +38,7 @@ function UsuarioInsert(){
             limpiar();
         },
         error: function () {     
-            mensaje = "OCURRIO UN ERROR";
+            mensaje = "OCURRIO UN ERRORniaw";
             alert(mensaje);
         }
     });  
@@ -58,6 +58,7 @@ function UsuarioMostrar(){
         data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
         success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
         {   
+            console.log(data);
             $("#tablausuarios").html("");
               $.each(data, function(i, item) { //recorre el data 
                   cargartablausuarios(item); // carga los datos en la tabla
@@ -200,6 +201,10 @@ function usuarioActualizar(){
 
 /*FUNCIÓN PARA CARGAR LOS USUARIOS EN LA TABLA*/
 function cargartablausuarios(data){
+  var especialidad="N/A";
+  if(data.extratecnicos != null){
+    especialidad=data.extratecnicos.especialidad;
+  }
     $("#tablausuarios").append(
         "<tr id='fila_cod"+"'><td>"+ data.cedula +"\
          <td>"+ data.name +" "+ data.apellidos  +"</td>\
@@ -207,7 +212,7 @@ function cargartablausuarios(data){
          <td>"+ data.sexo +"</td>\
          <td>"+ data.estado +"</td>\
          <td>"+ data.tipo_usuario.descripcion+"</td>\
-         <td>"+ '0'+"</td>\
+         <td>"+ especialidad+"</td>\
          <td>"+ data.area.nombre +"</td>\
          <td>"+ data.email +"</td>\
          <td class='row'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='prepararactualizarusuario("+data.id+")'><i class='fa fa-edit'></i></button>\

@@ -96,7 +96,9 @@
                                   <div class="form-group has-feedback" hidden id="idextratecnico" >
                                       <label><b>Especialización:</b></label>
                                       <select class="form-control" required  name="idextratecnico" id="cmb_extratecnico">
-                                        <option> soft</option>
+                                        <option> Mantenimiento</option>
+                                        <option> Sistemas</option>
+                                        <option> Redes</option>
                                       </select>        
                                    <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
                                   </div>

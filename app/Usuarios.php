@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Usuarios extends Model
 {
     protected $table = 'users';
@@ -19,4 +18,10 @@ class Usuarios extends Model
 		return $this->hasOne('App\Area' ,'idarea', 'idarea');
 		                      /*ruta modelo tipo   id claveforanea  id tipousuario*/
     }
+
+    public function extratecnicos(){
+        return $this->hasone('App\Extra_Tecnico' ,'idusuario', 'id');
+                              /*ruta modelo tipo   id claveforanea  id tipousuario*/
+    }
+
 }

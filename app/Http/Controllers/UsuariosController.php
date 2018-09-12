@@ -52,7 +52,7 @@ class UsuariosController extends Controller
         $user->idarea = $request->idarea;
         $user->password= bcrypt($request->password);
         $user->save();
-        $userall = Usuarios::with(['tipo_usuario','area'])->find($user->id);
+        $userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
         return response()->json($userall);
     }
 
@@ -137,7 +137,7 @@ class UsuariosController extends Controller
       /*FUNCIÓN PARA MOSTRAR TODOS LOS USUARIOS*/
     public function listadeUsuarios(){   
    
-        $userall = Usuarios::with(['tipo_usuario', 'area'])->get();
+        $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])->get();
         return response()->json($userall);
     }
 }

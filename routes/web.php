@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 //Rutas de Maron Vera
-//holaaaaaa  nonnooooooooo
+//holaaaaaa  nonnooooooooo maron es zorro
 Route::resource('/peticiones','PeticionController');
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');

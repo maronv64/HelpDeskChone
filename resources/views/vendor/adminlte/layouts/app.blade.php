@@ -127,6 +127,7 @@ desired effect
 @section('scripts')
     @include('adminlte::layouts.partials.scripts')
 @show
+  <script src="{{ asset('js/dispositivos.js') }}" defer></script>
 
 </body>
 </html>

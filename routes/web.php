@@ -19,8 +19,10 @@ Route::get('/probando', function () {
     return view('probando');
 });
 
+//rutas para dispositivos
 Route::resource('/dispositivos','DispositivosController');
-
+Route::get('/obtenerDispositivos','DispositivosController@obtenerlista');
+//rutas para tipo de dispositivos
 
 //la plantilla hace uso de estas rutas
 Route::group(['middleware' => 'auth'], function () {

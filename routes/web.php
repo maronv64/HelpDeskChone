@@ -37,4 +37,4 @@ Route::group(['middleware' => 'auth'], function () {
 //Rutas de Maron Vera
 Route::resource('/peticiones','PeticionController');
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
-
+Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');

@@ -8,8 +8,10 @@
 @section('main-content')
 
   <div class="container-fluid spark-screen">
+      
     <div class="row">
         <div class="">
+
           <div id="app">
               <div class="">
                 <!--   <div class="register-logo">
@@ -186,6 +188,7 @@
           </script>
         </div>
     </div>
+
       <div>
 
         <div class="row register-box-body">

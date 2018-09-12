@@ -112,3 +112,4 @@ class DispositivosController extends Controller
         return response()->json($consulta);
     }
 }
+

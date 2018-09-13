@@ -1,4 +1,7 @@
-
+$(document).ready(function()
+       {
+          UsuarioMostrar();
+ });
 /*FUNCION PARA INGRESAR LOS USUARIOS*/
 function UsuarioInsert(){ 
     //Datos que se envian a la ruta
@@ -41,9 +44,17 @@ function UsuarioInsert(){
     });  
 }
 
+
+
 /*MOSTRAR TODOS LO USUARIOS*/
 function UsuarioMostrar(){
-    $.ajaxSetup({
+    $.get('usuariosMostrar', function (data) {
+        $("#tablausuarios").html("");
+        $.each(data, function(i, item) { //recorre el data 
+            cargartablausuarios(item); // carga los datos en la tabla
+        });      
+    });
+    /*$.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
@@ -61,7 +72,7 @@ function UsuarioMostrar(){
                   cargartablausuarios(item); // carga los datos en la tabla
               });               
         }
-    });
+    });*/
 }
 
 function UsuarioDelete(id){
@@ -82,25 +93,10 @@ function UsuarioDelete(id){
     });
 }
 
-
 /*MUESTRA LOS DATOS DEL USUARIO SELECCIONADO  EN EL MODAL */
 function prepararactualizarusuario(id){ 
-
-        $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var FrmData;
-
-            $.ajax({
-                url: 'prepararactualizar/'+id, // Url que se envia para la solicitud esta en el web php es la ruta
-                method: "GET",             // Tipo de solicitud que se enviará, llamado como método
-                data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-           
-        success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
-            {  
-                    $('#idusuarioup').val(data.id);
+    $.get('prepararactualizar/'+id,function(data){
+        $('#idusuarioup').val(data.id);
                     $('#nameup').val(data.name);
                     $('#apellidosup').val(data.apellidos);
                     $('#cedulaup').val(data.cedula);
@@ -118,12 +114,7 @@ function prepararactualizarusuario(id){
                     }else{
                         $('#idextratecnicoup').prop('hidden',true);
                     }
-
-                   
-               
-            }
-        }
-    );
+    });
 }
 
 /*PARA ACTUALIZAR LOS DATOS DEL USUARIO*/
@@ -200,6 +191,7 @@ function usuarioActualizar(){
 
 /*FUNCIÓN PARA CARGAR LOS USUARIOS EN LA TABLA*/
 function cargartablausuarios(data){
+  
   var especialidad="N/A";
   if(data.extratecnicos != null){
     especialidad=data.extratecnicos.especialidad;
@@ -277,3 +269,39 @@ function ExtraInsert(id){
         $("#mi-modal").modal('hide');
       });
   }
+
+
+ function buscar_usuarios(){ // funcion que realiza una peticion get enviando un parametro de busqueda
+            var buscar = $('#buscar_usuarios').val(); // obtenemos el valor de busqueda
+               
+            $.get('buscar_usuarios/'+$('#buscar_usuarios').val(), function (data) {
+                $("#tablausuarios").html("");
+              $.each(data, function(i, item) { //recorre el data 
+                  cargartablausuarios(item); // carga los datos en la tabla
+              });      
+            });
+    
+}
+
+
+/*OTRA FORMA DE BUSCAR*/
+/*function buscar_usuarios1(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var FrmData ;
+    $.ajax({
+        url: 'buscar_usuarios/'+ $('#buscar_usuarios').val(),// Url que se envia para la solicitud esta en el web php es la ruta
+        method: "GET",             // Tipo de solicitud que se enviará, llamado como método
+        data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+        success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+        {   
+            $("#tablausuarios").html("");
+              $.each(data, function(i, item) { //recorre el data 
+                  cargartablausuarios(item); // carga los datos en la tabla
+              });               
+        }
+    });
+}*/

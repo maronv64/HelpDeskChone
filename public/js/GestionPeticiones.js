@@ -108,3 +108,23 @@ $( "#btnMostrar" ).click(function() {
     $( "#prueba" ).html('');
     CargarPeticiones2();
 });
+
+function CargarTipoPeticiones()
+{
+    $.get('/peticionesCargarDatos2', function (data) { 
+        $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
+            
+            $('#dgvPeticiones').html('');
+            
+            var fila ="";
+
+            fila+= '<option>'+ 'dsd' +'</option>';
+
+            $('#dgvPeticiones').append(//identificamos ala nota que queremos add esta otra nota        
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}

@@ -10,6 +10,6 @@ class TipoPeticion extends Model
     protected $table = 'tipopeticion';
 
     protected $fillable = [
-        'idtipopeticion', 'descripcion',
+        'idtipopeticion', 'descripcion','estado_del',
     ];
 }

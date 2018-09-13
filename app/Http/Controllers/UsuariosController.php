@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuarios;
+Use App\User;
 use App\Extra_Tecnico;
 
 use Illuminate\Http\Request;
@@ -165,5 +166,12 @@ class UsuariosController extends Controller
    
         $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])->get();
         return response()->json($userall);
+    }
+
+      /* Cargar Usuaruios*/
+    public function CargarDatos()
+    {   
+        $users = User::with('area','tipo_usuario')->where('estado','activo')->get();//where('estado_del','1')->get();
+        return response()->json($users);
     }
 }

@@ -147,7 +147,7 @@
                             <!-- combo de Tipo de Estado -->
                             <div class="col-md-4">
                                 <div class="form-group has-feedback">             
-                                    <select id="cmbTipoPeticion"   class="form-control" required>
+                                    <select id="cmbEstados"   class="form-control" required>
                                     <option disabled selected>Seleccione el Estado</option>
                                     </select>                                  
                                 </div>

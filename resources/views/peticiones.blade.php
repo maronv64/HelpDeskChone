@@ -6,10 +6,10 @@
           <div id="app">
               <div class="">
                 <!--modal-->
-                <div class='modal fade bd-example-modal-lg' id='miModalnuevo' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden="true">
+                <div class='modal fade bd-example-modal-lg' id='frmPeticionActualizar' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden="true">
                     <div class='modal-dialog modal-lg' role='document'>
                         <div class='modal-content'>
-                            <div class='modal-header'>
+                            <div class='modal-header bg-aqua-active'>
                                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
                                 </button>
@@ -118,6 +118,7 @@
                             <!-- campo de Descripcion -->
                             <div class="col-md-12">
                                 <div class="form-group has-feedback">
+                                    <label for="">Descripcion:</label>
                                     <input id="txtDescripcion"  type="text" class="form-control" placeholder="Describa su peticion"  required/>
                                     <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                                 </div>
@@ -129,7 +130,7 @@
                             <!-- combo de Tipo de Peticion -->
                             <div class="col-md-4">
                                 <div class="form-group has-feedback">
-                                
+                                    <label for="">Tipo de Peticion:</label>
                                     <select id="cmbTipoPeticiones"   class="form-control" required>
                                     <option disabled selected>Seleccione el tipo de Peticion</option>
                                     </select>
@@ -138,7 +139,8 @@
                             </div>
                             <!-- combo  de Prioridad -->
                             <div class="col-md-4">
-                                <div class="form-group has-feedback">             
+                                <div class="form-group has-feedback">  
+                                    <label for="">Prioridad:</label>           
                                     <select id="cmbPrioridades"   class="form-control" required>
                                     <option disabled selected>Seleccione la Prioridad</option>
                                     </select>                                  
@@ -146,7 +148,8 @@
                             </div>
                             <!-- combo de Tipo de Estado -->
                             <div class="col-md-4">
-                                <div class="form-group has-feedback">             
+                                <div class="form-group has-feedback">
+                                    <label for="">Estado:</label>             
                                     <select id="cmbEstados"   class="form-control" required>
                                     <option disabled selected>Seleccione el Estado</option>
                                     </select>                                  

@@ -109,18 +109,19 @@ $( "#btnMostrar" ).click(function() {
     CargarPeticiones2();
 });
 
-function CargarTipoPeticiones()
+function CargarEstados()
 {
-    $.get('/peticionesCargarDatos2', function (data) { 
-        $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
-            
-            $('#dgvPeticiones').html('');
-            
+    $.get('/estadosCargarDatos', function (data) { 
+        $.each(data, function(a, item) { 
+           
+            $('#cmbEstados').html('');
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
             var fila ="";
 
-            fila+= '<option>'+ 'dsd' +'</option>';
+            fila+= '<option value='+ item.idestado +'>'+ item.descripcion +'</option>';
 
-            $('#dgvPeticiones').append(//identificamos ala nota que queremos add esta otra nota        
+            
+            $('#cmbEstados').append(  
                  fila									
             );
             
@@ -128,3 +129,5 @@ function CargarTipoPeticiones()
 
     }); 
 }
+
+window.onload=CargarEstados();

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Dispositivos;
+use App\TipoDispositivo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DispositivosController extends Controller
 {
@@ -14,7 +16,8 @@ class DispositivosController extends Controller
      */
     public function index()
     {
-       return view('adminlte::dispositivos');
+        $tipos = TipoDispositivo::All();
+        return view('adminlte::dispositivos')->with(['tiposDispositivos'=>$tipos]);
     }
 
     /**
@@ -35,8 +38,16 @@ class DispositivosController extends Controller
      */
     public function store(Request $request)
     {
-        echo($request->dispositivos);
-        
+        $dispositivo = new Dispositivos();
+        $dispositivo->idtipodispositivos=$request->idtipodispositivos;
+        $dispositivo->nombredispositivo=$request->nombredispositivo;
+        $dispositivo->serie=$request->serie;
+        $dispositivo->color=$request->color;
+        $dispositivo->modelo=$request->modelo;
+        $dispositivo->marca=$request->marca;
+        $dispositivo->cod_activo=$request->cod_activo;
+        $dispositivo->save();
+        return $dispositivo;
     }
 
     /**
@@ -45,9 +56,10 @@ class DispositivosController extends Controller
      * @param  \App\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
-    public function show(Dispositivos $dispositivos)
+    public function show()
     {
-        //
+         
+        //return json_encode($users);
     }
 
     /**
@@ -79,8 +91,25 @@ class DispositivosController extends Controller
      * @param  \App\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dispositivos $dispositivos)
+    public function destroy($dispositivos)
     {
-        //
+       $dispositivo=Dispositivos::find($dispositivos);
+       //$usuario->fecha_clausura=Carbon::now()->toDateTimeString(); // obtenemos la fecha de eliminacion
+       //$usuario->estado='No Disponible'; // modificamos el estado a F de finalisado
+       $dispositivo->delete();
+    }
+
+    public function obtenerlista()
+    {
+       $dispositivos = DB::table('dispositivos')->get();
+       $tipos= DB::table('tipodispositivos')->get();
+
+       $consulta = array(
+            "dispositivos"=>$dispositivos, 
+            "tipos"=>$tipos
+       );
+
+        return response()->json($consulta);
     }
 }
+

@@ -1,3 +1,5 @@
+
+
 <div class="modal" tabindex="-1" role="dialog" id="actualizarusuariomodal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -6,8 +8,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       </div>
       <div class="modal-body">
-         <form id="formregistromodal  method="post"> <!--   action="{{ url('/usuarioIngresar') }}" -->
-                      @csrf
+         <form id="formregistromodal"  method="post"> 
+                      
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <input type="text" name="idusuarioup" id="idusuarioup" hidden >
                           <div class="row">
@@ -107,11 +109,12 @@
                                       <input type="password" class="form-control" id="passwordup" placeholder="Contraseña" name="passwordup"required />
                                   </div>
                                </div>
+                       
                           </div>
                       </form>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick="usuarioActualizar();" class="btn btn-primary">Actualizar</button>
+        <button type="button" onclick="usuarioActualizar();" data-dismiss="modal" class="btn btn-primary">Actualizar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>

@@ -106,21 +106,21 @@
                               </div>
                           </div>
                         
-                      <div class="row">
-                            <div class="col-md-3">
+                     <div class="row">
+                          <!--   <div class="col-md-3">
                                 <label class="lcontainer" style="color: blue; font-size: 14px">Aceptar Terminos y Condiciones
                                        <input type="checkbox" name="terms" required >
                                       <span class="lcheckmark"></span>
                                 </label>
-                            </div><!-- /.col -->
+                            </div>
                             <div class="col-md-1">
                                 <div class="form-group">
                                     <button type="button" class="btn btn-block btn-flat" data-toggle="modal" data-target="#termsModal">Ver </button>
                                 </div>
-                            </div><!-- /.col -->
-                            <div class="col-md-8">
+                            </div>-->
+                            <div class="col-md-12">
                                 <button type="submit"  class="btn btn-primary btn-block btn-flat">Registrarse</button>
-                            </div><!-- /.col -->
+                            </div> 
                        </div>
 
 

@@ -14,7 +14,7 @@
               <div class="">
                   <!--   <div class="register-logo">
                         <a href="{{ url('/home') }}"><b>Help</b>Desk</a>
-                    </div> -->
+                    </div> 
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
@@ -24,7 +24,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
+                    @endif-->
 
                 <div class="register-box-body"  >
                   @include('adminlte::layouts.partials.GestionUsuarios.Formularioregistro')                

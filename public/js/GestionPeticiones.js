@@ -1,3 +1,10 @@
+/* url interesantes
+http://www.genesisvargasj.com/blog/insertar-y-consultar-con-ajax-php-y-mysql
+https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
+*/
+
+
+
 function CargarPeticiones(){ 
     $.get('/peticionesCargarDatos', function (data) { 
             $.each(data.peticiones, function(a, peticion) { // recorremos cada uno de los datos que retorna el objero json n valores

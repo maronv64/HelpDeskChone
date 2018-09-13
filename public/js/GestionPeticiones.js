@@ -4,7 +4,13 @@ https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
 */
 
 
-
+//esta funcion de trae todas la peticiones y la carga en la tabla 
+// pero no la uso porque demanada muchas iteraciones 
+// dentro de muchos bucles 
+// no es muy corecto
+// att. maron vera 
+// no me eliminen la funcion.
+// eliminen lo suyo !
 function CargarPeticiones(){ 
     $.get('peticionesCargarDatos', function (data) { 
             $.each(data.peticiones, function(a, peticion) { // recorremos cada uno de los datos que retorna el objero json n valores
@@ -72,11 +78,13 @@ function CargarPeticiones(){
 
 }
 
+//esta funcion de trae todas la peticiones y la carga en la tabla 
 function CargarPeticiones2(){
     $.get('peticionesCargarDatos2', function (data) { 
+        $('#dgvPeticiones').html('');
         $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
             
-            $('#dgvPeticiones').html('');
+           
             
             var fila ="";
 
@@ -109,7 +117,7 @@ function CargarPeticiones2(){
 
 }
 
-
+//al dar clic se refresca la tabla de peticiones
 $( "#btnMostrar" ).click(function() {
     //CargarPeticiones();
     $( "#prueba" ).html('');
@@ -119,9 +127,10 @@ $( "#btnMostrar" ).click(function() {
 function CargarEstados()
 {
     $.get('estadosCargarDatos', function (data) { 
+        $('#cmbEstados').html('');
         $.each(data, function(a, item) { 
            
-            $('#cmbEstados').html('');
+           
             //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
             var fila ="";
 
@@ -137,4 +146,54 @@ function CargarEstados()
     }); 
 }
 
-window.onload=CargarEstados();
+function CargarPrioridades()
+{
+    $.get('prioridadesCargarDatos', function (data) { 
+        $('#cmbPrioridades').html('');
+        $.each(data, function(a, item) { 
+           
+            
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idprioridad +'>'+ item.descripcion +'</option>';
+
+            
+            $('#cmbPrioridades').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+function CargarTipoPeticiones()
+{
+    $.get('tipopeticionesCargarDatos', function (data) { 
+        $('#cmbTipoPeticiones').html('');
+        $.each(data, function(a, item) { 
+           
+            
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idtipopeticion +'>'+ item.descripcion +'</option>';
+
+            
+            $('#cmbTipoPeticiones').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+window.onload = function() {
+    window.onload=CargarEstados(),
+    CargarPeticiones2(),
+    CargarPrioridades(),
+    CargarTipoPeticiones()
+};
+//window.onload=CargarEstados();

@@ -130,16 +130,16 @@
                             <div class="col-md-4">
                                 <div class="form-group has-feedback">
                                 
-                                    <select id="cmbTipoPeticion"   class="form-control" required>
+                                    <select id="cmbTipoPeticiones"   class="form-control" required>
                                     <option disabled selected>Seleccione el tipo de Peticion</option>
                                     </select>
                                     
                                 </div>
                             </div>
-                            <!-- combo de Tipo de Prioridad -->
+                            <!-- combo  de Prioridad -->
                             <div class="col-md-4">
                                 <div class="form-group has-feedback">             
-                                    <select id="cmbTipoPeticion"   class="form-control" required>
+                                    <select id="cmbPrioridades"   class="form-control" required>
                                     <option disabled selected>Seleccione la Prioridad</option>
                                     </select>                                  
                                 </div>

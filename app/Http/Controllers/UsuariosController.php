@@ -52,6 +52,12 @@ class UsuariosController extends Controller
         $user->idarea = $request->idarea;
         $user->password= bcrypt($request->password);
         $user->save();
+        if($request->idtipousuario =="5"){
+            $extecnico = new Extra_Tecnico();
+            $extecnico->especialidad = $request->idextratecnico;
+            $extecnico->idusuario = $user->id;
+            $extecnico->save();
+        }
         $userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
         return response()->json($userall);
     }
@@ -98,12 +104,32 @@ class UsuariosController extends Controller
         $user->celular = $request->celular;
         $user->email = $request->email;
         $user->estado = $request->estado;
-        $user->idtipousuario = $request->idtipousuario;
+        
        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
         $user->password= bcrypt($request->password);
+       
+    
+         if($user->idtipousuario =="5" && $request->idtipousuario =="5"){
+        
+            $idusuario= Extra_Tecnico::where('idusuario', $user->id)->first();
+            $extecnico = Extra_Tecnico::find($idusuario->idextra_tecnico);
+            $extecnico->especialidad = $request->idextratecnico;
+            $extecnico->save();
+        }elseif ($request->idtipousuario =="5"){
+            $extecnico = new Extra_Tecnico();
+            $extecnico->especialidad = $request->idextratecnico;
+            $extecnico->idusuario = $user->id;
+            $extecnico->save();
+
+        }else{
+            $idextra= Extra_Tecnico::where('idusuario', $user->id)->first();
+            $eliminextra = Extra_Tecnico::find($idextra->idextra_tecnico);
+             $eliminextra->delete();
+        }
+        $user->idtipousuario = $request->idtipousuario;
         $user->save();
-        $userall = Usuarios::with('tipo_usuario')->find($user->id);
+        $userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
         return response()->json($userall);
     }
 
@@ -130,8 +156,8 @@ class UsuariosController extends Controller
     }
       /*FUNCIÓN PARA BUSCAR EL USUARIO A ACTUALIZAR */
      public function preparactualizar($id){
-        $user = Usuarios::find($id);
-        return response()->json($user);
+      $userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($id);
+        return response()->json($userall);
     }
 
       /*FUNCIÓN PARA MOSTRAR TODOS LOS USUARIOS*/

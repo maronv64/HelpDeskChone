@@ -11,7 +11,7 @@ function UsuarioInsert(){
         email: $('#email').val(),
         estado: $('#estado').val(),
         idtipousuario: $('#idtipousuario').val(),
-       // idextratecnico: $('#cmb_extratecnico').val(),
+        idextratecnico: $('#cmb_extratecnico').val(),
         idarea: $('#cmb_area').val(),
         password: $('#password').val(),
     }
@@ -30,10 +30,7 @@ function UsuarioInsert(){
            
             mensaje1 = "DATOS GUARDADOS CORRECTAMENTE!";
              alert(mensaje1);
-            if(data.idtipousuario=="5"){
-            ExtraInsert(data.id);
-             
-            }
+          
             UsuarioMostrar();      
             limpiar();
         },
@@ -103,7 +100,6 @@ function prepararactualizarusuario(id){
            
         success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
-                $.each(data, function(i, item) {
                     $('#idusuarioup').val(data.id);
                     $('#nameup').val(data.name);
                     $('#apellidosup').val(data.apellidos);
@@ -112,17 +108,19 @@ function prepararactualizarusuario(id){
                     $('#celularup').val(data.celular);
                     $('#emailup').val(data.email);
                     $('#estadoup').val(data.estado);
-                    $('#idtipousuarioup').val(data.idtipousuario);
-                    if (data.idtipousuario == "5") {
+                    $('#idtipousuarioup').val(data.tipo_usuario.idtipo_Usuario);
+                    $('#cmb_areaup').val(data.area.idarea);
+                     $('#passwordup').val(data.password);
+                    if (data.extratecnicos != null) {
                         //$('#cmb_extratecnicoup').val(data.idextratecnico);
-                        $('#cmb_areaup').val(data.idarea);
+                        $('#cmb_extratecnicoup').val(data.extratecnicos.especialidad);
                         $('#idextratecnicoup').prop('hidden',false);
                     }else{
                         $('#idextratecnicoup').prop('hidden',true);
                     }
 
-                    $('#passwordup').val(data.password);
-                });
+                   
+               
             }
         }
     );
@@ -140,6 +138,7 @@ function usuarioUpdate(){
         email: $('#emailup').val(),
         estado: $('#estadoup').val(),
         idtipousuario: $('#idtipousuarioup').val(),
+        idextratecnico: $('#cmb_extratecnicoup').val(),
         idarea: $('#cmb_areaup').val(),
         password: $('#passwordup').val(),
     }

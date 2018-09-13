@@ -107,7 +107,7 @@ class UsuariosController extends Controller
         
        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
-        $user->password= bcrypt($request->password);
+       // $user->password= bcrypt($request->password);
        
     
          if($user->idtipousuario =="5" && $request->idtipousuario =="5"){
@@ -122,7 +122,7 @@ class UsuariosController extends Controller
             $extecnico->idusuario = $user->id;
             $extecnico->save();
 
-        }else{
+        }elseif($user->idtipousuario =="5"){
             $idextra= Extra_Tecnico::where('idusuario', $user->id)->first();
             $eliminextra = Extra_Tecnico::find($idextra->idextra_tecnico);
              $eliminextra->delete();

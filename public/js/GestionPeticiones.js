@@ -87,6 +87,9 @@ function CargarPeticiones2(){
             //añade la nombre del area
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';
             //
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='prepararactualizarusuario("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
+                    "<button type='button' class='btn btn-danger' onClick='UsuarioDelete("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
+            //
             fila+= '</tr>';
 
             $('#dgvPeticiones').append(//identificamos ala nota que queremos add esta otra nota        
@@ -99,7 +102,9 @@ function CargarPeticiones2(){
 
 }
 
+
 $( "#btnMostrar" ).click(function() {
     //CargarPeticiones();
+    $( "#prueba" ).html('');
     CargarPeticiones2();
 });

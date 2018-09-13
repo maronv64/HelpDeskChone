@@ -1,183 +1,220 @@
 @extends('adminlte::layouts.app')
-
-@section('htmlheader_title')
-	{{ trans('adminlte_lang::message.home') }}
-@endsection
-
-
 @section('main-content')
-	<div class="container-fluid spark-screen">
-		<div class="row">
-			<div class="">
+<div class="container-fluid spark-screen">
+  <div class="row">
+        <div class="">
+          <div id="app">
+              <div class="">
+                <!--modal-->
+                <div class='modal fade bd-example-modal-lg' id='miModalnuevo' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden="true">
+                    <div class='modal-dialog modal-lg' role='document'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                                </button>
+                                <h4 class='modal-title' id='myModalLabel'>Modificar </h4>
+                            </div>
+                            <div class="register-box-body">
+                                <form enctype="multipart/form-data" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                            <label for="">Descripcion</label>
+                                            <input id="modal_descripcion" type="text" class="form-control" value="{{ old('dispositivo') }}" required/>
+                                            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                            <label for="">Tipo Dispositivo</label>
+                                            <select class="form-control" id="modal_tipo_dispositivo" required>
+                                                @if(isset($tiposDispositivos))
+                                                @foreach ($tiposDispositivos as $item)
+                                                    <option value="{{$item->idtipodispositivos}}">{{$item->descripcion}}</option>
+                                                @endforeach
+                                                @endif
 
-				  
-				<div class="row">
-					<div class="">
+                                            </select>
+                                            <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                        <label for="">Serie</label>
+                                        <input id="modal_serie" type="text" class="form-control" value="{{ old('num_serie') }}" required/>
+                                        <span class="glyphicon glyphicon-certificate form-control-feedback"></span>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                            <label for="">Color</label>
+                                            <input id="modal_color" type="text" class="form-control" value="{{ old('color') }}" required/>
+                                            <span class="glyphicon glyphicon-tint form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                            <label for="">Modelo</label>
+                                            <input id="modal_modelo" type="text" class="form-control" value="{{ old('modelo') }}" required />
+                                            <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                            <label for="">Marca</label>
+                                            <input id="modal_marca" type="text" class="form-control" value="{{ old('marca') }}" required/>
+                                            <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback">
+                                            <label for="">Estado</label>
+                                            <select id="modal_estado" class="form-control" required>
+                                                <option value="Activo">Activo</option>
+                                                <option value="Inactivo">Inactivo</option>
+                                            </select>
+                                            <!--  fffff  <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a id="guardar_datos" class="btn btn-primary btn-block btn-flat" title="">Almacenar</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                  <!--fin modal-->
+                @if (count($errors) > 0)
+                  <div class="alert alert-danger">
+                    <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
+                    <ul>
+                      @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endif
+                <div class="register-box-body"  >
+                  <p> <h3>Registre un nuevo Dispositivo</h3></p>
+                  <hr>
+                  <form enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                          <input id="add_nom_dispositivo" name="input_nom_dispositivo" type="text" class="form-control" placeholder="Descripcion del dispositivo" value="{{ old('dispositivo') }}" required/>
+                          <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                        <select class="form-control" id="add_tipodispositivo" name="input_tipodispositivo" required>
+                        <option disabled selected>Tipo de dispositivo</option>
+                        @if(isset($tiposDispositivos))
+                          @foreach ($tiposDispositivos as $item)
+                            <option value="{{$item->idtipodispositivos}}">{{$item->descripcion}}</option>
+                          @endforeach
+                        @endif
 
-						<div id="app">
-							<div class="">
-								<!--   <div class="register-logo">
-									<a href="{{ url('/home') }}"><b>Help</b>Desk</a>
-								</div> -->
+                                      </select>
+                                   <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                   <div class="form-group has-feedback">
+                                      <input id="add_num_serie" name="input_num_serie" type="text" class="form-control" placeholder="Numero de serie" value="{{ old('num_serie') }}" required/>
+                                      <span class="glyphicon glyphicon-certificate form-control-feedback"></span>
+                                  </div>
+                              </div>
+                          </div>
+                           <div class="row">
+                              <div class="col-md-4">
+                                  <div class="form-group has-feedback">
+                                      <input id="add_color" name="input_color" type="text" class="form-control" placeholder="Color del dispositivo" value="{{ old('color') }}" required/>
+                                      <span class="glyphicon glyphicon-tint form-control-feedback"></span>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="form-group has-feedback">
+                                      <input id="add_modelo" name="input_modelo" type="text" class="form-control" placeholder="Modelo" value="{{ old('modelo') }}" required />
+                                      <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                                  </div>
+                              </div>
+                               <div class="col-md-4">
+                                  <div class="form-group has-feedback">
+                                      <input id="add_marca" name="input_marca" type="text" class="form-control" placeholder="Marca" value="{{ old('marca') }}" required/>
+                                      <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                                  </div>
+                              </div>
+                          </div>
+                           <div class="row">
+                              <div class="col-md-4">
+                                  <div class="form-group has-feedback">
+                                      <select id="add_cod_activo" name="add_estado" class="form-control" required>
+                                        <option disabled selected>Estado del dispositivo</option>
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
+                                      </select>
+                                   <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                                    <div class="col-md-12">
+                                      <a id="guardar_datos" class="btn btn-primary btn-block btn-flat" title="">Almacenar</a>
+                                        <!-- <button type="submit" class="btn btn-primary btn-block btn-flat">Almacenar</button> -->
+                                    </div><!-- /.col -->
+                          </div>
+                  </form>
+                </div><!-- /.form-box -->
+              </div><!-- /.register-box -->
+              <br>
+          <!-- TABLA DE LISTA DE DISPOSITIVOS -->   
+          </div>
+        </div>
+    </div>
+    <div class="row register-box-body">
+        <div class="row">
+           <div class="col-md-10">
+              <p> <h3>Lista de dispositivos registrados</h3></p>
+            </div>
+            <div class="col-md-2">
+              <a id="btnMostrar" class="btn btn-info" title="">Listar Peticiones</a>
+            </div>
+        </div>
+           
+          <hr>
+          <div class="table-responsive pre-scrollable">
+            <table id="tablaDispositivos" class="table table-hover table-bordered">
+            <thead>
+              <tr>
 
-								@if (count($errors) > 0)
-									<div class="alert alert-danger">
-										<strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
-										<ul>
-											@foreach ($errors->all() as $error)
-												<li>{{ $error }}</li>
-											@endforeach
-										</ul>
-									</div>
-								@endif
-
-								<div class="register-box-body"  >
-									<p> <h3>Registre una nueva Peticion</h3></p>
-									<hr>
-									<form action="" method="">
-										
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="Nombres" name="name" value=" "/>
-													<span class="glyphicon glyphicon-user form-control-feedback"></span>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="Apellidos" name="apellidos" value=""/>
-													<span class="glyphicon glyphicon-user form-control-feedback"></span>
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="Cédula" name="cedula" value=""/>
-													<span class="glyphicon glyphicon-user form-control-feedback"></span>
-												</div>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="Celular" name="celular" value=""/>
-													<span class="glyphicon glyphicon-earphone form-control-feedback"></span>
-												</div>
-												
-											</div>
-											<div class="col-md-4">
-												<div class="form-group has-feedback">
-													<select class="form-control" id="sexo" name="sexo" >
-														<option disabled selected>Sexo</option>
-														<option>Femenino</option>
-														<option>Masculino</option>
-														<option>Indefinido</option>
-													</select>
-													<!-- <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group has-feedback">
-													<select class="form-control" id="estado" name="estado" >
-														<option disabled selected>Estado</option>
-														<option value="1">Activo</option>
-														<option value="2">Inactivo</option>
-													</select>
-														
-												<!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
-												</div>
-											</div>
-										</div>
-																			
-										<div class="row">
-												
-												<div class="col-md-1">
-													<div class="form-group">
-														<button id="btnMostrar" type="button" class="btn btn-block btn-flat" data-target="">Ver </button>
-													</div>
-												</div><!-- /.col -->
-												<div class="col-md-8">
-													<button type="submit" class="btn btn-primary btn-block btn-flat">Registrarse</button>
-												</div><!-- /.col -->
-												
-										</div>
-
-
-									</form>
-
-								
-
-									@include('adminlte::auth.partials.social_login')
-
-									<!-- <a href="{{ url('/login') }}" class="text-center">{{ trans('adminlte_lang::message.membreship') }}</a> -->
-								</div><!-- /.form-box -->
-							</div><!-- /.register-box -->
-								<br>
-
-								<!-- TABLA DE LISTA DE USUARIOS -->
-								<div class="panel panel-default">
-
-									<div class="panel-heading">
-
-										<div class= "row">
-
-											<div class="col-md-11">
-												Home
-											</div>
-											
-										</div>
-										
-									</div>
-
-									<div class="panel-body">
-										
-										<div class="table-responsive">  
-
-										<table class="table">
-											<thead>
-												<tr>
-													<th>Descripcion</th>
-													<th>Tipo de Peticion</th>
-													<th>Prioridad</th>
-													<th>Estado</th>
-													<th>Usuario</th>
-													<th>Area</th>
-														
-												</tr>
-											</thead>
-											<tbody id ="dgvPeticiones">
-												
-											</tbody>
-										</table>
-										</div>
-									</div>
-
-								</div>
-
-								
-						</div>
-
-
-						
-
-						@include('adminlte::auth.terms')
-
-						<script>
-							$(function () {
-								$('input').iCheck({
-									checkboxClass: 'icheckbox_square-blue',
-									radioClass: 'iradio_square-blue',
-									increaseArea: '20%' // optional
-								});
-							});
-						</script>
-					</div>
-				</div>
-
-
-				
-			</div>
-		</div>
-	</div>
-	<script src="{{ asset('js/GestionPeticiones.js') }}" defer></script>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Tipo de Peticion</th>
+                <th scope="col">Prioridad</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Area</th>
+                <th scope="col"> <center> Acciones </center> </th> 
+                
+              </tr>
+            </thead>
+            <tbody id="dgvPeticiones">
+              
+            </tbody>
+          </table>
+          </div>       
+      </div>
+</div>
+<script src="{{ asset('js/GestionPeticiones.js') }}" defer></script>
 @endsection

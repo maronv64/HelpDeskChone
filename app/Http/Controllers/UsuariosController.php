@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuarios;
+Use App\User;
 use App\Extra_Tecnico;
 
 use Illuminate\Http\Request;
@@ -168,6 +169,7 @@ class UsuariosController extends Controller
         return response()->json($userall);
     }
 
+<<<<<<< HEAD
     public function buscar_usuarios($busqueda=''){ 
    
        /* $datos = DB::table('users')
@@ -191,5 +193,12 @@ class UsuariosController extends Controller
                     ->get();
 
         return response()->json($repuestos);
+=======
+      /* Cargar Usuaruios*/
+    public function CargarDatos()
+    {   
+        $users = User::with('area','tipo_usuario')->where('estado','activo')->get();//where('estado_del','1')->get();
+        return response()->json($users);
+>>>>>>> 481b9e9b083109825e7d7ae83ba837506eed629b
     }
 }

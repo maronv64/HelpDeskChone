@@ -82,4 +82,10 @@ class PrioridadController extends Controller
     {
         //
     }
+    public function CargarDatos()
+    {
+        //
+        $prioridades = Prioridad::where('estado_del','1')->get();
+        return response()->json($prioridades);
+    }
 }

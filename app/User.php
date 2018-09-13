@@ -32,5 +32,8 @@ class User extends Authenticatable
     public function area(){
         return $this->hasOne('App\Areas','idarea','idarea');
     }
-
+    public function tipo_usuario(){
+        return $this->hasOne('App\Tipo_Usuario','idtipo_Usuario','idtipousuario');
+    }
+    
 }

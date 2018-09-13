@@ -82,4 +82,10 @@ class EstadoController extends Controller
     {
         //
     }
+    public function CargarDatos()
+    {
+        //
+        $estados = Estado::where('estado_del','1')->get();
+        return response()->json($estados);
+    }
 }

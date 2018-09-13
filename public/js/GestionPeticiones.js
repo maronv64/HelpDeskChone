@@ -108,3 +108,26 @@ $( "#btnMostrar" ).click(function() {
     $( "#prueba" ).html('');
     CargarPeticiones2();
 });
+
+function CargarEstados()
+{
+    $.get('/estadosCargarDatos', function (data) { 
+        $.each(data, function(a, item) { 
+           
+            $('#cmbEstados').html('');
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idestado +'>'+ item.descripcion +'</option>';
+
+            
+            $('#cmbEstados').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+window.onload=CargarEstados();

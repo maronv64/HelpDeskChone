@@ -145,8 +145,6 @@ function usuarioUpdate(){
         success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
         {
             UsuarioMostrar(); 
-            mensaje = "DATOS ACTUALIZADOS CORRECTAMENTE!";
-            alert(mensaje);
             limpiar();
         },
         error: function () {     

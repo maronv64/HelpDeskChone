@@ -10,7 +10,7 @@
             <img src="img/iconos_mensajes/pregunta.png" class="responsive" style="height: 100px; width: 100px">
           </div>
           <div class="row" align="center">
-             <p style="font-size: 18px;  color: black ">Esta Segur@ que desea eliminar</p>
+             <p style="font-size: 18px;  color: black ">Seguro desea eliminar este usuario</p>
           </div>
         </div>
       <div class="modal-footer">

@@ -10,6 +10,6 @@ class Prioridad extends Model
     protected $table = 'prioridad';
 
     protected $fillable = [
-        'idprioridad', 'descripcion',
+        'idprioridad', 'descripcion','estado_del',
     ];
 }

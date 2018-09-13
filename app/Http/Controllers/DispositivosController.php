@@ -82,7 +82,16 @@ class DispositivosController extends Controller
      */
     public function update(Request $request, Dispositivos $dispositivos)
     {
-        //
+        $dispositivo = Dispositivos::find($request->idDispositivo);
+        $dispositivo->idtipodispositivos=$request->idtipodispositivos;
+        $dispositivo->nombredispositivo=$request->nombredispositivo;
+        $dispositivo->serie=$request->serie;
+        $dispositivo->color=$request->color;
+        $dispositivo->modelo=$request->modelo;
+        $dispositivo->marca=$request->marca;
+        $dispositivo->cod_activo=$request->cod_activo;
+        $dispositivo->save();
+        return $dispositivo;
     }
 
     /**
@@ -110,6 +119,12 @@ class DispositivosController extends Controller
        );
 
         return response()->json($consulta);
+    }
+
+    public function buscarDispositivo($id)
+    {
+        $dispositivo=Dispositivos::find($id);
+        return response()->json($dispositivo);
     }
 }
 

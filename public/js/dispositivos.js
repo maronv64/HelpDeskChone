@@ -1,21 +1,72 @@
-$(document).ready(function() {
-	
-	cargarListaDispositivos();
 
-	$('#guardar_datos').click(function(event)
+$('#id_mostrar_dispositivos').click(function(event)
+{
+    cargarListaDispositivos();
+});
+$('#guardar_datos').click(function(event)
 	{
 		guardar();
 		cargarListaDispositivos();
 	});
-
-});
+function limpiarModal() {
+    $('#modal_descripcion').val('')
+    $('#modal_tipo_dispositivo').val()
+    $('#modal_serie').val('')
+    $('#modal_color').val('')
+    $('#modal_modelo').val('')
+    $('#modal_marca').val('')
+    $('#modal_estado').val()
+}
+function limpiarPrincipal() {
+    $('#add_nom_dispositivo').val('')
+    $('#add_tipodispositivo').val()
+    $('#add_num_serie').val('')
+    $('#add_color').val('')
+    $('#add_modelo').val('')
+    $('#add_marca').val('')
+    $('#add_cod_activo').val()
+}
+function Validar_campos() {
+    if (
+        $('#add_nom_dispositivo').val()==''||
+        $('#add_tipodispositivo').val()==''||
+        $('#add_num_serie').val()==''||
+        $('#add_color').val()==''||
+        $('#add_modelo').val()==''||
+        $('#add_marca').val()==''||
+        $('#add_cod_activo').val()==''
+    ) {
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+function Validar_campos_modal() {
+    if (
+        $('#modal_descripcion').val()==''||
+        $('#modal_tipo_dispositivo').val()==''||
+        $('#modal_serie').val()==''||
+        $('#modal_color').val()==''||
+        $('#modal_modelo').val()==''||
+        $('#modal_marca').val()==''||
+        $('#modal_estado').val()==''
+    ) {
+        return false;
+    }
+    else{
+        return true;
+    }
+}
 function guardar() {
-
+    if (Validar_campos()==false) {
+        return;
+    }
     $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }); 
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }); 
 
         var FrmData = {
             nombredispositivo:$('#add_nom_dispositivo').val(),
@@ -33,65 +84,77 @@ function guardar() {
             dataType: 'json',
             success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
             {
-             alert('Datos Guardados Correctamente')
-             	$('#add_nom_dispositivo').val('')
-				$('#add_tipodispositivo').val()
-				$('#add_num_serie').val('')
-				$('#add_color').val('')
-				$('#add_modelo').val('')
-				$('#add_marca').val('')
-				$('#add_cod_activo').val()
+                limpiarPrincipal();
+                alert('Datos Guardados Correctamente');
             },
             complete: function(){
                 
             }
         });
 }
+
 function modificar(iddispositivo) {
-        $('#miModalnuevo').modal('show');
-      // $.ajaxSetup({
-      //        headers:{
-      //            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      //        }
-      //    });
-      //     var FrmData = {
-      //                   cod_activo:$('#add_cod_activo').val(), 
-      //               }
-      //    $.ajax({
-      //        type: "PUT",
-      //        url:'dispositivos/' + iddispositivo,
-      //        success: function (data) {
-      //           alert('Modificacion realizada con éxito')
-      //           cargarListaDispositivos();
-      //        },  
-      //    });
-
+    if (Validar_campos_modal()==false) {
+        return;
+    }
+    var FrmData = {
+        idDispositivo:iddispositivo,
+        nombredispositivo:$('#modal_descripcion').val(),
+        idtipodispositivos:$('#modal_tipo_dispositivo').val(),
+        serie:$('#modal_serie').val(),
+        color:$('#modal_color').val(),
+        modelo:$('#modal_modelo').val(),
+        marca:$('#modal_marca').val(),
+        cod_activo:$('#modal_estado').val(), 
+    }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }); 
+    $.ajax({
+        url: 'dispositivos/'+iddispositivo, // Url que se envia para la solicitud esta en el web php es la ruta
+        method: "PUT",             // Tipo de solicitud que se enviará, llamado como método
+        data: FrmData,   
+          success: function (datos) {
+            mensaje = "DATOS MODIFICADOS CORRECTAMENTE";
+            alert(mensaje);
+            limpiarModal();
+            $('#miModalnuevo').modal('hide');
+            cargarListaDispositivos();
+          },
+          error: function () {     
+              mensaje = "HA OCURRIDO UN ERROR";
+              alert(mensaje);
+              limpiarModal();
+            $('#miModalnuevo').modal('hide');
+            }
+      });
  }
-//  function modificarProveedor(idproveedor){
-//         if ($('#descripcion').val()=='') {return;}
-//         $.ajaxSetup({
-//             headers: {
-//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//             }
-//         }); 
-//         var FrmData = {
-//             descripcion: $('#descripcion').val(),
-//         }
-//         $.ajax({
-//             url:'/mantenimientoSoft/public/registroProveedor/'+idproveedor, // Url que se envia para la solicitud
-//             type: 'PUT',             // Tipo de solicitud que se enviará, llamado como método
-//             data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-//             //dataType: 'json',
-//             success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
-//             {
-//                 llenarProveedor();
-//                  $('#btnGuardarProveedor').attr('class','btn btn-primary ');
-//                  $('#formularioModalProveedores')[0].reset();
-//                  $('#btnGuardarProveedor').attr('onclick','ingresarProveedor()');
-
-//             }
-//         });
-// }
+function modal(id_dispositivo)
+{
+    $.ajax({
+        url: 'obtenerDispositivos/'+id_dispositivo,
+		type: 'GET',
+		dataType: 'json',
+        success: function (response) {
+            $('#miModalnuevo').modal('show');
+            $('#modal_descripcion').val(response.nombredispositivo)
+            $('#modal_tipo_dispositivo').val(response.idtipodispositivos)
+            $('#modal_serie').val(response.serie)
+            $('#modal_color').val(response.color)
+            $('#modal_modelo').val(response.modelo)
+            $('#modal_marca').val(response.marca)
+            $('#modal_estado').val(response.cod_activo)
+        }
+    });
+    $('#modal_validar_cambios').click(function(event)
+	{
+        modificar(id_dispositivo);
+        limpiarModal();
+	});
+    
+}
 function eliminar(iddispositivo){
      
         $.ajaxSetup({
@@ -139,7 +202,7 @@ function cargarListaDispositivos() {
  		 	 else {
  		 	 	out+="<td class='text-danger'>"+val.cod_activo+"</td>";
  		 	 }
- 		 	 out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modificar("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a></center></td>";
+ 		 	 out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modal("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a></center></td>";
              //<span class='glyphicon glyphicon-phone form-control-feedback'></span>
  		 	 out+="</tr>";
 		 	 $('#tablaDispositivos tbody tr:last').after(out);
@@ -150,43 +213,3 @@ function cargarListaDispositivos() {
 	})
 	
 };
-
-//modificar("+val.iddispositivos+")
-//=========================gestion Proveedores===========================
- /*function ingresarProveedor(){
-  if ($('#descripcion').val()=='') {
-                alertify.set({ delay: 3000 });
-                alertify.set({ color: 'blue' });
-                alertify.error("Algun campos vacio");
-                return;
-        }
-    $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }); 
-
-        var FrmData = {
-            descripcion:$('#descripcion').val(),
-          
-        }
-        $.ajax({
-            url:'/mantenimientoSoft/public/registroProveedor', // Url que se envia para la solicitud
-            method: 'POST',             // Tipo de solicitud que se enviará, llamado como método
-            data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-            dataType: 'json',
-            success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
-            {
-             
-              llenarProveedor();  
-               $('#formularioModalProveedores')[0].reset();
-            },
-            complete: function(){
-                alertify.set({ delay: 3000 });
-
-                // log will hide after 10 seconds
-                alertify.log("Guardado Correctamente");
-            }
-        });
-}
-*/

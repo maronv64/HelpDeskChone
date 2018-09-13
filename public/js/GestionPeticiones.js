@@ -3,8 +3,15 @@ http://www.genesisvargasj.com/blog/insertar-y-consultar-con-ajax-php-y-mysql
 https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
 */
 
+//-------------------- Funciones-----------------------
 
-
+//esta funcion de trae todas la peticiones y la carga en la tabla 
+// pero no la uso porque demanada muchas iteraciones 
+// dentro de muchos bucles 
+// no es muy corecto
+// att. maron vera 
+// no me eliminen la funcion.
+// eliminen lo suyo !
 function CargarPeticiones(){ 
     $.get('peticionesCargarDatos', function (data) { 
             $.each(data.peticiones, function(a, peticion) { // recorremos cada uno de los datos que retorna el objero json n valores
@@ -72,11 +79,13 @@ function CargarPeticiones(){
 
 }
 
+//esta funcion de trae todas la peticiones y la carga en la tabla 
 function CargarPeticiones2(){
     $.get('peticionesCargarDatos2', function (data) { 
+        $('#dgvPeticiones').html('');
         $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
             
-            $('#dgvPeticiones').html('');
+           
             
             var fila ="";
 
@@ -94,7 +103,7 @@ function CargarPeticiones2(){
             //añade la nombre del area
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';
             //
-            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='prepararactualizarusuario("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalPeticionesActualizar("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
                     "<button type='button' class='btn btn-danger' onClick='UsuarioDelete("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
             //
             fila+= '</tr>';
@@ -109,19 +118,13 @@ function CargarPeticiones2(){
 
 }
 
-
-$( "#btnMostrar" ).click(function() {
-    //CargarPeticiones();
-    $( "#prueba" ).html('');
-    CargarPeticiones2();
-});
-
 function CargarEstados()
 {
     $.get('estadosCargarDatos', function (data) { 
+        $('#cmbEstados').html('');
         $.each(data, function(a, item) { 
            
-            $('#cmbEstados').html('');
+           
             //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
             var fila ="";
 
@@ -137,4 +140,74 @@ function CargarEstados()
     }); 
 }
 
-window.onload=CargarEstados();
+function CargarPrioridades()
+{
+    $.get('prioridadesCargarDatos', function (data) { 
+        $('#cmbPrioridades').html('');
+        $.each(data, function(a, item) { 
+           
+            
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idprioridad +'>'+ item.descripcion +'</option>';
+
+            
+            $('#cmbPrioridades').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+function CargarTipoPeticiones()
+{
+    $.get('tipopeticionesCargarDatos', function (data) { 
+        $('#cmbTipoPeticiones').html('');
+        $.each(data, function(a, item) { 
+           
+            
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idtipopeticion +'>'+ item.descripcion +'</option>';
+
+            
+            $('#cmbTipoPeticiones').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+function verModalPeticionesActualizar(id)
+{
+    $( "#frmPeticionActualizar" ).modal('show');
+}
+
+///-------------------------- eventos ------------------------
+
+// envento al cargar la vista
+window.onload = function() {
+    window.onload=CargarEstados(),
+    CargarPeticiones2(),
+    CargarPrioridades(),
+    CargarTipoPeticiones()
+};
+//window.onload=CargarEstados();
+
+
+
+//al dar clic se refresca la tabla de peticiones
+$( "#btnMostrar" ).click(function() {
+    //CargarPeticiones();
+    $( "#prueba" ).html('');
+    CargarPeticiones2();
+});
+
+
+//-----------------------------------------------------------------

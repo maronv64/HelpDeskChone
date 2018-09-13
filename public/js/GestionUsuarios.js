@@ -215,7 +215,7 @@ function cargartablausuarios(data){
          <td>"+ data.area.nombre +"</td>\
          <td>"+ data.email +"</td>\
          <td class='row'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='prepararactualizarusuario("+data.id+")'><i class='fa fa-edit'></i></button>\
-         <button type='button' class='btn btn-danger' onClick='UsuarioDelete("+data.id+")'><i class='fa fa-trash'></i></button></td></tr>"
+         <button type='button' class='btn btn-danger' id='btn-confirm' onClick='mostrarmodal("+data.id+")'><i class='fa fa-trash'></i></button></td></tr>"
     );
 }
 /*FUNCIÓN PARA MOSTRAR LOS CAMPOS DE LOS TECNICOS*/
@@ -259,3 +259,21 @@ function ExtraInsert(id){
         }
     });  
 }
+
+
+
+
+
+
+ function mostrarmodal (valor){
+  
+    $("#mi-modal").modal('show');
+    $("#modal-btn-si").on("click", function(){
+        UsuarioDelete(valor);
+        $("#mi-modal").modal('hide');
+    });
+      
+    $("#modal-btn-no").on("click", function(){
+        $("#mi-modal").modal('hide');
+      });
+  }

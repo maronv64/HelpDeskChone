@@ -82,4 +82,9 @@ class TipoPeticionController extends Controller
     {
         //
     }
+    public function CargarDatos()
+    {
+        $tipoPeticiones = TipoPeticion::where('estado_del','1')->get();
+        return response()->json($tipoPeticiones);
+    }
 }

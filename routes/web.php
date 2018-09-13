@@ -36,11 +36,30 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
 });
 
-//Rutas de Maron Vera
+//Rutas de Maron Vera ------------------------------------------------------------------------------------------------
 //holaaaaaa  nonnooooooooo maron 
+
+//Rutas de las Peticiones
 Route::resource('/peticiones','PeticionController');
+//Rutas para consumo de datos de Peticiones 
+//Consultas Generales
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
+
+//Rutas de Prioridad
+//Cargar todos las Priotidades
+Route::get('/prioridadesCargarDatos','PrioridadController@CargarDatos');
+//Rutas de Estado
+//Cargar todos los Estados
+Route::get('/estadosCargarDatos','EstadoController@CargarDatos');
+//Ruetas de Tipo Peticiones
+//Cargar todos los tipos de Peticiones
+Route::get('/tipopeticionesCargarDatos','TipoPeticionController@CargarDatos');
+//Rutas de Usuario
+//Cargar todos los Usuarios
+Route::get('/usuariosCargarDatos','UsuariosController@CargarDatos');
+
+//---------------------------------------------------------------------------------------------------------------------
 
 
 /*###################*GESTIONES DE USUARIOS*###########################*/
@@ -59,5 +78,7 @@ Route::GET('/mostrarextratecnico', 'ExtraTecnicoController@mostrarextratecnico')
 
 Route::GET('/mostrarareas', 'AreaController@mostrarareas');
 Route::resource('/extratecnico', 'ExtraTecnicoController');
+
+Route::get('/buscar_usuarios/{busqueda?}','UsuariosController@buscar_usuarios');
 
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuarios;
+Use App\User;
 use App\Extra_Tecnico;
 
 use Illuminate\Http\Request;
@@ -151,6 +152,7 @@ class UsuariosController extends Controller
         }else{
          $eliminextra = Extra_Tecnico::find($idextra->idextra_tecnico);
          $eliminextra->delete();
+         $user->delete();
         }
          
     }
@@ -165,5 +167,36 @@ class UsuariosController extends Controller
    
         $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])->get();
         return response()->json($userall);
+    }
+
+    public function buscar_usuarios($busqueda=''){ 
+   
+       /* $datos = DB::table('users')
+    ->join('tipo_usuario', 'users.idsuelo', '=', 'tipo_usuario.idtipo_Usuario')
+    ->join('area', 'area.idarea', '=', 'users.idarea')
+     ->where('suelo.idsuelo','=', $request->botonplani )
+       ->select(DB::raw('*'))
+    ->get();*/
+
+        $repuestos = Usuarios::with(['tipo_usuario','area','extratecnicos'])
+                    ->join('tipo_usuario','users.idtipousuario','=','tipo_usuario.idtipo_Usuario')
+                    ->join('area','users.idarea','=','area.idarea')
+                   //->join('extra_tecnico','extra_tecnico.idusuario','=','users.id')
+                    ->where('tipo_usuario.descripcion', 'like', "%$busqueda%")
+                    ->orwhere('area.nombre', 'like', "%$busqueda%")
+                   //->orwhere('extra_tecnico.especialidad', 'like', "%$busqueda%")
+                    ->orwhere('name', 'like', "%$busqueda%")
+                    ->orWhere('apellidos','like',"%$busqueda%")
+                    ->orWhere('sexo','like',"%$busqueda%")
+                    ->orWhere('estado','like',"%$busqueda%")
+                    ->get();
+
+        return response()->json($repuestos);
+    }
+      /* Cargar Usuaruios*/
+    public function CargarDatos()
+    {   
+        $users = User::with('area','tipo_usuario')->where('estado','activo')->get();
+        return response()->json($users);
     }
 }

@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	
 	cargarListaDispositivos();
-
 	$('#guardar_datos').click(function(event)
 	{
 		guardar();
@@ -10,7 +9,9 @@ $(document).ready(function() {
 
 });
 function guardar() {
-
+    if ($('#add_nom_dispositivo').val()=='') {
+                return;
+        }
     $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -33,22 +34,22 @@ function guardar() {
             dataType: 'json',
             success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
             {
-             alert('Datos Guardados Correctamente')
-             	$('#add_nom_dispositivo').val('')
-				$('#add_tipodispositivo').val()
-				$('#add_num_serie').val('')
-				$('#add_color').val('')
-				$('#add_modelo').val('')
-				$('#add_marca').val('')
-				$('#add_cod_activo').val()
+                $('#add_nom_dispositivo').val('')
+                $('#add_tipodispositivo').val()
+                $('#add_num_serie').val('')
+                $('#add_color').val('')
+                $('#add_modelo').val('')
+                $('#add_marca').val('')
+                $('#add_cod_activo').val()
+                alert('Datos Guardados Correctamente');
             },
             complete: function(){
                 
             }
         });
 }
+
 function modificar(iddispositivo) {
-        $('#miModalnuevo').modal('show');
       // $.ajaxSetup({
       //        headers:{
       //            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -67,31 +68,25 @@ function modificar(iddispositivo) {
       //    });
 
  }
-//  function modificarProveedor(idproveedor){
-//         if ($('#descripcion').val()=='') {return;}
-//         $.ajaxSetup({
-//             headers: {
-//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//             }
-//         }); 
-//         var FrmData = {
-//             descripcion: $('#descripcion').val(),
-//         }
-//         $.ajax({
-//             url:'/mantenimientoSoft/public/registroProveedor/'+idproveedor, // Url que se envia para la solicitud
-//             type: 'PUT',             // Tipo de solicitud que se enviará, llamado como método
-//             data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-//             //dataType: 'json',
-//             success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
-//             {
-//                 llenarProveedor();
-//                  $('#btnGuardarProveedor').attr('class','btn btn-primary ');
-//                  $('#formularioModalProveedores')[0].reset();
-//                  $('#btnGuardarProveedor').attr('onclick','ingresarProveedor()');
-
-//             }
-//         });
-// }
+function modal(id_dispositivo)
+{
+    $.ajax({
+        url: 'obtenerDispositivos',
+		type: 'GET',
+		dataType: 'json',
+        success: function (response) {
+            $('#modal_descripcion').val('')
+            $('#add_tipodispositivo').val()
+            $('#add_num_serie').val('')
+            $('#add_color').val('')
+            $('#add_modelo').val('')
+            $('#add_marca').val('')
+            $('#add_cod_activo').val()
+            $('#miModalnuevo').modal('show');
+        }
+    });
+    
+}
 function eliminar(iddispositivo){
      
         $.ajaxSetup({
@@ -139,7 +134,7 @@ function cargarListaDispositivos() {
  		 	 else {
  		 	 	out+="<td class='text-danger'>"+val.cod_activo+"</td>";
  		 	 }
- 		 	 out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modificar("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a></center></td>";
+ 		 	 out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modal("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a></center></td>";
              //<span class='glyphicon glyphicon-phone form-control-feedback'></span>
  		 	 out+="</tr>";
 		 	 $('#tablaDispositivos tbody tr:last').after(out);

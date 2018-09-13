@@ -111,5 +111,10 @@ class DispositivosController extends Controller
 
         return response()->json($consulta);
     }
+
+    public function buscarDispositivo($id_dispositivo)
+    {
+        # code...
+    }
 }
 

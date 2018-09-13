@@ -9,13 +9,13 @@ $('#guardar_datos').click(function(event)
 		cargarListaDispositivos();
 	});
 function limpiarModal() {
-    $('#modal_descripcion').val('')
-    $('#modal_tipo_dispositivo').val()
-    $('#modal_serie').val('')
-    $('#modal_color').val('')
-    $('#modal_modelo').val('')
-    $('#modal_marca').val('')
-    $('#modal_estado').val()
+   /*/ $('#modal_descripcion').clear()
+    $('#modal_tipo_dispositivo').clear()
+    $('#modal_serie').clear()
+    $('#modal_color').clear()
+    $('#modal_modelo').clear()
+    $('#modal_marca').clear()
+    $('#modal_estado').clear()*/
 }
 function limpiarPrincipal() {
     $('#add_nom_dispositivo').val('')
@@ -146,13 +146,15 @@ function modal(id_dispositivo)
             $('#modal_modelo').val(response.modelo)
             $('#modal_marca').val(response.marca)
             $('#modal_estado').val(response.cod_activo)
+        
         }
     });
     $('#modal_validar_cambios').click(function(event)
-	{
+    {
         modificar(id_dispositivo);
         limpiarModal();
-	});
+    });
+   
     
 }
 function eliminar(iddispositivo){

@@ -6,18 +6,21 @@
                           <div class="row">
                               <div class="col-md-4">
                                   <div class="form-group has-feedback">
+                                      <label><b>Nombres:</b></label>
                                       <input type="text" class="form-control" placeholder="Nombres"  id="name" name="name" value="{{ old('name') }}" required />
                                       <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                   </div>
                               </div>
                               <div class="col-md-4">
                                    <div class="form-group has-feedback">
+                                      <label><b>Apellidos:</b></label>
                                       <input type="text" class="form-control" id="apellidos"   placeholder="Apellidos" name="apellidos" value="{{ old('apellidos') }}"required />
                                       <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                   </div>
                               </div>
                               <div class="col-md-4">
                                   <div class="form-group has-feedback">
+                                      <label><b>Cédula:</b></label>
                                       <input type="text" class="form-control" id="cedula" placeholder="Cédula" name="cedula" value="{{ old('cedula') }}"required />
                                       <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                   </div>
@@ -26,6 +29,7 @@
                            <div class="row">
                               <div class="col-md-4">
                                   <div class="form-group has-feedback">
+                                      <label><b>Celular:</b></label>
                                       <input type="text" class="form-control" id="celular" placeholder="Celular" name="celular" value="{{ old('celular') }}"required />
                                       <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
                                   </div>
@@ -33,9 +37,9 @@
                               </div>
                               <div class="col-md-4">
                                    <div class="form-group has-feedback">
+                                    <label><b>Sexo:</b></label>
                                     <select class="form-control" id="sexo" name="sexo" required >
-                                        <option disabled selected>Sexo</option>
-                                        <option>Femenino</option>
+                                        <option selected>Femenino</option>
                                         <option>Masculino</option>
                                      </select>
                                       <!-- <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
@@ -43,9 +47,9 @@
                               </div>
                                <div class="col-md-4">
                                   <div class="form-group has-feedback">
+                                     <label><b>Estado:</b></label>
                                       <select class="form-control" id="estado" name="estado" required >
-                                        <option disabled selected>Estado</option>
-                                        <option >Activo</option>
+                                        <option selected >Activo</option>
                                         <option >Inactivo</option>
                                       </select>
                                           
@@ -100,7 +104,7 @@
                                </div>
                               <div class="col-md-4">
                                   <div class="form-group has-feedback">
-                                      <input type="password" class="form-control" id="passwordconfir" placeholder=" Confirmar contraseña" name="password_confirmation"required />
+                                      <input type="password" class="form-control" id="password_confirmation" placeholder=" Confirmar contraseña" name="password_confirmation"required />
                                       <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                   </div>
                               </div>

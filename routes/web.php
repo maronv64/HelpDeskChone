@@ -80,5 +80,7 @@ Route::GET('/mostrarareas', 'AreaController@mostrarareas');
 Route::resource('/extratecnico', 'ExtraTecnicoController');
 
 Route::get('/buscar_usuarios/{busqueda?}','UsuariosController@buscar_usuarios');
+Route::get('/mostrarespecialidad','EspecialidadController@mostrarespecialidad');
+
 
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');

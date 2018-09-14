@@ -58,7 +58,7 @@
                     <li><a href="#">Perfil de Usuarios</a></li>
                     <li><a href="{{ url('/register') }}"><i class='fa fa-bar-chart-o'></i>Usuarios</a></li>
                     <li><a href="#">Areas</a></li>
-                    <li><a href="#">Peticiones</a></li>
+                    <li><a href="{{ url('/peticiones') }}">Peticiones</a></li>
                     <li><a href="#">Fichas</a></li>
 
                 </ul>

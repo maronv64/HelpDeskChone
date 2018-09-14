@@ -87,4 +87,9 @@ class AreaController extends Controller
       $areas= Area::All();
       return response()->json($areas);
     }
+    public function CargarDatos()
+    {
+        $areas = Area::where('estado_del','1')->get();
+        return response()->json($areas);
+    }
 }

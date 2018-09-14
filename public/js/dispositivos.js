@@ -3,6 +3,7 @@ $('#id_mostrar_dispositivos').click(function(event)
 {
     cargarListaDispositivos();
 });
+
 $('#guardar_datos').click(function(event)
 	{
 		guardar();
@@ -72,28 +73,28 @@ function guardar() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     }); 
-        var FrmData = {
-            nombredispositivo:$('#add_nom_dispositivo').val(),
-            idtipodispositivos:$('#add_tipodispositivo').val(),
-            serie:$('#add_num_serie').val(),
-            color:$('#add_color').val(),
-            modelo:$('#add_modelo').val(),
-            marca:$('#add_marca').val(),
-            cod_activo:$('#add_cod_activo').val(), 
+    var FrmData = {
+        nombredispositivo:$('#add_nom_dispositivo').val(),
+        idtipodispositivos:$('#add_tipodispositivo').val(),
+        serie:$('#add_num_serie').val(),
+        color:$('#add_color').val(),
+        modelo:$('#add_modelo').val(),
+        marca:$('#add_marca').val(),
+        cod_activo:$('#add_cod_activo').val(), 
+    }
+    $.ajax({
+        url:'dispositivos', // Url que se envia para la solicitud
+        method: 'POST',             // Tipo de solicitud que se enviará, llamado como método
+        data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+        dataType: 'json',
+        success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
+        {
+            limpiarPrincipal();
+            alert('Datos Guardados Correctamente');
+        },
+        complete: function(){ 
         }
-        $.ajax({
-            url:'dispositivos', // Url que se envia para la solicitud
-            method: 'POST',             // Tipo de solicitud que se enviará, llamado como método
-            data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-            dataType: 'json',
-            success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
-            {
-                limpiarPrincipal();
-                alert('Datos Guardados Correctamente');
-            },
-            complete: function(){ 
-            }
-        });
+    });
 }
 
 function modificar(iddispositivo) {
@@ -119,20 +120,20 @@ function modificar(iddispositivo) {
         url: 'dispositivos/'+iddispositivo, // Url que se envia para la solicitud esta en el web php es la ruta
         method: "PUT",             // Tipo de solicitud que se enviará, llamado como método
         data: FrmData,   
-          success: function (datos) {
+            success: function (datos) {
             mensaje = "DATOS MODIFICADOS CORRECTAMENTE";
             alert(mensaje);
             limpiarModal();
             $('#miModalnuevo').modal('hide');
             cargarListaDispositivos();
-          },
-          error: function () {     
-              mensaje = "HA OCURRIDO UN ERROR";
-              alert(mensaje);
-              limpiarModal();
+        },
+        error: function () {     
+            mensaje = "HA OCURRIDO UN ERROR";
+            alert(mensaje);
+            limpiarModal();
             $('#miModalnuevo').modal('hide');
-            }
-      });
+        }
+    });
  }
 
 function modal(id_dispositivo)
@@ -177,7 +178,6 @@ function eliminar(iddispositivo){
  }
 
 function cargarListaDispositivos() {
-
 	$('#tablaDispositivos tbody tr').empty();
 	$.ajax({
 		url: 'obtenerDispositivos',
@@ -187,30 +187,29 @@ function cargarListaDispositivos() {
 	})
 	.done(function(datos) {
 		$.each(datos.dispositivos, function(index, val) {
- 		 	 var out="";
- 		 	 out+="<tr>";
- 		 	 out+="<td>"+val.iddispositivos+"</td>";
- 		 	 out+="<td>"+val.nombredispositivo+"</td>";
- 		 	 $.each(datos.tipos, function(index, val2) {
- 		 	 	if (val2.idtipodispositivos==val.idtipodispositivos) {
- 		 	 		out+="<td>"+val2.descripcion+"</td>";
- 		 	 	}
- 		  	 	
- 		  	 });
- 		 	 out+="<td>"+val.serie+"</td>";
- 		 	 out+="<td>"+val.color+"</td>";
- 		 	 out+="<td>"+val.modelo+"</td>";
- 		 	 out+="<td>"+val.marca+"</td>";
- 		 	 if (val.cod_activo=="Activo") {
- 		 	 	out+="<td class='text-success'>"+val.cod_activo+"</td>";
- 		 	 }
- 		 	 else {
- 		 	 	out+="<td class='text-danger'>"+val.cod_activo+"</td>";
- 		 	 }
- 		 	 out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modal("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a></center></td>";
-             //<span class='glyphicon glyphicon-phone form-control-feedback'></span>
- 		 	 out+="</tr>";
-		 	 $('#tablaDispositivos tbody tr:last').after(out);
+            var out="";
+            out+="<tr>";
+            out+="<td>"+val.iddispositivos+"</td>";
+            out+="<td>"+val.nombredispositivo+"</td>";
+            $.each(datos.tipos, function(index, val2) {
+            if (val2.idtipodispositivos==val.idtipodispositivos) {
+                out+="<td>"+val2.descripcion+"</td>";
+            }
+            });
+            out+="<td>"+val.serie+"</td>";
+            out+="<td>"+val.color+"</td>";
+            out+="<td>"+val.modelo+"</td>";
+            out+="<td>"+val.marca+"</td>";
+            if (val.cod_activo=="Activo") {
+            out+="<td class='text-success'>"+val.cod_activo+"</td>";
+            }
+            else {
+            out+="<td class='text-danger'>"+val.cod_activo+"</td>";
+            }
+            out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modal("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a></center></td>";
+            //<span class='glyphicon glyphicon-phone form-control-feedback'></span>
+            out+="</tr>";
+            $('#tablaDispositivos tbody tr:last').after(out);
 	    })
 	})
 	.fail(function() {

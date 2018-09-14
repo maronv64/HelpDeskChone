@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Usuarios;
 Use App\User;
 use App\Extra_Tecnico;
+use App\Tipo_Usuario;
 
 use Illuminate\Http\Request;
 class UsuariosController extends Controller
@@ -147,15 +148,26 @@ class UsuariosController extends Controller
     public function destroy($id)
     {
          $user = Usuarios::find($id);
+       
+         $user->estado="Inactivo";
+        
+        
+        if($user->idtipousuario=="5"){
          $idextra= Extra_Tecnico::where('idusuario', $user->id)->first();
-         if($idextra==null){
-            $user->delete();
-        }else{
          $eliminextra = Extra_Tecnico::find($idextra->idextra_tecnico);
          $eliminextra->delete();
          $user->delete();
+        }else{
+             $user->delete();
         }
-         
+    }
+
+    public function eliminarusuario($id){
+          $user = Usuarios::find($id);
+          $user->estado="Inactivo";
+          $user->save();
+          return response()->json($user);
+
     }
       /*FUNCIÓN PARA BUSCAR EL USUARIO A ACTUALIZAR */
      public function preparactualizar($id){
@@ -200,4 +212,6 @@ class UsuariosController extends Controller
         $users = User::with('area','tipo_usuario')->where('estado','activo')->get();
         return response()->json($users);
     }
+        
+            
 }

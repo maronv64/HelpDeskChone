@@ -6,13 +6,12 @@
 
 
 @section('main-content')
-
-  <div class="container-fluid spark-screen">
+<div class="container-fluid spark-screen">
     <div class="row">
         <div class="">
-          <div id="app">
-              <div class="">
-                  <!--   <div class="register-logo">
+            <div id="app">
+                <div class="">
+                    <!--   <div class="register-logo">
                         <a href="{{ url('/home') }}"><b>Help</b>Desk</a>
                     </div> 
                     @if (count($errors) > 0)
@@ -25,27 +24,20 @@
                             </ul>
                         </div>
                     @endif-->
-
-                <div class="register-box-body"  >
-                  @include('adminlte::layouts.partials.GestionDispositivos.FormularioRegistroDis')                
-                </div><!-- /.form-box -->
-                      
-               </div><!-- /.register-box -->
-               <br>    
+                    <div class="register-box-body"  >
+                        @include('adminlte::layouts.partials.GestionDispositivos.FormularioRegistroDis')                
+                    </div><!-- /.form-box -->       
+                </div><!-- /.register-box -->
+                <br>    
            </div>
-
-         </div>
+        </div>
     </div>
-
     <div>
         <!-- TABLA DE LISTA DE USUARIOS -->
-      @include('adminlte::layouts.partials.GestionDispositivos.TablaDispositivos')    
+        @include('adminlte::layouts.partials.GestionDispositivos.TablaDispositivos')    
     </div>
-  </div>
-
-  <!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
-  @include('adminlte::layouts.partials.GestionDispositivos.modalactualizar')  
-  <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
- 
-
-  @endsection
+</div>
+<!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
+@include('adminlte::layouts.partials.GestionDispositivos.modalactualizar')  
+<!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
+@endsection

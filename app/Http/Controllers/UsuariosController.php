@@ -108,8 +108,9 @@ class UsuariosController extends Controller
         
        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
-       // $user->password= bcrypt($request->password);
-       
+        if($request->actualizarclave=="1"){   
+          $user->password= bcrypt($request->password);
+        }
     
          if($user->idtipousuario =="5" && $request->idtipousuario =="5"){
         

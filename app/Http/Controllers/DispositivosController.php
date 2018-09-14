@@ -17,7 +17,7 @@ class DispositivosController extends Controller
     public function index()
     {
         $tipos = TipoDispositivo::All();
-        return view('adminlte::dispositivos')->with(['tiposDispositivos'=>$tipos]);
+        return view('adminlte::layouts.partials.GestionDispositivos.Dispositivos')->with(['tiposDispositivos'=>$tipos]);
     }
 
     /**

@@ -22,7 +22,8 @@ class PeticionController extends Controller
     public function index()
     {
         //
-        return view('peticiones');
+        //return view('peticiones');
+        return view('adminlte::layouts.partials.GestionPeticiones.peticiones');
     }
 
     /**

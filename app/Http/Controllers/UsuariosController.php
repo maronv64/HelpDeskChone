@@ -207,9 +207,10 @@ class UsuariosController extends Controller
         return response()->json($repuestos);
     }
       /* Cargar Usuaruios*/
-    public function CargarDatos()
+    public function CargarDatos($idarea)
     {   
-        $users = User::with('area','tipo_usuario')->where('estado','activo')->get();
+        $users = User::with('area','tipo_usuario')  ->where('idarea',$idarea)
+                                                    ->where('estado','activo')->get();
         return response()->json($users);
     }
         

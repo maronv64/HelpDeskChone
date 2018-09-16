@@ -65,7 +65,7 @@ Route::get('/areasCargarDatos','AreaController@CargarDatos');
 //---------------------------------------------------------------------------------------------------------------------
 
 
-/*###################*GESTIONES DE USUARIOS*###########################*/
+/*###################*GESTIONES DE USUARIOS de leonardo*###########################*/
 
 /*RUTA PARA HACER USO DE LOS CONTROLADORES DE USUARIOS*/
 Route::resource('/GestionUsuarios', 'UsuariosController');

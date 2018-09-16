@@ -48,7 +48,7 @@ class UsuariosController extends Controller
         $user->sexo = $request->sexo;
         $user->celular = $request->celular;
         $user->email = $request->email;
-        $user->estado = $request->estado;
+        $user->estado = "Activo";
         $user->idtipousuario = $request->idtipousuario;
        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
@@ -105,7 +105,7 @@ class UsuariosController extends Controller
         $user->sexo = $request->sexo;
         $user->celular = $request->celular;
         $user->email = $request->email;
-        $user->estado = $request->estado;
+       // $user->estado = $request->estado;
         
        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
@@ -178,7 +178,7 @@ class UsuariosController extends Controller
       /*FUNCIÓN PARA MOSTRAR TODOS LOS USUARIOS*/
     public function listadeUsuarios(){   
    
-        $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])->get();
+        $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])->where('estado','Activo')->get();
         return response()->json($userall);
     }
 
@@ -194,14 +194,15 @@ class UsuariosController extends Controller
         $repuestos = Usuarios::with(['tipo_usuario','area','extratecnicos'])
                     ->join('tipo_usuario','users.idtipousuario','=','tipo_usuario.idtipo_Usuario')
                     ->join('area','users.idarea','=','area.idarea')
+
                    //->join('extra_tecnico','extra_tecnico.idusuario','=','users.id')
-                    ->where('tipo_usuario.descripcion', 'like', "%$busqueda%")
-                    ->orwhere('area.nombre', 'like', "%$busqueda%")
-                   //->orwhere('extra_tecnico.especialidad', 'like', "%$busqueda%")
-                    ->orwhere('name', 'like', "%$busqueda%")
+                    ->where('estado','Activo')
+                    ->where('name', 'like', "%$busqueda%")
+                    /*->where('tipo_usuario.descripcion', 'like', "%$busqueda%")
+                    ->where('area.nombre', 'like', "%$busqueda%")
                     ->orWhere('apellidos','like',"%$busqueda%")
                     ->orWhere('sexo','like',"%$busqueda%")
-                    ->orWhere('estado','like',"%$busqueda%")
+                    ->orWhere('estado','like',"%$busqueda%")*/
                     ->get();
 
         return response()->json($repuestos);

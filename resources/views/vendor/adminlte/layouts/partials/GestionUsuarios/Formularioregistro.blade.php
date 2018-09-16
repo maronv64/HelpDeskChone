@@ -45,15 +45,11 @@
                                       <!-- <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
                                   </div>
                               </div>
-                               <div class="col-md-4">
-                                  <div class="form-group has-feedback">
-                                     <label><b>Estado:</b></label>
-                                      <select class="form-control" id="estado" name="estado" required >
-                                        <option selected >Activo</option>
-                                        <option >Inactivo</option>
-                                      </select>
-                                          
-                                   <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
+                                <div class="col-md-4">
+                                   <div class="form-group has-feedback"  id="idarea" >
+                                      <label><b>Área:</b></label>
+                                      <select class="form-control" required name="idarea" id="cmb_area" >
+                                      </select>      
                                   </div>
                               </div>
                           </div>
@@ -78,24 +74,15 @@
                                   </div>
                                </div>
                                <div class="col-md-4">
-                                  <div class="form-group has-feedback"  id="idarea" >
-                                      <label><b>Área:</b></label>
-                                      <select class="form-control" required name="idarea" id="cmb_area" >
-
-                                      
-                                      </select>      
-                                   <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
+                                <div class="form-group has-feedback">
+                                     <label><b>Email:</b></label>
+                                      <input type="email" class="form-control" placeholder="{{ trans('adminlte_lang::message.email') }}" id="email" name="email" value="{{ old('email') }}"required />
+                                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                   </div>
                                </div>
                           </div>
                           
                           <div class="row">
-                               <div class="col-md-4">
-                                  <div class="form-group has-feedback">
-                                      <input type="email" class="form-control" placeholder="{{ trans('adminlte_lang::message.email') }}" id="email" name="email" value="{{ old('email') }}"required />
-                                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                  </div>
-                               </div>
                                <div class="col-md-4">
                                   <div class="form-group has-feedback">
                                       <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password"required />
@@ -108,22 +95,13 @@
                                       <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                   </div>
                               </div>
+                               <div class="col-md-4">
+                                 <button type="submit"  class="btn btn-primary btn-block btn-flat">Registrarse</button>
+                               </div>
                           </div>
                         
                      <div class="row">
-                          <!--   <div class="col-md-3">
-                                <label class="lcontainer" style="color: blue; font-size: 14px">Aceptar Terminos y Condiciones
-                                       <input type="checkbox" name="terms" required >
-                                      <span class="lcheckmark"></span>
-                                </label>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-block btn-flat" data-toggle="modal" data-target="#termsModal">Ver </button>
-                                </div>
-                            </div>-->
                             <div class="col-md-12">
-                                <button type="submit"  class="btn btn-primary btn-block btn-flat">Registrarse</button>
                             </div> 
                        </div>
 

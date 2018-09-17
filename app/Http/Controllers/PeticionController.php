@@ -44,6 +44,7 @@ class PeticionController extends Controller
      */
     public function store(Request $request)
     {
+        
         //
         $peticion = new Peticion();
         $peticion->idprioridad =    $request->idprioridad;
@@ -53,12 +54,10 @@ class PeticionController extends Controller
         $peticion->descripcion =    $request->descripcion;
         $peticion->estado_del='1';
 
-        if($peticion->save()){
-            return response()->json($peticion);
-        }else{
-            return 0;
-        }
-
+        $peticion->save();
+        
+        return response()->json($peticion);
+    
         
     }
 

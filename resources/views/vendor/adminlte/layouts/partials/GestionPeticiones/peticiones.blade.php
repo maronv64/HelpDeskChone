@@ -20,7 +20,7 @@
                         <div class="modal-body">
                                 <form id=""  > 
                                             
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
                                                 <input type="text" name="iduser" id="iduser" hidden >
                                                 <div class="row">
 
@@ -94,9 +94,9 @@
                 <div class="register-box-body"  >
                   <p> <h3>Registre una nueva Peticion</h3></p>
                   <hr>
-                  <form enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    
+                  <form enctype="multipart/form-data">
+                    <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                     -->
                     <div class="row">
                        
                         <div class="row">
@@ -171,9 +171,9 @@
                            
                             <div class="col-md-4 ">
                                     <div class ="row">
-                                        <div class="col-md-12">
-                                            <a id="btnEnviarPeticion" class=" btn btn-primary btn-block btn-flat " title="">Enviar Peticion</a>
-                                        </div>
+                                    <div class="col-md-12">
+                                                <a id="btnEnviarP" class=" btn btn-info btn-block btn-flat " title="">Enviar Peticion</a>
+                                            </div>
                                     </div>
                             </div>
                             
@@ -181,9 +181,6 @@
 
                     
                     </div>
-
-                    
-
                   </form>
                 </div><!-- /.form-box -->
               </div><!-- /.register-box -->

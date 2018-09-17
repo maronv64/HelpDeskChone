@@ -68,6 +68,10 @@ Route::get('/areasCargarDatos','AreaController@CargarDatos');
 
 //---------------------------------------------------------------------------------------------------------------------
 
+//GP
+
+Route::get('/dashboardhelpdesk','DashboardHelpdeskController@index');
+/*###################*GESTIONES DE USUARIOS*###########################*/
 
 /*###################*GESTIONES DE USUARIOS de leonardo*###########################*/
 

@@ -219,7 +219,8 @@ function CargarAreas()
 function CargarUsuariosPorArea(idarea,consul){
     $.get('usuariosFiltroPorArea/'+idarea+'/'+consul, function (data) { 
         $('#dgvUsuarios').html('');
-        $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
+        $.each(data, 
+            function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
             
            
             
@@ -310,20 +311,20 @@ $('#cmbAreas').change(function() {
 
 });
 
-$( "#btnEnviarPeticion" ).click(function() {
-    var FrmData = {
-        idprioridad:    $('#cmbPrioridades').val(),
-        idestado:       $('#cmbEstados').val(),
-        idtipopeticion: $('#cmbTipoPeticiones').val(),
-        idusuario:      $('#iduser').val(),
-        descripcion:    $('#txtDescripcion').val(),
-    }
-    // alert(
-    //     "idPrioridad:     "+$('#cmbPrioridades').val()+
-    //     "idestado:        "+$('#cmbEstados').val()+
-    //     "idtipopeticion:  "+$('#cmbTipoPeticiones').val()+
-    //     "idusuario:       "+$('#iduser').val()+
-    //     "descripcion:     "+$('#txtDescripcion').val()
-    // );
-    
-});
+// $( "#btnEnviarP" ).click(function() {
+
+//     // var FrmData = {
+//     //     idprioridad:    $('#cmbPrioridades').prop('value'),
+//     //     idestado:       $('#cmbEstados').prop('value'),
+//     //     idtipopeticion: $('#cmbTipoPeticiones').prop('value'),
+//     //     idusuario:      $('#iduser').prop('value'),
+//     //     descripcion:    $('#txtDescripcion').prop('value'),
+//     // }
+
+
+
+//     alert("FFFFFFRFFF");
+   
+// });
+
+

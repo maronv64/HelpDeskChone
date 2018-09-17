@@ -81,7 +81,7 @@
                           </div>
                      
                              <div class="modal-footer">
-                              <button type="submit" id="botonasignar" data-toggle='modal' data-target='#mi-modal2'  class="btn btn-primary">Asignar</button>
+                              <button type="submit" id="botonasignar" class="btn btn-primary">Asignar</button>
                               <button type="button" class="btn btn-secondary" onclick="limpiartablatacnicos()" data-dismiss="modal">Cerrar</button>
                             </div>
          </form>

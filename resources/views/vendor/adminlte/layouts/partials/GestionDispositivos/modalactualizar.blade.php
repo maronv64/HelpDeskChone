@@ -1,5 +1,5 @@
-<div class="modal" tabindex="-1" role="dialog" id="miModalnuevo">
-  <div class="modal-dialog" role="document">
+<div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" id="miModalnuevo">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" align="center">
         <h3  class="modal-title"><b><i class="fa fa-user"></i>  Actualización de Datos</b></h3>

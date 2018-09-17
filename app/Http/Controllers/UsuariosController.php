@@ -224,6 +224,33 @@ class UsuariosController extends Controller
                                                     ->where('estado','activo')->get();
         return response()->json($users);
     }
-        
-            
+     
+    public function usuariosFiltroPorArea($idarea,$consul='')
+    {
+        $users = User::with('area','tipo_usuario')  ->where([
+                                                            ['idarea',$idarea],
+                                                            ['estado','activo'],
+                                                            ['name','like',"%$consul%"]
+                                                            ])
+                                                    ->orwhere([
+                                                            ['idarea',$idarea],
+                                                            ['estado','activo'],
+                                                            ['apellidos','like',"%$consul%"]
+                                                            ])
+                                                    ->orwhere([
+                                                            ['idarea',$idarea],
+                                                            ['estado','activo'],
+                                                            ['cedula','like',"%$consul%"]
+                                                            ])
+                                                    ->get();
+        return response()->json($users);
+    }
+    public function usuarioBuscar($id)
+    {
+        $buscar = new User();
+        $buscar->id=$id;
+        //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
+        $users = User::with('area','tipo_usuario')  -> find($buscar->id);
+        return response()->json($users);
+    }       
 }

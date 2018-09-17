@@ -36,8 +36,12 @@
         <!-- TABLA DE LISTA DE USUARIOS -->
         @include('adminlte::layouts.partials.GestionDispositivos.TablaDispositivos')    
     </div>
-</div>
-<!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
-@include('adminlte::layouts.partials.GestionDispositivos.modalactualizar')  
-<!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
-@endsection
+  </div>
+
+  <!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
+  @include('adminlte::layouts.partials.GestionDispositivos.modalactualizar')  
+  <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
+ 
+  <script src="{{ asset('js/dispositivos.js') }}" defer></script>
+
+  @endsection

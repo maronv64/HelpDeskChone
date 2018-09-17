@@ -22,7 +22,7 @@ Route::get('/probando', function () {
 //rutas para dispositivos
 Route::resource('/dispositivos','DispositivosController');
 Route::get('/obtenerDispositivos','DispositivosController@obtenerlista');
-Route::get('/obtenerDispositivos/{id}','DispositivosController@buscarDispositivo');
+Route::get('/obtenerDispositivos/{id?}','DispositivosController@buscarDispositivo');
 
 //rutas para tipo de dispositivos
 

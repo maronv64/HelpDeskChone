@@ -1,5 +1,5 @@
 <?php
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +22,8 @@ Route::get('/probando', function () {
 //rutas para dispositivos
 Route::resource('/dispositivos','DispositivosController');
 Route::get('/obtenerDispositivos','DispositivosController@obtenerlista');
+Route::get('/obtenerDispositivos/{id}','DispositivosController@buscarDispositivo');
+
 //rutas para tipo de dispositivos
 
 //la plantilla hace uso de estas rutas
@@ -34,12 +36,33 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
 });
 
-//Rutas de Maron Vera
+//Rutas de Maron Vera ------------------------------------------------------------------------------------------------
 //holaaaaaa  nonnooooooooo maron 
+
+//Rutas de las Peticiones
 Route::resource('/peticiones','PeticionController');
+//Rutas para consumo de datos de Peticiones 
+//Consultas Generales
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
 
+//Rutas de Prioridad
+//Cargar todos las Priotidades
+Route::get('/prioridadesCargarDatos','PrioridadController@CargarDatos');
+//Rutas de Estado
+//Cargar todos los Estados
+Route::get('/estadosCargarDatos','EstadoController@CargarDatos');
+//Ruetas de Tipo Peticiones
+//Cargar todos los tipos de Peticiones
+Route::get('/tipopeticionesCargarDatos','TipoPeticionController@CargarDatos');
+//Rutas de Usuario
+//Cargar todos los Usuarios por Areas
+Route::get('/usuariosFiltroPorArea/{id?}','UsuariosController@CargarDatos');
+//Rutas de Areas
+//Cargar todos los Areas
+Route::get('/areasCargarDatos','AreaController@CargarDatos');
+
+//---------------------------------------------------------------------------------------------------------------------
 
 //GP
 
@@ -47,6 +70,8 @@ Route::get('/dashboardhelpdesk', function () {
     return view('dashboardhelpdesk'); 
 });
 /*###################*GESTIONES DE USUARIOS*###########################*/
+
+/*###################*GESTIONES DE USUARIOS de leonardo*###########################*/
 
 /*RUTA PARA HACER USO DE LOS CONTROLADORES DE USUARIOS*/
 Route::resource('/GestionUsuarios', 'UsuariosController');
@@ -63,4 +88,18 @@ Route::GET('/mostrarextratecnico', 'ExtraTecnicoController@mostrarextratecnico')
 Route::GET('/mostrarareas', 'AreaController@mostrarareas');
 Route::resource('/extratecnico', 'ExtraTecnicoController');
 
+Route::get('/buscar_usuarios/{busqueda?}','UsuariosController@buscar_usuarios');
+Route::get('/mostrarespecialidad','EspecialidadController@mostrarespecialidad');
+
+Route::get('/eliminarusuario/{id?}','UsuariosController@eliminarusuario');
+
+
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
+
+
+
+Route::resource('/asigtareas','AsigTareasController');
+Route::get('/listaTecnicos','UsuariosController@listaTecnicos');
+
+Route::get('/datospeticion/{id}','PeticionController@datospeticion');
+

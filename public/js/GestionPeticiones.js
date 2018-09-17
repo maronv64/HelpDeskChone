@@ -1,5 +1,19 @@
+/* url interesantes
+http://www.genesisvargasj.com/blog/insertar-y-consultar-con-ajax-php-y-mysql
+https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
+*/
+
+//-------------------- Funciones-----------------------
+
+//esta funcion de trae todas la peticiones y la carga en la tabla 
+// pero no la uso porque demanada muchas iteraciones 
+// dentro de muchos bucles 
+// no es muy corecto
+// att. maron vera 
+// no me eliminen la funcion.
+// eliminen lo suyo !
 function CargarPeticiones(){ 
-    $.get('/peticionesCargarDatos', function (data) { 
+    $.get('peticionesCargarDatos', function (data) { 
             $.each(data.peticiones, function(a, peticion) { // recorremos cada uno de los datos que retorna el objero json n valores
                 
                 $('#dgvPeticiones').html('');
@@ -65,11 +79,13 @@ function CargarPeticiones(){
 
 }
 
+//esta funcion de trae todas la peticiones y la carga en la tabla 
 function CargarPeticiones2(){
-    $.get('/peticionesCargarDatos2', function (data) { 
+    $.get('peticionesCargarDatos2', function (data) { 
+        $('#dgvPeticiones').html('');
         $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
             
-            $('#dgvPeticiones').html('');
+           
             
             var fila ="";
 
@@ -87,7 +103,7 @@ function CargarPeticiones2(){
             //añade la nombre del area
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';
             //
-            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='prepararactualizarusuario("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalPeticionesActualizar("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
                     "<button type='button' class='btn btn-danger' onClick='UsuarioDelete("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
             //
             fila+= '</tr>';
@@ -102,9 +118,176 @@ function CargarPeticiones2(){
 
 }
 
+function CargarEstados()
+{
+    $.get('estadosCargarDatos', function (data) { 
+        $('#cmbEstados').html('');
+        $.each(data, function(a, item) { 
+           
+           
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
 
+            fila+= '<option value='+ item.idestado +'>'+ item.descripcion +'</option>';
+
+            
+            $('#cmbEstados').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+function CargarPrioridades()
+{
+    $.get('prioridadesCargarDatos', function (data) { 
+        $('#cmbPrioridades').html('');
+        $.each(data, function(a, item) { 
+           
+            
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idprioridad +'>'+ item.descripcion +'</option>';
+
+            
+            $('#cmbPrioridades').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+function CargarTipoPeticiones()
+{
+    $.get('tipopeticionesCargarDatos', function (data) { 
+        $('#cmbTipoPeticiones').html('');
+        $.each(data, function(a, item) { 
+           
+            
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idtipopeticion +'>'+ item.descripcion +'</option>';
+
+            
+            $('#cmbTipoPeticiones').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+function verModalPeticionesActualizar(id)
+{
+    $( "#modalBuscarUsuario" ).modal('show');
+}
+
+function CargarAreas()
+{
+    $.get('areasCargarDatos', function (data) { 
+        $('#cmbAreas').html('');
+        $.each(data, function(a, item) { 
+           
+            
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idarea +'>'+ item.nombre +'</option>';
+
+            
+            $('#cmbAreas').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+function CargarUsuariosPorArea(idtipo){
+    $.get('usuariosFiltroPorArea/'+idtipo, function (data) { 
+        $('#dgvUsuarios').html('');
+        $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
+            
+           
+            
+            var fila ="";
+
+            fila+= '<tr>';
+            //añade la cedula
+            fila+= '<td>'+item.cedula  +'</td>';
+            //añade el nombre
+            fila+= '<td>'+item.name  +'</td>';
+            //añade el celular
+            fila+= '<td>'+item.celular  +'</td>';
+            //añade el area
+            fila+= '<td>'+item.area.nombre  +'</td>';
+            //añade el email
+            fila+= '<td>'+item.email  +'</td>';
+            //añade el boton
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='pasarId("+item.idusuario+")'><i class='fa fa-edit'></i></button>";
+         
+            //
+            fila+= '</tr>';
+
+            $('#dgvUsuarios').append(//identificamos ala nota que queremos add esta otra nota        
+                 fila									
+            );
+            
+        });  
+
+    });     
+}
+
+function mensaje(id)
+{
+    alert('este es el id: '+id);
+}
+///-------------------------- eventos ------------------------
+
+// envento al cargar la vista
+window.onload = function() {
+    window.onload=CargarEstados(),
+    CargarPeticiones2(),
+    CargarPrioridades(),
+    CargarTipoPeticiones()
+};
+//window.onload=CargarEstados();
+
+
+
+//al dar clic se refresca la tabla de peticiones
 $( "#btnMostrar" ).click(function() {
     //CargarPeticiones();
     $( "#prueba" ).html('');
     CargarPeticiones2();
+});
+
+
+$( "#btnAgregarUsuario" ).click(function() {
+
+    $( "#modalBuscarUsuario" ).modal('show');
+    CargarAreas();
+    
+});
+
+
+$('#txtBuscar').keyup(function() { 
+    alert('changed!');
+});
+
+//-----------------------------------------------------------------
+
+
+$('#cmbAreas').change(function() { 
+    //alert( $('#cmbAreas').val() );
+    CargarUsuariosPorArea($('#cmbAreas').val());
+
 });

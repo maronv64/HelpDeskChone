@@ -1,54 +1,6 @@
-@extends('adminlte::layouts.app')
-
-@section('htmlheader_title')
-    Register
-@endsection
-
-
-@section('main-content')
-
-  <div class="container-fluid spark-screen">
-    <div class="row">
-        <div class="">
-          <div id="app">
-              <div class="">
-                  <!--   <div class="register-logo">
-                        <a href="{{ url('/home') }}"><b>Help</b>Desk</a>
-                    </div> 
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif-->
-
-                <div class="register-box-body"  >
-                  @include('adminlte::layouts.partials.GestionUsuarios.Formularioregistro')                
-                </div><!-- /.form-box -->
+ <div class="modal-body">
+         <form id="formmodalactualizar"  method="post"> 
                       
-               </div><!-- /.register-box -->
-               <br>    
-           </div>
-
-         </div>
-    </div>
-
-
-  <!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
-  <div class="modal" tabindex="-1" role="dialog" id="actualizarusuariomodal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" align="center">
-        <h3  class="modal-title"><b><i class="fa fa-user"></i>  Actualización de Datos</b></h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      </div>
-      <div class="modal-body">
-         <form id="frm_registrarUsuario"  method="post"> <!--   action="{{ url('/usuarioIngresar') }}" -->
-                      @csrf
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <input type="text" name="idusuarioup" id="idusuarioup" hidden >
                           <div class="row">
@@ -83,7 +35,6 @@
                                    <div class="form-group has-feedback">
                                     <label> <b>Sexo:</b></label>
                                     <select class="form-control" id="sexoup" name="sexoup" required >
-                                        <option disabled selected>Sexo</option>
                                         <option>Femenino</option>
                                         <option>Masculino</option>
                                      </select>
@@ -91,16 +42,22 @@
                                   </div>
                               </div>
                                <div class="col-md-4">
-                                  <div class="form-group has-feedback">
+                                  <div class="form-group has-feedback" id="idareaup" >
+                                      <label> <b>Área:</b></label>
+                                      <select class="form-control" required name="idareaup" id="cmb_areaup" >
+                                  
+                                      </select>      
+                                   <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
+                                  </div>
+                                <!--   <div class="form-group has-feedback">
                                       <label> <b>Estado:</b></label>
                                       <select class="form-control" id="estadoup" name="estadoup" required >
-                                        <option disabled selected>Estado</option>
                                         <option>Activo</option>
                                         <option>Inactivo</option>
                                       </select>
                                           
-                                   <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
-                                  </div>
+                                 <span class="glyphicon glyphicon-user form-control-feedback"></span> 
+                                  </div> -->
                               </div>
                           </div>
                           <div class="row">
@@ -116,53 +73,43 @@
                                   <div class="form-group has-feedback" id="idextratecnicoup" hidden>
                                       <label> <b>Especialización:</b></label>
                                       <select class="form-control" required  name="idextratecnicoup" id="cmb_extratecnicoup">
-                                        <option> Mantenimiento</option>
-                                        <option> Sistemas</option>
-                                        <option> Redes</option>
+                                    
                                       </select>        
                                    <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
                                   </div>
                                </div>
-                               <div class="col-md-4">
-                                  <div class="form-group has-feedback" id="idareaup" >
-                                      <label> <b>Área:</b></label>
-                                      <select class="form-control" required name="idareaup" id="cmb_areaup" >
-                                  
-                                      </select>      
-                                   <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
-                                  </div>
-                               </div>
-                          </div>
-                          
-                          <div class="row">
                                <div class="col-md-4">
                                   <div class="form-group has-feedback">
                                       <label> <b>Email:</b></label>
                                       <input type="email" class="form-control" placeholder="{{ trans('adminlte_lang::message.email') }}" id="emailup" name="emailup" required />
                                   </div>
                                </div>
+                          </div>
+                          
+                          <div class="row">
+
                                <div class="col-md-4">
-                                  <div class="form-group has-feedback">
-                                      <label> <b>Contraseña:</b></label>
-                                      <input type="password" class="form-control" id="passwordup" placeholder="Contraseña" name="passwordup"required />
+                                  <label class="lcontainer" style="color: blue; font-size: 14px">Actualizar Contraseña?
+                                        <input type="checkbox" name="actualizarclave" id="actualizarclave">
+                                        <span class="lcheckmark"></span>
+                                  </label>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group has-feedback" id="passwordupdiv" hidden>
+                               
+                                      <input type="password" class="form-control" id="passwordup" placeholder="Contraseña" name="passwordup" disabled />
                                   </div>
                                </div>
+
+                               <div class="col-md-4">
+                                
+                               </div>
+                       
                           </div>
-                      </form>
+                             <div class="modal-footer">
+                              <button type="submit" id="botonactualizarusuario"  class="btn btn-primary">Actualizar</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" onclick="usuarioActualizar();" class="btn btn-primary">Actualizar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-      </div>
-    <div>
-        <!-- TABLA DE LISTA DE USUARIOS -->
-      @include('adminlte::layouts.partials.GestionUsuarios.Tablaregistro')    
-    </div>
-  </div>
-
-  <!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
-  @include('adminlte::layouts.partials.GestionUsuarios.modalusuario')  
-  <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
-  @include('adminlte::layouts.partials.GestionUsuarios.modalconfirmacionregistro')  
-
-  @endsection
+   

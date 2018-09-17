@@ -141,8 +141,6 @@ function datospeticion(val){
 
 
 function guardartecnicosasignados(idusuario,idasig){ 
-      alert(idusuario);
-      alert(idasig);
         var FrmData = {
             idasig: idasig,
             idusuario: idusuario,
@@ -160,7 +158,7 @@ function guardartecnicosasignados(idusuario,idasig){
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
                 mensaje1 = "tecnicos si";
-                 alert(mensaje1);
+                 alertify.error(mensaje1);
         
             },
             error: function () {   
@@ -212,7 +210,7 @@ function AsignacionInsert(){
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
                 mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
-                 alert(mensaje1);
+                  alertify.error(mensaje1);
                  asignartecnicos(data.idasignacion);
         
             },

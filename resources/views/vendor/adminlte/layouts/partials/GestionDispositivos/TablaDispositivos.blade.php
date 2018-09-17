@@ -3,9 +3,6 @@
            <div class="col-md-8">
               <p> <h3>Lista de dispositivos registrados</h3></p>
             </div>
-            <div class="col-md-4">
-                <a id="id_mostrar_dispositivos" class="btn btn-info  btn-block rounded" title="">Listar dispositivos</a>
-            </div>
         </div>
            
           <hr>
@@ -13,7 +10,6 @@
             <table id="tablaDispositivos" class="table table-hover table-bordered">
             <thead>
               <tr>
-                <th scope="col">Id dispositivo</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Tipo de dispositivo</th>
                 <th scope="col">Serie</th>

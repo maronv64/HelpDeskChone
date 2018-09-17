@@ -47,5 +47,6 @@
   @include('adminlte::layouts.partials.GestionDispositivos.modalactualizar')  
   <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
  
+  <script src="{{ asset('js/dispositivos.js') }}" defer></script>
 
   @endsection

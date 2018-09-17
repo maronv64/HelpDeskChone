@@ -127,12 +127,13 @@ desired effect
 @section('scripts')
     @include('adminlte::layouts.partials.scripts')
 @show
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+
+<script src="{{ asset('js/alertify.js') }}" defer></script>
 <!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+
 <!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.min.css"/>
+<link rel="stylesheet" href="css/alertify.css" />
+<!-- include a theme -->
+<link rel="stylesheet" href="css/default.css" />
 </body>
 </html>

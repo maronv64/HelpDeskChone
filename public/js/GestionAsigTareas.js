@@ -8,11 +8,12 @@ $(document).ready(function()
  });
 /*FUNCIÓN PARA CARGAR LAS PAETICIONES QUE SE ENCUENTRAN DISPONIBLES */
 function BandejadePeticiones(){
+
     $.get('peticionesCargarDatos2', function (data) { 
         $('#tablapeticionesasignar').html(''); //esta la uso para limpiar la tabla en el modulo de asignacion por Jose Sabando
         $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
             
-           
+       
             
             var fila ="";
 
@@ -20,7 +21,7 @@ function BandejadePeticiones(){
             //
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';
             //añade la descripcion del tipo de peticion
-            fila+= '<td>'+item.usuario.area.nombre +'</td>';
+            fila+= '<td>'+item.usuario.name + " "+ item.usuario.apellidos  +'</td>';
             //añade la descripcion de la prioridad
             fila+= '<td>'+item.tipo_peticion.descripcion  +'</td>';
             //añade la descripcion del estado
@@ -30,7 +31,7 @@ function BandejadePeticiones(){
             //añade la nombre del area
             //
           fila+= "<td class='row'> <center> <button type='button' data-toggle='modal' data-target='#datospeticion' onClick='datospeticion("+item.idpeticion+")' class='btn btn-info'><i class='fa fa-eye'></i>  Ver</button></td>";
-           fila+= "<td class='row'> <center> <button type='button' class='btn btn-success'  data-toggle='modal' data-target='#Asignacionmodal'><i class='fa fa-plus'></i>  Asignar</button></td>";
+           fila+= "<td class='row'> <center> <button type='button' class='btn btn-success' onClick='asignaridpeticion("+item.idpeticion+","+item.usuario.id+")' data-toggle='modal' data-target='#Asignacionmodal'><i class='fa fa-plus'></i>  Asignar</button></td>";
             fila+= '</tr>';
 
 
@@ -124,11 +125,98 @@ function eliminarFila(index) {
 function datospeticion(val){
      $.get('datospeticion/'+val, function (data) {  //esta la uso para limpiar la tabla en el modulo de asignacion por Jose Sabando
         console.log(data);
-        $.each(data, function(a, item) {
-            alert(item.descripcion);
-            document.getElementById('usuariop').innerHTML = '<b>Usuario:</b>'+ item.descripcion;
-            $("#usuariop").val(item.descripcion);
 
+        $.each(data, function(a, item) {
+            document.getElementById('usuariop').innerHTML = item.usuario.name +" "+item.usuario.apellidos;
+            document.getElementById('areap').innerHTML =  item.usuario.area.nombre;
+            document.getElementById('tipopp').innerHTML = item.tipo_peticion.descripcion;
+            document.getElementById('fechap').innerHTML = '00-00-00';
+            document.getElementById('prioridadp').innerHTML = item.prioridad.descripcion;
+            document.getElementById('estadop').innerHTML =  item.estado.descripcion;
+            document.getElementById('descripcionp').innerHTML = item.descripcion;
         });
     });
 }
+
+
+
+function guardartecnicosasignados(idusuario,idasig){ 
+        var FrmData = {
+            idasig: idasig,
+            idusuario: idusuario,
+        }
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: 'guardarUsuariosAsignacion/'+idusuario+'/'+idasig,  // Url que se envia para la solicitud esta en el web php es la ruta
+            method: "POST",             // Tipo de solicitud que se enviará, llamado como método
+            data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+            success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+            {  
+                mensaje1 = "tecnicos si";
+                 alertify.error(mensaje1);
+        
+            },
+            error: function () {   
+         
+                mensaje = "tecnicos no";
+                alert(mensaje);
+            }
+        });  
+}
+
+    function asignartecnicos(idasig){
+      $('#tecnicosasignadostable tr').each(function () {
+        idtecnico = $(this).find("td").eq(0).html();
+        guardartecnicosasignados(idtecnico,idasig);
+        //console.log(costo_t);
+    });
+    }
+
+function asignaridpeticion(idpeticion,idusuario){
+  $('#idpeticionasig').val(idpeticion);
+   $('#idusuarioasig').val(idusuario);
+  
+}
+
+
+$('#formasig').on('submit',function(e){
+  e.preventDefault();
+  AsignacionInsert();
+});
+
+/*INSERTAR ASIGNACIONES*/
+function AsignacionInsert(){ 
+        var FrmData = {
+            idpeticion: $('#idpeticionasig').val(),
+            FechaInicial: $('#fechainicialAsig').val(),
+            FechaLimite: $('#fechafinalAsig').val(),
+            observacion: $('#observacionAsig').val(),
+        }
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: 'asigtareas', // Url que se envia para la solicitud esta en el web php es la ruta
+            method: "POST",             // Tipo de solicitud que se enviará, llamado como método
+            data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+            success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+            {  
+                mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
+                  alertify.error(mensaje1);
+                 asignartecnicos(data.idasignacion);
+        
+            },
+            error: function () {     
+                mensaje = "OCURRIO UN ERROR";
+                alert(mensaje);
+            }
+        });  
+    }

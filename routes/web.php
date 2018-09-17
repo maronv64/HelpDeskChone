@@ -22,7 +22,7 @@ Route::get('/probando', function () {
 //rutas para dispositivos
 Route::resource('/dispositivos','DispositivosController');
 Route::get('/obtenerDispositivos','DispositivosController@obtenerlista');
-Route::get('/obtenerDispositivos/{id}','DispositivosController@buscarDispositivo');
+Route::get('/obtenerDispositivos/{id?}','DispositivosController@buscarDispositivo');
 
 //rutas para tipo de dispositivos
 
@@ -45,6 +45,8 @@ Route::resource('/peticiones','PeticionController');
 //Consultas Generales
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
+Route::get('/datospeticion/{id}','PeticionController@datospeticion');
+
 
 //Rutas de Prioridad
 //Cargar todos las Priotidades
@@ -56,8 +58,9 @@ Route::get('/estadosCargarDatos','EstadoController@CargarDatos');
 //Cargar todos los tipos de Peticiones
 Route::get('/tipopeticionesCargarDatos','TipoPeticionController@CargarDatos');
 //Rutas de Usuario
+Route::get('usuarioBuscar/{id?}','UsuariosController@usuarioBuscar');
 //Cargar todos los Usuarios por Areas
-Route::get('/usuariosFiltroPorArea/{id?}','UsuariosController@CargarDatos');
+Route::get('/usuariosFiltroPorArea/{id?}/{consul?}','UsuariosController@usuariosFiltroPorArea');
 //Rutas de Areas
 //Cargar todos los Areas
 Route::get('/areasCargarDatos','AreaController@CargarDatos');
@@ -73,31 +76,36 @@ Route::get('/dashboardhelpdesk','DashboardHelpdeskController@index');
 
 /*RUTA PARA HACER USO DE LOS CONTROLADORES DE USUARIOS*/
 Route::resource('/GestionUsuarios', 'UsuariosController');
-/*PARA EXTRAER TODOS LOS USUARIOS*/
 Route::GET('/usuariosMostrar', 'UsuariosController@listadeUsuarios');
-/*PARA PREPARAR ACTUALIZACIÓN DATOS DEL USUARIO*/
 Route::GET('/prepararactualizar/{id}', 'UsuariosController@preparactualizar');
+Route::get('/buscar_usuarios/{busqueda?}','UsuariosController@buscar_usuarios');
+Route::get('/eliminarusuario/{id?}','UsuariosController@eliminarusuario');
+Route::get('/listaTecnicos','UsuariosController@listaTecnicos');
 
 /*###################*GESTIONES DE TIPO USUARIOS*###########################*/
 Route::GET('/mostrartiposusuarios', 'TipoUsuarioController@mostrartiposusuarios');
-
 Route::GET('/mostrarextratecnico', 'ExtraTecnicoController@mostrarextratecnico');
 
+
+/*######################RUTAS PARA LAS AREAS#################################*/
 Route::GET('/mostrarareas', 'AreaController@mostrarareas');
+
+/*######################RUTAS PARA LOS TÉCNICOS#################################*/
 Route::resource('/extratecnico', 'ExtraTecnicoController');
 
-Route::get('/buscar_usuarios/{busqueda?}','UsuariosController@buscar_usuarios');
+/*######################RUTAS PARA  LA ESPECIALIDAD#################################*/
 Route::get('/mostrarespecialidad','EspecialidadController@mostrarespecialidad');
 
-Route::get('/eliminarusuario/{id?}','UsuariosController@eliminarusuario');
 
+/*######################RUTAS PARA LA ASIGNACIÓN DE TAREAS#################################*/
+Route::resource('/asigtareas','AsigTareasController');
+Route::post('/guardarUsuariosAsignacion/{idusuario}/{idasig}','AsigTareasController@guardarUsuariosAsignacion');
 
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
 
 
 
-Route::resource('/asigtareas','AsigTareasController');
-Route::get('/listaTecnicos','UsuariosController@listaTecnicos');
 
-Route::get('/datospeticion/{id}','PeticionController@datospeticion');
+
+
 

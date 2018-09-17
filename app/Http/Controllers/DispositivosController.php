@@ -83,12 +83,14 @@ class DispositivosController extends Controller
     public function update(Request $request, Dispositivos $dispositivos)
     {
         $dispositivo = Dispositivos::find($request->idDispositivo);
-        $dispositivo->idtipodispositivos=$request->idtipodispositivos;
-        $dispositivo->nombredispositivo=$request->nombredispositivo;
-        $dispositivo->serie=$request->serie;
-        $dispositivo->color=$request->color;
-        $dispositivo->modelo=$request->modelo;
-        $dispositivo->marca=$request->marca;
+        if ($request->cod_activo=='Activo'):
+            $dispositivo->idtipodispositivos=$request->idtipodispositivos;
+            $dispositivo->nombredispositivo=$request->nombredispositivo;
+            $dispositivo->serie=$request->serie;
+            $dispositivo->color=$request->color;
+            $dispositivo->modelo=$request->modelo;
+            $dispositivo->marca=$request->marca;
+        endif;
         $dispositivo->cod_activo=$request->cod_activo;
         $dispositivo->save();
         return $dispositivo;

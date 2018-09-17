@@ -152,7 +152,7 @@
                                     <!-- txt de Usuario -->
                                     <div class="col-md-8    ">
                                         <div class="form-group has-feedback">
-                                            <input disabled id="txtDescripcion"  type="text" class="form-control" placeholder="Usuario"  required/>
+                                            <input disabled id="txtUsuario"  type="text" class="form-control" placeholder="Usuario"  required/>
                                             <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                                         </div>
                                     </div>
@@ -172,7 +172,7 @@
                             <div class="col-md-4 ">
                                     <div class ="row">
                                         <div class="col-md-12">
-                                            <a id="" class=" btn btn-primary btn-block btn-flat " title="">Enviar Peticion</a>
+                                            <a id="btnEnviarPeticion" class=" btn btn-primary btn-block btn-flat " title="">Enviar Peticion</a>
                                         </div>
                                     </div>
                             </div>

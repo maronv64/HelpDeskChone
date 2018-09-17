@@ -54,21 +54,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="form-group has-feedback">
-                    <label for="">Estado</label>
-                    <select id="modal_estado" class="form-control" required>
-                        <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>
-                    </select>
-                    <!--  fffff  <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a id="modal_validar_cambios" class="btn bg-aqua-active btn-block rounded" title="">Validar cambios</a>
+            <div class="col-md-10">
+                <a id="modal_validar_cambios" class="btn btn-primary btn-block rounded" title="">Validar cambios</a>
             </div><!-- /.col -->
+            <div class="col-md-2">
+                <button type="button" class="btn btn-secondary btn-block rounded" data-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </form>
 </div>

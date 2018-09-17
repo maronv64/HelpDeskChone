@@ -45,6 +45,21 @@ class PeticionController extends Controller
     public function store(Request $request)
     {
         //
+        $peticion = new Peticion();
+        $peticion->idprioridad =    $request->idprioridad;
+        $peticion->idestado =       $request->idestado;
+        $peticion->idtipopeticion = $request->idtipopeticion;
+        $peticion->idusuario =      $request->idusuario;
+        $peticion->descripcion =    $request->descripcion;
+        $peticion->estado_del='1';
+
+        if($peticion->save()){
+            return response()->json($peticion);
+        }else{
+            return 0;
+        }
+
+        
     }
 
     /**
@@ -137,10 +152,11 @@ class PeticionController extends Controller
     }
 
     public function datospeticion($id){
-        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion','2')->get();//where('estado_del','1')->get();
+        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->get();//where('estado_del','1')->get();
 //        $peticiones = Peticion::with('prioridad','estado','tipo_peticion')->get();//where('estado_del','1')->get();
         //dd($peticiones);
     //return;
         return response()->json($peticiones);    
     }
+
 }

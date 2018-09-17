@@ -77,7 +77,7 @@
                 <a href="#"><i class='fa fa-bar-chart-o'></i> <span>REGISTRO</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                      @if (! Auth::guest())
-                     @if( Auth::user()->idtipousuario =='6')
+                     @if( Auth::user()->idtipousuario =='2')
                     <li><a href="{{ url('/register') }}"><i class='fa fa-bar-chart-o'></i>Usuarios</a></li>
                      @endif
                      @endif

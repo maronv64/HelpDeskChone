@@ -1,6 +1,7 @@
+  <div class="row register-box-body" id="mostrarformAsig1" >
    <p> <h3><b><i class="fa fa-user"></i>    Registre un nuevo Usuario</b></h3></p>
                       <hr>
-                   <form id="frm_registrarUsuario"  method="post"> <!--   action="{{ url('/usuarioIngresar') }}" -->
+                   <form id="frm_registrarUsuario1"  method="post"> <!--   action="{{ url('/usuarioIngresar') }}" -->
                       @csrf
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <div class="row">
@@ -66,7 +67,9 @@
                                   <div class="form-group has-feedback" hidden id="idextratecnico" >
                                       <label><b>Especialización:</b></label>
                                       <select class="form-control" required  name="idextratecnico" id="cmb_extratecnico">
-                                    
+                                        <option> Mantenimiento</option>
+                                        <option> Sistemas</option>
+                                        <option> Redes</option>
                                       </select>        
                                    <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
                                   </div>
@@ -105,3 +108,4 @@
 
 
                     </form>
+                  </div>

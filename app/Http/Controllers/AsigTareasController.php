@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Areas;
+use App\AsigTareas;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AreasController extends Controller
+class AsigTareasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class AreasController extends Controller
      */
     public function index()
     {
-        //
+         return view('adminlte::layouts.partials.GestionAsigTareas.Asignacion');
     }
 
     /**
@@ -41,10 +42,10 @@ class AreasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Areas  $areas
+     * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
-    public function show(Areas $areas)
+    public function show(AsigTareas $asigTareas)
     {
         //
     }
@@ -52,10 +53,10 @@ class AreasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Areas  $areas
+     * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Areas $areas)
+    public function edit(AsigTareas $asigTareas)
     {
         //
     }
@@ -64,10 +65,10 @@ class AreasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Areas  $areas
+     * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Areas $areas)
+    public function update(Request $request, AsigTareas $asigTareas)
     {
         //
     }
@@ -75,10 +76,10 @@ class AreasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Areas  $areas
+     * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Areas $areas)
+    public function destroy(AsigTareas $asigTareas)
     {
         //
     }

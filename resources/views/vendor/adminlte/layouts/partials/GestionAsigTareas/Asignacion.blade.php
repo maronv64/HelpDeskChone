@@ -25,23 +25,26 @@
                         </div>
                     @endif-->
                     <div class="register-box-body"  >
-                        @include('adminlte::layouts.partials.GestionDispositivos.FormularioRegistroDis')                
-                    </div><!-- /.form-box -->       
+                 
+                                @include('adminlte::layouts.partials.GestionAsigTareas.Tablaregistro')
+                            
+                
+                
+                            
+                    </div>
+                  <!-- /.form-box -->       
                 </div><!-- /.register-box -->
                 <br>    
            </div>
         </div>
     </div>
-    <div>
+    <div >
         <!-- TABLA DE LISTA DE USUARIOS -->
-        @include('adminlte::layouts.partials.GestionDispositivos.TablaDispositivos')    
+        
     </div>
-  </div>
-
-  <!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
-  @include('adminlte::layouts.partials.GestionDispositivos.modalactualizar')  
-  <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
- 
-  <script src="{{ asset('js/dispositivos.js') }}" defer></script>
-
-  @endsection
+</div>
+<!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
+@include('adminlte::layouts.partials.GestionAsigTareas.modalasignacion')  
+@include('adminlte::layouts.partials.GestionAsigTareas.modaldatospeticion') 
+<!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
+@endsection

@@ -2,6 +2,7 @@ $(document).ready(function()
        {
           MostrarTiposUsuarios();
           MostrarAreas();
+          MostrarExtraTecnicos();
  });
 function MostrarTiposUsuarios(){
     $.get('mostrartiposusuarios',function(data){
@@ -14,10 +15,10 @@ function MostrarTiposUsuarios(){
 
 
 function MostrarExtraTecnicos(){
-    $.get('mostrarextratecnico',function(data){
+    $.get('mostrarespecialidad',function(data){
             $.each(data, function(i,item){
-              $('#cmb_extratecnico').append('<option value="'+item.idextra_tecnico+'">'+item.especialidad+'</option>');
-              $('#cmb_extratecnicoup').append('<option value="'+item.idextra_tecnico+'">'+item.especialidad+'</option>');
+              $('#cmb_extratecnico').append('<option>'+item.descripcion+'</option>');
+              $('#cmb_extratecnicoup').append('<option>'+item.descripcion+'</option>');
             }); 
     });
 }

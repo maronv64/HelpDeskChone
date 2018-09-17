@@ -186,9 +186,70 @@ function CargarTipoPeticiones()
 
 function verModalPeticionesActualizar(id)
 {
-    $( "#frmPeticionActualizar" ).modal('show');
+    $( "#modalBuscarUsuario" ).modal('show');
 }
 
+function CargarAreas()
+{
+    $.get('areasCargarDatos', function (data) { 
+        $('#cmbAreas').html('');
+        $.each(data, function(a, item) { 
+           
+            
+            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+            var fila ="";
+
+            fila+= '<option value='+ item.idarea +'>'+ item.nombre +'</option>';
+
+            
+            $('#cmbAreas').append(  
+                 fila									
+            );
+            
+        });  
+
+    }); 
+}
+
+function CargarUsuariosPorArea(idtipo){
+    $.get('usuariosFiltroPorArea/'+idtipo, function (data) { 
+        $('#dgvUsuarios').html('');
+        $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
+            
+           
+            
+            var fila ="";
+
+            fila+= '<tr>';
+            //añade la cedula
+            fila+= '<td>'+item.cedula  +'</td>';
+            //añade el nombre
+            fila+= '<td>'+item.name  +'</td>';
+            //añade el celular
+            fila+= '<td>'+item.celular  +'</td>';
+            //añade el area
+            fila+= '<td>'+item.area.nombre  +'</td>';
+            //añade el email
+            fila+= '<td>'+item.email  +'</td>';
+            //añade el boton
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='pasarId("+item.idusuario+")'><i class='fa fa-edit'></i></button>";
+         
+            //
+            fila+= '</tr>';
+
+            $('#dgvUsuarios').append(//identificamos ala nota que queremos add esta otra nota        
+                 fila									
+            );
+            
+        });  
+
+    });     
+}
+
+function mensaje(id)
+{
+    alert('este es el id: '+id);
+}
 ///-------------------------- eventos ------------------------
 
 // envento al cargar la vista
@@ -210,4 +271,23 @@ $( "#btnMostrar" ).click(function() {
 });
 
 
+$( "#btnAgregarUsuario" ).click(function() {
+
+    $( "#modalBuscarUsuario" ).modal('show');
+    CargarAreas();
+    
+});
+
+
+$('#txtBuscar').keyup(function() { 
+    alert('changed!');
+});
+
 //-----------------------------------------------------------------
+
+
+$('#cmbAreas').change(function() { 
+    //alert( $('#cmbAreas').val() );
+    CargarUsuariosPorArea($('#cmbAreas').val());
+
+});

@@ -1,5 +1,5 @@
 <?php
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,13 +56,16 @@ Route::get('/estadosCargarDatos','EstadoController@CargarDatos');
 //Cargar todos los tipos de Peticiones
 Route::get('/tipopeticionesCargarDatos','TipoPeticionController@CargarDatos');
 //Rutas de Usuario
-//Cargar todos los Usuarios
-Route::get('/usuariosCargarDatos','UsuariosController@CargarDatos');
+//Cargar todos los Usuarios por Areas
+Route::get('/usuariosFiltroPorArea/{id?}','UsuariosController@CargarDatos');
+//Rutas de Areas
+//Cargar todos los Areas
+Route::get('/areasCargarDatos','AreaController@CargarDatos');
 
 //---------------------------------------------------------------------------------------------------------------------
 
 
-/*###################*GESTIONES DE USUARIOS*###########################*/
+/*###################*GESTIONES DE USUARIOS de leonardo*###########################*/
 
 /*RUTA PARA HACER USO DE LOS CONTROLADORES DE USUARIOS*/
 Route::resource('/GestionUsuarios', 'UsuariosController');
@@ -80,5 +83,17 @@ Route::GET('/mostrarareas', 'AreaController@mostrarareas');
 Route::resource('/extratecnico', 'ExtraTecnicoController');
 
 Route::get('/buscar_usuarios/{busqueda?}','UsuariosController@buscar_usuarios');
+Route::get('/mostrarespecialidad','EspecialidadController@mostrarespecialidad');
+
+Route::get('/eliminarusuario/{id?}','UsuariosController@eliminarusuario');
+
 
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
+
+
+
+Route::resource('/asigtareas','AsigTareasController');
+Route::get('/listaTecnicos','UsuariosController@listaTecnicos');
+
+Route::get('/datospeticion/{id}','PeticionController@datospeticion');
+

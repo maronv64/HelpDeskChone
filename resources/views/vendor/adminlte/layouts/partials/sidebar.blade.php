@@ -69,7 +69,7 @@
                 <a href="#"><i class='glyphicon glyphicon-list-alt'></i> <span>INVENTARIO</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/dispositivos') }}">Dispositivos</a></li>
-                    <li><a href="#">Asignar Dispositivos</a></li>
+                    <li><a href="{{ url('/asignacionDispositivos') }}">Asignar Dispositivos</a></li>
                 </ul>
             </li>
              

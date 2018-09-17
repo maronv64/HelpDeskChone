@@ -24,7 +24,8 @@ Route::resource('/dispositivos','DispositivosController');
 Route::get('/obtenerDispositivos','DispositivosController@obtenerlista');
 Route::get('/obtenerDispositivos/{id?}','DispositivosController@buscarDispositivo');
 
-//rutas para tipo de dispositivos
+//rutas para asignacion de dispositivos
+Route::resource('/asignacionDispositivos','AsignacionDispositivosController');
 
 //la plantilla hace uso de estas rutas
 Route::group(['middleware' => 'auth'], function () {

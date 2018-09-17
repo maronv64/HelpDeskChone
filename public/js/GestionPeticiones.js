@@ -122,6 +122,7 @@ function CargarEstados()
 {
     $.get('estadosCargarDatos', function (data) { 
         $('#cmbEstados').html('');
+        $('#cmbEstados').html('<option disabled selected>Seleccione el Estado</option>');
         $.each(data, function(a, item) { 
            
            
@@ -144,6 +145,9 @@ function CargarPrioridades()
 {
     $.get('prioridadesCargarDatos', function (data) { 
         $('#cmbPrioridades').html('');
+        $('#cmbPrioridades').html('<option disabled selected>Seleccione la Prioridad</option>');
+        //<option disabled selected>Seleccione la Prioridad</option>
+
         $.each(data, function(a, item) { 
            
             
@@ -166,6 +170,7 @@ function CargarTipoPeticiones()
 {
     $.get('tipopeticionesCargarDatos', function (data) { 
         $('#cmbTipoPeticiones').html('');
+        $('#cmbTipoPeticiones').html('<option disabled selected>Seleccione el tipo de Peticion</option>');
         $.each(data, function(a, item) { 
            
             
@@ -305,9 +310,20 @@ $('#cmbAreas').change(function() {
 
 });
 
-$( "#btnAgregarUsuario" ).click(function() {
-
-    //$( "#modalBuscarUsuario" ).modal('show');
-    //CargarAreas();
+$( "#btnEnviarPeticion" ).click(function() {
+    var FrmData = {
+        idprioridad:    $('#cmbPrioridades').val(),
+        idestado:       $('#cmbEstados').val(),
+        idtipopeticion: $('#cmbTipoPeticiones').val(),
+        idusuario:      $('#iduser').val(),
+        descripcion:    $('#txtDescripcion').val(),
+    }
+    // alert(
+    //     "idPrioridad:     "+$('#cmbPrioridades').val()+
+    //     "idestado:        "+$('#cmbEstados').val()+
+    //     "idtipopeticion:  "+$('#cmbTipoPeticiones').val()+
+    //     "idusuario:       "+$('#iduser').val()+
+    //     "descripcion:     "+$('#txtDescripcion').val()
+    // );
     
 });

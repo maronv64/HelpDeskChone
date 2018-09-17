@@ -4,6 +4,7 @@
                       
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <input type="text" name="idpeticionasig" id="idpeticionasig" hidden >
+                          <input type="text" name="idusuarioasig" id="idusuarioasig" hidden >
                           
                             <div class="row">
                                 <div class="col-md-4">
@@ -80,7 +81,7 @@
                           </div>
                      
                              <div class="modal-footer">
-                              <button type="submit" id="botonasignartarea" data-toggle='modal' data-target='#mi-modal2'  class="btn btn-primary">Asignar</button>
+                              <button type="submit" id="botonasignar" data-toggle='modal' data-target='#mi-modal2'  class="btn btn-primary">Asignar</button>
                               <button type="button" class="btn btn-secondary" onclick="limpiartablatacnicos()" data-dismiss="modal">Cerrar</button>
                             </div>
          </form>

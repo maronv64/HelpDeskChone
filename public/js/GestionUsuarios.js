@@ -35,14 +35,14 @@ function UsuarioInsert(){
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
                 mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
-                alert(mensaje1);
+                alertify.success(mensaje1);
                 UsuarioMostrar();      
                 limpiar();
                 $('#password_confirmation').val("")
             },
             error: function () {     
                 mensaje = "OCURRIO UN ERROR";
-                alert(mensaje);
+                  alertify.error(mensaje);
             }
         });  
     }
@@ -90,7 +90,8 @@ function UsuarioDelete(id){
         method: "GET",             // Tipo de solicitud que se enviará, llamado como método
                // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
         success: function ()   // Una función a ser llamada si la solicitud tiene éxito
-        {   
+        {  
+         alertify.success("Datos eliminados correctamente"); 
           UsuarioMostrar(); // carga los datos en la tabla                       
         }
     });
@@ -153,13 +154,14 @@ function usuarioUpdate(){
         {
             UsuarioMostrar(); 
             limpiar();
+             alertify.success("Datos actualizados correctamente");
              $("#actualizarusuariomodal").modal('hide');
              $("#passwordup").prop('required',false);
 
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
-            alert(mensaje);
+            alertify.error(mensaje);
             limpiar();
         }
     });  

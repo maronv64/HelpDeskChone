@@ -72,31 +72,37 @@ function mostrarmodal1 (){
 
 
 function  mostrartecnicos(){
- 
+    var filacod=0;
     $.get('listaTecnicos', function (data) {
         $("#tablaasignartecnico").html("");
-        $.each(data, function(i, item) { //recorre el data 
-            cargartablatecnicos(item); // carga los datos en la tabla
+        $.each(data, function(i, item) { //recorre el data 3
+          filacod+1;
+            cargartablatecnicos(item,filacod); // carga los datos en la tabla
         });      
     });
 }
 
-function cargartablatecnicos(data){
-
+function cargartablatecnicos(data, filacod){
+     
     $("#tablaasignartecnico").append(
-        "<tr id='fila_cod"+"'><td>"+data.name +" "+ data.apellidos+"\
+        "<tr id='fila_codtec"+"'><td>"+data.name +" "+ data.apellidos+"\
          <td>"+ data.extratecnicos.especialidad +"</td>\
-         <td class='row' style='text-align: center'><button  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='tablatecnicosAsig("+data.id+")'><i class='fa fa-arrow-right'></i></button>\
+         <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='tablatecnicosAsig("+data.id+","+filacod+")'><i id='ibotoagra' class='fa fa-arrow-right'></i></button>\
          </tr>"
     );
-
 }
 
 
-function tablatecnicosAsig(valor){
+function tablatecnicosAsig(valor,filacod1){
+  $('#botonagregar'+filacod1).removeClass('btn btn-info');
+  $('#botonagregar'+filacod1).addClass('btn btn-danger');
+    $('#ibotoagra').removeClass('fa fa-arrow-right');
+  $('#ibotoagra').addClass('fa fa-times');
+  
    var filacod=0;
  $.get('listaTecnicos', function (data) {
         $.each(data, function(i, item) { //recorre el data 
+
             filacod+1;
         if(item.id==valor){
             $("#tecnicosasignadostable").append(
@@ -157,14 +163,12 @@ function guardartecnicosasignados(idusuario,idasig){
             data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
-                mensaje1 = "tecnicos si";
-                 alertify.error(mensaje1);
+
         
             },
             error: function () {   
          
-                mensaje = "tecnicos no";
-                alert(mensaje);
+        
             }
         });  
 }
@@ -187,6 +191,10 @@ function asignaridpeticion(idpeticion,idusuario){
 $('#formasig').on('submit',function(e){
   e.preventDefault();
   AsignacionInsert();
+  $('#Asignacionmodal').modal('hide');
+    
+  limpiartablatacnicos();
+
 });
 
 /*INSERTAR ASIGNACIONES*/
@@ -209,9 +217,10 @@ function AsignacionInsert(){
             data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
-                mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
-                  alertify.error(mensaje1);
-                 asignartecnicos(data.idasignacion);
+              asignartecnicos(data.idasignacion);
+                mensaje1 = "Datos guardados correctamente";
+                 alertify.success(mensaje1);
+                 
         
             },
             error: function () {     

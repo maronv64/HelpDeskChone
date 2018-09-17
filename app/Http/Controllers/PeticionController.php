@@ -143,4 +143,5 @@ class PeticionController extends Controller
     //return;
         return response()->json($peticiones);    
     }
+
 }

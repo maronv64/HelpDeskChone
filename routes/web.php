@@ -56,8 +56,9 @@ Route::get('/estadosCargarDatos','EstadoController@CargarDatos');
 //Cargar todos los tipos de Peticiones
 Route::get('/tipopeticionesCargarDatos','TipoPeticionController@CargarDatos');
 //Rutas de Usuario
+Route::get('usuarioBuscar/{id?}','UsuariosController@usuarioBuscar');
 //Cargar todos los Usuarios por Areas
-Route::get('/usuariosFiltroPorArea/{id?}','UsuariosController@CargarDatos');
+Route::get('/usuariosFiltroPorArea/{id?}/{consul?}','UsuariosController@usuariosFiltroPorArea');
 //Rutas de Areas
 //Cargar todos los Areas
 Route::get('/areasCargarDatos','AreaController@CargarDatos');

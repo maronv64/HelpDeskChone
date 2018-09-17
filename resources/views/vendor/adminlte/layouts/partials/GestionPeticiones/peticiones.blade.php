@@ -152,7 +152,7 @@
                                     <!-- txt de Usuario -->
                                     <div class="col-md-8    ">
                                         <div class="form-group has-feedback">
-                                            <input disabled id="txtDescripcion"  type="text" class="form-control" placeholder="Usuario"  required/>
+                                            <input disabled id="txtUsuario"  type="text" class="form-control" placeholder="Usuario"  required/>
                                             <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                                         </div>
                                     </div>

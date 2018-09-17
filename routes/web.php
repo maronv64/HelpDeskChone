@@ -89,3 +89,11 @@ Route::get('/eliminarusuario/{id?}','UsuariosController@eliminarusuario');
 
 
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
+
+
+
+Route::resource('/asigtareas','AsigTareasController');
+Route::get('/listaTecnicos','UsuariosController@listaTecnicos');
+
+Route::get('/datospeticion/{id}','PeticionController@datospeticion');
+

@@ -182,6 +182,16 @@ class UsuariosController extends Controller
         return response()->json($userall);
     }
 
+    public function listaTecnicos(){   
+   
+        $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])
+        ->where('estado','Activo')
+        ->where('idtipousuario','5')
+        ->get();
+        return response()->json($userall);
+    }
+
+
     public function buscar_usuarios($busqueda=''){ 
    
        /* $datos = DB::table('users')

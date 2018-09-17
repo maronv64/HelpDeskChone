@@ -34,7 +34,7 @@
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="treeview">
-                <a href="#"><i class='fa fa-tachometer'></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-tachometer'></i> <span>DASHBOARD</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
                     <li><a href="#">Dashboard Peticiones</a></li>
@@ -43,6 +43,27 @@
 
                 </ul>
             </li>
+             <li class="treeview">
+                <a href="{{ url('/asigtareas') }}"><i class='fa fa-tachometer'></i> <span>ASIGNAR TAREAS</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
+          <!--       <ul class="treeview-menu">
+                    <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
+                    <li><a href="#">Dashboard Peticiones</a></li>
+                    <li><a href="#">Dashboard SLA</a></li>
+                    <li><a href="#">Dashboard Prioridad</a></li>
+
+                </ul> -->
+            </li>
+            <li class="treeview">
+                <a href="{{ url('/peticiones') }}"><i class='fa fa-tachometer'></i> <span>PETICIONES</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
+          <!--       <ul class="treeview-menu">
+                    <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
+                    <li><a href="#">Dashboard Peticiones</a></li>
+                    <li><a href="#">Dashboard SLA</a></li>
+                    <li><a href="#">Dashboard Prioridad</a></li>
+
+                </ul> -->
+            </li>
+            
             
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-list-alt'></i> <span>INVENTARIO</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -51,18 +72,21 @@
                     <li><a href="#">Asignar Dispositivos</a></li>
                 </ul>
             </li>
-
+             
             <li class="treeview">
                 <a href="#"><i class='fa fa-bar-chart-o'></i> <span>REGISTRO</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Perfil de Usuarios</a></li>
+                     @if (! Auth::guest())
+                     @if( Auth::user()->idtipousuario =='6')
                     <li><a href="{{ url('/register') }}"><i class='fa fa-bar-chart-o'></i>Usuarios</a></li>
-                    <li><a href="#">Areas</a></li>
+                     @endif
+                     @endif
+                   <!--  <li><a href="#">Areas</a></li>
                     <li><a href="{{ url('/peticiones') }}">Peticiones</a></li>
-                    <li><a href="#">Fichas</a></li>
-
+                    <li><a href="#">Fichas</a></li> -->
                 </ul>
             </li>
+         
 
              <li class="treeview">
                 <a href="#"><i class='fa fa-bar-chart-o'></i> <span>INFORMES</span> <i class="fa fa-angle-left pull-right"></i></a>

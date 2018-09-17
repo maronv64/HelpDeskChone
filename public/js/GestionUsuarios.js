@@ -57,6 +57,7 @@ function UsuarioMostrar(){
             cargartablausuarios(item); // carga los datos en la tabla
         });      
     });
+}
     /*$.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -76,7 +77,7 @@ function UsuarioMostrar(){
               });               
         }
     });*/
-}
+
 /*FUNCIÓN PARA ELIMINARL USUARIO*/
 function UsuarioDelete(id){
     $.ajaxSetup({
@@ -332,4 +333,6 @@ $("#actualizarclave").on('change', function(e){
         }
     });
 }*/
+
+
 

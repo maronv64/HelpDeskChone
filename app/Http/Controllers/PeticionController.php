@@ -135,4 +135,12 @@ class PeticionController extends Controller
     //return;
         return response()->json($peticiones);
     }
+
+    public function datospeticion($id){
+        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion','2')->get();//where('estado_del','1')->get();
+//        $peticiones = Peticion::with('prioridad','estado','tipo_peticion')->get();//where('estado_del','1')->get();
+        //dd($peticiones);
+    //return;
+        return response()->json($peticiones);    
+    }
 }

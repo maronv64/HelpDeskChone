@@ -1,4 +1,4 @@
-<div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" id="miModalnuevo">
+<div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" id="modalAsignacion">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" align="center">

@@ -45,6 +45,21 @@ class PeticionController extends Controller
     public function store(Request $request)
     {
         //
+        $peticion = new Peticion();
+        $peticion->idprioridad =    $request->idprioridad;
+        $peticion->idestado =       $request->idestado;
+        $peticion->idtipopeticion = $request->idtipopeticion;
+        $peticion->idusuario =      $request->idusuario;
+        $peticion->descripcion =    $request->descripcion;
+        $peticion->estado_del='1';
+
+        if($peticion->save()){
+            return response()->json($peticion);
+        }else{
+            return 0;
+        }
+
+        
     }
 
     /**

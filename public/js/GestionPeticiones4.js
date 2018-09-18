@@ -280,15 +280,11 @@ function pasarDatosUsuario(id)
 }
 
 function verModalModicarPeticion(id) {
-    // $('#cmbPrioridades').val(),
-    // $('#cmbEstados').val(),
-    // $('#cmbTipoPeticiones').val(),
-    // $('#iduser').val(),
+    
     $('#var_idpeticion').val(id);
-    //alert($('#var_idpeticion').val());
-    //@include('adminlte::layouts.partials.GestionUsuarios.cuerpomodal')  
-    //$('#verModalModicarPeticion').val("@include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticion')");
     $( "#modalEditarPeticion" ).modal('show');
+    //alert(id);
+    traerPeticion(id);
 }
 
 function mensaje(id)
@@ -438,4 +434,17 @@ function esta_vacio(cadena)
     if (cadena==null) {
         return true;
     }
+}
+
+function traerPeticion(id) {
+    $.get('peticiones/'+id, function (data) { 
+      debugger
+        $('#txtDescripcion').val(data.descripcion); 
+        $('#cmbTipoPeticiones').val(data.idtipopeticion);
+        $('#cmbEstados').val(data.idestado);
+        $('#cmbPrioridades').val(data.idprioridad);
+
+        $('#txtDescripcion').val(data.descripcion); 
+
+    }); 
 }

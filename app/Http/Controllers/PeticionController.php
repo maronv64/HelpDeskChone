@@ -70,9 +70,11 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function show(Peticion $peticion)
+    public function show( $request)
     {
         //
+        $peticion = Peticion::with('prioridad','estado','tipo_peticion','usuario')->findOrFail($request);
+        return $peticion;
     }
 
     /**

@@ -127,7 +127,13 @@ desired effect
 @section('scripts')
     @include('adminlte::layouts.partials.scripts')
 @show
-  <script src="{{ asset('js/dispositivos.js') }}" defer></script>
 
+<script src="{{ asset('js/alertify.js') }}" defer></script>
+<!-- CSS -->
+
+<!-- Default theme -->
+<link rel="stylesheet" href="css/alertify.css" />
+<!-- include a theme -->
+<link rel="stylesheet" href="css/default.css" />
 </body>
 </html>

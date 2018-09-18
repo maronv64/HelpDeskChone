@@ -48,7 +48,7 @@ class UsuariosController extends Controller
         $user->sexo = $request->sexo;
         $user->celular = $request->celular;
         $user->email = $request->email;
-        $user->estado = $request->estado;
+        $user->estado = "Activo";
         $user->idtipousuario = $request->idtipousuario;
        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
@@ -105,7 +105,7 @@ class UsuariosController extends Controller
         $user->sexo = $request->sexo;
         $user->celular = $request->celular;
         $user->email = $request->email;
-        $user->estado = $request->estado;
+       // $user->estado = $request->estado;
         
        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
@@ -178,9 +178,19 @@ class UsuariosController extends Controller
       /*FUNCIÓN PARA MOSTRAR TODOS LOS USUARIOS*/
     public function listadeUsuarios(){   
    
-        $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])->get();
+        $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])->where('estado','Activo')->get();
         return response()->json($userall);
     }
+
+    public function listaTecnicos(){   
+   
+        $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])
+        ->where('estado','Activo')
+        ->where('idtipousuario','5')
+        ->get();
+        return response()->json($userall);
+    }
+
 
     public function buscar_usuarios($busqueda=''){ 
    
@@ -194,14 +204,15 @@ class UsuariosController extends Controller
         $repuestos = Usuarios::with(['tipo_usuario','area','extratecnicos'])
                     ->join('tipo_usuario','users.idtipousuario','=','tipo_usuario.idtipo_Usuario')
                     ->join('area','users.idarea','=','area.idarea')
+
                    //->join('extra_tecnico','extra_tecnico.idusuario','=','users.id')
-                    ->where('tipo_usuario.descripcion', 'like', "%$busqueda%")
-                    ->orwhere('area.nombre', 'like', "%$busqueda%")
-                   //->orwhere('extra_tecnico.especialidad', 'like', "%$busqueda%")
-                    ->orwhere('name', 'like', "%$busqueda%")
+                    ->where('estado','Activo')
+                    ->where('name', 'like', "%$busqueda%")
+                    /*->where('tipo_usuario.descripcion', 'like', "%$busqueda%")
+                    ->where('area.nombre', 'like', "%$busqueda%")
                     ->orWhere('apellidos','like',"%$busqueda%")
                     ->orWhere('sexo','like',"%$busqueda%")
-                    ->orWhere('estado','like',"%$busqueda%")
+                    ->orWhere('estado','like',"%$busqueda%")*/
                     ->get();
 
         return response()->json($repuestos);
@@ -232,12 +243,47 @@ class UsuariosController extends Controller
     
     public function usuarioBuscar($id='')
     {
-        $user = User::with('area','tipo_usuario')   ->where('id',$id)
-                                                    ->get();
+        $buscar = new User();
+        $buscar->id=$id;
         //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
-        return response()->json($user);                                             
+        $users = User::with('area','tipo_usuario')  -> find($buscar->id);
+        return response()->json($users);
+
+        // $user = User::with('area','tipo_usuario')   ->where('id',$id)
+        //                                             ->get();
+        // //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
+        // return response()->json($user);                                             
     }
             
+     
+    // public function usuariosFiltroPorArea($idarea,$consul='')
+    // {
+    //     $users = User::with('area','tipo_usuario')  ->where([
+    //                                                         ['idarea',$idarea],
+    //                                                         ['estado','activo'],
+    //                                                         ['name','like',"%$consul%"]
+    //                                                         ])
+    //                                                 ->orwhere([
+    //                                                         ['idarea',$idarea],
+    //                                                         ['estado','activo'],
+    //                                                         ['apellidos','like',"%$consul%"]
+    //                                                         ])
+    //                                                 ->orwhere([
+    //                                                         ['idarea',$idarea],
+    //                                                         ['estado','activo'],
+    //                                                         ['cedula','like',"%$consul%"]
+    //                                                         ])
+    //                                                 ->get();
+    //     return response()->json($users);
+    // }
+    // public function usuarioBuscar($id)
+    // {
+    //     $buscar = new User();
+    //     $buscar->id=$id;
+    //     //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
+    //     $users = User::with('area','tipo_usuario')  -> find($buscar->id);
+    //     return response()->json($users);
+    // }       
 }
 
 /**

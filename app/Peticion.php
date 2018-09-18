@@ -16,7 +16,8 @@ class Peticion extends Model
     public $timestamps=false;
 
     protected $table = 'peticion';
-
+    //public $timestamps=false;
+    protected $primaryKey = 'idpeticion';
     protected $fillable = [
         'idpeticion', 'idprioridad','idestado','idtipopeticion','idusuario', 'descripcion','estado_del',
     ];

@@ -88,7 +88,7 @@
                                 <div class="col-md-4 ">
                                     <div class ="row">
                                         <div class="col-md-12">
-                                            <a id="btnEnviarPeticion" class=" btn btn-primary btn-block btn-flat " title="">Actualizar Peticion</a>
+                                            <a id="" class=" btn btn-primary btn-block btn-flat " title="">Actualizar Peticion</a>
                                         </div>
                                     </div>
                                 </div>

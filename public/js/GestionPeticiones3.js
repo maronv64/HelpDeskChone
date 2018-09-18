@@ -122,6 +122,7 @@ function CargarEstados()
 {
     $.get('estadosCargarDatos', function (data) { 
         $('#cmbEstados').html('');
+        $('#cmbEstados').html('<option disabled selected>Seleccione el Estado</option>');
         $.each(data, function(a, item) { 
            
            
@@ -144,6 +145,9 @@ function CargarPrioridades()
 {
     $.get('prioridadesCargarDatos', function (data) { 
         $('#cmbPrioridades').html('');
+        $('#cmbPrioridades').html('<option disabled selected>Seleccione la Prioridad</option>');
+        //<option disabled selected>Seleccione la Prioridad</option>
+
         $.each(data, function(a, item) { 
            
             
@@ -166,6 +170,7 @@ function CargarTipoPeticiones()
 {
     $.get('tipopeticionesCargarDatos', function (data) { 
         $('#cmbTipoPeticiones').html('');
+        $('#cmbTipoPeticiones').html('<option disabled selected>Seleccione el tipo de Peticion</option>');
         $.each(data, function(a, item) { 
            
             
@@ -208,7 +213,7 @@ function CargarAreas()
 
 function CargarUsuariosPorArea(idarea,consulta){
     $.get('usuariosFiltroPorArea/'+idarea+'/'+consulta, function (data) { 
-        $('#dgvUsuarios').html('');
+        $('#dgvUsuarios1').html('');
         $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
             
            
@@ -234,7 +239,7 @@ function CargarUsuariosPorArea(idarea,consulta){
             //
             fila+= '</tr>';
 
-            $('#dgvUsuarios').append(//identificamos ala nota que queremos add esta otra nota        
+            $('#dgvUsuarios1').append(//identificamos ala nota que queremos add esta otra nota        
                  fila									
             );
             
@@ -247,49 +252,29 @@ function pasarDatosUsuario(id)
 {
     $.get('usuarioBuscar/'+id, function (data) { 
 
-        $.each(data, function(a, item) { 
+        $('#txtUsuario').html(''); 
+        var fila ="";
+        fila+= data.name +" "+data.apellidos;
+        //$('#txtDescripcion').val('hola');
+        $('#txtUsuario').val(fila);
+        $('#iduser').val(data.id);//iduser
+        $( "#modalBuscarUsuario1" ).modal('hide');
 
-            $('#txtUsuario').html(''); 
-            var fila ="";
-            fila+= item.name +" "+item.apellidos;
-            //$('#txtDescripcion').val('hola');
-            $('#txtUsuario').val(fila);
-            $('#iduser').val(item.id);//iduser
-            $( "#modalBuscarUsuario" ).modal('hide');
-        }); 
+
+        // $.each(data, function(a, item) { 
+
+        //     $('#txtUsuario').html(''); 
+        //     var fila ="";
+        //     fila+= item.name +" "+item.apellidos;
+        //     //$('#txtDescripcion').val('hola');
+        //     $('#txtUsuario').val(fila);
+        //     $('#iduser').val(item.id);//iduser
+        //     $( "#modalBuscarUsuario" ).modal('hide');
+        // }); 
 
     }); 
 }
 
-function verModalPeticionesActualizar(id)
-{
-    
-    $( "#modalEditarPeticion" ).modal('show');
-    /*
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $.ajax({
-        url: 'peticiones/1/edit', // Url que se envia para la solicitud esta en el web php es la ruta
-        method: "get",             // Tipo de solicitud que se enviará, llamado como método
-        data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-        success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
-        {  
-            mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
-            CargarPeticiones2();     
-            alert(mensaje1);
-            
-        },
-        error: function () {     
-            mensaje = "OCURRIO UN ERROR";
-            alert(mensaje);
-        }
-    }); 
-    */
-}
 
 function mensaje(id)
 {
@@ -307,7 +292,7 @@ window.onload = function() {
 //window.onload=CargarEstados();
 
 //al dar clic se refresca la tabla de peticiones
-$( "#btnMostrar" ).click(function() {
+$( "#btnMostrarPeticiones" ).click(function() {
     //CargarPeticiones();
     $( "#prueba" ).html('');
     CargarPeticiones2();
@@ -315,29 +300,26 @@ $( "#btnMostrar" ).click(function() {
 
 $( "#btnAgregarUsuario" ).click(function() {
 
-    $( "#modalBuscarUsuario" ).modal('show');
+    $( "#modalBuscarUsuario1" ).modal('show');
     CargarAreas();
     
 });
 
-$('#txtBuscar').keyup(function() { 
-    CargarUsuariosPorArea($('#cmbAreas').val(),$('#txtBuscar').val());
+$('#txtBuscar1').keyup(function() { 
+    //alert('changed!');
+    CargarUsuariosPorArea($('#cmbAreas').val(),$('#txtBuscar1').val());
+    //alert("idarea "+$('#cmbAreas').val()+ " consulta: " +$('#txtBuscar1').val());
 });
 
 //-----------------------------------------------------------------
 
 $('#cmbAreas').change(function() { 
     //alert( $('#cmbAreas').val() );
-    CargarUsuariosPorArea($('#cmbAreas').val(),$('#txtBuscar').val());
-
+    CargarUsuariosPorArea($('#cmbAreas').val(),$('#txtBuscar1').val());
+    //alert("idarea "+$('#cmbAreas').val()+ " consulta: " +$('#txtBuscar1').val());
 });
 
-//$(selector).post(URL,data,function(data,status,xhr),dataType)
-
-//Insertar una Peticion
-
-$( "#btnEnviarPeticion" ).click(function() {
-    //debugger
+$('#btnEnviarP').click(function() {
     var FrmData = {
         idprioridad:    $('#cmbPrioridades').val(),
         idestado:       $('#cmbEstados').val(),
@@ -373,7 +355,51 @@ $( "#btnEnviarPeticion" ).click(function() {
     //     alert('Su petcion fue enviada...');
     //     CargarPeticiones2();
     // });
-
-
 });
+
+//$(selector).post(URL,data,function(data,status,xhr),dataType)
+
+//Insertar una Peticion
+
+//$('#btnEnviarPeticion').click(function() {
+    //alert("hola");
+    //debugger
+    // var FrmData = {
+    //     idprioridad:    $('#cmbPrioridades').val(),
+    //     idestado:       $('#cmbEstados').val(),
+    //     idtipopeticion: $('#cmbTipoPeticiones').val(),
+    //     idusuario:      $('#iduser').val(),
+    //     descripcion:    $('#txtDescripcion').val(),
+    // }
+    
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+
+    // $.ajax({
+    //     url: 'peticiones', // Url que se envia para la solicitud esta en el web php es la ruta
+    //     method: "POST",             // Tipo de solicitud que se enviará, llamado como método
+    //     data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+    //     success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+    //     {  
+    //         mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
+    //         CargarPeticiones2();     
+    //         alert(mensaje1);
+            
+    //     },
+    //     error: function () {     
+    //         mensaje = "OCURRIO UN ERROR";
+    //         alert(mensaje);
+    //     }
+    //});  
+
+    // $.post("peticiones", FrmData, function(result){
+    //     alert('Su petcion fue enviada...');
+    //     CargarPeticiones2();
+    // });
+
+
+//});
 

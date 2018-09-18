@@ -1,13 +1,13 @@
 
-$('#id_mostrar_dispositivos').click(function(event)
-{
+window.onload = function() {
     cargarListaDispositivos();
-});
+  };
+
+
 
 $('#guardar_datos').click(function(event)
 	{
 		guardar();
-		cargarListaDispositivos();
 });
 
 function limpiarModal() {
@@ -17,19 +17,17 @@ function limpiarModal() {
     $('#modal_color').val('')
     $('#modal_modelo').val('')
     $('#modal_marca').val('')
-    $('#modal_estado').val()
 }
 
 function limpiarPrincipal() {
     $('#add_nom_dispositivo').val('')
-    $('#add_tipodispositivo').val()
+    $('#add_tipodispositivo').val('Tipo de dispositivo')
     $('#add_num_serie').val('')
     $('#add_color').val('')
     $('#add_modelo').val('')
     $('#add_marca').val('')
-    $('#add_cod_activo').val()
 }
-
+//VERIFICA SI LOS CAMPOS DE EL FORMULARIO DE INGRESO SE ENCUENTRAN CON INFORMACION INGRESADA
 function Validar_campos() {
     if (
         $('#add_nom_dispositivo').val()==''||
@@ -37,8 +35,7 @@ function Validar_campos() {
         $('#add_num_serie').val()==''||
         $('#add_color').val()==''||
         $('#add_modelo').val()==''||
-        $('#add_marca').val()==''||
-        $('#add_cod_activo').val()==''
+        $('#add_marca').val()==''
     ) {
         return false;
     }
@@ -46,7 +43,7 @@ function Validar_campos() {
         return true;
     }
 }
-
+//VERIFICA SI LOS CAMPOS DEL MODAL SE ENCUENTRAN CON INFORMACION
 function Validar_campos_modal() {
     if (
         $('#modal_descripcion').val()==''||
@@ -54,9 +51,8 @@ function Validar_campos_modal() {
         $('#modal_serie').val()==''||
         $('#modal_color').val()==''||
         $('#modal_modelo').val()==''||
-        $('#modal_marca').val()==''||
-        $('#modal_estado').val()==''
-    ) {
+        $('#modal_marca').val()==''
+        ) {
         return false;
     }
     else{
@@ -66,6 +62,7 @@ function Validar_campos_modal() {
 
 function guardar() {
     if (Validar_campos()==false) {
+        alertify.error("LLENE TODOS LOS CAMPOS");
         return;
     }
     $.ajaxSetup({
@@ -73,6 +70,7 @@ function guardar() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     }); 
+    var actividad='Activo';
     var FrmData = {
         nombredispositivo:$('#add_nom_dispositivo').val(),
         idtipodispositivos:$('#add_tipodispositivo').val(),
@@ -80,7 +78,7 @@ function guardar() {
         color:$('#add_color').val(),
         modelo:$('#add_modelo').val(),
         marca:$('#add_marca').val(),
-        cod_activo:$('#add_cod_activo').val(), 
+        cod_activo:actividad, 
     }
     $.ajax({
         url:'dispositivos', // Url que se envia para la solicitud
@@ -90,27 +88,59 @@ function guardar() {
         success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
         {
             limpiarPrincipal();
-            alert('Datos Guardados Correctamente');
+            alertify.success("DATOS INGRESADOS CORRECTAMENTE");
         },
         complete: function(){ 
+            cargarListaDispositivos();
         }
     });
 }
+//Funcion para modificar los valores de la base de datos por los cambiados en el modal
+function modificar(iddispositivo, exp) {
+    var actividad='Activo';
+    var FrmData;
+    if(exp==1){
+        
+        alertify.confirm('Confirmacion', 'Desea deshabilitar la disponibilidad del este dispositivo?', 
+        function(){
+            actividad='Inactivo';
+            FrmData = {
+                idDispositivo:iddispositivo,
+                nombredispositivo:'',
+                idtipodispositivos:'',
+                serie:'',
+                color:'',
+                modelo:'',
+                marca:'',
+                cod_activo:actividad,
+            }
+            ReferenciaModificar(FrmData, iddispositivo);
+         },
+         function(){ alertify.error('Accion cancelada')})
+    }
+    else{
+        if (Validar_campos_modal()==false) {
+            return;
+        }
+        FrmData = {
+            idDispositivo:iddispositivo,
+            nombredispositivo:$('#modal_descripcion').val(),
+            idtipodispositivos:$('#modal_tipo_dispositivo').val(),
+            serie:$('#modal_serie').val(),
+            color:$('#modal_color').val(),
+            modelo:$('#modal_modelo').val(),
+            marca:$('#modal_marca').val(),
+            cod_activo:actividad,
+        }
+        ReferenciaModificar(FrmData, iddispositivo);
+    }
+    
 
-function modificar(iddispositivo) {
-    if (Validar_campos_modal()==false) {
-        return;
-    }
-    var FrmData = {
-        idDispositivo:iddispositivo,
-        nombredispositivo:$('#modal_descripcion').val(),
-        idtipodispositivos:$('#modal_tipo_dispositivo').val(),
-        serie:$('#modal_serie').val(),
-        color:$('#modal_color').val(),
-        modelo:$('#modal_modelo').val(),
-        marca:$('#modal_marca').val(),
-        cod_activo:$('#modal_estado').val(), 
-    }
+
+ }
+
+ //funcion para activar el envio de datos en funcion modificar
+ function ReferenciaModificar(FrmData, iddispositivo) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -122,20 +152,18 @@ function modificar(iddispositivo) {
         data: FrmData,   
             success: function (datos) {
             mensaje = "DATOS MODIFICADOS CORRECTAMENTE";
-            alert(mensaje);
-            limpiarModal();
+            alertify.success(mensaje);
             $('#miModalnuevo').modal('hide');
             cargarListaDispositivos();
         },
         error: function () {     
             mensaje = "HA OCURRIDO UN ERROR";
-            alert(mensaje);
-            limpiarModal();
+            alertify.error(mensaje);
             $('#miModalnuevo').modal('hide');
         }
     });
  }
-
+//Muestra un modal con los datos de la grilla seleccionada para poder modificarlos
 function modal(id_dispositivo)
 {
     $('#modal_validar_cambios').val(id_dispositivo);
@@ -151,17 +179,16 @@ function modal(id_dispositivo)
             $('#modal_color').val(response.color)
             $('#modal_modelo').val(response.modelo)
             $('#modal_marca').val(response.marca)
-            $('#modal_estado').val(response.cod_activo)
         }
     });
 }
-
+//Evento que llama a la funcion de modificar
 $('#modal_validar_cambios').click(function(event)
 {
-    modificar($(this).val());
+    modificar($(this).val(),2);
     limpiarModal();
 });
-
+//Elimina un registro si se le envia un id en su llamada
 function eliminar(iddispositivo){ 
     $.ajaxSetup({
         headers:{
@@ -177,6 +204,8 @@ function eliminar(iddispositivo){
     });
  }
 
+ 
+//Carga la lista de los dispositivos en la tabla de la ventana principal
 function cargarListaDispositivos() {
 	$('#tablaDispositivos tbody tr').empty();
 	$.ajax({
@@ -188,27 +217,23 @@ function cargarListaDispositivos() {
 	.done(function(datos) {
 		$.each(datos.dispositivos, function(index, val) {
             var out="";
-            out+="<tr>";
-            out+="<td>"+val.iddispositivos+"</td>";
-            out+="<td>"+val.nombredispositivo+"</td>";
-            $.each(datos.tipos, function(index, val2) {
-            if (val2.idtipodispositivos==val.idtipodispositivos) {
-                out+="<td>"+val2.descripcion+"</td>";
-            }
-            });
-            out+="<td>"+val.serie+"</td>";
-            out+="<td>"+val.color+"</td>";
-            out+="<td>"+val.modelo+"</td>";
-            out+="<td>"+val.marca+"</td>";
             if (val.cod_activo=="Activo") {
-            out+="<td class='text-success'>"+val.cod_activo+"</td>";
+                out+="<tr>";
+                out+="<td>"+val.nombredispositivo+"</td>";
+                $.each(datos.tipos, function(index, val2) {
+                if (val2.idtipodispositivos==val.idtipodispositivos) {
+                    out+="<td>"+val2.descripcion+"</td>";
+                }
+                });
+                out+="<td>"+val.serie+"</td>";
+                out+="<td>"+val.color+"</td>";
+                out+="<td>"+val.modelo+"</td>";
+                out+="<td>"+val.marca+"</td>";
+                out+="<td class='text-success'>"+val.cod_activo+"</td>";
+                out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modal("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a> <a class='glyphicon glyphicon-trash btn btn-danger' onclick='modificar("+val.iddispositivos+",1)' title='Desactivar disponibilidad del dispositivo'></a></center></td>";
+                //<span class='glyphicon glyphicon-phone form-control-feedback'></span>
+                out+="</tr>";
             }
-            else {
-            out+="<td class='text-danger'>"+val.cod_activo+"</td>";
-            }
-            out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modal("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a></center></td>";
-            //<span class='glyphicon glyphicon-phone form-control-feedback'></span>
-            out+="</tr>";
             $('#tablaDispositivos tbody tr:last').after(out);
 	    })
 	})

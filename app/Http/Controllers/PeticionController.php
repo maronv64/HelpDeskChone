@@ -11,7 +11,7 @@ use App\Prioridad;
 use App\TipoPeticion;
 use App\User;
 use App\Area;
-
+use Carbon\Carbon;
 class PeticionController extends Controller
 {
     /**
@@ -55,7 +55,7 @@ class PeticionController extends Controller
         $peticion->idusuario = $request->idusuario;
         $peticion->descripcion = $request->descripcion;
         $peticion->estado_del = '1';
-        
+        $peticion->created_at= Carbon::now()->toDateTimeString();
         if ($peticion->save()) {
             # code...
             return $peticion;

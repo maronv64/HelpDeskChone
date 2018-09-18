@@ -89,6 +89,24 @@ function asignacionDispositivos(valor,numero_dispositivo){
     }
 }
 
+function filtro_dispositivos() {
+    var input, filter, table, tr, td,td1, i;
+    input = document.getElementById("buscar_dispositivos");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tablaDispositivosA");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+
 function guardarAsignaciones(){
 
 }

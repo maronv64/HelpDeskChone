@@ -12,72 +12,73 @@ https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
 // att. maron vera 
 // no me eliminen la funcion.
 // eliminen lo suyo !
-function CargarPeticiones(){ 
-    $.get('peticionesCargarDatos', function (data) { 
-            $.each(data.peticiones, function(a, peticion) { // recorremos cada uno de los datos que retorna el objero json n valores
-                
-                $('#dgvPeticiones').html('');
-                
-                var fila ="";
 
-                fila+= '<tr>';
-                fila+= '<td>'+peticion.descripcion  +'</td>';
-                //añade la descripcion del tipo de peticion
+// function CargarPeticiones(){ 
+//     $.get('peticionesCargarDatos', function (data) { 
+//             $.each(data.peticiones, function(a, peticion) { // recorremos cada uno de los datos que retorna el objero json n valores
                 
-                    $.each(data.tipo_peticiones,function(b,tipo_peticion){
-                        if (peticion.idtipopeticion==tipo_peticion.idtipopeticion) {
-                            fila+= '<td>'+tipo_peticion.descripcion  +'</td>';
-                        }                           
-                    }); 
-                ;
-                //añade la descripcion de la prioridad
+//                 $('#dgvPeticiones').html('');
                 
-                    $.each(data.prioridades,function(c,prioridad){
-                        if (peticion.idprioridad==prioridad.idprioridad) {
-                            fila+= '<td>'+prioridad.descripcion  +'</td>';
-                        }    
-                    }); 
-                ;
+//                 var fila ="";
+
+//                 fila+= '<tr>';
+//                 fila+= '<td>'+peticion.descripcion  +'</td>';
+//                 //añade la descripcion del tipo de peticion
                 
-                //añade la descripcion del estado
+//                     $.each(data.tipo_peticiones,function(b,tipo_peticion){
+//                         if (peticion.idtipopeticion==tipo_peticion.idtipopeticion) {
+//                             fila+= '<td>'+tipo_peticion.descripcion  +'</td>';
+//                         }                           
+//                     }); 
+//                 ;
+//                 //añade la descripcion de la prioridad
                 
-                    $.each(data.estados,function(d,estado){
-                        if (peticion.idestado==estado.idestado) {
-                            fila+= '<td>'+estado.descripcion  +'</td>';
-                        }    
-                    }); 
-                ;
-                //añade la nombre del usuario
+//                     $.each(data.prioridades,function(c,prioridad){
+//                         if (peticion.idprioridad==prioridad.idprioridad) {
+//                             fila+= '<td>'+prioridad.descripcion  +'</td>';
+//                         }    
+//                     }); 
+//                 ;
                 
-                    $.each(data.usuarios,function(f,usuario){
-                        if (peticion.idusuario==usuario.id) {
-                            fila+= '<td>'+usuario.name  +'</td>';
-                            //añade la nombre del area
+//                 //añade la descripcion del estado
+                
+//                     $.each(data.estados,function(d,estado){
+//                         if (peticion.idestado==estado.idestado) {
+//                             fila+= '<td>'+estado.descripcion  +'</td>';
+//                         }    
+//                     }); 
+//                 ;
+//                 //añade la nombre del usuario
+                
+//                     $.each(data.usuarios,function(f,usuario){
+//                         if (peticion.idusuario==usuario.id) {
+//                             fila+= '<td>'+usuario.name  +'</td>';
+//                             //añade la nombre del area
                             
-                            $.each(data.areas,function(g,area){
-                                console.log(area);
-                                console.log(usuario);                   
-                                if (usuario.idarea==area.idarea) {
-                                    fila+= '<td>'+area.nombre  +'</td>';
-                                }
-                            });
+//                             $.each(data.areas,function(g,area){
+//                                 console.log(area);
+//                                 console.log(usuario);                   
+//                                 if (usuario.idarea==area.idarea) {
+//                                     fila+= '<td>'+area.nombre  +'</td>';
+//                                 }
+//                             });
 
-                        }    
-                    }); 
-                ;
+//                         }    
+//                     }); 
+//                 ;
 
 
-                fila+= '</tr>';
+//                 fila+= '</tr>';
 
-                $('#dgvPeticiones').append(//identificamos ala nota que queremos add esta otra nota        
-                     fila									
-                );
+//                 $('#dgvPeticiones').append(//identificamos ala nota que queremos add esta otra nota        
+//                      fila									
+//                 );
                 
-            });  
+//             });  
   
-    }); 
+//     }); 
 
-}
+// }
 
 //esta funcion de trae todas la peticiones y la carga en la tabla 
 function CargarPeticiones2(){
@@ -103,7 +104,10 @@ function CargarPeticiones2(){
             //añade la nombre del area
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';
             //
-            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalPeticionesActualizar("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
+             //añade la nombre del area
+             fila+= '<td>'+item.created_at  +'</td>';
+             //
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalModicarPeticion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
                     "<button type='button' class='btn btn-danger' onClick='UsuarioDelete("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
             //
             fila+= '</tr>';
@@ -275,6 +279,17 @@ function pasarDatosUsuario(id)
     }); 
 }
 
+function verModalModicarPeticion(id) {
+    // $('#cmbPrioridades').val(),
+    // $('#cmbEstados').val(),
+    // $('#cmbTipoPeticiones').val(),
+    // $('#iduser').val(),
+    $('#var_idpeticion').val(id);
+    //alert($('#var_idpeticion').val());
+    //@include('adminlte::layouts.partials.GestionUsuarios.cuerpomodal')  
+    //$('#verModalModicarPeticion').val("@include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticion')");
+    $( "#modalEditarPeticion" ).modal('show');
+}
 
 function mensaje(id)
 {
@@ -304,6 +319,8 @@ $( "#btnAgregarUsuario" ).click(function() {
     CargarAreas();
     
 });
+
+
 
 $('#txtBuscar1').keyup(function() { 
     //alert('changed!');
@@ -357,21 +374,26 @@ $('#btnEnviarP').click(function() {
     // });
 });
 
-//$(selector).post(URL,data,function(data,status,xhr),dataType)
+$( "#btnAgregarUsuario2" ).click(function() {
 
-//Insertar una Peticion
-
-//$('#btnEnviarPeticion').click(function() {
-    //alert("hola");
-    //debugger
-    // var FrmData = {
-    //     idprioridad:    $('#cmbPrioridades').val(),
-    //     idestado:       $('#cmbEstados').val(),
-    //     idtipopeticion: $('#cmbTipoPeticiones').val(),
-    //     idusuario:      $('#iduser').val(),
-    //     descripcion:    $('#txtDescripcion').val(),
-    // }
+    $( "#modalBuscarUsuario1" ).modal('show');
+    CargarAreas();
     
+});
+
+$( "#btnActualizarPeticion" ).click(function() {
+    
+    var FrmData = {
+        idpeticion:     $('#var_idpeticion').val(),
+        idprioridad:    $('#cmbPrioridades').val(),
+        idestado:       $('#cmbEstados').val(),
+        idtipopeticion: $('#cmbTipoPeticiones').val(),
+        idusuario:      $('#iduser').val(),
+        descripcion:    $('#txtDescripcion').val(),
+    }
+    
+    alert($('#cmbPrioridades').val());
+
     // $.ajaxSetup({
     //     headers: {
     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -393,13 +415,13 @@ $('#btnEnviarP').click(function() {
     //         mensaje = "OCURRIO UN ERROR";
     //         alert(mensaje);
     //     }
-    //});  
+    // });  
 
-    // $.post("peticiones", FrmData, function(result){
-    //     alert('Su petcion fue enviada...');
-    //     CargarPeticiones2();
-    // });
+});
 
-
-//});
-
+function esta_vacio(cadena)
+{
+    if (cadena===null) {
+        return true;
+    }
+}

@@ -8,7 +8,9 @@
 
 <!-- -->
 
-
+            <div id="verModalModicarPeticion">
+            @include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticion')
+            </div>
 
  <!-- ---------------------------------modal -------------------------- -->
 
@@ -27,6 +29,7 @@
                                             
                                                 <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
                                                 <input type="text" name="iduser" id="iduser" hidden >
+                                                <input type="text" name="idpeticion" id="var_idpeticion" hidden >
                                                 <div class="row">
 
                                                     <div class="col-md-4">
@@ -222,6 +225,7 @@
                 <th scope="col">Estado</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Area</th>
+                <th scope="col">Fecha</th>
                 <th scope="col"> <center> Acciones </center> </th> 
                 
               </tr>

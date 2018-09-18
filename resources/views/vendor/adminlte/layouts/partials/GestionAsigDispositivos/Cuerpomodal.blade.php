@@ -1,5 +1,15 @@
 <div class = "register-box-body">
     <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" class="form-control form-control-sm" placeholder="Buscar Dispositivos"  id="buscar_dispositivos" onkeyup="filtro_dispositivos();">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <br>
+                    </span>
+                </div>                                                 
+            </div> 
+        </div>
         @include('adminlte::layouts.partials.GestionAsigDispositivos.TablaDispositivosA')
         <div class="row">
             <div class="col-md-6">

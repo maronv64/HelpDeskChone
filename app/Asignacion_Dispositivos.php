@@ -18,7 +18,5 @@ class Asignacion_Dispositivos extends Model
     public function dispositivos(){
         return $this->hasOne('App\Dispositivos' ,'iddispositivos', 'iddispositivos');
                                 /*ruta modelo tipo   id tipousuario id claveforanea  */
-    }
-        
-            
+    }         
 }

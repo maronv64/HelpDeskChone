@@ -14,6 +14,7 @@ class AsigTareasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
          return view('adminlte::layouts.partials.GestionAsigTareas.Asignacion');
@@ -24,6 +25,7 @@ class AsigTareasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -35,23 +37,18 @@ class AsigTareasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-
         $asignacion= new AsigTareas();
-        $asignacion->Ficha_idFicha='1';
         $asignacion->peticion_idpeticion=$request->idpeticion;
+        $asignacion->usuario_idUsuario=$request->idusuario;
         $asignacion->FechaRegistro=date("Y-m-d",strtotime("00-00-00"));
         $asignacion->FechaInicio=date("Y-m-d",strtotime( $request->FechaInicial));
         $asignacion->FechaLimite=date("Y-m-d",strtotime( $request->FechaLimite));
         $asignacion->observacion=$request->observacion;
         $asignacion->save();
         return response()->json($asignacion);
-        
-         
-
-        
-
     }
 
     public function guardarUsuariosAsignacion($idusuario,$idasig){
@@ -61,12 +58,14 @@ class AsigTareasController extends Controller
         $UsuarioAsig->save();
         return response()->json($UsuarioAsig);
     }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
+
     public function show(AsigTareas $asigTareas)
     {
         //
@@ -78,6 +77,7 @@ class AsigTareasController extends Controller
      * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
+
     public function edit(AsigTareas $asigTareas)
     {
         //
@@ -90,6 +90,7 @@ class AsigTareasController extends Controller
      * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, AsigTareas $asigTareas)
     {
         //
@@ -101,6 +102,7 @@ class AsigTareasController extends Controller
      * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(AsigTareas $asigTareas)
     {
         //

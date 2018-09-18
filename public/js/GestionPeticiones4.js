@@ -108,7 +108,7 @@ function CargarPeticiones2(){
              fila+= '<td>'+item.created_at  +'</td>';
              //
             fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalModicarPeticion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
-                    "<button type='button' class='btn btn-danger' onClick='UsuarioDelete("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
+                    "<button type='button' class='btn btn-danger' onClick='eliminarPeticion("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
             //
             fila+= '</tr>';
 
@@ -280,15 +280,11 @@ function pasarDatosUsuario(id)
 }
 
 function verModalModicarPeticion(id) {
-    // $('#cmbPrioridades').val(),
-    // $('#cmbEstados').val(),
-    // $('#cmbTipoPeticiones').val(),
-    // $('#iduser').val(),
+    
     $('#var_idpeticion').val(id);
-    //alert($('#var_idpeticion').val());
-    //@include('adminlte::layouts.partials.GestionUsuarios.cuerpomodal')  
-    //$('#verModalModicarPeticion').val("@include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticion')");
     $( "#modalEditarPeticion" ).modal('show');
+    //alert(id);
+    traerPeticion(id);
 }
 
 function mensaje(id)
@@ -391,37 +387,98 @@ $( "#btnActualizarPeticion" ).click(function() {
         idusuario:      $('#iduser').val(),
         descripcion:    $('#txtDescripcion').val(),
     }
+
+    //alert("llene los campos correspondientes "+$('#iduser').val())
+
+
+    if (
+        esta_vacio($('#var_idpeticion').val())      ||  
+        esta_vacio($('#cmbPrioridades').val())      ||
+        esta_vacio($('#cmbEstados').val())          || 
+        ($('#cmbTipoPeticiones').val()=="Usuario")  || 
+        esta_vacio($('#txtUsuario').val())          || 
+        esta_vacio($('#txtDescripcion').val()) 
+        )
+    {
+        alert('LLçlene todos los campos por favor');
+        // alert(  " idpeticion: "+FrmData.idpeticion+
+        //         " idprioridad: "+FrmData.idprioridad+
+        //         " idestado: "+FrmData.idestado+
+        //         " idtipopeticion: "+FrmData.idtipopeticion+
+        //         " idusuario: "+FrmData.idusuario+
+        //         " descripcion: "+FrmData.descripcion
+        //         )
+    } else{
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     
-    alert($('#cmbPrioridades').val());
-
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
-
-    // $.ajax({
-    //     url: 'peticiones', // Url que se envia para la solicitud esta en el web php es la ruta
-    //     method: "POST",             // Tipo de solicitud que se enviará, llamado como método
-    //     data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-    //     success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
-    //     {  
-    //         mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
-    //         CargarPeticiones2();     
-    //         alert(mensaje1);
-            
-    //     },
-    //     error: function () {     
-    //         mensaje = "OCURRIO UN ERROR";
-    //         alert(mensaje);
-    //     }
-    // });  
-
+        $.ajax({
+            url: 'peticiones/'+FrmData, // Url que se envia para la solicitud esta en el web php es la ruta
+            method: "PUT",             // Tipo de solicitud que se enviará, llamado como método
+            data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+            success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+            {  
+                mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
+                CargarPeticiones2();     
+                alert(mensaje1);
+                
+            },
+            error: function () {     
+                mensaje = "OCURRIO UN ERROR";
+                alert(mensaje);
+            }
+        });  
+    
+    }
 });
 
 function esta_vacio(cadena)
 {
-    if (cadena===null) {
+    if (cadena==null) {
         return true;
     }
+}
+
+function traerPeticion(id) {
+    $.get('peticiones/'+id, function (data) { 
+        $('#txtDescripcion').val(data.descripcion); 
+        $('#cmbTipoPeticiones').val(data.idtipopeticion);
+        $('#cmbEstados').val(data.idestado);
+        $('#cmbPrioridades').val(data.idprioridad);
+        $('#txtDescripcion').val(data.descripcion); 
+    }); 
+}
+
+function eliminarPeticion(id) {
+
+    var FrmData = {
+        idpeticion:     id,
+    }
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: 'peticiones/'+id, // Url que se envia para la solicitud esta en el web php es la ruta
+        method: "DELETE",             // Tipo de solicitud que se enviará, llamado como método
+        data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+        success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+        {  
+            mensaje1 = "DATOS ELIMINADOS CON EXITO";
+            CargarPeticiones2();     
+            alert(mensaje1);
+            
+        },
+        error: function () {     
+            mensaje = "OCURRIO UN ERROR";
+            alert(mensaje);
+        }
+    });  
 }

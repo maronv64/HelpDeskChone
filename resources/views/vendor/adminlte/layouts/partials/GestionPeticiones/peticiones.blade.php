@@ -237,6 +237,6 @@
           </div>       
       </div>
 </div>
-<script src="{{ asset('js/GestionPeticiones3.js') }}" defer></script>
+<script src="{{ asset('js/GestionPeticiones4.js') }}" defer></script>
 @endsection
 

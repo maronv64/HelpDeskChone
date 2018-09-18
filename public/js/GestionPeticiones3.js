@@ -103,7 +103,7 @@ function CargarPeticiones2(){
             //añade la nombre del area
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';
             //
-            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalPeticionesActualizar("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='pasarDatosPeticion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
                     "<button type='button' class='btn btn-danger' onClick='UsuarioDelete("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
             //
             fila+= '</tr>';
@@ -275,6 +275,14 @@ function pasarDatosUsuario(id)
     }); 
 }
 
+function pasarDatosPeticion(id) {
+    // $('#cmbPrioridades').val(),
+    // $('#cmbEstados').val(),
+    // $('#cmbTipoPeticiones').val(),
+    // $('#iduser').val(),
+    $('#var_idpeticion').val(id);
+    alert($('#var_idpeticion').val());
+}
 
 function mensaje(id)
 {
@@ -357,49 +365,4 @@ $('#btnEnviarP').click(function() {
     // });
 });
 
-//$(selector).post(URL,data,function(data,status,xhr),dataType)
-
-//Insertar una Peticion
-
-//$('#btnEnviarPeticion').click(function() {
-    //alert("hola");
-    //debugger
-    // var FrmData = {
-    //     idprioridad:    $('#cmbPrioridades').val(),
-    //     idestado:       $('#cmbEstados').val(),
-    //     idtipopeticion: $('#cmbTipoPeticiones').val(),
-    //     idusuario:      $('#iduser').val(),
-    //     descripcion:    $('#txtDescripcion').val(),
-    // }
-    
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
-
-    // $.ajax({
-    //     url: 'peticiones', // Url que se envia para la solicitud esta en el web php es la ruta
-    //     method: "POST",             // Tipo de solicitud que se enviará, llamado como método
-    //     data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-    //     success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
-    //     {  
-    //         mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
-    //         CargarPeticiones2();     
-    //         alert(mensaje1);
-            
-    //     },
-    //     error: function () {     
-    //         mensaje = "OCURRIO UN ERROR";
-    //         alert(mensaje);
-    //     }
-    //});  
-
-    // $.post("peticiones", FrmData, function(result){
-    //     alert('Su petcion fue enviada...');
-    //     CargarPeticiones2();
-    // });
-
-
-//});
 

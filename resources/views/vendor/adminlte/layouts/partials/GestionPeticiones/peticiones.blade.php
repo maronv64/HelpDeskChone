@@ -27,6 +27,7 @@
                                             
                                                 <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
                                                 <input type="text" name="iduser" id="iduser" hidden >
+                                                <input type="text" name="idpeticion" id="var_idpeticion" hidden >
                                                 <div class="row">
 
                                                     <div class="col-md-4">

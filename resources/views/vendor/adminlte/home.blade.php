@@ -1,22 +1,32 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	{{ trans('adminlte_lang::message.home') }}
+    Register
 @endsection
 
 
 @section('main-content')
-	<div class="container-fluid spark-screen">
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
-					<div class="panel-heading">Home</div>
 
-					<div class="panel-body">
-						 You are logged ino!
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-@endsection
+  <div class="container-fluid spark-screen">
+    <div class="row">
+        <div class="">
+          <div id="app">
+              <div class="">
+                <div class="register-box-body" align="center"  >  
+
+
+                	<img  src="img/imagenes/Help_Desk.png">
+                	<h1>Help <b>Desk</b></h1>
+
+                </div>
+                      
+               </div>
+               <br>    
+           </div>
+
+         </div>
+    </div>
+
+    </div>
+  </div>
+  @endsection

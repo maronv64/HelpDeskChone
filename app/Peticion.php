@@ -12,6 +12,9 @@ class Peticion extends Model
      *
      * @var array
      */
+
+    public $timestamps=false;
+
     protected $table = 'peticion';
 
     protected $fillable = [

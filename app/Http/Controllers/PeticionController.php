@@ -34,6 +34,7 @@ class PeticionController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -45,6 +46,21 @@ class PeticionController extends Controller
     public function store(Request $request)
     {
         //
+        $peticion = new Peticion();
+
+        $peticion->idprioridad = $request->idprioridad;
+        $peticion->idestado = $request->idestado;
+        $peticion->idtipopeticion = $request->idtipopeticion;
+        $peticion->idusuario = $request->idusuario;
+        $peticion->descripcion = $request->descripcion;
+        $peticion->estado_del = '1';
+        
+        if ($peticion->save()) {
+            # code...
+            return $peticion;
+        }else{
+            return 0;
+        }
     }
 
     /**
@@ -64,9 +80,10 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Peticion $peticion)
+    public function edit(Request $request )
     {
         //
+        //return view('adminlte::layouts.partials.GestionPeticiones.modalPeticiones');
     }
 
     /**
@@ -130,9 +147,28 @@ class PeticionController extends Controller
 
     public function CargarDatos2(){
         $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->get();//where('estado_del','1')->get();
-//        $peticiones = Peticion::with('prioridad','estado','tipo_peticion')->get();//where('estado_del','1')->get();
-        //dd($peticiones);
-    //return;
         return response()->json($peticiones);
     }
+
+    public function peticionesInsert(Request $request){
+        $peticion = new Peticion();
+
+        $peticion->idprioridad = $request->idprioridad;
+        $peticion->idestado = $request->idestado;
+        $peticion->idtipopeticion = $request->idtipopeticion;
+        $peticion->idusuario = $request->idusuario;
+        $peticion->descripcion = $request->descripcion;
+        $peticion->estado_del = '1';
+        
+        if ($peticion->save()) {
+            # code...
+            return $peticion;
+        }else{
+            return 0;
+        }
+        
+    }
+
+
+
 }

@@ -72,34 +72,61 @@ function mostrarmodal1 (){
 
 
 function  mostrartecnicos(){
-    var filacod=0;
+    var filac=0;
     $.get('listaTecnicos', function (data) {
         $("#tablaasignartecnico").html("");
         $.each(data, function(i, item) { //recorre el data 3
-          filacod+1;
-            cargartablatecnicos(item,filacod); // carga los datos en la tabla
+          filac=filac+1;
+            cargartablatecnicos(item,filac); // carga los datos en la tabla
         });      
     });
 }
 
 function cargartablatecnicos(data, filacod){
-     
     $("#tablaasignartecnico").append(
-        "<tr id='fila_codtec"+"'><td>"+data.name +" "+ data.apellidos+"\
+          "<tr id='filaid"+filacod+"'><td hidden>"+ data.id +"\
+        <td>"+data.name +" "+ data.apellidos+"</td>\
          <td>"+ data.extratecnicos.especialidad +"</td>\
-         <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='tablatecnicosAsig("+data.id+","+filacod+")'><i id='ibotoagra' class='fa fa-arrow-right'></i></button>\
+         <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='tablatecnicosAsig("+data.id+","+filacod+")'><i id='ibotoagra"+filacod+"' class='fa fa-arrow-right'></i></button>\
          </tr>"
     );
 }
 
+function filtrotecnicos() {
+
+  var input, filter, table, tr, td,td1, i;
+  input = document.getElementById("buscar_tecnicos");
+  filter = input.value.toUpperCase();
+
+  table = document.getElementById("tablaasignartecnico");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+  
+}
+
 
 function tablatecnicosAsig(valor,filacod1){
+  if ( $('#botonagregar'+filacod1).hasClass('btn btn-danger') ) { 
+      $('#botonagregar'+filacod1).removeClass('btn btn-danger');
+      $('#botonagregar'+filacod1).addClass('btn btn-info');
+       $('#ibotoagra'+filacod1).removeClass('fa fa-times');
+       $('#ibotoagra'+filacod1).addClass('fa fa-arrow-right');
+   }else{
   $('#botonagregar'+filacod1).removeClass('btn btn-info');
   $('#botonagregar'+filacod1).addClass('btn btn-danger');
-    $('#ibotoagra').removeClass('fa fa-arrow-right');
-  $('#ibotoagra').addClass('fa fa-times');
-  
-   var filacod=0;
+    $('#ibotoagra'+filacod1).removeClass('fa fa-arrow-right');
+  $('#ibotoagra'+filacod1).addClass('fa fa-times');
+  }
+  /* var filacod=0;
  $.get('listaTecnicos', function (data) {
         $.each(data, function(i, item) { //recorre el data 
 
@@ -115,7 +142,7 @@ function tablatecnicosAsig(valor,filacod1){
         }
         });      
     });
- $("#tabladetecnicosasignados").prop('hidden',false);
+ $("#tabladetecnicosasignados").prop('hidden',false);*/
  
 }
 
@@ -174,9 +201,13 @@ function guardartecnicosasignados(idusuario,idasig){
 }
 
     function asignartecnicos(idasig){
-      $('#tecnicosasignadostable tr').each(function () {
+       var filac=0;
+      $('#tablaasignartecnico tr').each(function () {
+        filac=filac+1;
+        if ( $('#botonagregar'+filac).hasClass('btn btn-danger') ) { 
         idtecnico = $(this).find("td").eq(0).html();
         guardartecnicosasignados(idtecnico,idasig);
+        }
         //console.log(costo_t);
     });
     }

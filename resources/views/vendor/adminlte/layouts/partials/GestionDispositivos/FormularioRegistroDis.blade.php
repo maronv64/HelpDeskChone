@@ -1,6 +1,7 @@
                   <p> <h3>Registre un nuevo Dispositivo</h3></p>
                   <hr>
-                  <form enctype="multipart/form-data" method="post" onsubmit='return validarDispositivos()'>
+                  <form id="frm_registrardispositivo"  method="post">
+                
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="row">
                       <div class="col-md-4">
@@ -51,8 +52,7 @@
                           </div>
                           <div class="row">
                                     <div class="col-md-12">
-                                      <a id="guardar_datos" class="btn btn-primary  btn-block rounded" title="">Almacenar</a>
-                                        <!-- <button type="submit" class="btn btn-primary btn-block btn-flat">Almacenar</button> -->
+                                      <button type="submit"  class="btn btn-primary btn-block rounded">Almacenar</button>
                                     </div><!-- /.col -->
                           </div>
                   </form>

@@ -1,5 +1,5 @@
  <div class="register-box-body">
-    <form enctype="multipart/form-data" method="post">
+    <form enctype="multipart/form-data" method="post" id="frm_modal_registrardispositivo">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="row">
             <div class="col-md-4">
@@ -55,7 +55,7 @@
         </div>
         <div class="row">
             <div class="col-md-10">
-                <a id="modal_validar_cambios" class="btn btn-primary btn-block rounded" title="">Validar cambios</a>
+                <button id="modal_validar_cambios" type="submit"  class="btn btn-primary btn-block rounded">Validar cambios</button>
             </div><!-- /.col -->
             <div class="col-md-2">
                 <button type="button" class="btn btn-secondary btn-block rounded" data-dismiss="modal">Cerrar</button>

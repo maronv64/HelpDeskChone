@@ -12,10 +12,14 @@ class Peticion extends Model
      *
      * @var array
      */
-    protected $table = 'peticion';
 
+    public $timestamps=false;
+
+    protected $table = 'peticion';
+    //public $timestamps=false;
+    protected $primaryKey = 'idpeticion';
     protected $fillable = [
-        'idpeticion', 'idprioridad','idestado','idtipopeticion','idusuario', 'descripcion','estado_del',
+        'idpeticion', 'idprioridad','idestado','idtipopeticion','idusuario', 'descripcion','estado_del','created_at','update_at',
     ];
 
     public function prioridad(){

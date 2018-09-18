@@ -5,10 +5,17 @@
         <div class="">
           <div id="app">
               <div class="">
+
+<!-- -->
+
+            <div id="verModalModicarPeticion">
+            @include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticion')
+            </div>
+
  <!-- ---------------------------------modal -------------------------- -->
 
 
-            <div class="modal" tabindex="-1" role="dialog" id="modalBuscarUsuario">
+            <div class="modal" tabindex="-1" role="dialog" id="modalBuscarUsuario1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header" align="center">
@@ -20,8 +27,9 @@
                         <div class="modal-body">
                                 <form id=""  > 
                                             
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
                                                 <input type="text" name="iduser" id="iduser" hidden >
+                                                <input type="text" name="idpeticion" id="var_idpeticion" hidden >
                                                 <div class="row">
 
                                                     <div class="col-md-4">
@@ -36,8 +44,8 @@
 
                                                     <div class="col-md-8">
                                                         <div class="form-group has-feedback">
-                                                            <label> <b>Nombres o Cédula:</b></label>
-                                                            <input type="text" class="form-control" placeholder="Digite el Nombre o Cedula"  id="txtBuscar" required />
+                                                            <label> <b>Escriba la Busqueda:</b></label>
+                                                            <input type="text" class="form-control" placeholder="Digite el Nombre o Apellidos o Cedula"  id="txtBuscar1" required />
                                                         </div>
                                                     </div>
                                                 
@@ -49,14 +57,15 @@
                                                             <thead>
                                                             <tr>
                                                                 <th scope="col">Cédula</th>
-                                                                <th scope="col">Usuario</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Apellidos</th>
                                                                 <th scope="col">Celular</th>
                                                                 <th scope="col">Área</th>
                                                                 <th scope="col">Email</th>
                                                                 <th scope="col">Acciones</th>
                                                             </tr>
                                                             </thead>
-                                                            <tbody id="dgvUsuarios">
+                                                            <tbody id="dgvUsuarios1">
                                                             </tbody>
                                                         </table>
                                                     </div>                                                    
@@ -94,9 +103,9 @@
                 <div class="register-box-body"  >
                   <p> <h3>Registre una nueva Peticion</h3></p>
                   <hr>
-                  <form enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    
+                  <form enctype="multipart/form-data">
+                    <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                     -->
                     <div class="row">
                        
                         <div class="row">
@@ -170,9 +179,14 @@
                             </div>
                            
                             <div class="col-md-4 ">
+                                        <!-- <div class ="row">
+                                            <div class="col-md-12">
+                                                <a id="btnEnviarP" class=" btn btn-info btn-block btn-flat " title="">Enviar Peticion</a>
+                                            </div>
+                                        </div> -->
                                     <div class ="row">
                                         <div class="col-md-12">
-                                            <a id="btnEnviarPeticion" class=" btn btn-primary btn-block btn-flat " title="">Enviar Peticion</a>
+                                            <a id="btnEnviarP" class=" btn btn-primary btn-block btn-flat " title="">Enviar Peticion</a>
                                         </div>
                                     </div>
                             </div>
@@ -181,9 +195,6 @@
 
                     
                     </div>
-
-                    
-
                   </form>
                 </div><!-- /.form-box -->
               </div><!-- /.register-box -->
@@ -198,7 +209,7 @@
               <p> <h3>Lista de dispositivos registrados</h3></p>
             </div>
             <div class="col-md-2">
-              <a id="btnMostrar" class="btn btn-info" title="">Listar Peticiones</a>
+              <a id="btnMostrarPeticiones" class="btn btn-info" title="">Listar Peticiones</a>
             </div>
         </div>
            
@@ -214,6 +225,7 @@
                 <th scope="col">Estado</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Area</th>
+                <th scope="col">Fecha</th>
                 <th scope="col"> <center> Acciones </center> </th> 
                 
               </tr>
@@ -225,6 +237,6 @@
           </div>       
       </div>
 </div>
-<script src="{{ asset('js/GestionPeticiones.js') }}" defer></script>
+<script src="{{ asset('js/GestionPeticiones3.js') }}" defer></script>
 @endsection
 

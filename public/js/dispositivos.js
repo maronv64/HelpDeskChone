@@ -27,7 +27,7 @@ function limpiarPrincipal() {
     $('#add_modelo').val('')
     $('#add_marca').val('')
 }
-
+//VERIFICA SI LOS CAMPOS DE EL FORMULARIO DE INGRESO SE ENCUENTRAN CON INFORMACION INGRESADA
 function Validar_campos() {
     if (
         $('#add_nom_dispositivo').val()==''||
@@ -43,7 +43,7 @@ function Validar_campos() {
         return true;
     }
 }
-
+//VERIFICA SI LOS CAMPOS DEL MODAL SE ENCUENTRAN CON INFORMACION
 function Validar_campos_modal() {
     if (
         $('#modal_descripcion').val()==''||
@@ -100,17 +100,23 @@ function modificar(iddispositivo, exp) {
     var actividad='Activo';
     var FrmData;
     if(exp==1){
-        actividad='Inactivo';
-        FrmData = {
-            idDispositivo:iddispositivo,
-            nombredispositivo:'',
-            idtipodispositivos:'',
-            serie:'',
-            color:'',
-            modelo:'',
-            marca:'',
-            cod_activo:actividad,
-        }
+        
+        alertify.confirm('Confirmacion', 'Desea deshabilitar la disponibilidad del este dispositivo?', 
+        function(){
+            actividad='Inactivo';
+            FrmData = {
+                idDispositivo:iddispositivo,
+                nombredispositivo:'',
+                idtipodispositivos:'',
+                serie:'',
+                color:'',
+                modelo:'',
+                marca:'',
+                cod_activo:actividad,
+            }
+            ReferenciaModificar(FrmData, iddispositivo);
+         },
+         function(){ alertify.error('Accion cancelada')})
     }
     else{
         if (Validar_campos_modal()==false) {
@@ -126,29 +132,36 @@ function modificar(iddispositivo, exp) {
             marca:$('#modal_marca').val(),
             cod_activo:actividad,
         }
+        ReferenciaModificar(FrmData, iddispositivo);
     }
     
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-}); 
-$.ajax({
-    url: 'dispositivos/'+iddispositivo, // Url que se envia para la solicitud esta en el web php es la ruta
-    method: "PUT",             // Tipo de solicitud que se enviará, llamado como método
-    data: FrmData,   
-        success: function (datos) {
-        mensaje = "DATOS MODIFICADOS CORRECTAMENTE";
-        alertify.success(mensaje);
-        $('#miModalnuevo').modal('hide');
-        cargarListaDispositivos();
-    },
-    error: function () {     
-        mensaje = "HA OCURRIDO UN ERROR";
-        alertify.error(mensaje);
-        $('#miModalnuevo').modal('hide');
-    }
-});
+
+
+ }
+
+ //funcion para activar el envio de datos en funcion modificar
+ function ReferenciaModificar(FrmData, iddispositivo) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }); 
+    $.ajax({
+        url: 'dispositivos/'+iddispositivo, // Url que se envia para la solicitud esta en el web php es la ruta
+        method: "PUT",             // Tipo de solicitud que se enviará, llamado como método
+        data: FrmData,   
+            success: function (datos) {
+            mensaje = "DATOS MODIFICADOS CORRECTAMENTE";
+            alertify.success(mensaje);
+            $('#miModalnuevo').modal('hide');
+            cargarListaDispositivos();
+        },
+        error: function () {     
+            mensaje = "HA OCURRIDO UN ERROR";
+            alertify.error(mensaje);
+            $('#miModalnuevo').modal('hide');
+        }
+    });
  }
 //Muestra un modal con los datos de la grilla seleccionada para poder modificarlos
 function modal(id_dispositivo)

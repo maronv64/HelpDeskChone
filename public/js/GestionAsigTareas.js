@@ -72,31 +72,64 @@ function mostrarmodal1 (){
 
 
 function  mostrartecnicos(){
- 
+    var filac=0;
     $.get('listaTecnicos', function (data) {
         $("#tablaasignartecnico").html("");
-        $.each(data, function(i, item) { //recorre el data 
-            cargartablatecnicos(item); // carga los datos en la tabla
+        $.each(data, function(i, item) { //recorre el data 3
+          filac=filac+1;
+            cargartablatecnicos(item,filac); // carga los datos en la tabla
         });      
     });
 }
 
-function cargartablatecnicos(data){
-
+function cargartablatecnicos(data, filacod){
     $("#tablaasignartecnico").append(
-        "<tr id='fila_cod"+"'><td>"+data.name +" "+ data.apellidos+"\
+          "<tr id='filaid"+filacod+"'><td hidden>"+ data.id +"\
+        <td>"+data.name +" "+ data.apellidos+"</td>\
          <td>"+ data.extratecnicos.especialidad +"</td>\
-         <td class='row' style='text-align: center'><button  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='tablatecnicosAsig("+data.id+")'><i class='fa fa-arrow-right'></i></button>\
+         <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='cambiariconoboton("+data.id+","+filacod+")'><i id='ibotoagra"+filacod+"' class='fa fa-arrow-right'></i></button>\
          </tr>"
     );
-
 }
 
+/*PARA FILTRAR LOS TÉCNICOS SI ACCEDER A LA BASE DE DATOS*/
+function filtrotecnicos() {
+  var input, filter, table, tr, td,td1, i;
+  input = document.getElementById("buscar_tecnicos");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tablaasignartecnico");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+  
+}
 
-function tablatecnicosAsig(valor){
-   var filacod=0;
+/*CAMBIAR LAS CLASES A LOS BOTONES*/
+function cambiariconoboton(valor,filacod1){
+  if ( $('#botonagregar'+filacod1).hasClass('btn btn-danger') ) { 
+       $('#botonagregar'+filacod1).removeClass('btn btn-danger');
+       $('#botonagregar'+filacod1).addClass('btn btn-info');
+       $('#ibotoagra'+filacod1).removeClass('fa fa-times');
+       $('#ibotoagra'+filacod1).addClass('fa fa-arrow-right');
+   }else{
+       $('#botonagregar'+filacod1).removeClass('btn btn-info');
+       $('#botonagregar'+filacod1).addClass('btn btn-danger');
+       $('#ibotoagra'+filacod1).removeClass('fa fa-arrow-right');
+       $('#ibotoagra'+filacod1).addClass('fa fa-times');
+  }
+  bloquearboton(filacod1);
+  /* var filacod=0;
  $.get('listaTecnicos', function (data) {
         $.each(data, function(i, item) { //recorre el data 
+
             filacod+1;
         if(item.id==valor){
             $("#tecnicosasignadostable").append(
@@ -109,19 +142,21 @@ function tablatecnicosAsig(valor){
         }
         });      
     });
- $("#tabladetecnicosasignados").prop('hidden',false);
+ $("#tabladetecnicosasignados").prop('hidden',false);*/
  
 }
-
+/*
 function limpiartablatacnicos(){
       $("#tecnicosasignadostable").html("");
         $("#tabladetecnicosasignados").prop('hidden',true);
-}
+}*/
 
-function eliminarFila(index) {
+/*PARA ELIMINAR UNA FILA DE UNA TABLA*/
+/*function eliminarFila(index) {
     $('#fila_cod'+index).remove();
-}
+}*/
 
+/*MUESTRA LOS DATOS DE LAS PETICIONES*/
 function datospeticion(val){
      $.get('datospeticion/'+val, function (data) {  //esta la uso para limpiar la tabla en el modulo de asignacion por Jose Sabando
         console.log(data);
@@ -139,8 +174,8 @@ function datospeticion(val){
 }
 
 
-
-function guardartecnicosasignados(idusuario,idasig){ 
+/*GUARDAR LOS TÉCNICOS ASIGNADOS*/
+/*function guardartecnicosasignados(idusuario,idasig){ 
         var FrmData = {
             idasig: idasig,
             idusuario: idusuario,
@@ -157,45 +192,90 @@ function guardartecnicosasignados(idusuario,idasig){
             data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
-                mensaje1 = "tecnicos si";
-                 alertify.error(mensaje1);
+
         
             },
             error: function () {   
          
-                mensaje = "tecnicos no";
-                alert(mensaje);
+        
             }
         });  
+}*/
+
+/*BLOQUEAR BOTONES*/
+function bloquearboton(filacod1){
+       var filac=0;
+       var con=0;
+       var id;
+
+    $('#tablaasignartecnico tr').each(function () {
+       filac=filac+1;
+       // $('#botonagregar'+filac).prop('disabled',true);
+        if ( $('#botonagregar'+filacod1).hasClass('btn btn-danger')){          
+            $('#botonagregar'+filac).prop('disabled',true);
+            $('#botonagregar'+filacod1).prop('disabled',false);
+        }else if($('#botonagregar'+filacod1).hasClass('btn btn-info')){
+          $('#botonagregar'+filac).prop('disabled',false);
+          $('#botonagregar'+filacod1).prop('disabled',false);                 
+        }       
+    });
 }
 
-    function asignartecnicos(idasig){
-      $('#tecnicosasignadostable tr').each(function () {
+/*ASIGNAR LOS TÉCNICOS*/
+function asignartecnicos(){
+       var filac=0;
+       var idtecnico=0;
+    $('#tablaasignartecnico tr').each(function () {
+        filac=filac+1;
+        if ( $('#botonagregar'+filac).hasClass('btn btn-danger') ) { 
         idtecnico = $(this).find("td").eq(0).html();
-        guardartecnicosasignados(idtecnico,idasig);
-        //console.log(costo_t);
+         
+        }
     });
-    }
+     if(idtecnico!= "0"){
+     AsignacionInsert(idtecnico);
+     limpiarmodalasignacion();
+     $('#Asignacionmodal').modal('hide');
+     }else{
+           alertify.error("Por favor seleccione un técnico");
 
+           return;
+     }
+}
+
+/*ASIGNAR UNA PETICIÓN*/
 function asignaridpeticion(idpeticion,idusuario){
   $('#idpeticionasig').val(idpeticion);
    $('#idusuarioasig').val(idusuario);
   
 }
 
-
+/*SUBMIT DEL BOTÓN DEL MODAL DE ASIGNACIÓN*/
 $('#formasig').on('submit',function(e){
   e.preventDefault();
-  AsignacionInsert();
+  asignartecnicos();
+
+
 });
 
+
+/*LIMPIAR MODAL ASGNACIÓN TAREAS*/
+function limpiarmodalasignacion(){
+     mostrartecnicos();
+    $('#idpeticionasig').val("");
+    $('#fechainicialAsig').val("dd/mm/aaaa");
+    $('#fechafinalAsig').val("dd/mm/aaaa");
+    $('#observacionAsig').val("");
+}
+
 /*INSERTAR ASIGNACIONES*/
-function AsignacionInsert(){ 
-        var FrmData = {
+function AsignacionInsert(iduser){ 
+          var FrmData = {
             idpeticion: $('#idpeticionasig').val(),
             FechaInicial: $('#fechainicialAsig').val(),
             FechaLimite: $('#fechafinalAsig').val(),
             observacion: $('#observacionAsig').val(),
+            idusuario:iduser,
         }
         
         $.ajaxSetup({
@@ -209,9 +289,10 @@ function AsignacionInsert(){
             data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
-                mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
-                  alertify.error(mensaje1);
-                 asignartecnicos(data.idasignacion);
+              //asignartecnicos(data.idasignacion);
+                mensaje1 = "Datos guardados correctamente";
+                 alertify.success(mensaje1);
+                 
         
             },
             error: function () {     
@@ -219,4 +300,6 @@ function AsignacionInsert(){
                 alert(mensaje);
             }
         });  
+      
+
     }

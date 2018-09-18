@@ -7,24 +7,19 @@
                           <input type="text" name="idusuarioasig" id="idusuarioasig" hidden >
                           
                             <div class="row">
-                                <div class="col-md-4">
-                                      <input type="text" class="form-control form-control-sm" placeholder="Buscar Técnicos" onkeyup="" id="buscar_tecnicos">
+                                <div class="col-md-12">
+                                      <input type="text" class="form-control form-control-sm" placeholder="Buscar Técnicos"  id="buscar_tecnicos" onkeyup="filtrotecnicos();">
                                       <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">
                                           <br>
                                         </span>
                                       </div>                                                 
                                 </div> 
-                                <div class="col-md-2">
-                                </div>
-                                <div class="col-md-6">
-                                  <h4><p>Técnicos Asignados</p></h4>
-                                </div>
-
-                              </div>
+                            </div>
+                                       <!--TABLA DE LISTA DE TECNICOS-->
                             <div class="row">
-                              <div class="col-md-6">
-                                <div class="table-responsive pre-scrollable" style="height: 200px" >
+                              <div class="col-md-12">
+                                <div class="table-responsive pre-scrollable" style="height: 150px" >
                                 
                                 <table class="table table-hover table-bordered"  >
                                   <thead>
@@ -39,8 +34,8 @@
                                 </table>
                                 </div>
                               </div>
-
-                              <div class="col-md-6">
+                            </div>
+                            <!--   <div class="col-md-6">
                                 <div class="table-responsive pre-scrollable" style="height: 200px" id="tabladetecnicosasignados" hidden >
                                 
                                 <table class="table table-hover table-bordered">
@@ -56,33 +51,58 @@
                                   </tbody>
                                 </table>
                                 </div>
-                              </div>
-                            </div>
+                              </div> -->
+                          
+                          <br>
 
                           <div class="row">
-                              <div class="col-md-4">
+                              <div class="col-md-6">
                                   <div class="form-group has-feedback">
                                       <label> <b>Fecha Inicial:</b></label>
                                       <input type="date" class="form-control" id="fechainicialAsig" name="fechainicialAsig"required />
-                                  </div>
-                              </div>
-                              <div class="col-md-4">
-                                   <div class="form-group has-feedback">
+
+                                       <div class="form-group has-feedback">
                                       <label> <b>Fecha Límite:</b></label>
                                       <input type="date" class="form-control" id="fechafinalAsig"   name="fechafinalAsig"required />
+                                      </div>
                                   </div>
                               </div>
-                              <div class="col-md-4">
+                             
+                              <div class="col-md-6">
                                   <div class="form-group has-feedback">
                                       <label> <b>Observación:</b></label>
-                                      <textarea class="form-control" id="observacionAsig" rows="3"></textarea>
+                                      <textarea class="form-control" id="observacionAsig" rows="4" style="resize: none" required ></textarea>
                                   </div>
                               </div>
+                   
+                              
+                            
                           </div>
+                         
+
+                                           <!--TABLA DE LISTA DE TECNICOS ASIGNADOS-->
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="table-responsive pre-scrollable" style="height: 150px" >
+                                
+                                <table class="table table-hover table-bordered"  >
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" style="text-align: center">Técnico</th>
+                                      <th scope="col" style="text-align: center">Especialidad</th>
+                                      <th scope="col" style="text-align: center">Acciones</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id="tablaasignartecnicoasignados">
+                                  </tbody>
+                                </table>
+                                </div>
+                              </div>
+                            </div>
                      
                              <div class="modal-footer">
-                              <button type="submit" id="botonasignar" data-toggle='modal' data-target='#mi-modal2'  class="btn btn-primary">Asignar</button>
-                              <button type="button" class="btn btn-secondary" onclick="limpiartablatacnicos()" data-dismiss="modal">Cerrar</button>
+                              <button type="submit" id="botonasignar" class="btn btn-primary">Asignar</button>
+                              <button type="button" class="btn btn-secondary" onclick="limpiarmodalasignacion()" data-dismiss="modal">Cerrar</button>
                             </div>
          </form>
       </div>

@@ -39,8 +39,8 @@ class AsigTareasController extends Controller
     {
 
         $asignacion= new AsigTareas();
-        $asignacion->Ficha_idFicha='1';
         $asignacion->peticion_idpeticion=$request->idpeticion;
+        $asignacion->usuario_idUsuario=$request->idusuario;
         $asignacion->FechaRegistro=date("Y-m-d",strtotime("00-00-00"));
         $asignacion->FechaInicio=date("Y-m-d",strtotime( $request->FechaInicial));
         $asignacion->FechaLimite=date("Y-m-d",strtotime( $request->FechaLimite));

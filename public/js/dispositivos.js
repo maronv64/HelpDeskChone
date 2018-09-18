@@ -3,8 +3,6 @@ window.onload = function() {
     cargarListaDispositivos();
   };
 
-
-
 $('#guardar_datos').click(function(event)
 	{
 		guardar();
@@ -100,24 +98,9 @@ function modificar(iddispositivo, exp) {
     var actividad='Activo';
     var FrmData;
     if(exp==1){
-        
-        alertify.confirm('Confirmacion', 'Desea deshabilitar la disponibilidad del este dispositivo?', 
-        function(){
-            actividad='Inactivo';
-            FrmData = {
-                idDispositivo:iddispositivo,
-                nombredispositivo:'',
-                idtipodispositivos:'',
-                serie:'',
-                color:'',
-                modelo:'',
-                marca:'',
-                cod_activo:actividad,
-            }
-            ReferenciaModificar(FrmData, iddispositivo);
-         },
-         function(){ alertify.error('Accion cancelada')})
-    }
+            $("#id_modal_conf_elim").modal('show');
+            $("#btn-modal-dispo-si").val(iddispositivo);
+        }
     else{
         if (Validar_campos_modal()==false) {
             return;
@@ -138,8 +121,29 @@ function modificar(iddispositivo, exp) {
 
 
  }
-
- //funcion para activar el envio de datos en funcion modificar
+ //Muestra un modal para confirmar eliminacion de dispositivos
+ $("#btn-modal-dispo-si").on("click", function(){
+    var FrmData;
+    actividad='Inactivo';
+    FrmData = {
+        idDispositivo:$("#btn-modal-dispo-si").val(),
+        nombredispositivo:'',
+        idtipodispositivos:'',
+        serie:'',
+        color:'',
+        modelo:'',
+        marca:'',
+        cod_activo:actividad,
+    }
+ReferenciaModificar(FrmData, $("#btn-modal-dispo-si").val());
+$("#id_modal_conf_elim").modal('hide');
+});
+//Mensaje de cancelado del modal eliminacion
+$("#btn-modal-dispo-no").on("click", function(){
+    alertify.error('ACCIÓN CANCELADA')
+    $("#id_modal_conf_elim").modal('hide');
+});
+//funcion para activar el envio de datos en funcion modificar
  function ReferenciaModificar(FrmData, iddispositivo) {
     $.ajaxSetup({
         headers: {
@@ -182,12 +186,7 @@ function modal(id_dispositivo)
         }
     });
 }
-//Evento que llama a la funcion de modificar
-$('#modal_validar_cambios').click(function(event)
-{
-    modificar($(this).val(),2);
-    limpiarModal();
-});
+
 //Elimina un registro si se le envia un id en su llamada
 function eliminar(iddispositivo){ 
     $.ajaxSetup({
@@ -241,3 +240,14 @@ function cargarListaDispositivos() {
 		console.log("error");
 	})
 };
+
+
+$('#frm_registrardispositivo').on('submit',function(e){
+	e.preventDefault();
+	guardar();
+});
+$('#frm_modal_registrardispositivo').on('submit',function(e){
+	e.preventDefault();
+	modificar($('#modal_validar_cambios').val(),2);
+    limpiarModal();
+});

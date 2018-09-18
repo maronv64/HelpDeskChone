@@ -70,9 +70,11 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function show(Peticion $peticion)
+    public function show( $request)
     {
         //
+        $peticion    = Peticion::with('prioridad','estado','tipo_peticion','usuario')->findOrFail($request);
+        return $peticion;
     }
 
     /**
@@ -94,9 +96,20 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Peticion $peticion)
+    public function update(Request $request)
     {
         //
+        $peticion = Peticion::findOrFail($request->idpeticion);
+        
+        $peticion->idprioridad = $request->idprioridad;
+        $peticion->idestado = $request->idestado;
+        $peticion->idtipopeticion = $request->idtipopeticion;
+        $peticion->idusuario = $request->idusuario;
+        $peticion->descripcion = $request->descripcion;
+        
+        $peticion->update();
+        
+
     }
 
     /**
@@ -105,9 +118,12 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Peticion $peticion)
+    public function destroy($request)
     {
         //
+        $peticion = Peticion::findOrFail($request);
+        $peticion->estado_del='0';
+        $peticion->update();
     }
 
     public function CargarDatos(){
@@ -147,7 +163,7 @@ class PeticionController extends Controller
     }
 
     public function CargarDatos2(){
-        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->get();//where('estado_del','1')->get();
+        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('estado_del','1')->get();//where('estado_del','1')->get();
         return response()->json($peticiones);
     }
 

@@ -41,6 +41,8 @@
   <!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
   @include('adminlte::layouts.partials.GestionDispositivos.modalactualizar')  
   <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
+  @include('adminlte::layouts.partials.GestionDispositivos.ModalConfirmacionElim')  
+
  
   <script src="{{ asset('js/dispositivos.js') }}" defer></script>
 

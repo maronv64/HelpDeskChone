@@ -391,8 +391,22 @@ $( "#btnActualizarPeticion" ).click(function() {
         idusuario:      $('#iduser').val(),
         descripcion:    $('#txtDescripcion').val(),
     }
-    
-    alert($('#cmbPrioridades').val());
+
+    //alert("llene los campos correspondientes "+$('#iduser').val())
+
+
+    if (
+        esta_vacio($('#var_idpeticion').val())      ||  
+        esta_vacio($('#cmbPrioridades').val())      ||
+        esta_vacio($('#cmbEstados').val())          || 
+        ($('#cmbTipoPeticiones').val()!="Usuario")   || 
+        esta_vacio($('#txtUsuario').val())          || 
+        esta_vacio($('#txtDescripcion').val()) 
+        )
+    {
+        alert("llene los campos correspondientes  ")
+    }
+    //alert($('#cmbPrioridades').val());
 
     // $.ajaxSetup({
     //     headers: {
@@ -421,7 +435,7 @@ $( "#btnActualizarPeticion" ).click(function() {
 
 function esta_vacio(cadena)
 {
-    if (cadena===null) {
+    if (cadena==null) {
         return true;
     }
 }

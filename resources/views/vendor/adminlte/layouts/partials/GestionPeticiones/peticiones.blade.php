@@ -8,7 +8,9 @@
 
 <!-- -->
 
-
+            <div id="verModalModicarPeticion">
+            @include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticion')
+            </div>
 
  <!-- ---------------------------------modal -------------------------- -->
 
@@ -223,6 +225,7 @@
                 <th scope="col">Estado</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Area</th>
+                <th scope="col">Fecha</th>
                 <th scope="col"> <center> Acciones </center> </th> 
                 
               </tr>

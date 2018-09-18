@@ -81,9 +81,9 @@
                     <li><a href="{{ url('/register') }}"><i class='fa fa-bar-chart-o'></i>Usuarios</a></li>
                      @endif
                      @endif
-                   <!--  <li><a href="#">Areas</a></li>
+                    <li><a href="#">Areas</a></li>
                     <li><a href="{{ url('/peticiones') }}">Peticiones</a></li>
-                    <li><a href="#">Fichas</a></li> -->
+                    <li><a href="#">Fichas</a></li>
                 </ul>
             </li>
          

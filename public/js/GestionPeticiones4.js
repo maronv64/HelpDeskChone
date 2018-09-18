@@ -108,7 +108,7 @@ function CargarPeticiones2(){
              fila+= '<td>'+item.created_at  +'</td>';
              //
             fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalModicarPeticion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
-                    "<button type='button' class='btn btn-danger' onClick='UsuarioDelete("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
+                    "<button type='button' class='btn btn-danger' onClick='eliminarPeticion("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
             //
             fila+= '</tr>';
 
@@ -451,4 +451,34 @@ function traerPeticion(id) {
         $('#cmbPrioridades').val(data.idprioridad);
         $('#txtDescripcion').val(data.descripcion); 
     }); 
+}
+
+function eliminarPeticion(id) {
+
+    var FrmData = {
+        idpeticion:     id,
+    }
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: 'peticiones/'+id, // Url que se envia para la solicitud esta en el web php es la ruta
+        method: "DELETE",             // Tipo de solicitud que se enviará, llamado como método
+        data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+        success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+        {  
+            mensaje1 = "DATOS ELIMINADOS CON EXITO";
+            CargarPeticiones2();     
+            alert(mensaje1);
+            
+        },
+        error: function () {     
+            mensaje = "OCURRIO UN ERROR";
+            alert(mensaje);
+        }
+    });  
 }

@@ -118,9 +118,12 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Peticion $peticion)
+    public function destroy($request)
     {
         //
+        $peticion = Peticion::findOrFail($request);
+        $peticion->estado_del='0';
+        $peticion->update();
     }
 
     public function CargarDatos(){
@@ -160,7 +163,7 @@ class PeticionController extends Controller
     }
 
     public function CargarDatos2(){
-        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->get();//where('estado_del','1')->get();
+        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('estado_del','1')->get();//where('estado_del','1')->get();
         return response()->json($peticiones);
     }
 

@@ -22,13 +22,15 @@ class DashboardHelpdeskController extends Controller
         $tipo_peticiones = TipoPeticion::all();
         $estados = Estado::all();
         $prioridades = Prioridad::all();
+        $asig_tarea= AsigTareas::all();
         $consulta = array(
             "peticiones"=>$peticiones,
             "tipo_peticiones"=>$tipo_peticiones,
             "estados"=>$estados,
             "prioridades"=>$prioridades,
+            "asig_tarea"=>$asig_tarea,
         );      
-        //dd($consulta);
+        dd($consulta);
         return view('dashboardhelpdesk',['consulta'=>$consulta]);
     }
 

@@ -23,14 +23,16 @@ class DashboardHelpdeskController extends Controller
         $estados = Estado::all();
         $prioridades = Prioridad::all();
         $asig_tarea= AsigTareas::all();
+        $user=User::all();
         $consulta = array(
             "peticiones"=>$peticiones,
             "tipo_peticiones"=>$tipo_peticiones,
             "estados"=>$estados,
             "prioridades"=>$prioridades,
             "asig_tarea"=>$asig_tarea,
+            "user"=>$user,
         );      
-        dd($consulta);
+        //dd($consulta);
         return view('dashboardhelpdesk',['consulta'=>$consulta]);
     }
 

@@ -16,18 +16,24 @@
         $prioriedadmedia=0;
         $prioriedadalta=0;
     ?>
-        @foreach ($consulta['peticiones'] as $item)
-            <?php $totalpeticiones++ ?>
-            @if ($item->idprioridad=='1')
-                <?php $prioriedadalta++ ?>
-            @endif
-            @if ($item->idprioridad=='2')
-                <?php $prioriedadmedia++ ?>
-            @endif
-            @if ($item->idprioridad=='3')
-                <?php $prioriedadbaja++ ?>
+    @foreach ($consulta['asig_tarea'] as $item)
+        @foreach ($consulta['peticiones'] as $item2)
+            @if ($item->peticion_idpeticion == $item2->idpeticion)
+                @if ( $item2->idprioridad=='1' )
+                    <?php $prioriedadalta++ ?>
+                    <?php $totalpeticiones++ ?>
+                @endif
+                @if ( $item2->idprioridad=='2' )
+                    <?php $prioriedadmedia++ ?>
+                    <?php $totalpeticiones++ ?>
+                @endif
+                @if ( $item2->idprioridad=='3' )
+                    <?php $prioriedadbaja++ ?>
+                    <?php $totalpeticiones++ ?>
+                @endif
             @endif
         @endforeach
+    @endforeach
             
     <div class="row">
             <div class="col-lg-3 col-xs-6">
@@ -77,7 +83,7 @@
                 <div class="small-box bg-red">
                     <div class="inner">
                         <h3>{{$prioriedadalta}}</h3>
-                        <p>Peteciones Prioridad: Critica</p>
+                        <p>Peteciones Prioridad: Alta</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-flag-o"></i>
@@ -93,7 +99,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <i class="fa fa-bar-chart"></i>
-                <h3 class="box-title">Estadística</h3>
+                <h3 class="box-title">Peticiones</h3>
             </div>
         
             <div style="height: 300px;overflow: auto;">
@@ -103,21 +109,42 @@
                         <th>Fecha y Hora de Peticion</th>
                         <th>Solicitud</th>
                         <th>Tecnico Asignado</th>
-                        <th>Daily CPM</th>
-                        <th>Ganancias De Referidos</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
+                        <th>Estado</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($consulta['peticiones'] as $item)
-                            <tr>
-                                <td>{{$item->created_at}}</td>
-                                <td>{{$item->descripcion}}</td>
-                                <td>$0,0264</td>
-                                <td>
-                                    $2,030769                            
-                                </td>
-                                <td>$0,00</td>
-                            </tr>
+                        @foreach ($consulta['asig_tarea'] as $item)
+                            @foreach ($consulta['peticiones'] as $item2)
+                                @foreach ($consulta['user'] as $item3)
+                                    @if ($item->peticion_idpeticion == $item2->idpeticion and $item->usuario_idUsuario==$item3->id )
+                                        <tr>
+                                            <td>{{$item2->created_at}}</td>
+                                            <td style="text-transform: capitalize"> <?php echo substr($item2->descripcion,0,30); ?></td>
+                                            <td style="text-transform: capitalize">{{$item3->name}} &nbsp; {{$item3->apellidos}}</td> 
+                                            <td>{{$item->FechaInicio}}</td>
+                                            <td>{{$item->FechaLimite}}</td>
+                                            @if ($item2->idprioridad=='1')
+                                                <td>
+                                                        <i class="fa fa-flag" style="color:red" ></i>                                                
+                                                </td>
+                                            @endif
+                                            @if ($item2->idprioridad=='2')
+                                                <td>
+                                                        <i class="fa fa-flag" style="color:orange" ></i>                                                
+                                                </td>
+                                            @endif
+                                            @if ($item2->idprioridad=='3')
+                                                <td>
+                                                        <i class="fa fa-flag" style="color:green" ></i>                                                
+                                                </td>
+                                            @endif
+                                        </tr>                                  
+                                    @endif  
+                                @endforeach                                        
+                                                            
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>

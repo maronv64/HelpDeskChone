@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AsigTareas extends Model
 {
-    protected $table= "asignacion";
-    protected $primaryKey ="idasignacion";
+    protected $table= "user_asignacion";
+    protected $primaryKey ="iduser_asignacion";
     public $timestamps=false;
 }

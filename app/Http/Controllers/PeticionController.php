@@ -172,12 +172,12 @@ class PeticionController extends Controller
 
 
 
-//     public function datospeticion($id){
-//         $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->get();//where('estado_del','1')->get();
-// //        $peticiones = Peticion::with('prioridad','estado','tipo_peticion')->get();//where('estado_del','1')->get();
-//         //dd($peticiones);
-//     //return;
-//         return response()->json($peticiones);    
-//     }
+    public function datospeticion($id){
+        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->get();//where('estado_del','1')->get();
+//        $peticiones = Peticion::with('prioridad','estado','tipo_peticion')->get();//where('estado_del','1')->get();
+        //dd($peticiones);
+    //return;
+        return response()->json($peticiones);    
+    }
 
 }

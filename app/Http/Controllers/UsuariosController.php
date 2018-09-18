@@ -218,39 +218,75 @@ class UsuariosController extends Controller
         return response()->json($repuestos);
     }
       /* Cargar Usuaruios*/
-    public function CargarDatos($idarea)
-    {   
-        $users = User::with('area','tipo_usuario')  ->where('idarea',$idarea)
-                                                    ->where('estado','activo')->get();
-        return response()->json($users);
-    }
-     
     public function usuariosFiltroPorArea($idarea,$consul='')
-    {
+    {   
         $users = User::with('area','tipo_usuario')  ->where([
                                                             ['idarea',$idarea],
                                                             ['estado','activo'],
-                                                            ['name','like',"%$consul%"]
+                                                            ['cedula','like',"%$consul%"],
                                                             ])
                                                     ->orwhere([
                                                             ['idarea',$idarea],
                                                             ['estado','activo'],
-                                                            ['apellidos','like',"%$consul%"]
+                                                            ['name','like',"%$consul%"],
                                                             ])
                                                     ->orwhere([
                                                             ['idarea',$idarea],
                                                             ['estado','activo'],
-                                                            ['cedula','like',"%$consul%"]
+                                                            ['apellidos','like',"%$consul%"],
                                                             ])
                                                     ->get();
+                                                    //->where('idarea',$idarea)
+                                                    //->where('estado','activo')->get();
         return response()->json($users);
     }
-    public function usuarioBuscar($id)
+    
+    public function usuarioBuscar($id='')
     {
         $buscar = new User();
         $buscar->id=$id;
         //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
         $users = User::with('area','tipo_usuario')  -> find($buscar->id);
         return response()->json($users);
-    }       
+
+        // $user = User::with('area','tipo_usuario')   ->where('id',$id)
+        //                                             ->get();
+        // //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
+        // return response()->json($user);                                             
+    }
+            
+     
+    // public function usuariosFiltroPorArea($idarea,$consul='')
+    // {
+    //     $users = User::with('area','tipo_usuario')  ->where([
+    //                                                         ['idarea',$idarea],
+    //                                                         ['estado','activo'],
+    //                                                         ['name','like',"%$consul%"]
+    //                                                         ])
+    //                                                 ->orwhere([
+    //                                                         ['idarea',$idarea],
+    //                                                         ['estado','activo'],
+    //                                                         ['apellidos','like',"%$consul%"]
+    //                                                         ])
+    //                                                 ->orwhere([
+    //                                                         ['idarea',$idarea],
+    //                                                         ['estado','activo'],
+    //                                                         ['cedula','like',"%$consul%"]
+    //                                                         ])
+    //                                                 ->get();
+    //     return response()->json($users);
+    // }
+    // public function usuarioBuscar($id)
+    // {
+    //     $buscar = new User();
+    //     $buscar->id=$id;
+    //     //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
+    //     $users = User::with('area','tipo_usuario')  -> find($buscar->id);
+    //     return response()->json($users);
+    // }       
 }
+
+/**
+ * ->where([['hoja_ruta.tipo', '=','E'],['vehiculo.idvehiculo', '=', '$busqueda'],               ])             ->select('hoja_ruta.*')             ->orderBy('hoja_ruta.fecha', 'desc')             ->first();           return $resultado;      }
+ * 
+ */

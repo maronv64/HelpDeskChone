@@ -5,10 +5,15 @@
         <div class="">
           <div id="app">
               <div class="">
+
+<!-- -->
+
+
+
  <!-- ---------------------------------modal -------------------------- -->
 
 
-            <div class="modal" tabindex="-1" role="dialog" id="modalBuscarUsuario">
+            <div class="modal" tabindex="-1" role="dialog" id="modalBuscarUsuario1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header" align="center">
@@ -36,8 +41,8 @@
 
                                                     <div class="col-md-8">
                                                         <div class="form-group has-feedback">
-                                                            <label> <b>Nombres o Cédula:</b></label>
-                                                            <input type="text" class="form-control" placeholder="Digite el Nombre o Cedula"  id="txtBuscar" required />
+                                                            <label> <b>Escriba la Busqueda:</b></label>
+                                                            <input type="text" class="form-control" placeholder="Digite el Nombre o Apellidos o Cedula"  id="txtBuscar1" required />
                                                         </div>
                                                     </div>
                                                 
@@ -49,14 +54,15 @@
                                                             <thead>
                                                             <tr>
                                                                 <th scope="col">Cédula</th>
-                                                                <th scope="col">Usuario</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Apellidos</th>
                                                                 <th scope="col">Celular</th>
                                                                 <th scope="col">Área</th>
                                                                 <th scope="col">Email</th>
                                                                 <th scope="col">Acciones</th>
                                                             </tr>
                                                             </thead>
-                                                            <tbody id="dgvUsuarios">
+                                                            <tbody id="dgvUsuarios1">
                                                             </tbody>
                                                         </table>
                                                     </div>                                                    
@@ -170,10 +176,15 @@
                             </div>
                            
                             <div class="col-md-4 ">
-                                    <div class ="row">
-                                    <div class="col-md-12">
+                                        <!-- <div class ="row">
+                                            <div class="col-md-12">
                                                 <a id="btnEnviarP" class=" btn btn-info btn-block btn-flat " title="">Enviar Peticion</a>
                                             </div>
+                                        </div> -->
+                                    <div class ="row">
+                                        <div class="col-md-12">
+                                            <a id="btnEnviarP" class=" btn btn-primary btn-block btn-flat " title="">Enviar Peticion</a>
+                                        </div>
                                     </div>
                             </div>
                             
@@ -195,7 +206,7 @@
               <p> <h3>Lista de dispositivos registrados</h3></p>
             </div>
             <div class="col-md-2">
-              <a id="btnMostrar" class="btn btn-info" title="">Listar Peticiones</a>
+              <a id="btnMostrarPeticiones" class="btn btn-info" title="">Listar Peticiones</a>
             </div>
         </div>
            
@@ -222,6 +233,6 @@
           </div>       
       </div>
 </div>
-<script src="{{ asset('js/GestionPeticiones.js') }}" defer></script>
+<script src="{{ asset('js/GestionPeticiones3.js') }}" defer></script>
 @endsection
 

@@ -73,7 +73,7 @@ class PeticionController extends Controller
     public function show( $request)
     {
         //
-        $peticion = Peticion::with('prioridad','estado','tipo_peticion','usuario')->findOrFail($request);
+        $peticion    = Peticion::with('prioridad','estado','tipo_peticion','usuario')->findOrFail($request);
         return $peticion;
     }
 
@@ -96,9 +96,20 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Peticion $peticion)
+    public function update(Request $request)
     {
         //
+        $peticion = Peticion::findOrFail($request->idpeticion);
+        
+        $peticion->idprioridad = $request->idprioridad;
+        $peticion->idestado = $request->idestado;
+        $peticion->idtipopeticion = $request->idtipopeticion;
+        $peticion->idusuario = $request->idusuario;
+        $peticion->descripcion = $request->descripcion;
+        
+        $peticion->update();
+        
+
     }
 
     /**

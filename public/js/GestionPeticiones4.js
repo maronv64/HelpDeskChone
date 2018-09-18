@@ -395,38 +395,45 @@ $( "#btnActualizarPeticion" ).click(function() {
         esta_vacio($('#var_idpeticion').val())      ||  
         esta_vacio($('#cmbPrioridades').val())      ||
         esta_vacio($('#cmbEstados').val())          || 
-        ($('#cmbTipoPeticiones').val()!="Usuario")   || 
+        ($('#cmbTipoPeticiones').val()=="Usuario")  || 
         esta_vacio($('#txtUsuario').val())          || 
         esta_vacio($('#txtDescripcion').val()) 
         )
     {
-        alert("llene los campos correspondientes  ")
+        alert('LLçlene todos los campos por favor');
+        // alert(  " idpeticion: "+FrmData.idpeticion+
+        //         " idprioridad: "+FrmData.idprioridad+
+        //         " idestado: "+FrmData.idestado+
+        //         " idtipopeticion: "+FrmData.idtipopeticion+
+        //         " idusuario: "+FrmData.idusuario+
+        //         " descripcion: "+FrmData.descripcion
+        //         )
+    } else{
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    
+        $.ajax({
+            url: 'peticiones/'+FrmData, // Url que se envia para la solicitud esta en el web php es la ruta
+            method: "PUT",             // Tipo de solicitud que se enviará, llamado como método
+            data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+            success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+            {  
+                mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
+                CargarPeticiones2();     
+                alert(mensaje1);
+                
+            },
+            error: function () {     
+                mensaje = "OCURRIO UN ERROR";
+                alert(mensaje);
+            }
+        });  
+    
     }
-    //alert($('#cmbPrioridades').val());
-
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
-
-    // $.ajax({
-    //     url: 'peticiones', // Url que se envia para la solicitud esta en el web php es la ruta
-    //     method: "POST",             // Tipo de solicitud que se enviará, llamado como método
-    //     data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
-    //     success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
-    //     {  
-    //         mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
-    //         CargarPeticiones2();     
-    //         alert(mensaje1);
-            
-    //     },
-    //     error: function () {     
-    //         mensaje = "OCURRIO UN ERROR";
-    //         alert(mensaje);
-    //     }
-    // });  
-
 });
 
 function esta_vacio(cadena)
@@ -438,13 +445,10 @@ function esta_vacio(cadena)
 
 function traerPeticion(id) {
     $.get('peticiones/'+id, function (data) { 
-      debugger
         $('#txtDescripcion').val(data.descripcion); 
         $('#cmbTipoPeticiones').val(data.idtipopeticion);
         $('#cmbEstados').val(data.idestado);
         $('#cmbPrioridades').val(data.idprioridad);
-
         $('#txtDescripcion').val(data.descripcion); 
-
     }); 
 }

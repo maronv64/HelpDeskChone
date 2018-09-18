@@ -1,5 +1,4 @@
 //esta funcion de trae todas la peticiones y la carga en la tabla 
-
 $(document).ready(function()
        {
           BandejadePeticiones();
@@ -12,11 +11,8 @@ function BandejadePeticiones(){
     $.get('peticionesCargarDatos2', function (data) { 
         $('#tablapeticionesasignar').html(''); //esta la uso para limpiar la tabla en el modulo de asignacion por Jose Sabando
         $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
-            
-       
-            
             var fila ="";
-
+            
             fila+= '<tr>';
             //
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';
@@ -87,7 +83,7 @@ function cargartablatecnicos(data, filacod){
           "<tr id='filaid"+filacod+"'><td hidden>"+ data.id +"\
         <td>"+data.name +" "+ data.apellidos+"</td>\
          <td>"+ data.extratecnicos.especialidad +"</td>\
-         <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='tablatecnicosAsig("+data.id+","+filacod+")'><i id='ibotoagra"+filacod+"' class='fa fa-arrow-right'></i></button>\
+         <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='tablatecnicosA+sig("+data.id+","+filacod+")'><i id='ibotoagra"+filacod+"' class='fa fa-arrow-right'></i></button>\
          </tr>"
     );
 }

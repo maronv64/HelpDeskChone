@@ -4,6 +4,8 @@
       <div class="modal-header" align="center">
         <h3  class="modal-title"><b><i class="fa fa-user"></i>  Datos de Petición</b></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button> 
       </div>
       <div class="modal-body">
          <form id=""  method="post"> 

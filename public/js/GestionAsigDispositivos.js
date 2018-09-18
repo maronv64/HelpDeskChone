@@ -1,9 +1,7 @@
-/*PARA LLAMAR A LAS FUNCIONES AL CARGARSE EL SISTEMA*/
  window.onload = function() {
     UsuarioMostrar();
 };
 
-/*MOSTRAR TODOS LO USUARIOS*/
 function UsuarioMostrar(){
     $.get('usuariosMostrar', function (data) {
         $("#tablausuarios").html("");
@@ -13,9 +11,7 @@ function UsuarioMostrar(){
     });
 }
 
-/*FUNCIÓN PARA CARGAR LOS USUARIOS EN LA TABLA*/
 function cargartablausuarios(data){
-  
   var especialidad="N/A";
   if(data.extratecnicos != null){
     especialidad=data.extratecnicos.especialidad;
@@ -34,7 +30,6 @@ function cargartablausuarios(data){
     );
 }
 
-
 function mostrarModal() {
     $('#modalAsignacion').modal('show');
     cargarListaDispositivos();
@@ -49,22 +44,24 @@ function cargarListaDispositivos() {
 		
 	})
 	.done(function(datos) {
+        id_fila = 0;
 		$.each(datos.dispositivos, function(index, val) {
             var out="";
             if (val.cod_activo=="Activo") {
-                out+="<tr>";
+                id_fila = id_fila + 1;
+                out+="<tr id='numero_fila"+id_fila+"'>";
                 out+="<td>"+val.nombredispositivo+"</td>";
                 $.each(datos.tipos, function(index, val2) {
-                if (val2.idtipodispositivos==val.idtipodispositivos) {
-                    out+="<td>"+val2.descripcion+"</td>";
-                }
+                    if (val2.idtipodispositivos==val.idtipodispositivos) {
+                        out+="<td>"+val2.descripcion+"</td>";
+                    }
                 });
                 out+="<td>"+val.serie+"</td>";
                 out+="<td>"+val.color+"</td>";
                 out+="<td>"+val.modelo+"</td>";
                 out+="<td>"+val.marca+"</td>";
                 out+="<td class='text-success'>"+val.cod_activo+"</td>";
-                out+="<td class='row'><button type='button' class='btn btn-success' id='btn-confirm' onClick='mostrarModal("+data.id+")'>Agregar</button></td></tr>"
+                out+="<td class='row'><center><button type='button' class='btn btn-info' id='agregarDispositivo"+id_fila+"' onClick='asignacionDispositivos("+val.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-arrow-right'></i></button></center></td>"
                 out+="</tr>";
             }
             $('#tablaDispositivosA tbody tr:last').after(out);
@@ -74,3 +71,24 @@ function cargarListaDispositivos() {
 		console.log("error");
 	})
 };
+
+function asignacionDispositivos(valor,numero_dispositivo){
+    if ($('#agregarDispositivo'+numero_dispositivo).hasClass('btn btn-danger'))
+    { 
+        $('#agregarDispositivo'+numero_dispositivo).removeClass('btn btn-danger');
+        $('#agregarDispositivo'+numero_dispositivo).addClass('btn btn-info');
+        $('#id_icono'+numero_dispositivo).removeClass('fa fa-times');
+        $('#id_icono'+numero_dispositivo).addClass('fa fa-arrow-right');
+     }
+     else
+     {
+        $('#agregarDispositivo'+numero_dispositivo).removeClass('btn btn-info');
+        $('#agregarDispositivo'+numero_dispositivo).addClass('btn btn-danger');
+        $('#id_icono'+numero_dispositivo).removeClass('fa fa-arrow-right');
+        $('#id_icono'+numero_dispositivo).addClass('fa fa-times');
+    }
+}
+
+function guardarAsignaciones(){
+
+}

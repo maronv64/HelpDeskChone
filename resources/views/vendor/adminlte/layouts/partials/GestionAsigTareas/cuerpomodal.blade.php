@@ -56,22 +56,49 @@
                           <br>
 
                           <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-8">
+                                 <div class="row">
+                                <div class="col-md-7">
                                   <div class="form-group has-feedback">
                                       <label> <b>Fecha Inicial:</b></label>
-                                      <input type="date" class="form-control" id="fechainicialAsig" name="fechainicialAsig"required />
+                                      <input type="date" class="form-control" id="fechainicialAsig" name="fechainicialAsig"required value="<?php echo date("Y-m-d");?>" />
+                                  </div>
+                                </div>
+                                 <div class="col-md-5">
+                                    <div class="form-group has-feedback">
+                                          <label> <b>Hora Inicial:</b></label>
+                                          <input type="time" class="form-control" id="horainicialAsig" name="horainicialAsig"required value="<?php echo date("H:i");?>" />
+                                    </div>
+                                  </div>
+                                </div>
 
-                                       <div class="form-group has-feedback">
+                                <div class="row">
+                                  <div class="col-md-7">
+                                      <div class="form-group has-feedback">
                                       <label> <b>Fecha Límite:</b></label>
                                       <input type="date" class="form-control" id="fechafinalAsig"   name="fechafinalAsig"required />
                                       </div>
                                   </div>
+                                   <div class="col-md-5">
+                                      <div class="form-group has-feedback">
+                                      <label> <b>Hora Límite:</b></label>
+                                      <input type="time" class="form-control" id="horafinalAsig"   name="horafinalAsig"required />
+                                      </div>
+                                  </div>
+
+                                
+                                </div>
+
+
+
+                                     
+                                
                               </div>
                              
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                   <div class="form-group has-feedback">
                                       <label> <b>Observación:</b></label>
-                                      <textarea class="form-control" id="observacionAsig" rows="4" style="resize: none" required ></textarea>
+                                      <textarea class="form-control" id="observacionAsig" rows="5" style="resize: none" required ></textarea>
                                   </div>
                               </div>
                    
@@ -89,11 +116,12 @@
                                   <thead>
                                     <tr>
                                       <th scope="col" style="text-align: center">Técnico</th>
-                                      <th scope="col" style="text-align: center">Especialidad</th>
-                                      <th scope="col" style="text-align: center">Acciones</th>
+                                      <th scope="col" style="text-align: center">Fecha/Hora Inicial</th>
+                                      <th scope="col" style="text-align: center">Fecha/Hora Limite</th>
+                                      <th scope="col" style="text-align: center">Acción</th>
                                     </tr>
                                   </thead>
-                                  <tbody id="tablaasignartecnicoasignados">
+                                  <tbody id="tablaasignacionporpeticion">
                                   </tbody>
                                 </table>
                                 </div>

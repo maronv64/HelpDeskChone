@@ -4,6 +4,8 @@ $(document).ready(function()
        {
           BandejadePeticiones();
           mostrartecnicos();
+          
+        
 
  });
 /*FUNCIÓN PARA CARGAR LAS PAETICIONES QUE SE ENCUENTRAN DISPONIBLES */
@@ -86,7 +88,7 @@ function cargartablatecnicos(data, filacod){
     $("#tablaasignartecnico").append(
           "<tr id='filaid"+filacod+"'><td hidden>"+ data.id +"\
         <td>"+data.name +" "+ data.apellidos+"</td>\
-         <td>"+ data.extratecnicos.especialidad +"</td>\
+         <td>"+data.extratecnicos.especialidad+"</td>\
          <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='cambiariconoboton("+data.id+","+filacod+")'><i id='ibotoagra"+filacod+"' class='fa fa-arrow-right'></i></button>\
          </tr>"
     );
@@ -219,6 +221,7 @@ function bloquearboton(filacod1){
           $('#botonagregar'+filacod1).prop('disabled',false);                 
         }       
     });
+
 }
 
 /*ASIGNAR LOS TÉCNICOS*/
@@ -234,8 +237,10 @@ function asignartecnicos(){
     });
      if(idtecnico!= "0"){
      AsignacionInsert(idtecnico);
+     mostrarasignacionesporpeticion($('#idpeticionasig').val());
      limpiarmodalasignacion();
-     $('#Asignacionmodal').modal('hide');
+
+    // $('#Asignacionmodal').modal('hide');
      }else{
            alertify.error("Por favor seleccione un técnico");
 
@@ -245,8 +250,10 @@ function asignartecnicos(){
 
 /*ASIGNAR UNA PETICIÓN*/
 function asignaridpeticion(idpeticion,idusuario){
+ mostrarasignacionesporpeticion(idpeticion);
   $('#idpeticionasig').val(idpeticion);
    $('#idusuarioasig').val(idusuario);
+    
   
 }
 
@@ -265,6 +272,8 @@ function limpiarmodalasignacion(){
     $('#idpeticionasig').val("");
     $('#fechainicialAsig').val("dd/mm/aaaa");
     $('#fechafinalAsig').val("dd/mm/aaaa");
+    $('#horainicialAsig').val("H:i");
+    $('#horafinalAsig').val("H:i");
     $('#observacionAsig').val("");
 }
 
@@ -275,6 +284,8 @@ function AsignacionInsert(iduser){
             FechaInicial: $('#fechainicialAsig').val(),
             FechaLimite: $('#fechafinalAsig').val(),
             observacion: $('#observacionAsig').val(),
+            HoraInicial: $('#horainicialAsig').val(),
+            HoraLimite: $('#horafinalAsig').val(),
             idusuario:iduser,
         }
         
@@ -303,3 +314,23 @@ function AsignacionInsert(iduser){
       
 
     }
+
+    function  mostrarasignacionesporpeticion(idpeticion){
+    $.get('mostrarasignaciones/'+idpeticion, function (data) {
+        $("#tablaasignacionporpeticion").html("");
+        $.each(data, function(i, item) { //recorre el data 3
+            cargartablaasignacionporpeticion(item); // carga los datos en la tabla
+        });      
+    });
+}
+
+
+function cargartablaasignacionporpeticion(data){
+    $("#tablaasignacionporpeticion").append(
+          "<tr><td>"+ data.name +" "+ data.apellidos +"\
+        <td>"+data.FechaInicio +" - "+ data.HoraInicial+"</td>\
+       <td>"+data.FechaLimite +" - "+ data.HoraLimite+"</td>\
+         <td class='row' style='text-align: center'><button  type='button'class='btn btn-success'></i>Ver</button>\
+         </tr>"
+    );
+}

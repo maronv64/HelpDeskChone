@@ -112,11 +112,14 @@ Route::get('/mostrarespecialidad','EspecialidadController@mostrarespecialidad');
 /*######################RUTAS PARA LA ASIGNACIÓN DE TAREAS#################################*/
 Route::resource('/asigtareas','AsigTareasController');
 Route::post('/guardarUsuariosAsignacion/{idusuario}/{idasig}','AsigTareasController@guardarUsuariosAsignacion');
+Route::get('/mostrarasignaciones/{idpeticion}','AsigTareasController@mostrarasignaciones');
+
 
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
 
 
-
+//Rutas de tipo de usuarios
+Route::resource('/TipoUsuarios','TipoUsuariosController');
 
 
 

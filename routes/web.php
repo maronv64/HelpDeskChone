@@ -108,7 +108,8 @@ Route::get('/mostrarasignaciones/{idpeticion}','AsigTareasController@mostrarasig
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
 
 
-
+//Rutas de tipo de usuarios
+Route::resource('/TipoUsuarios','TipoUsuariosController');
 
 
 

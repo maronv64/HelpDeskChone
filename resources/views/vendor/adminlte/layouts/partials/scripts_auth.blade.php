@@ -4,3 +4,4 @@
 <script src="{{ asset('/js/GestionTipousuario.js') }}"></script>
 <script src="{{ asset('/js/GestionPeticiones.js') }}"></script>
 <script src="{{ asset('/js/GestionAsigTareas.js') }}"></script>
+<script src="{{ asset('/js/moment.js') }}"></script>

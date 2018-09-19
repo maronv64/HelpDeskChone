@@ -6,6 +6,8 @@ use App\AsigTareas;
 use App\UsuarioAsig;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AsigTareasController extends Controller
 {
@@ -37,19 +39,20 @@ class AsigTareasController extends Controller
      */
     public function store(Request $request)
     {
+        $date = Carbon::now();
+        $date = $date->format('Y-m-d');
 
         $asignacion= new AsigTareas();
         $asignacion->peticion_idpeticion=$request->idpeticion;
         $asignacion->usuario_idUsuario=$request->idusuario;
-        $asignacion->FechaRegistro=date("Y-m-d",strtotime("00-00-00"));
+        $asignacion->FechaRegistro=$date;
         $asignacion->FechaInicio=date("Y-m-d",strtotime( $request->FechaInicial));
+        $asignacion->HoraInicial=date("H:i:s",strtotime( $request->HoraInicial));
         $asignacion->FechaLimite=date("Y-m-d",strtotime( $request->FechaLimite));
+        $asignacion->HoraLimite=date("H:i:s",strtotime( $request->HoraLimite));
         $asignacion->observacion=$request->observacion;
         $asignacion->save();
         return response()->json($asignacion);
-        
-         
-
         
 
     }
@@ -104,5 +107,15 @@ class AsigTareasController extends Controller
     public function destroy(AsigTareas $asigTareas)
     {
         //
+    }
+
+    public function mostrarasignaciones($idpeticion){
+    $datos = DB::table('user_asignacion')
+    ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
+    ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
+    ->where('user_asignacion.peticion_idpeticion','=', $idpeticion )
+    ->get();
+    return response()->json($datos);
+
     }
 }

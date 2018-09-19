@@ -54,8 +54,8 @@
                 </ul> -->
             </li>
             <li class="treeview">
-                <!-- <a href="{{ url('/peticiones') }}"><i class='fa fa-tachometer'></i> <span>PETICIONES</span> <i class="fa fa-angle-left pull-right"></i></a> -->
-          <!--       <ul class="treeview-menu">
+                <a href="{{ url('/peticiones') }}"><i class='fa fa-tachometer'></i> <span>PETICIONES</span></a> <!--   <i class="fa fa-angle-left pull-right"></i>
+               <ul class="treeview-menu">
                     <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
                     <li><a href="#">Dashboard Peticiones</a></li>
                     <li><a href="#">Dashboard SLA</a></li>
@@ -81,9 +81,9 @@
                     <li><a href="{{ url('/register') }}"><i class='fa fa-bar-chart-o'></i>Usuarios</a></li>
                      @endif
                      @endif
-                    <li><a href="#">Areas</a></li>
-                    <li><a href="{{ url('/peticiones') }}">Peticiones</a></li>
-                    <li><a href="#">Fichas</a></li>
+                   <!-- <li><a href="#">Areas</a></li>-->
+                   <!-- <li><a href="{{ url('/peticiones') }}">Peticiones</a></li>-->
+                   <!-- <li><a href="#">Fichas</a></li>-->
                 </ul>
             </li>
          
@@ -95,6 +95,16 @@
                     <li><a href="#">Informe Inventario</a></li>
                     <li><a href="#">Informe Asignaciones</a></li>
                     <li><a href="#">Informe Productividad</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class='fa fa-bar-chart-o'></i> <span>PANEL CONFIGURACIÓN</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Tipo de usuarios</a></li>
+                    <li><a href="#">Areas</a></li>
+                    <li><a href="#">Especialidad</a></li>
+                    <li><a href="#">Tipo de dispositivos</a></li>
                 </ul>
             </li>
 

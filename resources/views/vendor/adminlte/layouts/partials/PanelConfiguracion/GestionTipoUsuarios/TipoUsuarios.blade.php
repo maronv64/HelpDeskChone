@@ -24,13 +24,8 @@
                             </ul>
                         </div>
                     @endif-->
-                    <div class="register-box-body"  >
-                 
-                                @include('adminlte::layouts.partials.GestionAsigTareas.Tablaregistro')
-                            
-                
-                
-                            
+                    <div class="register-box-body"  >               
+                        @include('adminlte::layouts.partials.PanelConfiguracion.GestionTipoUsuarios.RegistroTipoUser')                
                     </div>
                   <!-- /.form-box -->       
                 </div><!-- /.register-box -->
@@ -44,9 +39,6 @@
     </div>
 </div>
 <!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
-@include('adminlte::layouts.partials.GestionAsigTareas.modalasignacion')  
-@include('adminlte::layouts.partials.GestionAsigTareas.modaldatospeticion') 
-@include('adminlte::layouts.partials.GestionAsigTareas.modalmuestraobservacion') 
 
 <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
 @endsection

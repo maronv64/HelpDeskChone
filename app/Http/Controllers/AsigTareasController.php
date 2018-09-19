@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AsigTareas;
 use App\UsuarioAsig;
+use App\Peticion;
+use App\Estado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -119,5 +121,11 @@ class AsigTareasController extends Controller
         ->where('user_asignacion.peticion_idpeticion','=', $idpeticion )
         ->get();
         return response()->json($datos);
+    }
+
+     public function mostrarobservacion($idasignacion){
+        $datos= AsigTareas::find($idasignacion);
+        return response()->json($datos);
+
     }
 }

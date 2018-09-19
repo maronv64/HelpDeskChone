@@ -81,6 +81,7 @@ https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
 // }
 
 //esta funcion de trae todas la peticiones y la carga en la tabla 
+
 function CargarPeticiones2(){
     $.get('peticionesCargarDatos2', function (data) { 
         $('#dgvPeticiones').html('');
@@ -105,7 +106,9 @@ function CargarPeticiones2(){
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';
             //
              //añade la nombre del area
-             fila+= '<td>'+item.created_at  +'</td>';
+            fila+= '<td>'+item.created_at  +'</td>';
+            //añade la nombre del area
+            fila+= '<td>'+item.update_at  +'</td>';
              //
             fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalModicarPeticion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
                     "<button type='button' class='btn btn-danger' onClick='eliminarPeticion("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
@@ -125,8 +128,12 @@ function CargarPeticiones2(){
 function CargarEstados()
 {
     $.get('estadosCargarDatos', function (data) { 
+        
         $('#cmbEstados').html('');
         $('#cmbEstados').html('<option disabled selected>Seleccione el Estado</option>');
+        // cmb del modal
+        $('#cmbEstadosModal').html('');
+
         $.each(data, function(a, item) { 
            
            
@@ -139,7 +146,11 @@ function CargarEstados()
             $('#cmbEstados').append(  
                  fila									
             );
-            
+            // cmb del modal
+            $('#cmbEstadosModal').append(  
+                fila									
+           );
+
         });  
 
     }); 
@@ -148,8 +159,12 @@ function CargarEstados()
 function CargarPrioridades()
 {
     $.get('prioridadesCargarDatos', function (data) { 
+        
         $('#cmbPrioridades').html('');
         $('#cmbPrioridades').html('<option disabled selected>Seleccione la Prioridad</option>');
+
+        //cmb del modal
+        $('#cmbPrioridadesModal').html('');
         //<option disabled selected>Seleccione la Prioridad</option>
 
         $.each(data, function(a, item) { 
@@ -164,6 +179,11 @@ function CargarPrioridades()
             $('#cmbPrioridades').append(  
                  fila									
             );
+             //cmb del modal
+            $('#cmbPrioridadesModal').append(  
+                fila									
+           );
+
             
         });  
 
@@ -173,8 +193,13 @@ function CargarPrioridades()
 function CargarTipoPeticiones()
 {
     $.get('tipopeticionesCargarDatos', function (data) { 
+
         $('#cmbTipoPeticiones').html('');
         $('#cmbTipoPeticiones').html('<option disabled selected>Seleccione el tipo de Peticion</option>');
+
+        //cmb del modal
+        $('#cmbTipoPeticionesModal').html('');
+
         $.each(data, function(a, item) { 
            
             
@@ -187,7 +212,11 @@ function CargarTipoPeticiones()
             $('#cmbTipoPeticiones').append(  
                  fila									
             );
-            
+             //cmb del modal
+            $('#cmbTipoPeticionesModal').append(  
+                fila									
+           );
+
         });  
 
     }); 
@@ -381,11 +410,11 @@ $( "#btnActualizarPeticion" ).click(function() {
     
     var FrmData = {
         idpeticion:     $('#var_idpeticion').val(),
-        idprioridad:    $('#cmbPrioridades').val(),
-        idestado:       $('#cmbEstados').val(),
-        idtipopeticion: $('#cmbTipoPeticiones').val(),
+        idprioridad:    $('#cmbPrioridadesModal').val(),
+        idestado:       $('#cmbEstadosModal').val(),
+        idtipopeticion: $('#cmbTipoPeticionesModal').val(),
         idusuario:      $('#iduser').val(),
-        descripcion:    $('#txtDescripcion').val(),
+        descripcion:    $('#txtDescripcionModal').val(),
     }
 
     //alert("llene los campos correspondientes "+$('#iduser').val())
@@ -393,14 +422,14 @@ $( "#btnActualizarPeticion" ).click(function() {
 
     if (
         esta_vacio($('#var_idpeticion').val())      ||  
-        esta_vacio($('#cmbPrioridades').val())      ||
-        esta_vacio($('#cmbEstados').val())          || 
-        ($('#cmbTipoPeticiones').val()=="Usuario")  || 
-        esta_vacio($('#txtUsuario').val())          || 
-        esta_vacio($('#txtDescripcion').val()) 
+        esta_vacio($('#cmbPrioridadesModal').val())      ||
+        esta_vacio($('#cmbEstadosModal').val())          || 
+        esta_vacio($('#cmbTipoPeticionesModal').val())   || 
+        ($('#txtUsuarioModal').val()=="Usuario")         || 
+        esta_vacio($('#txtDescripcionModal').val()) 
         )
     {
-        alert('LLçlene todos los campos por favor');
+        alert('Llene todos los campos por favor');
         // alert(  " idpeticion: "+FrmData.idpeticion+
         //         " idprioridad: "+FrmData.idprioridad+
         //         " idestado: "+FrmData.idestado+
@@ -409,7 +438,7 @@ $( "#btnActualizarPeticion" ).click(function() {
         //         " descripcion: "+FrmData.descripcion
         //         )
     } else{
-
+debugger
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -445,11 +474,13 @@ function esta_vacio(cadena)
 
 function traerPeticion(id) {
     $.get('peticiones/'+id, function (data) { 
-        $('#txtDescripcion').val(data.descripcion); 
-        $('#cmbTipoPeticiones').val(data.idtipopeticion);
-        $('#cmbEstados').val(data.idestado);
-        $('#cmbPrioridades').val(data.idprioridad);
-        $('#txtDescripcion').val(data.descripcion); 
+        $('#txtDescripcionModal').val(data.descripcion); 
+        $('#cmbTipoPeticionesModal').val(data.idtipopeticion);
+        $('#cmbEstadosModal').val(data.idestado);
+        $('#cmbPrioridadesModal').val(data.idprioridad);
+        $('#iduser').val(data.usuario.id);
+        $('#txtUsuarioModal').val(data.usuario.name+ " " +data.usuario.apellidos); 
+
     }); 
 }
 
@@ -482,3 +513,4 @@ function eliminarPeticion(id) {
         }
     });  
 }
+

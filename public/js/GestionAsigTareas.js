@@ -82,7 +82,7 @@ function  mostrartecnicos(){
 
 function cargartablatecnicos(data, filacod){
     $("#tablaasignartecnico").append(
-          "<tr id='filaid"+filacod+"'><td hidden>"+ data.id +"\
+          "<tr id='filaid"+filacod+"'><td hidden>"+ data.id +"</td>\
         <td>"+data.name +" "+ data.apellidos+"</td>\
          <td>"+data.extratecnicos.especialidad+"</td>\
          <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='cambiariconoboton("+data.id+","+filacod+")'><i id='ibotoagra"+filacod+"' class='fa fa-arrow-right'></i></button>\
@@ -233,8 +233,7 @@ function asignartecnicos(){
     });
      if(idtecnico!= "0"){
      AsignacionInsert(idtecnico);
-     mostrarasignacionesporpeticion($('#idpeticionasig').val());
-     limpiarmodalasignacion();
+
 
     // $('#Asignacionmodal').modal('hide');
      }else{
@@ -265,7 +264,7 @@ $('#formasig').on('submit',function(e){
 /*LIMPIAR MODAL ASGNACIÓN TAREAS*/
 function limpiarmodalasignacion(){
      mostrartecnicos();
-    $('#idpeticionasig').val("");
+    //$('#idpeticionasig').val("");
     $('#fechainicialAsig').val("dd/mm/aaaa");
     $('#fechafinalAsig').val("dd/mm/aaaa");
     $('#horainicialAsig').val("H:i");
@@ -275,6 +274,7 @@ function limpiarmodalasignacion(){
 
 /*INSERTAR ASIGNACIONES*/
 function AsignacionInsert(iduser){ 
+
           var FrmData = {
             idpeticion: $('#idpeticionasig').val(),
             FechaInicial: $('#fechainicialAsig').val(),
@@ -296,10 +296,14 @@ function AsignacionInsert(iduser){
             data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
-              //asignartecnicos(data.idasignacion);
-                mensaje1 = "Datos guardados correctamente";
+              if(data=="0"){
+                alertify.error("Técnico ya asignado");
+              }else{
+                 mensaje1 = "Datos guardados correctamente";
                  alertify.success(mensaje1);
-                 
+                      limpiarmodalasignacion();
+                  mostrarasignacionesporpeticion($('#idpeticionasig').val());
+              }
         
             },
             error: function () {     
@@ -323,10 +327,18 @@ function AsignacionInsert(iduser){
 
 function cargartablaasignacionporpeticion(data){
     $("#tablaasignacionporpeticion").append(
-          "<tr><td>"+ data.name +" "+ data.apellidos +"\
+          "<tr><td hidden>"+ data.id +"</td>\
+          <td>"+ data.name +" "+ data.apellidos +"</td>\
         <td>"+data.FechaInicio +" - "+ data.HoraInicial+"</td>\
        <td>"+data.FechaLimite +" - "+ data.HoraLimite+"</td>\
-         <td class='row' style='text-align: center'><button  type='button'class='btn btn-success'></i>Ver</button>\
+         <td class='row' style='text-align: center'><button data-toggle='modal' data-target='#modalobser' onClick='mostarobservacion("+data.iduser_asignacion+")'  type='button'class='btn btn-success'></i>Ver</button>\
          </tr>"
     );
+}
+
+function mostarobservacion(idasignacion){
+
+      $.get('mostrarobservacion/'+idasignacion, function (data) {
+        document.getElementById('mostrarinforobserasig').innerHTML = data.Observacion;
+       });
 }

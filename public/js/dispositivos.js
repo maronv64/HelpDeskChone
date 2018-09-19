@@ -243,11 +243,21 @@ function cargarListaDispositivos() {
 	})
 };
 
+<<<<<<< HEAD
+=======
+//Evento guardar datos de
+
+>>>>>>> b706f793aaffbca965a031531382969af2dcceb8
 $('#frm_registrardispositivo').on('submit',function(e){
 	e.preventDefault();
 	guardar();
 });
 
+<<<<<<< HEAD
+=======
+//Deshabilitar dispositivo
+
+>>>>>>> b706f793aaffbca965a031531382969af2dcceb8
 $('#frm_modal_registrardispositivo').on('submit',function(e){
 	e.preventDefault();
 	modificar($('#modal_validar_cambios').val(),2);

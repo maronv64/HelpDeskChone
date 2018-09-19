@@ -41,11 +41,11 @@ class AsignacionDispositivosController extends Controller
     {
         $asignacion_Dispositivos= new Asignacion_Dispositivos();
         $asignacion_Dispositivos->usuario_idUsuario=$request->idusuario;
-        $asignacion_Dispositivos->dispositivo_iddispositivo=$request->iddispositivo;
+        $asignacion_Dispositivos->dispositivos_iddispositivos=$request->iddispositivo;
         $asignacion_Dispositivos->fecha_inicio=date("Y-m-d",strtotime( $request->fecha_inicio));
         $asignacion_Dispositivos->fecha_fin=date("Y-m-d",strtotime( $request->fecha_fin));
         $asignacion_Dispositivos->save();
-        return response()->json($asignacion);
+        return response()->json($asignacion_Dispositivos);
     }
 
     /**

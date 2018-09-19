@@ -62,10 +62,10 @@ function cargarListaDispositivos() {
                 out+="<td>"+val.modelo+"</td>";
                 out+="<td>"+val.marca+"</td>";
                 out+="<td class='text-success'>"+val.cod_activo+"</td>";
-                out+="<td class='row'><center><button type='button' class='btn btn-info' id='agregarDispositivo"+id_fila+"' onClick='marcarDispositivos("+val.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-arrow-right'></i></button></center></td>"
+                out+="<td class='row'><center><button type='button' value ='0' class='btn btn-info' id='agregarDispositivo"+id_fila+"' onClick='marcarDispositivos("+val.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-arrow-right'></i></button></center></td>"
                 out+="</tr>";
             }
-            $('#tablaDispositivosA tbody tr:last').after(out);
+            $('#tablaDispositivosA tbody').append(out);
 	    })
 	})
 	.fail(function() {
@@ -75,7 +75,8 @@ function cargarListaDispositivos() {
 
 function marcarDispositivos(valor,numero_dispositivo){
     if ($('#agregarDispositivo'+numero_dispositivo).hasClass('btn btn-danger'))
-    { 
+    {
+        $('#agregarDispositivo'+numero_dispositivo).val(0);
         $('#agregarDispositivo'+numero_dispositivo).removeClass('btn btn-danger');
         $('#agregarDispositivo'+numero_dispositivo).addClass('btn btn-info');
         $('#id_icono'+numero_dispositivo).removeClass('fa fa-times');
@@ -83,6 +84,7 @@ function marcarDispositivos(valor,numero_dispositivo){
      }
      else
      {
+        $('#agregarDispositivo'+numero_dispositivo).val(valor);
         $('#agregarDispositivo'+numero_dispositivo).removeClass('btn btn-info');
         $('#agregarDispositivo'+numero_dispositivo).addClass('btn btn-danger');
         $('#id_icono'+numero_dispositivo).removeClass('fa fa-arrow-right');
@@ -109,6 +111,39 @@ function filtro_dispositivos() {
 }
 
 function guardarAsignaciones(){
-    alert($('#asignar_dispositivos').val())
+    var arreglo = new Array(), dIc = false;
+    $('#tablaDispositivosA tbody tr').each( function(){
+        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+         if(id_dispositivo != 0){
+             arreglo.push(id_dispositivo);
+         }
+    });
+    $(arreglo).each(function (index, element) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }); 
+        var FrmData = {
+            idusuario:$('#asignar_dispositivos').val(),
+            iddispositivo:element,
+            fecha_inicio:$('#fechaRecivido').val(),
+            fecha_fin:$('#fechaEntrega').val(),
+        }
+        $.ajax({
+            url:'asignacionDispositivos', 
+            method: 'POST',          
+            data: FrmData,    
+            dataType: 'json',
+            success: function(requestData) 
+            {
+                alertify.success("DATOS INGRESADOS CORRECTAMENTE");
+            },
+        });
+    });
 }
 
+$('#asignar_dispositivos').on('submit',function(e){
+	e.preventDefault();
+	guardarAsignaciones();
+});

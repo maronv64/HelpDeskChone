@@ -98,6 +98,16 @@
                 </ul>
             </li>
 
+            <li class="treeview">
+                <a href="#"><i class='fa fa-bar-chart-o'></i> <span>PANEL CONFIGURACIÓN</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Tipo de usuarios</a></li>
+                    <li><a href="#">Areas</a></li>
+                    <li><a href="#">Especialidad</a></li>
+                    <li><a href="#">Tipo de dispositivos</a></li>
+                </ul>
+            </li>
+
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

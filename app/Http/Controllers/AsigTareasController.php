@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AsigTareas;
 use App\UsuarioAsig;
+use App\Peticion;
+use App\Estado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +41,18 @@ class AsigTareasController extends Controller
      */
     public function store(Request $request)
     {
+        $datos = DB::table('user_asignacion')
+        ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
+        ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
+        ->where('user_asignacion.peticion_idpeticion','=', $request->idpeticion )
+        ->get();
+        if($datos!=null){
+        foreach ($datos as $item) {
+            if($item->id==$request->idusuario){
+            return 0;
+        }
+        }
+        }
         $date = Carbon::now();
         $date = $date->format('Y-m-d');
 
@@ -52,7 +66,13 @@ class AsigTareasController extends Controller
         $asignacion->HoraLimite=date("H:i:s",strtotime( $request->HoraLimite));
         $asignacion->observacion=$request->observacion;
         $asignacion->save();
-        return response()->json($asignacion);
+        $peticion= Peticion::find($asignacion->peticion_idpeticion);
+        $estado= Estado::where('descripcion', 'Asignada')->first();
+        $peticion->idestado=$estado->idestado;
+        $peticion->save();
+      
+        
+
         
 
     }
@@ -116,6 +136,12 @@ class AsigTareasController extends Controller
     ->where('user_asignacion.peticion_idpeticion','=', $idpeticion )
     ->get();
     return response()->json($datos);
+
+    }
+
+     public function mostrarobservacion($idasignacion){
+        $datos= AsigTareas::find($idasignacion);
+        return response()->json($datos);
 
     }
 }

@@ -46,5 +46,7 @@
 <!--   MODAL PARA ACTUALIZAR DATOS USUARIOS -->
 @include('adminlte::layouts.partials.GestionAsigTareas.modalasignacion')  
 @include('adminlte::layouts.partials.GestionAsigTareas.modaldatospeticion') 
+@include('adminlte::layouts.partials.GestionAsigTareas.modalmuestraobservacion') 
+
 <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
 @endsection

@@ -70,7 +70,7 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function show( $request)
+    public function show( $request='')
     {
         //
         $peticion    = Peticion::with('prioridad','estado','tipo_peticion','usuario')->findOrFail($request);
@@ -106,7 +106,7 @@ class PeticionController extends Controller
         $peticion->idtipopeticion = $request->idtipopeticion;
         $peticion->idusuario = $request->idusuario;
         $peticion->descripcion = $request->descripcion;
-        
+        $peticion->update_at= Carbon::now()->toDateTimeString();
         $peticion->update();
         
 
@@ -118,12 +118,27 @@ class PeticionController extends Controller
      * @param  \App\Peticion  $peticion
      * @return \Illuminate\Http\Response
      */
-    public function destroy($request)
+    public function destroy($request='')
     {
         //
         $peticion = Peticion::findOrFail($request);
         $peticion->estado_del='0';
+        $estado = Estado::where('descripcion','like',"%final%")->firstOrFail();
+        $peticion->idestado=$estado->idestado;
+        $peticion->update_at= Carbon::now()->toDateTimeString();
         $peticion->update();
+    }
+    public function prueba_eliminar($request)
+
+    {
+        //
+        $peticion = Peticion::findOrFail($request);
+        $peticion->estado_del='0';
+        //$estado = Estado::where('descripcion','like',"%finalizado%")->firstOrFail();
+        $estado = Estado::where('descripcion',"Finalizado")->firstOrFail();
+        $peticion->idestado=$estado->idestado;
+        $peticion->update();
+        return response()->json($peticion);
     }
 
     public function CargarDatos(){
@@ -163,7 +178,9 @@ class PeticionController extends Controller
     }
 
     public function CargarDatos2(){
-        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('estado_del','1')->get();//where('estado_del','1')->get();
+        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('estado_del','1')
+                                                                                    ->orderBy('created_at','desc')
+                                                                                    ->get();//where('estado_del','1')->get();
         return response()->json($peticiones);
     }
 
@@ -188,12 +205,34 @@ class PeticionController extends Controller
 
 
 
-    public function datospeticion($id){
+    public function datospeticion($id=''){
         $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->get();//where('estado_del','1')->get();
 //        $peticiones = Peticion::with('prioridad','estado','tipo_peticion')->get();//where('estado_del','1')->get();
         //dd($peticiones);
     //return;
         return response()->json($peticiones);    
     }
+
+
+//////////////////////////////////////////////Peticiones para usuarios normales//////////////////////////
+
+    public function PNorm()
+    {
+        return view('adminlte::layouts.partials.GestionPeticiones.peticionesNorm');
+    }
+
+    public function mostrarMisPeticiones($id='')
+    {
+        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                            ['idusuario',$id],
+                                                                                            ['estado_del','1']
+                                                                                            ])
+                                                                                    ->orderBy('created_at','desc')
+                                                                                    ->get();//where('estado_del','1')->get();
+        return response()->json($peticiones);
+    }
+
+
+
 
 }

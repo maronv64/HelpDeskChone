@@ -113,12 +113,11 @@ class AsigTareasController extends Controller
     }
 
     public function mostrarasignaciones($idpeticion){
-    $datos = DB::table('user_asignacion')
-    ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
-    ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
-    ->where('user_asignacion.peticion_idpeticion','=', $idpeticion )
-    ->get();
-    return response()->json($datos);
-
+        $datos = DB::table('user_asignacion')
+        ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
+        ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
+        ->where('user_asignacion.peticion_idpeticion','=', $idpeticion )
+        ->get();
+        return response()->json($datos);
     }
 }

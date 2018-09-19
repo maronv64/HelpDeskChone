@@ -26,6 +26,7 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -50,7 +51,7 @@ class UsuariosController extends Controller
         $user->email = $request->email;
         $user->estado = "Activo";
         $user->idtipousuario = $request->idtipousuario;
-       // $user->idextratecnico = $request->idextratecnico;
+        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
         $user->password= bcrypt($request->password);
         $user->save();
@@ -70,6 +71,7 @@ class UsuariosController extends Controller
      * @param  \App\Usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
+
     public function show(Usuarios $usuarios)
     {
         //
@@ -81,9 +83,10 @@ class UsuariosController extends Controller
      * @param  \App\Usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Usuarios $id)
     {   
-
+        //
     }
 
     /**
@@ -93,7 +96,6 @@ class UsuariosController extends Controller
      * @param  \App\Usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
-
 
     /*ACTUALIZAR USUARIOS*/
     public function update(Request $request, Usuarios $usuarios)
@@ -105,16 +107,13 @@ class UsuariosController extends Controller
         $user->sexo = $request->sexo;
         $user->celular = $request->celular;
         $user->email = $request->email;
-       // $user->estado = $request->estado;
-        
-       // $user->idextratecnico = $request->idextratecnico;
+        // $user->estado = $request->estado;
+        // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
         if($request->actualizarclave=="1"){   
           $user->password= bcrypt($request->password);
         }
-    
-         if($user->idtipousuario =="5" && $request->idtipousuario =="5"){
-        
+        if($user->idtipousuario =="5" && $request->idtipousuario =="5"){ 
             $idusuario= Extra_Tecnico::where('idusuario', $user->id)->first();
             $extecnico = Extra_Tecnico::find($idusuario->idextra_tecnico);
             $extecnico->especialidad = $request->idextratecnico;
@@ -124,7 +123,6 @@ class UsuariosController extends Controller
             $extecnico->especialidad = $request->idextratecnico;
             $extecnico->idusuario = $user->id;
             $extecnico->save();
-
         }elseif($user->idtipousuario =="5"){
             $idextra= Extra_Tecnico::where('idusuario', $user->id)->first();
             $eliminextra = Extra_Tecnico::find($idextra->idextra_tecnico);
@@ -143,20 +141,16 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
     /*ELIMINAR PRIMERO SI ES TECNICO DESPUES EL USUARIO*/
     public function destroy($id)
     {
-         $user = Usuarios::find($id);
-       
-         $user->estado="Inactivo";
-        
-        
+        $user = Usuarios::find($id);
+        $user->estado="Inactivo";
         if($user->idtipousuario=="5"){
-         $idextra= Extra_Tecnico::where('idusuario', $user->id)->first();
-         $eliminextra = Extra_Tecnico::find($idextra->idextra_tecnico);
-         $eliminextra->delete();
-         $user->delete();
+            $idextra= Extra_Tecnico::where('idusuario', $user->id)->first();
+            $eliminextra = Extra_Tecnico::find($idextra->idextra_tecnico);
+            $eliminextra->delete();
+            $user->delete();
         }else{
              $user->delete();
         }
@@ -167,23 +161,21 @@ class UsuariosController extends Controller
           $user->estado="Inactivo";
           $user->save();
           return response()->json($user);
-
     }
-      /*FUNCIÓN PARA BUSCAR EL USUARIO A ACTUALIZAR */
-     public function preparactualizar($id){
-      $userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($id);
+
+    /*FUNCIÓN PARA BUSCAR EL USUARIO A ACTUALIZAR */
+    public function preparactualizar($id){
+        $userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($id);
         return response()->json($userall);
     }
 
-      /*FUNCIÓN PARA MOSTRAR TODOS LOS USUARIOS*/
+    /*FUNCIÓN PARA MOSTRAR TODOS LOS USUARIOS*/
     public function listadeUsuarios(){   
-   
         $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])->where('estado','Activo')->get();
         return response()->json($userall);
     }
 
     public function listaTecnicos(){   
-   
         $userall = Usuarios::with(['tipo_usuario', 'area', 'extratecnicos'])
         ->where('estado','Activo')
         ->where('idtipousuario','5')
@@ -191,33 +183,29 @@ class UsuariosController extends Controller
         return response()->json($userall);
     }
 
-
     public function buscar_usuarios($busqueda=''){ 
-   
-       /* $datos = DB::table('users')
-    ->join('tipo_usuario', 'users.idsuelo', '=', 'tipo_usuario.idtipo_Usuario')
-    ->join('area', 'area.idarea', '=', 'users.idarea')
-     ->where('suelo.idsuelo','=', $request->botonplani )
-       ->select(DB::raw('*'))
-    ->get();*/
-
+        /* $datos = DB::table('users')
+        ->join('tipo_usuario', 'users.idsuelo', '=', 'tipo_usuario.idtipo_Usuario')
+        ->join('area', 'area.idarea', '=', 'users.idarea')
+        ->where('suelo.idsuelo','=', $request->botonplani )
+        ->select(DB::raw('*'))
+        ->get();*/
         $repuestos = Usuarios::with(['tipo_usuario','area','extratecnicos'])
-                    ->join('tipo_usuario','users.idtipousuario','=','tipo_usuario.idtipo_Usuario')
-                    ->join('area','users.idarea','=','area.idarea')
-
-                   //->join('extra_tecnico','extra_tecnico.idusuario','=','users.id')
-                    ->where('estado','Activo')
-                    ->where('name', 'like', "%$busqueda%")
-                    /*->where('tipo_usuario.descripcion', 'like', "%$busqueda%")
-                    ->where('area.nombre', 'like', "%$busqueda%")
-                    ->orWhere('apellidos','like',"%$busqueda%")
-                    ->orWhere('sexo','like',"%$busqueda%")
-                    ->orWhere('estado','like',"%$busqueda%")*/
-                    ->get();
-
+            ->join('tipo_usuario','users.idtipousuario','=','tipo_usuario.idtipo_Usuario')
+            ->join('area','users.idarea','=','area.idarea')
+            //->join('extra_tecnico','extra_tecnico.idusuario','=','users.id')
+            ->where('estado','Activo')
+            ->where('name', 'like', "%$busqueda%")
+            /*->where('tipo_usuario.descripcion', 'like', "%$busqueda%")
+            ->where('area.nombre', 'like', "%$busqueda%")
+            ->orWhere('apellidos','like',"%$busqueda%")
+            ->orWhere('sexo','like',"%$busqueda%")
+            ->orWhere('estado','like',"%$busqueda%")*/
+            ->get();
         return response()->json($repuestos);
     }
-      /* Cargar Usuaruios*/
+
+    /* Cargar Usuaruios*/
     public function usuariosFiltroPorArea($idarea,$consul='')
     {   
         $users = User::with('area','tipo_usuario')  ->where([
@@ -248,14 +236,12 @@ class UsuariosController extends Controller
         //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
         $users = User::with('area','tipo_usuario')  -> find($buscar->id);
         return response()->json($users);
-
         // $user = User::with('area','tipo_usuario')   ->where('id',$id)
         //                                             ->get();
         // //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
         // return response()->json($user);                                             
     }
             
-     
     // public function usuariosFiltroPorArea($idarea,$consul='')
     // {
     //     $users = User::with('area','tipo_usuario')  ->where([

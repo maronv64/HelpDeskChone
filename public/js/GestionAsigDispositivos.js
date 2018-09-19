@@ -26,13 +26,14 @@ function cargartablausuarios(data){
          <td>"+ especialidad+"</td>\
          <td>"+ data.area.nombre +"</td>\
          <td>"+ data.email +"</td>\
-         <td class='row'><button type='button' class='btn btn-success' id='btn-confirm' onClick='mostrarModal("+data.id+")'>Agregar</button></td></tr>"
+         <td class='row'><button type='button' class='btn btn-success' onClick='mostrarModal("+data.id+")'>Agregar</button></td></tr>"
     );
 }
 
-function mostrarModal() {
+function mostrarModal(id_usuario) {
     $('#modalAsignacion').modal('show');
     cargarListaDispositivos();
+    $('#asignar_dispositivos').val(id_usuario)
 }
 
 function cargarListaDispositivos() {
@@ -61,7 +62,7 @@ function cargarListaDispositivos() {
                 out+="<td>"+val.modelo+"</td>";
                 out+="<td>"+val.marca+"</td>";
                 out+="<td class='text-success'>"+val.cod_activo+"</td>";
-                out+="<td class='row'><center><button type='button' class='btn btn-info' id='agregarDispositivo"+id_fila+"' onClick='asignacionDispositivos("+val.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-arrow-right'></i></button></center></td>"
+                out+="<td class='row'><center><button type='button' class='btn btn-info' id='agregarDispositivo"+id_fila+"' onClick='marcarDispositivos("+val.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-arrow-right'></i></button></center></td>"
                 out+="</tr>";
             }
             $('#tablaDispositivosA tbody tr:last').after(out);
@@ -72,7 +73,7 @@ function cargarListaDispositivos() {
 	})
 };
 
-function asignacionDispositivos(valor,numero_dispositivo){
+function marcarDispositivos(valor,numero_dispositivo){
     if ($('#agregarDispositivo'+numero_dispositivo).hasClass('btn btn-danger'))
     { 
         $('#agregarDispositivo'+numero_dispositivo).removeClass('btn btn-danger');
@@ -105,8 +106,9 @@ function filtro_dispositivos() {
         }
       }       
     }
-  }
+}
 
 function guardarAsignaciones(){
-
+    alert($('#asignar_dispositivos').val())
 }
+

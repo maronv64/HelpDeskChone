@@ -12,6 +12,7 @@ class TipoPeticionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -22,6 +23,7 @@ class TipoPeticionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -33,6 +35,7 @@ class TipoPeticionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -44,6 +47,7 @@ class TipoPeticionController extends Controller
      * @param  \App\TipoPeticion  $tipoPeticion
      * @return \Illuminate\Http\Response
      */
+
     public function show(TipoPeticion $tipoPeticion)
     {
         //
@@ -55,6 +59,7 @@ class TipoPeticionController extends Controller
      * @param  \App\TipoPeticion  $tipoPeticion
      * @return \Illuminate\Http\Response
      */
+
     public function edit(TipoPeticion $tipoPeticion)
     {
         //
@@ -67,6 +72,7 @@ class TipoPeticionController extends Controller
      * @param  \App\TipoPeticion  $tipoPeticion
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, TipoPeticion $tipoPeticion)
     {
         //
@@ -78,6 +84,7 @@ class TipoPeticionController extends Controller
      * @param  \App\TipoPeticion  $tipoPeticion
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(TipoPeticion $tipoPeticion)
     {
         //

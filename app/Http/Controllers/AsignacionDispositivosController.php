@@ -13,6 +13,7 @@ class AsignacionDispositivosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         return view('adminlte::layouts.partials.GestionAsigDispositivos.AsigDispositivos');
@@ -23,6 +24,7 @@ class AsignacionDispositivosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -34,6 +36,7 @@ class AsignacionDispositivosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $asignacion_Dispositivos= new Asignacion_Dispositivos();
@@ -51,6 +54,7 @@ class AsignacionDispositivosController extends Controller
      * @param  \App\Asignacion_Dispositivos  $asignacion_Dispositivos
      * @return \Illuminate\Http\Response
      */
+
     public function show(Asignacion_Dispositivos $asignacion_Dispositivos)
     {
         //
@@ -62,6 +66,7 @@ class AsignacionDispositivosController extends Controller
      * @param  \App\Asignacion_Dispositivos  $asignacion_Dispositivos
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Asignacion_Dispositivos $asignacion_Dispositivos)
     {
         //
@@ -74,6 +79,7 @@ class AsignacionDispositivosController extends Controller
      * @param  \App\Asignacion_Dispositivos  $asignacion_Dispositivos
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Asignacion_Dispositivos $asignacion_Dispositivos)
     {
         //
@@ -85,6 +91,7 @@ class AsignacionDispositivosController extends Controller
      * @param  \App\Asignacion_Dispositivos  $asignacion_Dispositivos
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Asignacion_Dispositivos $asignacion_Dispositivos)
     {
         //

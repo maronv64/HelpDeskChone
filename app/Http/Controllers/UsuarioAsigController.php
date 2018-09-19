@@ -13,6 +13,7 @@ class UsuarioAsigController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -23,6 +24,7 @@ class UsuarioAsigController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -34,6 +36,7 @@ class UsuarioAsigController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -45,6 +48,7 @@ class UsuarioAsigController extends Controller
      * @param  \App\UsuarioAsig  $usuarioAsig
      * @return \Illuminate\Http\Response
      */
+
     public function show(UsuarioAsig $usuarioAsig)
     {
         //
@@ -56,6 +60,7 @@ class UsuarioAsigController extends Controller
      * @param  \App\UsuarioAsig  $usuarioAsig
      * @return \Illuminate\Http\Response
      */
+
     public function edit(UsuarioAsig $usuarioAsig)
     {
         //
@@ -68,6 +73,7 @@ class UsuarioAsigController extends Controller
      * @param  \App\UsuarioAsig  $usuarioAsig
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, UsuarioAsig $usuarioAsig)
     {
         //
@@ -79,6 +85,7 @@ class UsuarioAsigController extends Controller
      * @param  \App\UsuarioAsig  $usuarioAsig
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(UsuarioAsig $usuarioAsig)
     {
         //

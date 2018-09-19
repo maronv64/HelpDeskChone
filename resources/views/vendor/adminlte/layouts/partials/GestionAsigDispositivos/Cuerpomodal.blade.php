@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" id="" class="btn btn-primary">Asignar</button>
+            <button type="submit" id="asignar_dispositivos" class="btn btn-primary" onClick='guardarAsignaciones()'>Asignar</button>
             <button type="button" class="btn btn-secondary" onclick="" data-dismiss="modal">Cerrar</button>
         </div>
     </div>

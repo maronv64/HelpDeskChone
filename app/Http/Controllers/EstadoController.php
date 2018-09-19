@@ -12,6 +12,7 @@ class EstadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //
@@ -22,6 +23,7 @@ class EstadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -33,6 +35,7 @@ class EstadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -44,6 +47,7 @@ class EstadoController extends Controller
      * @param  \App\Estado  $estado
      * @return \Illuminate\Http\Response
      */
+
     public function show(Estado $estado)
     {
         //
@@ -55,6 +59,7 @@ class EstadoController extends Controller
      * @param  \App\Estado  $estado
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Estado $estado)
     {
         //
@@ -67,6 +72,7 @@ class EstadoController extends Controller
      * @param  \App\Estado  $estado
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Estado $estado)
     {
         //
@@ -78,13 +84,14 @@ class EstadoController extends Controller
      * @param  \App\Estado  $estado
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Estado $estado)
     {
         //
     }
+
     public function CargarDatos()
     {
-        //
         $estados = Estado::where('estado_del','1')->get();
         return response()->json($estados);
     }

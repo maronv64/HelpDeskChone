@@ -241,11 +241,15 @@ function cargarListaDispositivos() {
 	})
 };
 
+//Evento guardar datos de
 
 $('#frm_registrardispositivo').on('submit',function(e){
 	e.preventDefault();
 	guardar();
 });
+
+//Deshabilitar dispositivo
+
 $('#frm_modal_registrardispositivo').on('submit',function(e){
 	e.preventDefault();
 	modificar($('#modal_validar_cambios').val(),2);

@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
           <div class="row" align="center" >
-            <img src="img/iconos_mensajes/pregunta.png" class="responsive" style="height: 100px; width: 100px">
+            <img src="img/iconos_mensajes/advertencia.png" class="responsive" style="height: 150px; width: 150px">
           </div>
           <div class="row" align="center">
              <p style="font-size: 18px;  color: black ">Seguro desea deshabilitar la disponiblilidad de este dispositivo?<br>

@@ -16,7 +16,7 @@
                 <div class="col-md-6">
                     <div class="form-group has-feedback">
                         <label> <b>Fecha de Recibido:</b></label>
-                        <input type="date" class="form-control" id="fechaRecivido"required />
+                        <input type="date" class="form-control" id="fechaRecivido"required value="<?php echo date("Y-m-d");?>"/>
                     </div>
                 </div>
                 <div class="col-md-6">

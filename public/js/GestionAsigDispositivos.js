@@ -111,7 +111,8 @@ function filtro_dispositivos() {
 }
 
 function guardarAsignaciones(){
-    var arreglo = new Array(), dIc = false;
+    var arreglo = new Array();
+    var dIc = false;
     $('#tablaDispositivosA tbody tr').each( function(){
         var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
          if(id_dispositivo != 0){
@@ -137,10 +138,15 @@ function guardarAsignaciones(){
             dataType: 'json',
             success: function(requestData) 
             {
-                alertify.success("DATOS INGRESADOS CORRECTAMENTE");
+                //alertify.success("DATOS INGRESADOS CORRECTAMENTE");
+                dIc = true;
+                $('#modalAsignacion').modal('hide');
             },
         });
     });
+    if (dIc == true) {
+        alertify.success("DATOS INGRESADOS CORRECTAMENTE");
+    }
 }
 
 $('#asignar_dispositivos').on('submit',function(e){

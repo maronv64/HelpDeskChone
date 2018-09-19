@@ -233,8 +233,10 @@ function asignartecnicos(){
     });
      if(idtecnico!= "0"){
      AsignacionInsert(idtecnico);
+     mostrarasignacionesporpeticion($('#idpeticionasig').val());
      limpiarmodalasignacion();
-     $('#Asignacionmodal').modal('hide');
+
+    // $('#Asignacionmodal').modal('hide');
      }else{
            alertify.error("Por favor seleccione un técnico");
 
@@ -266,6 +268,8 @@ function limpiarmodalasignacion(){
     $('#idpeticionasig').val("");
     $('#fechainicialAsig').val("dd/mm/aaaa");
     $('#fechafinalAsig').val("dd/mm/aaaa");
+    $('#horainicialAsig').val("H:i");
+    $('#horafinalAsig').val("H:i");
     $('#observacionAsig').val("");
 }
 

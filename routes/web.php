@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
 //Rutas de Maron Vera ------------------------------------------------------------------------------------------------
 //holaaaaaa  nonnooooooooo maron 
 
+Route::get('/prueba_eliminar/{id?}','PeticionController@prueba_eliminar');
+
 //Rutas de las Peticiones
 Route::resource('/peticiones','PeticionController');
 //Route::post('/peticionesInsert','PeticionController@peticionesInsert');
@@ -47,7 +49,15 @@ Route::resource('/peticiones','PeticionController');
 //Consultas Generales
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
-Route::get('/datospeticion/{id}','PeticionController@datospeticion');
+Route::get('/datospeticion/{id?}','PeticionController@datospeticion');
+
+//Consultas de las Peticiones de Cada Usuario
+//index
+Route::get('/peticionesNorm','PeticionController@PNorm');
+//Rutas para consumo de datos de Peticiones 
+Route::get('/peticionesNormCargarDatos/{id?}','PeticionController@mostrarMisPeticiones');
+
+
 
 
 //Rutas de Prioridad
@@ -108,7 +118,8 @@ Route::get('/mostrarasignaciones/{idpeticion}','AsigTareasController@mostrarasig
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
 Route::get('/mostrarobservacion/{idasignacion}','AsigTareasController@mostrarobservacion');
 
-
+//Rutas de tipo de usuarios
+Route::resource('/TipoUsuarios','TipoUsuariosController');
 
 
 

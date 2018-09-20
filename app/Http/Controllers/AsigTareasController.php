@@ -143,5 +143,27 @@ class AsigTareasController extends Controller
         $datos= AsigTareas::find($idasignacion);
         return response()->json($datos);
 
-    }
+     }
+
+       public function consultarPeticionEstado($idusuario){
+         $datos=DB::table('user_asignacion')
+        ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
+        ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
+        ->join('estado', 'estado.idestado', '=', 'peticion.idestado')
+        ->where([['user_asignacion.usuario_idUsuario','=',$idusuario],['estado.descripcion','=','Pendiente']])
+
+        ->get();
+        dd($datos);
+        return response()->json($datos);
+        /*$fa = strtotime(date("Y-m-d"));
+        foreach ($matricula as $item) {
+            $ff = strtotime($item->fecha_fin);
+            if($ff <= $fa){ // la matrciula esta caducada
+                $objMatricula = Matricula_vehiculo::find($item->idmatricula_vehiculo);
+                $objMatricula->estado = "Caducada";
+                $objMatricula->save();
+            }
+        }*/
+
+     }
 }

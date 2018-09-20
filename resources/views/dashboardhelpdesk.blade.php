@@ -10,35 +10,64 @@
 
 <div class="container-fluid spark-screen">
 
-    <?php   
-        $totalpeticiones=0;
+
+
+
+
+
+
+
+
+    <?php
+        $totalpeticionesfinalizadas=0;
+        $totalpeticionesasignadas=0;
         $prioriedadbaja=0;
         $prioriedadmedia=0;
         $prioriedadalta=0;
     ?>
             @foreach ($consulta['peticiones'] as $item2)
+            @if ($item2->idestado=='3')
+            <?php $totalpeticionesfinalizadas++ ?>
+            @endif
+
+
                 @if ($item2->idestado=='1')
                     @if ( $item2->idprioridad=='1' )
                         <?php $prioriedadalta++ ?>
-                        <?php $totalpeticiones++ ?>
+                        <?php $totalpeticionesasignadas++ ?>
                     @endif
                     @if ( $item2->idprioridad=='2' )
                         <?php $prioriedadmedia++ ?>
-                        <?php $totalpeticiones++ ?>
+                        <?php $totalpeticionesasignadas++ ?>
                     @endif
                     @if ( $item2->idprioridad=='3' )
                         <?php $prioriedadbaja++ ?>
-                        <?php $totalpeticiones++ ?>
+                        <?php $totalpeticionesasignadas++ ?>
                     @endif
-                    @endif
+                @endif
             @endforeach
+
+            <div class="small-box bg-teal-gradient">
+                    <div id="ntotal" class="inner">
+                        <center>
+                            <h2 style="font-size: 3em;"><strong>{{$totalpeticionesfinalizadas}}</strong></h3>     
+                            <p>Total de Peticiones Asistidas</p>  
+                        </center>         
+                    </div>            
+                    <div class="icon">
+                        
+                        <i class="fa fa-check-square-o" style="padding-right: 50px;"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Ver <i class="fa fa-eye"></i></a>
+            </div>
             
+        
     <div class="row">
             <div class="col-lg-3 col-xs-6">
             <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div id="ntotal" class="inner">
-                        <h3>{{$totalpeticiones}}</h3>     
+                        <h3>{{$totalpeticionesasignadas}}</h3>     
                         <p>Total de Peticiones Asignadas</p>           
                     </div>            
                     <div class="icon">

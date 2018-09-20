@@ -1,5 +1,4 @@
 //esta funcion de trae todas la peticiones y la carga en la tabla 
-
 $(document).ready(function()
        {
           BandejadePeticiones();
@@ -14,11 +13,8 @@ function BandejadePeticiones(){
     $.get('peticionesCargarDatos2', function (data) { 
         $('#tablapeticionesasignar').html(''); //esta la uso para limpiar la tabla en el modulo de asignacion por Jose Sabando
         $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
-            
-       
-            
             var fila ="";
-
+            
             fila+= '<tr>';
             //
             fila+= '<td>'+item.usuario.area.nombre  +'</td>';

@@ -26,16 +26,12 @@ class PeticionController extends Controller
     public function create()
     {
         //
-        
     }
 
     
     public function store(Request $request)
     {
-        
-        //
         $peticion = new Peticion();
-
         $peticion->idprioridad = $request->idprioridad;
         $peticion->idestado = $request->idestado;
         $peticion->idtipopeticion = $request->idtipopeticion;
@@ -54,7 +50,6 @@ class PeticionController extends Controller
     
     public function show( $request='')
     {
-        //
         $peticion    = Peticion::with('prioridad','estado','tipo_peticion','usuario')->findOrFail($request);
         return $peticion;
     }
@@ -69,18 +64,13 @@ class PeticionController extends Controller
     
     public function update(Request $request)
     {
-        //
         $peticion = Peticion::findOrFail($request->idpeticion);
-        
         $peticion->idprioridad = $request->idprioridad;
         $peticion->idestado = $request->idestado;
         $peticion->idtipopeticion = $request->idtipopeticion;
         $peticion->idusuario = $request->idusuario;
         $peticion->descripcion = $request->descripcion;
-        $peticion->update_at= Carbon::now()->toDateTimeString();
         $peticion->update();
-        
-
     }
 
     public function destroy($request='')
@@ -98,7 +88,6 @@ class PeticionController extends Controller
 
     public function prueba_eliminar($request)
     {
-        //
         $peticion = Peticion::findOrFail($request);
         $peticion->estado_del='0';
         //$estado = Estado::where('descripcion','like',"%finalizado%")->firstOrFail();
@@ -110,13 +99,11 @@ class PeticionController extends Controller
 
     public function CargarDatos(){
         $peticiones = Peticion::where('estado_del','1')->get();
-
         $tipo_peticiones = TipoPeticion::all();
         $usuarios = User::all();
         $estados = Estado::all();
         $prioridades = Prioridad::all();
         $areas = Area::all();
-
         $consulta = array(
             "peticiones"=>$peticiones,
             "tipo_peticiones"=>$tipo_peticiones,
@@ -125,8 +112,6 @@ class PeticionController extends Controller
             "usuarios"=>$usuarios,
             "areas"=>$areas,
         );      
-        
-
         return response()->json($consulta);
 
         // $consulta2 = DB::table('peticion')
@@ -153,24 +138,19 @@ class PeticionController extends Controller
 
     public function peticionesInsert(Request $request){
         $peticion = new Peticion();
-
         $peticion->idprioridad = $request->idprioridad;
         $peticion->idestado = $request->idestado;
         $peticion->idtipopeticion = $request->idtipopeticion;
         $peticion->idusuario = $request->idusuario;
         $peticion->descripcion = $request->descripcion;
         $peticion->estado_del = '1';
-        
         if ($peticion->save()) {
             # code...
             return $peticion;
         }else{
             return 0;
         }
-        
     }
-
-
 
     public function datospeticion($id='')
     {

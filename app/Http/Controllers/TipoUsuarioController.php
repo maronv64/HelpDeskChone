@@ -12,6 +12,7 @@ class TipoUsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -22,6 +23,7 @@ class TipoUsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -33,6 +35,7 @@ class TipoUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -44,6 +47,7 @@ class TipoUsuarioController extends Controller
      * @param  \App\Tipo_Usuario  $tipo_Usuario
      * @return \Illuminate\Http\Response
      */
+    
     public function show(Tipo_Usuario $tipo_Usuario)
     {
         //
@@ -55,6 +59,7 @@ class TipoUsuarioController extends Controller
      * @param  \App\Tipo_Usuario  $tipo_Usuario
      * @return \Illuminate\Http\Response
      */
+    
     public function edit(Tipo_Usuario $tipo_Usuario)
     {
         //
@@ -67,6 +72,7 @@ class TipoUsuarioController extends Controller
      * @param  \App\Tipo_Usuario  $tipo_Usuario
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Tipo_Usuario $tipo_Usuario)
     {
         //
@@ -78,6 +84,7 @@ class TipoUsuarioController extends Controller
      * @param  \App\Tipo_Usuario  $tipo_Usuario
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(Tipo_Usuario $tipo_Usuario)
     {
         //

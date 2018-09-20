@@ -15,7 +15,6 @@ use App\AsigTareas;
 
 class DashboardHelpdeskController extends Controller
 {
-    
     public function index()
     {
         $peticiones = Peticion::all();
@@ -35,6 +34,4 @@ class DashboardHelpdeskController extends Controller
         //dd($consulta);
         return view('dashboardhelpdesk',['consulta'=>$consulta]);
     }
-
-   
 }

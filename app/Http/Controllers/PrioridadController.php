@@ -12,6 +12,7 @@ class PrioridadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -22,6 +23,7 @@ class PrioridadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -33,6 +35,7 @@ class PrioridadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -44,6 +47,7 @@ class PrioridadController extends Controller
      * @param  \App\Prioridad  $prioridad
      * @return \Illuminate\Http\Response
      */
+
     public function show(Prioridad $prioridad)
     {
         //
@@ -55,6 +59,7 @@ class PrioridadController extends Controller
      * @param  \App\Prioridad  $prioridad
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Prioridad $prioridad)
     {
         //
@@ -67,6 +72,7 @@ class PrioridadController extends Controller
      * @param  \App\Prioridad  $prioridad
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Prioridad $prioridad)
     {
         //
@@ -78,13 +84,14 @@ class PrioridadController extends Controller
      * @param  \App\Prioridad  $prioridad
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Prioridad $prioridad)
     {
         //
     }
+
     public function CargarDatos()
     {
-        //
         $prioridades = Prioridad::where('estado_del','1')->get();
         return response()->json($prioridades);
     }

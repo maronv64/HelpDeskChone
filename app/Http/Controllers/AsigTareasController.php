@@ -18,6 +18,7 @@ class AsigTareasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
          return view('adminlte::layouts.partials.GestionAsigTareas.Asignacion');
@@ -28,6 +29,7 @@ class AsigTareasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -39,24 +41,10 @@ class AsigTareasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        $datos = DB::table('user_asignacion')
-        ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
-        ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
-        ->where('user_asignacion.peticion_idpeticion','=', $request->idpeticion )
-        ->get();
-        if($datos!=null){
-        foreach ($datos as $item) {
-            if($item->id==$request->idusuario){
-            return 0;
-        }
-        }
-        }
-        $date = Carbon::now();
-        $date = $date->format('Y-m-d');
-
-        $asignacion= new AsigTareas();
+        $asignacion = new AsigTareas();
         $asignacion->peticion_idpeticion=$request->idpeticion;
         $asignacion->usuario_idUsuario=$request->idusuario;
         $asignacion->FechaRegistro=$date;
@@ -66,15 +54,7 @@ class AsigTareasController extends Controller
         $asignacion->HoraLimite=date("H:i:s",strtotime( $request->HoraLimite));
         $asignacion->observacion=$request->observacion;
         $asignacion->save();
-        $peticion= Peticion::find($asignacion->peticion_idpeticion);
-        $estado= Estado::where('descripcion', 'Asignada')->first();
-        $peticion->idestado=$estado->idestado;
-        $peticion->save();
-      
-        
-
-        
-
+        return response()->json($asignacion);
     }
 
     public function guardarUsuariosAsignacion($idusuario,$idasig){
@@ -84,12 +64,14 @@ class AsigTareasController extends Controller
         $UsuarioAsig->save();
         return response()->json($UsuarioAsig);
     }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
+
     public function show(AsigTareas $asigTareas)
     {
         //
@@ -101,6 +83,7 @@ class AsigTareasController extends Controller
      * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
+
     public function edit(AsigTareas $asigTareas)
     {
         //
@@ -113,6 +96,7 @@ class AsigTareasController extends Controller
      * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, AsigTareas $asigTareas)
     {
         //
@@ -124,19 +108,19 @@ class AsigTareasController extends Controller
      * @param  \App\AsigTareas  $asigTareas
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(AsigTareas $asigTareas)
     {
         //
     }
 
     public function mostrarasignaciones($idpeticion){
-    $datos = DB::table('user_asignacion')
-    ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
-    ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
-    ->where('user_asignacion.peticion_idpeticion','=', $idpeticion )
-    ->get();
-    return response()->json($datos);
-
+        $datos = DB::table('user_asignacion')
+        ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
+        ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
+        ->where('user_asignacion.peticion_idpeticion','=', $idpeticion )
+        ->get();
+        return response()->json($datos);
     }
 
      public function mostrarobservacion($idasignacion){

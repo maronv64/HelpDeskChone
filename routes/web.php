@@ -24,7 +24,8 @@ Route::resource('/dispositivos','DispositivosController');
 Route::get('/obtenerDispositivos','DispositivosController@obtenerlista');
 Route::get('/obtenerDispositivos/{id?}','DispositivosController@buscarDispositivo');
 
-//rutas para tipo de dispositivos
+//rutas para asignacion de dispositivos
+Route::resource('/asignacionDispositivos','AsignacionDispositivosController');
 
 //la plantilla hace uso de estas rutas
 Route::group(['middleware' => 'auth'], function () {
@@ -50,14 +51,13 @@ Route::resource('/peticiones','PeticionController');
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
 Route::get('/datospeticion/{id?}','PeticionController@datospeticion');
+Route::get('/peticionesFiltroAbmin/{consul?}/{datos?}','PeticionController@peticionesFiltroAbmin');
 
 //Consultas de las Peticiones de Cada Usuario
 //index
 Route::get('/peticionesNorm','PeticionController@PNorm');
 //Rutas para consumo de datos de Peticiones 
 Route::get('/peticionesNormCargarDatos/{id?}','PeticionController@mostrarMisPeticiones');
-
-
 
 
 //Rutas de Prioridad
@@ -121,8 +121,11 @@ Route::get('/consultarPeticionEstado/{idusuario}','AsigTareasController@consulta
 
 
 //Rutas de tipo de usuarios
-Route::resource('/TipoUsuarios','TipoUsuariosController');
+//Route::resource('/TipoUsuarios','TipoUsuariosController');
+Route::get('/TipoUsuarios', function () {
+    return view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig');
+});
 
 
-
+//view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 

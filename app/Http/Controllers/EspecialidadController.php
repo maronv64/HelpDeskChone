@@ -13,6 +13,7 @@ class EspecialidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -23,6 +24,7 @@ class EspecialidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -34,6 +36,7 @@ class EspecialidadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -45,6 +48,7 @@ class EspecialidadController extends Controller
      * @param  \App\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
+
     public function show(Especialidad $especialidad)
     {
         //
@@ -56,6 +60,7 @@ class EspecialidadController extends Controller
      * @param  \App\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Especialidad $especialidad)
     {
         //
@@ -68,6 +73,7 @@ class EspecialidadController extends Controller
      * @param  \App\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Especialidad $especialidad)
     {
         //
@@ -79,6 +85,7 @@ class EspecialidadController extends Controller
      * @param  \App\Especialidad  $especialidad
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Especialidad $especialidad)
     {
         //
@@ -87,6 +94,5 @@ class EspecialidadController extends Controller
     public function mostrarespecialidad(){
         $especialidad= Especialidad::All();
         return response()->json($especialidad);
-
     }
 }

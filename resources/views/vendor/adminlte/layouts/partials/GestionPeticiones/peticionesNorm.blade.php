@@ -104,12 +104,25 @@
     </div>
     <div class="row register-box-body">
         <div class="row">
-           <div class="col-md-10">
-              <p> <h3>Lista de Peticiones</h3></p>
+           <div class="col-md-5">
+              <p> <h3>Mis Peticiones</h3></p>
             </div>
-            <div class="col-md-2">
-              <a id="" class="btn btn-info" title="">Listar Peticiones</a>
+            <!-- <div class="col-md-2">
+              <a id="btnMostrarPeticiones" class="btn btn-info" title="">Listar Peticiones</a>
+            </div> -->
+            <div class="col-md-4">
+                <div class="form-group has-feedback">
+                    <label> <b>Escriba la Busqueda:</b></label>
+                    <input type="text" class="form-control" placeholder="Describa la peticion"  id="txtBuscarPM" required />
+                    </div>
+                </div>
+            <div class="col-md-3">
+                <div class="form-group has-feedback">
+                    <label> <b>Fecha Filtro:</b></label>
+                    <input type="date" class="form-control" id="fechaFiltroPM" name="fechainicialAsig"required value="<?php echo date("Y-m-d");?>" />
+                </div>
             </div>
+
         </div>
            
           <hr>

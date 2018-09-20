@@ -12,6 +12,7 @@ class AreaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -22,6 +23,7 @@ class AreaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -33,6 +35,7 @@ class AreaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -44,6 +47,7 @@ class AreaController extends Controller
      * @param  \App\Area  $area
      * @return \Illuminate\Http\Response
      */
+
     public function show(Area $area)
     {
         //
@@ -55,6 +59,7 @@ class AreaController extends Controller
      * @param  \App\Area  $area
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Area $area)
     {
         //
@@ -67,6 +72,7 @@ class AreaController extends Controller
      * @param  \App\Area  $area
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Area $area)
     {
         //
@@ -78,6 +84,7 @@ class AreaController extends Controller
      * @param  \App\Area  $area
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Area $area)
     {
         //
@@ -87,6 +94,7 @@ class AreaController extends Controller
       $areas= Area::All();
       return response()->json($areas);
     }
+    
     public function CargarDatos()
     {
         $areas = Area::where('estado_del','1')->get();

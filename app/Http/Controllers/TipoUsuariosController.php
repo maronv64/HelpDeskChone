@@ -15,7 +15,7 @@ class TipoUsuariosController extends Controller
      */
     public function index()
     {
-        return view('adminlte::layouts.partials.PanelConfiguracion.GestionTipoUsuarios.TipoUsuarios');
+        return view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig');
     }
     /**
      * Show the form for creating a new resource.

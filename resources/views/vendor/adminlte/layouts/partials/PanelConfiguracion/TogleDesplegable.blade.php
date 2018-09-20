@@ -12,7 +12,7 @@
   </div>
   <div id="menuAreas" class="tab-pane fade">
     <h3>Gestion de areas</h3>
-        @include('adminlte::layouts.partials.PanelConfiguracion.GestionTipoUsuarios.RegistroTipoUser')                  
+        @include('adminlte::layouts.partials.PanelConfiguracion.GestionAreas.RegistroAreas')                  
   </div>
   <div id="menuEspecialidades" class="tab-pane fade">
     <h3>Gestion de especialidades</h3>

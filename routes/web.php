@@ -120,8 +120,11 @@ Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
 Route::get('/mostrarobservacion/{idasignacion}','AsigTareasController@mostrarobservacion');
 
 //Rutas de tipo de usuarios
-Route::resource('/TipoUsuarios','TipoUsuariosController');
+//Route::resource('/TipoUsuarios','TipoUsuariosController');
+Route::get('/TipoUsuarios', function () {
+    return view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig');
+});
 
 
-
+//view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 

@@ -50,14 +50,13 @@ Route::resource('/peticiones','PeticionController');
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
 Route::get('/datospeticion/{id?}','PeticionController@datospeticion');
+Route::get('/peticionesFiltroAbmin/{consul?}/{datos?}','PeticionController@peticionesFiltroAbmin');
 
 //Consultas de las Peticiones de Cada Usuario
 //index
 Route::get('/peticionesNorm','PeticionController@PNorm');
 //Rutas para consumo de datos de Peticiones 
 Route::get('/peticionesNormCargarDatos/{id?}','PeticionController@mostrarMisPeticiones');
-
-
 
 
 //Rutas de Prioridad

@@ -207,39 +207,83 @@
     </div>
     <div class="row register-box-body">
         <div class="row">
-           <div class="col-md-10">
-              <p> <h3>Lista de Peticiones</h3></p>
+           <div class="col-md-3">
+              <p> <h3> Lista de Peticiones</h3></p>
             </div>
-            <div class="col-md-2">
-              <a id="btnMostrarPeticiones" class="btn btn-info" title="">Listar Peticiones</a>
-            </div>
+              
+            <div  class="col-md-9" >
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label> <b>Tipo de Filtro:</b></label>
+                            <select id="cmbTipoBusqueda"   class="form-control" required>
+                                <!-- <option disabled selected>Seleccione el tipo de Peticion</option> -->
+                                <option value="Todas" selected>Todas</option>
+                                <option value="TipoPeticion" >Por Tipo de Peticion</option>
+                                <option value="Prioridad" >Por Prioridad</option>
+                                <option value="Estado" >Por Estado</option>
+                                <option value="Usuario" >Por Usario</option>
+                                <option value="Fecha" >Por Fecha</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="" class="col-md-8">
+                        
+                        <div class="row">
+                            <div id="panelBuscar" class="col-md-6">
+                                <!-- <div class="form-group has-feedback">                                                                   
+                                    <label> <b>Escriba la Busqueda:</b></label>                                                         
+                                    <input type="text" class="form-control" placeholder="Escriba aquí"  id="txtFiltroGeneral" required />      
+                                </div> -->
+                            </div>
+                            <div id="panelBuscartxt" class="col-md-6">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>     
+            
+            <!-- <div class="col-md-2">
+                <br>
+                <div class ="row">
+                    <div class="col-md-12">
+                        <a id="btnVerFiltro" class=" btn btn-info btn-block btn-flat " title="">Filtro</a>
+                    </div>
+                </div>
+            </div>  -->
+          
         </div>
            
           <hr>
-          <div class="table-responsive pre-scrollable">
-            <table id="tablaDispositivos" class="table table-hover table-bordered">
-            <thead>
-              <tr>
+        <div class="row">
+            <div class="table-responsive pre-scrollable">
+                <table id="" class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
 
-                <th scope="col">Descripcion</th>
-                <th scope="col">Tipo de Peticion</th>
-                <th scope="col">Prioridad</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Area</th>
-                <th scope="col">Fecha de Creacion</th>
-                <th scope="col">Fecha de Modificacion</th>
-                <th scope="col"> <center> Acciones </center> </th> 
-                
-              </tr>
-            </thead>
-            <tbody id="dgvPeticiones">
-              
-            </tbody>
-          </table>
-          </div>       
-      </div>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Tipo de Peticion</th>
+                        <th scope="col">Prioridad</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">Fecha de Creacion</th>
+                        <th scope="col">Fecha de Modificacion</th>
+                        <th scope="col"> <center> Acciones </center> </th> 
+                        
+                    </tr>
+                    </thead>
+                    <tbody id="dgvPeticiones">
+                    
+                    </tbody>
+                </table>
+            </div>   
+        </div>    
+    </div>
 </div>
 <script src="{{ asset('js/GestionPeticiones4.js') }}" defer></script>
+<script src="{{ asset('js/GestionFiltroPeticiones.js') }}" defer></script>
 @endsection
 

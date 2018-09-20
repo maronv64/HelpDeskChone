@@ -14,6 +14,7 @@ class ExtraTecnicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -24,6 +25,7 @@ class ExtraTecnicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -35,6 +37,7 @@ class ExtraTecnicoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $extecnico = new Extra_Tecnico();
@@ -50,6 +53,7 @@ class ExtraTecnicoController extends Controller
      * @param  \App\Extra_Tecnico  $extra_Tecnico
      * @return \Illuminate\Http\Response
      */
+
     public function show(Extra_Tecnico $extra_Tecnico)
     {
         //
@@ -61,6 +65,7 @@ class ExtraTecnicoController extends Controller
      * @param  \App\Extra_Tecnico  $extra_Tecnico
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Extra_Tecnico $extra_Tecnico)
     {
         //
@@ -73,6 +78,7 @@ class ExtraTecnicoController extends Controller
      * @param  \App\Extra_Tecnico  $extra_Tecnico
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Extra_Tecnico $extra_Tecnico)
     {
         //
@@ -84,19 +90,15 @@ class ExtraTecnicoController extends Controller
      * @param  \App\Extra_Tecnico  $extra_Tecnico
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         $idextra= Extra_Tecnico::where('idusuario', $id)->first();
         $eliminextra = Extra_Tecnico::find($idextra->idextra_tecnico);
         $user = Usuarios::find($id);
-
         $eliminextra->delete();
-
-            
-
-         $user->delete();
+        $user->delete();
     }
-
 
      public function mostrarextratecnico(){
         $extratecnico = Extra_Tecnico::All();

@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
+use App\TipoUsuarios;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AreaController extends Controller
+class TipoUsuariosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        //
+        return view('adminlte::layouts.partials.PanelConfiguracion.GestionTipoUsuarios.TipoUsuarios');
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
         //
@@ -35,7 +33,6 @@ class AreaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
         //
@@ -44,11 +41,10 @@ class AreaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Area  $area
+     * @param  \App\TipoUsuarios  $tipoUsuarios
      * @return \Illuminate\Http\Response
      */
-
-    public function show(Area $area)
+    public function show(TipoUsuarios $tipoUsuarios)
     {
         //
     }
@@ -56,11 +52,10 @@ class AreaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Area  $area
+     * @param  \App\TipoUsuarios  $tipoUsuarios
      * @return \Illuminate\Http\Response
      */
-
-    public function edit(Area $area)
+    public function edit(TipoUsuarios $tipoUsuarios)
     {
         //
     }
@@ -69,11 +64,10 @@ class AreaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Area  $area
+     * @param  \App\TipoUsuarios  $tipoUsuarios
      * @return \Illuminate\Http\Response
      */
-
-    public function update(Request $request, Area $area)
+    public function update(Request $request, TipoUsuarios $tipoUsuarios)
     {
         //
     }
@@ -81,23 +75,11 @@ class AreaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Area  $area
+     * @param  \App\TipoUsuarios  $tipoUsuarios
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy(Area $area)
+    public function destroy(TipoUsuarios $tipoUsuarios)
     {
         //
-    }
-
-    public function mostrarareas(){
-      $areas= Area::All();
-      return response()->json($areas);
-    }
-    
-    public function CargarDatos()
-    {
-        $areas = Area::where('estado_del','1')->get();
-        return response()->json($areas);
     }
 }

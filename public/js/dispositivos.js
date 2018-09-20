@@ -1,7 +1,7 @@
 
 window.onload = function() {
     cargarListaDispositivos();
-  };
+};
 
 $('#guardar_datos').click(function(event)
 	{
@@ -25,35 +25,37 @@ function limpiarPrincipal() {
     $('#add_modelo').val('')
     $('#add_marca').val('')
 }
+
 //VERIFICA SI LOS CAMPOS DE EL FORMULARIO DE INGRESO SE ENCUENTRAN CON INFORMACION INGRESADA
 function Validar_campos() {
-    if (
-        $('#add_nom_dispositivo').val()==''||
+    if ($('#add_nom_dispositivo').val()==''||
         $('#add_tipodispositivo').val()==''||
         $('#add_num_serie').val()==''||
         $('#add_color').val()==''||
         $('#add_modelo').val()==''||
-        $('#add_marca').val()==''
-    ) {
+        $('#add_marca').val()=='') 
+    {
         return false;
     }
-    else{
+    else
+    {
         return true;
     }
 }
+
 //VERIFICA SI LOS CAMPOS DEL MODAL SE ENCUENTRAN CON INFORMACION
 function Validar_campos_modal() {
-    if (
-        $('#modal_descripcion').val()==''||
+    if ($('#modal_descripcion').val()==''||
         $('#modal_tipo_dispositivo').val()==''||
         $('#modal_serie').val()==''||
         $('#modal_color').val()==''||
         $('#modal_modelo').val()==''||
-        $('#modal_marca').val()==''
-        ) {
+        $('#modal_marca').val()=='')
+    {
         return false;
     }
-    else{
+    else
+    {
         return true;
     }
 }
@@ -93,6 +95,7 @@ function guardar() {
         }
     });
 }
+
 //Funcion para modificar los valores de la base de datos por los cambiados en el modal
 function modificar(iddispositivo, exp) {
     var actividad='Activo';
@@ -117,10 +120,8 @@ function modificar(iddispositivo, exp) {
         }
         ReferenciaModificar(FrmData, iddispositivo);
     }
-    
-
-
  }
+
  //Muestra un modal para confirmar eliminacion de dispositivos
  $("#btn-modal-dispo-si").on("click", function(){
     var FrmData;
@@ -135,14 +136,16 @@ function modificar(iddispositivo, exp) {
         marca:'',
         cod_activo:actividad,
     }
-ReferenciaModificar(FrmData, $("#btn-modal-dispo-si").val());
-$("#id_modal_conf_elim").modal('hide');
+    ReferenciaModificar(FrmData, $("#btn-modal-dispo-si").val());
+    $("#id_modal_conf_elim").modal('hide');
 });
+
 //Mensaje de cancelado del modal eliminacion
 $("#btn-modal-dispo-no").on("click", function(){
     alertify.error('ACCIÓN CANCELADA')
     $("#id_modal_conf_elim").modal('hide');
 });
+
 //funcion para activar el envio de datos en funcion modificar
  function ReferenciaModificar(FrmData, iddispositivo) {
     $.ajaxSetup({
@@ -167,6 +170,7 @@ $("#btn-modal-dispo-no").on("click", function(){
         }
     });
  }
+
 //Muestra un modal con los datos de la grilla seleccionada para poder modificarlos
 function modal(id_dispositivo)
 {
@@ -201,9 +205,8 @@ function eliminar(iddispositivo){
             cargarListaDispositivos();
         },  
     });
- }
+}
 
- 
 //Carga la lista de los dispositivos en la tabla de la ventana principal
 function cargarListaDispositivos() {
 	$('#tablaDispositivos tbody tr').empty();
@@ -211,7 +214,6 @@ function cargarListaDispositivos() {
 		url: 'obtenerDispositivos',
 		type: 'GET',
 		dataType: 'json',
-		
 	})
 	.done(function(datos) {
 		$.each(datos.dispositivos, function(index, val) {
@@ -241,11 +243,21 @@ function cargarListaDispositivos() {
 	})
 };
 
+<<<<<<< HEAD
+=======
+//Evento guardar datos de
 
+>>>>>>> b706f793aaffbca965a031531382969af2dcceb8
 $('#frm_registrardispositivo').on('submit',function(e){
 	e.preventDefault();
 	guardar();
 });
+
+<<<<<<< HEAD
+=======
+//Deshabilitar dispositivo
+
+>>>>>>> b706f793aaffbca965a031531382969af2dcceb8
 $('#frm_modal_registrardispositivo').on('submit',function(e){
 	e.preventDefault();
 	modificar($('#modal_validar_cambios').val(),2);

@@ -13,6 +13,7 @@ class TipoDispositivoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -23,6 +24,7 @@ class TipoDispositivoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -34,6 +36,7 @@ class TipoDispositivoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
             
@@ -45,6 +48,7 @@ class TipoDispositivoController extends Controller
      * @param  \App\TipoDispositivo  $tipoDispositivo
      * @return \Illuminate\Http\Response
      */
+
     public function show(TipoDispositivo $tipoDispositivo)
     {
         //
@@ -56,6 +60,7 @@ class TipoDispositivoController extends Controller
      * @param  \App\TipoDispositivo  $tipoDispositivo
      * @return \Illuminate\Http\Response
      */
+
     public function edit(TipoDispositivo $tipoDispositivo)
     {
         //
@@ -68,6 +73,7 @@ class TipoDispositivoController extends Controller
      * @param  \App\TipoDispositivo  $tipoDispositivo
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, TipoDispositivo $tipoDispositivo)
     {
         //
@@ -79,6 +85,7 @@ class TipoDispositivoController extends Controller
      * @param  \App\TipoDispositivo  $tipoDispositivo
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(TipoDispositivo $tipoDispositivo)
     {
         //

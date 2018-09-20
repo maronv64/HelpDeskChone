@@ -14,6 +14,7 @@ class DispositivosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $tipos = TipoDispositivo::All();
@@ -25,6 +26,7 @@ class DispositivosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -36,6 +38,7 @@ class DispositivosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $dispositivo = new Dispositivos();
@@ -56,6 +59,7 @@ class DispositivosController extends Controller
      * @param  \App\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
+
     public function show()
     {
          
@@ -68,6 +72,7 @@ class DispositivosController extends Controller
      * @param  \App\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Dispositivos $dispositivos)
     {
         //
@@ -80,6 +85,7 @@ class DispositivosController extends Controller
      * @param  \App\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Dispositivos $dispositivos)
     {
         $dispositivo = Dispositivos::find($request->idDispositivo);
@@ -102,6 +108,7 @@ class DispositivosController extends Controller
      * @param  \App\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($dispositivos)
     {
        $dispositivo=Dispositivos::find($dispositivos);
@@ -114,12 +121,10 @@ class DispositivosController extends Controller
     {
        $dispositivos = DB::table('dispositivos')->get();
        $tipos= DB::table('tipodispositivos')->get();
-
        $consulta = array(
             "dispositivos"=>$dispositivos, 
             "tipos"=>$tipos
        );
-
         return response()->json($consulta);
     }
 

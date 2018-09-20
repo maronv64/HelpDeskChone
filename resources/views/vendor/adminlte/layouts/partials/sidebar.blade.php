@@ -54,22 +54,31 @@
                 </ul> -->
             </li>
             <li class="treeview">
-                <a href="{{ url('/peticiones') }}"><i class='fa fa-tachometer'></i> <span>PETICIONES</span></a> <!--   <i class="fa fa-angle-left pull-right"></i>
-               <ul class="treeview-menu">
-                    <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
-                    <li><a href="#">Dashboard Peticiones</a></li>
-                    <li><a href="#">Dashboard SLA</a></li>
-                    <li><a href="#">Dashboard Prioridad</a></li>
+                <a href="#"><i class='glyphicon glyphicon-list-alt'></i> <span>PETICIONES</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <!-- <li><a href="{{ url('/dispositivos') }}">Dispositivos</a></li>
+                    <li><a href="#">Asignar Dispositivos</a></li> -->
+                    <!-- si no esta logeado -->
+                    @if (Auth::guest()) 
+                    
+                    @else
+                        <li><a href="{{ url('/peticionesNorm') }}">MIS PETICIONES</a></li>
+                        <!-- <a href="{{ url('/peticionesNorm') }}"><i class='fa fa-tachometer'></i> <span>PETICIONES</span></a> -->
+                        @if (Auth::user()->idtipousuario)
+                            <li><a href="{{ url('/peticiones') }}">ADMIN PETICIONES</a></li>
+                            <!-- <a href="{{ url('/peticiones') }}"><i class='fa fa-tachometer'></i> <span>PETICIONES ADMIN</span></a> -->
+                        @endif 
+                    @endif
 
-                </ul> -->
+
+                </ul>
             </li>
-            
-            
+                   
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-list-alt'></i> <span>INVENTARIO</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/dispositivos') }}">Dispositivos</a></li>
-                    <li><a href="#">Asignar Dispositivos</a></li>
+                    <li><a href="{{ url('/asignacionDispositivos') }}">Asignar Dispositivos</a></li>
                 </ul>
             </li>
              
@@ -95,6 +104,16 @@
                     <li><a href="#">Informe Inventario</a></li>
                     <li><a href="#">Informe Asignaciones</a></li>
                     <li><a href="#">Informe Productividad</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class='fa fa-bar-chart-o'></i> <span>PANEL CONFIGURACIÓN</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('/TipoUsuarios') }}">Tipo de usuarios</a></li>
+                    <li><a href="#">Areas</a></li>
+                    <li><a href="#">Especialidad</a></li>
+                    <li><a href="#">Tipo de dispositivos</a></li>
                 </ul>
             </li>
 

@@ -24,7 +24,8 @@ Route::resource('/dispositivos','DispositivosController');
 Route::get('/obtenerDispositivos','DispositivosController@obtenerlista');
 Route::get('/obtenerDispositivos/{id?}','DispositivosController@buscarDispositivo');
 
-//rutas para tipo de dispositivos
+//rutas para asignacion de dispositivos
+Route::resource('/asignacionDispositivos','AsignacionDispositivosController');
 
 //la plantilla hace uso de estas rutas
 Route::group(['middleware' => 'auth'], function () {
@@ -39,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
 //Rutas de Maron Vera ------------------------------------------------------------------------------------------------
 //holaaaaaa  nonnooooooooo maron 
 
+Route::get('/prueba_eliminar/{id?}','PeticionController@prueba_eliminar');
+
 //Rutas de las Peticiones
 Route::resource('/peticiones','PeticionController');
 //Route::post('/peticionesInsert','PeticionController@peticionesInsert');
@@ -47,7 +50,15 @@ Route::resource('/peticiones','PeticionController');
 //Consultas Generales
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
-Route::get('/datospeticion/{id}','PeticionController@datospeticion');
+Route::get('/datospeticion/{id?}','PeticionController@datospeticion');
+
+//Consultas de las Peticiones de Cada Usuario
+//index
+Route::get('/peticionesNorm','PeticionController@PNorm');
+//Rutas para consumo de datos de Peticiones 
+Route::get('/peticionesNormCargarDatos/{id?}','PeticionController@mostrarMisPeticiones');
+
+
 
 
 //Rutas de Prioridad
@@ -102,11 +113,14 @@ Route::get('/mostrarespecialidad','EspecialidadController@mostrarespecialidad');
 /*######################RUTAS PARA LA ASIGNACIÓN DE TAREAS#################################*/
 Route::resource('/asigtareas','AsigTareasController');
 Route::post('/guardarUsuariosAsignacion/{idusuario}/{idasig}','AsigTareasController@guardarUsuariosAsignacion');
+Route::get('/mostrarasignaciones/{idpeticion}','AsigTareasController@mostrarasignaciones');
+
 
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
+Route::get('/mostrarobservacion/{idasignacion}','AsigTareasController@mostrarobservacion');
 
-
-
+//Rutas de tipo de usuarios
+Route::resource('/TipoUsuarios','TipoUsuariosController');
 
 
 

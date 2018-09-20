@@ -12,11 +12,14 @@
             @include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticion')
             </div>
 
+
+            <input type="text" name="iduser" id="iduser" hidden >
+            <input type="text" name="idpeticion" id="var_idpeticion" hidden >
  <!-- ---------------------------------modal -------------------------- -->
 
 
             <div class="modal" tabindex="-1" role="dialog" id="modalBuscarUsuario1">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header" align="center">
                     <h3  class="modal-title"><b><i class="fa fa-user"></i>  Actualización de Datos</b></h3>
@@ -28,8 +31,7 @@
                                 <form id=""  > 
                                             
                                                 <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-                                                <input type="text" name="iduser" id="iduser" hidden >
-                                                <input type="text" name="idpeticion" id="var_idpeticion" hidden >
+                                                
                                                 <div class="row">
 
                                                     <div class="col-md-4">
@@ -206,7 +208,7 @@
     <div class="row register-box-body">
         <div class="row">
            <div class="col-md-10">
-              <p> <h3>Lista de dispositivos registrados</h3></p>
+              <p> <h3>Lista de Peticiones</h3></p>
             </div>
             <div class="col-md-2">
               <a id="btnMostrarPeticiones" class="btn btn-info" title="">Listar Peticiones</a>
@@ -225,7 +227,8 @@
                 <th scope="col">Estado</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Area</th>
-                <th scope="col">Fecha</th>
+                <th scope="col">Fecha de Creacion</th>
+                <th scope="col">Fecha de Modificacion</th>
                 <th scope="col"> <center> Acciones </center> </th> 
                 
               </tr>

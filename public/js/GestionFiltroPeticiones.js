@@ -15,7 +15,7 @@ $('#cmbTipoBusqueda').change(function () {
      ) {
         orden2+='<div class="form-group has-feedback">                                                                   ';
         orden2+='    <label> <b>Escriba la Busqueda:</b></label>                                                         ';
-        orden2+='    <input type="text" class="form-control" placeholder="Escriba aquí" onkeyup="myFunction()" id="txtFiltroGeneral" required />      ';
+        orden2+='    <input type="text" class="form-control" placeholder="Escriba aquí" onkeyup="txtFiltroGeneral_KeyUp()" id="txtFiltroGeneral" required />      ';
         orden2+='</div> ';
 
         $('#panelBuscartxt').append( orden2 );
@@ -26,7 +26,7 @@ $('#cmbTipoBusqueda').change(function () {
 
         orden+='<div class="form-group has-feedback">                                                                   ';
         orden+='    <label> <b>Escriba la Busqueda:</b></label>                                                         ';
-        orden+='    <input type="text" class="form-control" placeholder="Escriba aquí" onkeyup="myFunction()" id="txtFiltroGeneral" required />';
+        orden+='    <input type="text" class="form-control" placeholder="Escriba aquí" onkeyup="txtFiltroGeneral_KeyUp()" id="txtFiltroGeneral" required />';
         orden+='</div> ';
 
         $('#panelBuscar').append( orden );
@@ -73,7 +73,7 @@ $('#cmbTipoBusqueda').change(function () {
 
         orden+='<div class="form-group has-feedback">                                                                   ';
         orden+='    <label> <b>Escriba el nombre del Usuario:</b></label>                                                         ';
-        orden+='    <input type="text" class="form-control" placeholder="Escriba aquí"  onkeyup="myFunction()" id="txtFiltroGeneral" required />      ';
+        orden+='    <input type="text" class="form-control" placeholder="Escriba aquí"  onkeyup="txtFiltroGeneral_KeyUp()" id="txtFiltroGeneral" required />      ';
         orden+='</div> ';
 
         $('#panelBuscar').append( orden );
@@ -87,7 +87,7 @@ function crear_txtFiltroGeneral() {
     var orden='';
         orden+='<div class="form-group has-feedback">                                                                   ';
         orden+='    <label> <b>Escriba la Busqueda:</b></label>                                                         ';
-        orden+='    <input type="text" class="form-control" placeholder="Escriba aquí"  onkeyup="myFunction()" id="txtFiltroGeneral" required />      ';
+        orden+='    <input type="text" class="form-control" placeholder="Escriba aquí"  onkeyup="txtFiltroGeneral_KeyUp()" id="txtFiltroGeneral" required />      ';
         orden+='</div> ';
         $('#panelBuscar').append( orden );
 }
@@ -164,8 +164,56 @@ function cargarCmbEstadoBusqueda() {
     }); 
 }
 
-function myFunction() {
-    alert($("#txtFiltroGeneral").val());
+function txtFiltroGeneral_KeyUp() {
+    //alert($("#txtFiltroGeneral").val());
+    if ($('#cmbTipoBusqueda').val()=='Todas') {
+
+    }else if ($('#cmbTipoBusqueda').val()=='TipoPeticion') { 
+
+    }else if ($('#cmbTipoBusqueda').val()=='Prioridad') {
+
+    }else if ($('#cmbTipoBusqueda').val()=='Estado') {
+        
+    }if ($('#cmbTipoBusqueda').val()=='Usuario') {
+
+    }
+}
+
+function SuperFiltro(tipoConsulta,FrmData) {
+    $.get('peticionesFiltroAbmin/'+tipoConsulta+'/'+FrmData, function (data) { 
+        $('#dgvUsuarios1').html('');
+        $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
+            
+           
+            
+            var fila ="";
+
+            fila+= '<tr>';
+            //añade la cedula
+            fila+= '<td>'+item.cedula  +'</td>';
+            //añade el nombre
+            fila+= '<td>'+item.name  +'</td>';
+            //añade el apellidos
+            fila+= '<td>'+item.apellidos  +'</td>';
+            //añade el celular
+            fila+= '<td>'+item.celular  +'</td>';
+            //añade el area
+            fila+= '<td>'+item.area.nombre  +'</td>';
+            //añade el email
+            fila+= '<td>'+item.email  +'</td>';
+            //añade el boton
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='pasarDatosUsuario("+item.id+")'><i class='fa fa-edit'></i></button>";
+         
+            //
+            fila+= '</tr>';
+
+            $('#dgvUsuarios1').append(//identificamos ala nota que queremos add esta otra nota        
+                 fila									
+            );
+            
+        });  
+
+    });  
 }
 
 // <div class="col-md-3">

@@ -39,14 +39,13 @@ function mostrarModal(id_usuario) {
 function cargarListaDispositivos() {
 	$('#tablaDispositivosA tbody tr').empty();
 	$.ajax({
-		url: 'obtenerDispositivos',
+		url: 'consultar_dispositivos_asignados',
 		type: 'GET',
 		dataType: 'json',
-		
 	})
 	.done(function(datos) {
         id_fila = 0;
-		$.each(datos.dispositivos, function(index, val) {
+		$.each(datos.dispositivos , function(index, val) {
             var out="";
             if (val.cod_activo=="Activo") {
                 id_fila = id_fila + 1;

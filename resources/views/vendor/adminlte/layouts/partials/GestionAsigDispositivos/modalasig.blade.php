@@ -7,7 +7,10 @@
           </button> 
           <h3  class="modal-title"><b>Asignacion de Dispositivos</b></h3> 
       </div>
-      @include('adminlte::layouts.partials.GestionAsigDispositivos.Cuerpomodal')  
+
+      <!-- @include('adminlte::layouts.partials.GestionAsigDispositivos.Cuerpomodal')  
+      -->
+      
     </div>
   </div>
 </div>

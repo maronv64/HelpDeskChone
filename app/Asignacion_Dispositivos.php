@@ -11,12 +11,10 @@ class Asignacion_Dispositivos extends Model
     public $timestamps=false;
 
     public function usuario(){
-		return $this->hasOne('App\Usuarios' ,'idusuario', 'idusuario');
-		                      /*ruta modelo tipo   id tipousuario id claveforanea  */
+		return $this->hasOne('App\Usuarios' ,'id', 'usuario_idusuario');
     }
         
     public function dispositivos(){
-        return $this->hasOne('App\Dispositivos' ,'iddispositivos', 'iddispositivos');
-                                /*ruta modelo tipo   id tipousuario id claveforanea  */
-    }         
+        return $this->hasOne('App\Dispositivos' ,'iddispositivos', 'dispositivos_iddispositivos');
+    }
 }

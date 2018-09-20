@@ -6,6 +6,7 @@ use App\Dispositivos;
 use App\TipoDispositivo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Asignacion_Dispositivos;
 
 class DispositivosController extends Controller
 {
@@ -133,5 +134,23 @@ class DispositivosController extends Controller
         $dispositivo=Dispositivos::find($id);
         return response()->json($dispositivo);
     }
+
+    public function consultar_dispositivos_asignados(){
+        $dispositivos= Dispositivos::where('asignado','0')->get();
+        $tipos= DB::table('tipodispositivos')->get();
+        $consulta = array(
+            "dispositivos"=>$dispositivos, 
+            "tipos"=>$tipos
+       );
+        return response()->json($consulta);
+    }
+
+
+    // public function CargarDatos2(){
+    //     $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('estado_del','1')
+    //                                                                                 ->orderBy('created_at','desc')
+    //                                                                                 ->get();//where('estado_del','1')->get();
+    //     return response()->json($peticiones);
+    // }
 }
 

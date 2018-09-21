@@ -1,7 +1,7 @@
-<form id="frm_ingresar_tipos_user"  method="post">
+<form id="frm_ingresar_especialidades"  method="post">
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
-      <div class="btn-secondary expand btn btn-block" data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
+      <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
         <h4>
             INGRESO DE ESPECIALIDADES
         </h4>

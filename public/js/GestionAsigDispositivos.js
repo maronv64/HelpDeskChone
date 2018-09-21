@@ -93,7 +93,7 @@ function cargarListaDispositivosPorUsuario(id_usuario) {
             out+="<td>"+val.dispositivos.modelo+"</td>";
             out+="<td>"+val.dispositivos.marca+"</td>";
             out+="<td class='text-success'>"+val.dispositivos.cod_activo+"</td>";
-            out+="<td class='row'><center><button type='button' value ='0' class='btn btn-danger' id='seleccionarDispositivo"+id_fila+"' onClick='marcarDispositivos("+val.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-times'></i></button></center></td>"
+            out+="<td class='row'><center><button type='button' value ='0' class='btn btn-danger' id='seleccionarDispositivo"+id_fila+"' onClick='desmarcarDispositivos("+val.dispositivos.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-times'></i></button></center></td>"
             out+="</tr>";
             $('#tablaDispositivosA2 tbody').append(out);
         });
@@ -122,6 +122,26 @@ function marcarDispositivos(valor,numero_dispositivo){
     }
 }
 
+function desmarcarDispositivos(valor,numero_dispositivo){
+    if ($('#seleccionarDispositivo'+numero_dispositivo).hasClass('btn btn-danger'))
+    {
+        $('#seleccionarDispositivo'+numero_dispositivo).val(valor);
+        $('#seleccionarDispositivo'+numero_dispositivo).removeClass('btn btn-danger');
+        $('#seleccionarDispositivo'+numero_dispositivo).addClass('btn btn-info');
+        $('#id_icono'+numero_dispositivo).removeClass('fa fa-times');
+        $('#id_icono'+numero_dispositivo).addClass('fa fa-arrow-right');
+     }
+     else
+     {
+        $('#seleccionarDispositivo'+numero_dispositivo).val(0);
+        $('#seleccionarDispositivo'+numero_dispositivo).removeClass('btn btn-info');
+        $('#seleccionarDispositivo'+numero_dispositivo).addClass('btn btn-danger');
+        $('#id_icono'+numero_dispositivo).removeClass('fa fa-arrow-right');
+        $('#id_icono'+numero_dispositivo).addClass('fa fa-times');
+    }
+}
+
+
 function filtro_dispositivos() {
     var input, filter, table, tr, td,td1, i;
     input = document.getElementById("buscar_dispositivos");
@@ -144,9 +164,9 @@ function guardarAsignaciones(){
     var arreglo = new Array();
     $('#tablaDispositivosA tbody tr').each( function(){
         var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
-         if(id_dispositivo != 0){
-             arreglo.push(id_dispositivo);
-         }
+            if(id_dispositivo != 0){
+                arreglo.push(id_dispositivo);
+            }
     });
     $(arreglo).each(function (index, element) {
         $.ajaxSetup({
@@ -179,6 +199,48 @@ $('#asignar_dispositivos').on('submit',function(e){
 	guardarAsignaciones();
 });
 
+function modificar_dispositivos_asignados(){
+    var arr = new Array();
+    $('#tablaDispositivosA2 tbody tr').each( function(){
+        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        if(id_dispositivo != 0){
+            arr.push(id_dispositivo);
+        }
+    });
+    console.log(arr);
+    $('#tablaDispositivosA2 tbody tr').each( function(){
+        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        $(arr).each(function (index, element) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            if(id_dispositivo == element){
+                $.ajax({
+                    url:'eliminar_dispositivos_asignados/'+id_dispositivo, 
+                    method: 'DELETE',          
+                    data: FrmData,    
+                    dataType: 'json',
+                    success: function(requestData) 
+                    {
+                        alertify.success("DATOS ELIMINADOS CORRECTAMENTE");
+                        $('#modalAsignacion').modal('hide');
+                    },
+                });
+            }
+        });
+    });
+}
+
 $('#dispositivos_asignados').on('submit',function(){
-    alert('hola');
+    modificar_dispositivos_asignados();
 });
+
+// $('#hola').click(function(){
+//         modificar_dispositivos_asignados();
+// });
+    
+
+
+

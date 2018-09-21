@@ -99,8 +99,22 @@ class AsignacionDispositivosController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(Asignacion_Dispositivos $asignacion_Dispositivos)
+    public function destroy()
     {
         //
     }
+
+    public function eliminar_dispositivos_asignados($asignacion_Dispositivos)
+    {
+        $asignacion_Dispositivos=Dispositivos::find($asignacion_Dispositivos);
+
+        $dispositivo = Dispositivos::findOrFail($request->iddispositivo);
+        $dispositivo->asignado = '0';
+        $dispositivo->update();
+
+        $asignacion_Dispositivos->delete();
+    }
+
+
+
 }

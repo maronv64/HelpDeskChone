@@ -14,12 +14,7 @@ use App\Area;
 use Carbon\Carbon;
 class PeticionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+   
     public function index()
     {
         //
@@ -27,24 +22,13 @@ class PeticionController extends Controller
         return view('adminlte::layouts.partials.GestionPeticiones.peticiones');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+   
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
+    
     public function store(Request $request)
     {
         $peticion = new Peticion();
@@ -63,39 +47,20 @@ class PeticionController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Peticion  $peticion
-     * @return \Illuminate\Http\Response
-     */
-
-    public function show( $request)
+    
+    public function show( $request='')
     {
         $peticion    = Peticion::with('prioridad','estado','tipo_peticion','usuario')->findOrFail($request);
         return $peticion;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Peticion  $peticion
-     * @return \Illuminate\Http\Response
-     */
-
+   
     public function edit(Request $request )
     {
         //
         //return view('adminlte::layouts.partials.GestionPeticiones.modalPeticiones');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Peticion  $peticion
-     * @return \Illuminate\Http\Response
-     */
     
     public function update(Request $request)
     {
@@ -108,14 +73,20 @@ class PeticionController extends Controller
         $peticion->update();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Peticion  $peticion
-     * @return \Illuminate\Http\Response
-     */
+    public function destroy($request='')
+    {
+        //
+        $peticion = Peticion::findOrFail($request);
+        $peticion->estado_del='0';
+        $estado = Estado::where('descripcion','like',"%final%")->firstOrFail();
+        $peticion->idestado=$estado->idestado;
+        $peticion->update_at= Carbon::now()->toDateTimeString();
+        $peticion->update();
+    }
 
-    public function destroy($request)
+    //-------------------------------------------------------------------------------------------------------
+
+    public function prueba_eliminar($request)
     {
         $peticion = Peticion::findOrFail($request);
         $peticion->estado_del='0';
@@ -181,21 +152,71 @@ class PeticionController extends Controller
         }
     }
 
-<<<<<<< HEAD
-    public function datospeticion($id){
-=======
-
-
-    public function datospeticion($id=''){
->>>>>>> b706f793aaffbca965a031531382969af2dcceb8
+    public function datospeticion($id='')
+    {
         $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->get();//where('estado_del','1')->get();
-//        $peticiones = Peticion::with('prioridad','estado','tipo_peticion')->get();//where('estado_del','1')->get();
-        //dd($peticiones);
-    //return;
         return response()->json($peticiones);    
     }
-<<<<<<< HEAD
-=======
+
+    public function peticionesFiltroAbmin($tipobusqueda='',Request $request)
+    {
+        if ($tipobusqueda=='Todas') {
+            # code...
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['estado_del','1'],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+
+        }else 
+        if ($tipobusqueda=='TipoPeticion') {
+            # code...
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['estado_del','1'],
+                                                                                                ['idtipopeticion',$request->idtipopeticion],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+
+        }else if ($tipobusqueda=='Prioridad') {
+            # code...
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['estado_del','1'],
+                                                                                                ['idprioridad',$request->idprioridad],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+
+        }else if ($tipobusqueda=='Estado') {
+            # code...
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['estado_del','1'],
+                                                                                                ['idestado',$request->idestado],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+
+        }else if ($tipobusqueda=='Usuario') {
+            # code...
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['estado_del','1'],
+                                                                                                ['usuario.name','like',"%$request->username%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+        }
+
+       
+    }
 
 
 //////////////////////////////////////////////Peticiones para usuarios normales//////////////////////////
@@ -219,5 +240,4 @@ class PeticionController extends Controller
 
 
 
->>>>>>> b706f793aaffbca965a031531382969af2dcceb8
 }

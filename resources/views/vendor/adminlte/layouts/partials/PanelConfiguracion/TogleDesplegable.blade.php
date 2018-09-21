@@ -15,11 +15,10 @@
         @include('adminlte::layouts.partials.PanelConfiguracion.GestionAreas.RegistroAreas')                  
   </div>
   <div id="menuEspecialidades" class="tab-pane fade">
-    <h3>Gestion de especialidades</h3>
-        @include('adminlte::layouts.partials.PanelConfiguracion.GestionTipoUsuarios.RegistroTipoUser')                  
+        @include('adminlte::layouts.partials.PanelConfiguracion.GestionEspecialidades.RegistroEspecialidades')                  
   </div>
   <div id="menuTiposDispositivos" class="tab-pane fade">
     <h3>Gestion de tipos de dispositivos</h3>
-        @include('adminlte::layouts.partials.PanelConfiguracion.GestionTipoUsuarios.RegistroTipoUser')                   
+        @include('adminlte::layouts.partials.PanelConfiguracion.GestionTipoDispositivos.RegistroTipoDispositivos')                   
   </div>
 </div>

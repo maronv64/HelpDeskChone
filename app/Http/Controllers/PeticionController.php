@@ -160,6 +160,7 @@ class PeticionController extends Controller
 
     public function peticionesFiltroAbmin($tipobusqueda='',Request $request)
     {
+        //return response()->json($request);  
         if ($tipobusqueda=='Todas') {
             # code...
             $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
@@ -181,7 +182,7 @@ class PeticionController extends Controller
                                                                                         ->orderBy('created_at','desc')
                                                                                         ->get();//where('estado_del','1')->get();
             return response()->json($peticiones);
-
+        
         }else if ($tipobusqueda=='Prioridad') {
             # code...
             $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
@@ -195,6 +196,7 @@ class PeticionController extends Controller
 
         }else if ($tipobusqueda=='Estado') {
             # code...
+            # code...                                          
             $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
                                                                                                 ['estado_del','1'],
                                                                                                 ['idestado',$request->idestado],
@@ -204,17 +206,35 @@ class PeticionController extends Controller
                                                                                         ->get();//where('estado_del','1')->get();
             return response()->json($peticiones);
 
-        }else if ($tipobusqueda=='Usuario') {
-            # code...
+        }else if ($tipobusqueda=='Usuario') { 
+            //$usuario =   User::where()                        
+            // $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+            //                                                                                     ['estado_del','1'],
+            //                                                                                     ['usuario:name','like',"%$request->username%"] ])
+            //                                                                             ->orderBy('created_at','desc')
+            //                                                                             ->get();//where('estado_del','1')->get();
+            // return response()->json($peticiones);
+
+            // $peticiones = Peticion::with(['prioridad','estado','tipo_peticion','usuario'=>function ($query){
+            //                                                                             $query->where('name','like',"%$request->username%");
+            //                                                                             }])->get();//where('estado_del','1')->get();
+            // return response()->json($peticiones);
+            
+            // $users = App\User::with(['posts' => function ($query) {
+            //     $query->where('title', 'like', '%first%');
+            // }])->get();
+
             $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
                                                                                                 ['estado_del','1'],
-                                                                                                ['usuario.name','like',"%$request->username%"]
-                                                                                                ])
+                                                                                                [usuario=>'name','like',"%$request->username%"] ])
                                                                                         ->orderBy('created_at','desc')
                                                                                         ->get();//where('estado_del','1')->get();
             return response()->json($peticiones);
-        }
 
+           
+
+        }
+        
        
     }
 

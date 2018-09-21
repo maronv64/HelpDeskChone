@@ -141,7 +141,6 @@ function desmarcarDispositivos(valor,numero_dispositivo){
     }
 }
 
-
 function filtro_dispositivos() {
     var input, filter, table, tr, td,td1, i;
     input = document.getElementById("buscar_dispositivos");
@@ -211,12 +210,12 @@ function modificar_dispositivos_asignados(){
     $('#tablaDispositivosA2 tbody tr').each( function(){
         var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
         $(arr).each(function (index, element) {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
             if(id_dispositivo == element){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
                 $.ajax({
                     url:'eliminar_dispositivos_asignados/'+id_dispositivo, 
                     method: 'DELETE',          

@@ -113,8 +113,6 @@ class DispositivosController extends Controller
     public function destroy($dispositivos)
     {
        $dispositivo=Dispositivos::find($dispositivos);
-       //$usuario->fecha_clausura=Carbon::now()->toDateTimeString(); // obtenemos la fecha de eliminacion
-       //$usuario->estado='No Disponible'; // modificamos el estado a F de finalisado
        $dispositivo->delete();
     }
 
@@ -150,7 +148,7 @@ class DispositivosController extends Controller
         return response()->json($consulta);
     }
 
-    
+
 
 }
 

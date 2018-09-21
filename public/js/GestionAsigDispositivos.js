@@ -26,27 +26,27 @@ function cargartablausuarios(data){
          <td>"+ especialidad+"</td>\
          <td>"+ data.area.nombre +"</td>\
          <td>"+ data.email +"</td>\
-         <td class='row'><button type='button' class='btn btn-success' onClick='mostrarModal("+data.id+")'>Agregar</button></td></tr>"
+         <td class='row'><button type='button' id='agregarDispositivo' class='btn btn-success' onClick='mostrarModal("+data.id+")'>Agregar</button></td></tr>"
     );
 }
 
 function mostrarModal(id_usuario) {
     $('#modalAsignacion').modal('show');
     cargarListaDispositivos();
-    $('#asignar_dispositivos').val(id_usuario)
+    cargarListaDispositivosPorUsuario(id_usuario);
+    $('#asignar_dispositivos').val(id_usuario);
 }
 
 function cargarListaDispositivos() {
 	$('#tablaDispositivosA tbody tr').empty();
 	$.ajax({
-		url: 'obtenerDispositivos',
+		url: 'consultar_dispositivos_disponibles',
 		type: 'GET',
 		dataType: 'json',
-		
 	})
 	.done(function(datos) {
-        id_fila = 0;
-		$.each(datos.dispositivos, function(index, val) {
+        var id_fila = 0;
+		$.each(datos.dispositivos , function(index, val) {
             var out="";
             if (val.cod_activo=="Activo") {
                 id_fila = id_fila + 1;
@@ -62,7 +62,7 @@ function cargarListaDispositivos() {
                 out+="<td>"+val.modelo+"</td>";
                 out+="<td>"+val.marca+"</td>";
                 out+="<td class='text-success'>"+val.cod_activo+"</td>";
-                out+="<td class='row'><center><button type='button' value ='0' class='btn btn-info' id='agregarDispositivo"+id_fila+"' onClick='marcarDispositivos("+val.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-arrow-right'></i></button></center></td>"
+                out+="<td class='row'><center><button type='button' value ='0' class='btn btn-info' id='seleccionarDispositivo"+id_fila+"' onClick='marcarDispositivos("+val.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-arrow-right'></i></button></center></td>"
                 out+="</tr>";
             }
             $('#tablaDispositivosA tbody').append(out);
@@ -73,20 +73,69 @@ function cargarListaDispositivos() {
 	})
 };
 
+function cargarListaDispositivosPorUsuario(id_usuario) {
+	$('#tablaDispositivosA2 tbody').empty();
+	$.ajax({
+		url: 'consultar_dispositivos_de_usuario/'+id_usuario,
+		type: 'GET',
+		dataType: 'json',
+	})
+	.done(function(datos) {
+        var id_fila = 0;
+        $.each(datos, function(index, val) {
+            var out="";
+            id_fila = id_fila - 1;
+            out+="<tr id='numero_fila"+id_fila+"'>";
+            out+="<td>"+val.dispositivos.nombredispositivo+"</td>";
+            out+="<td>"+val.dispositivos.tipo_dispositivo.descripcion+"</td>";
+            out+="<td>"+val.dispositivos.serie+"</td>";
+            out+="<td>"+val.dispositivos.color+"</td>";
+            out+="<td>"+val.dispositivos.modelo+"</td>";
+            out+="<td>"+val.dispositivos.marca+"</td>";
+            out+="<td class='text-success'>"+val.dispositivos.cod_activo+"</td>";
+            out+="<td class='row'><center><button type='button' value ='0' class='btn btn-danger' id='seleccionarDispositivo"+id_fila+"' onClick='desmarcarDispositivos("+val.dispositivos.iddispositivos+","+id_fila+")'><i id='id_icono"+id_fila+"' class='fa fa-times'></i></button></center></td>"
+            out+="</tr>";
+            $('#tablaDispositivosA2 tbody').append(out);
+        });
+	})
+	.fail(function() {
+		console.log("error");
+	})
+};
+
 function marcarDispositivos(valor,numero_dispositivo){
-    if ($('#agregarDispositivo'+numero_dispositivo).hasClass('btn btn-danger'))
+    if ($('#seleccionarDispositivo'+numero_dispositivo).hasClass('btn btn-danger'))
     {
-        $('#agregarDispositivo'+numero_dispositivo).val(0);
-        $('#agregarDispositivo'+numero_dispositivo).removeClass('btn btn-danger');
-        $('#agregarDispositivo'+numero_dispositivo).addClass('btn btn-info');
+        $('#seleccionarDispositivo'+numero_dispositivo).val(0);
+        $('#seleccionarDispositivo'+numero_dispositivo).removeClass('btn btn-danger');
+        $('#seleccionarDispositivo'+numero_dispositivo).addClass('btn btn-info');
         $('#id_icono'+numero_dispositivo).removeClass('fa fa-times');
         $('#id_icono'+numero_dispositivo).addClass('fa fa-arrow-right');
      }
      else
      {
-        $('#agregarDispositivo'+numero_dispositivo).val(valor);
-        $('#agregarDispositivo'+numero_dispositivo).removeClass('btn btn-info');
-        $('#agregarDispositivo'+numero_dispositivo).addClass('btn btn-danger');
+        $('#seleccionarDispositivo'+numero_dispositivo).val(valor);
+        $('#seleccionarDispositivo'+numero_dispositivo).removeClass('btn btn-info');
+        $('#seleccionarDispositivo'+numero_dispositivo).addClass('btn btn-danger');
+        $('#id_icono'+numero_dispositivo).removeClass('fa fa-arrow-right');
+        $('#id_icono'+numero_dispositivo).addClass('fa fa-times');
+    }
+}
+
+function desmarcarDispositivos(valor,numero_dispositivo){
+    if ($('#seleccionarDispositivo'+numero_dispositivo).hasClass('btn btn-danger'))
+    {
+        $('#seleccionarDispositivo'+numero_dispositivo).val(valor);
+        $('#seleccionarDispositivo'+numero_dispositivo).removeClass('btn btn-danger');
+        $('#seleccionarDispositivo'+numero_dispositivo).addClass('btn btn-info');
+        $('#id_icono'+numero_dispositivo).removeClass('fa fa-times');
+        $('#id_icono'+numero_dispositivo).addClass('fa fa-arrow-right');
+     }
+     else
+     {
+        $('#seleccionarDispositivo'+numero_dispositivo).val(0);
+        $('#seleccionarDispositivo'+numero_dispositivo).removeClass('btn btn-info');
+        $('#seleccionarDispositivo'+numero_dispositivo).addClass('btn btn-danger');
         $('#id_icono'+numero_dispositivo).removeClass('fa fa-arrow-right');
         $('#id_icono'+numero_dispositivo).addClass('fa fa-times');
     }
@@ -114,9 +163,9 @@ function guardarAsignaciones(){
     var arreglo = new Array();
     $('#tablaDispositivosA tbody tr').each( function(){
         var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
-         if(id_dispositivo != 0){
-             arreglo.push(id_dispositivo);
-         }
+            if(id_dispositivo != 0){
+                arreglo.push(id_dispositivo);
+            }
     });
     $(arreglo).each(function (index, element) {
         $.ajaxSetup({
@@ -148,3 +197,43 @@ $('#asignar_dispositivos').on('submit',function(e){
 	e.preventDefault();
 	guardarAsignaciones();
 });
+
+function modificar_dispositivos_asignados(){
+    var arr = new Array();
+    $('#tablaDispositivosA2 tbody tr').each( function(){
+        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        if(id_dispositivo != 0){
+            arr.push(id_dispositivo);
+        }
+    });
+    console.log(arr);
+    $('#tablaDispositivosA2 tbody tr').each( function(){
+        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        $(arr).each(function (index, element) {
+            if(id_dispositivo == element){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url:'eliminar_dispositivos_asignados/'+id_dispositivo, 
+                    method: 'DELETE',          
+                    success: function(requestData) 
+                    {
+                        alertify.success("DATOS ELIMINADOS CORRECTAMENTE");
+                        $('#modalAsignacion').modal('hide');
+                    },
+                });
+            }
+        });
+    });
+}
+
+$('#dispositivos_asignados').on('submit',function(e){
+    e.preventDefault();
+    modificar_dispositivos_asignados();
+    cargarListaDispositivos();
+});
+
+

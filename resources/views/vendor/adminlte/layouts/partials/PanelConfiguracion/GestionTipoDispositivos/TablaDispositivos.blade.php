@@ -8,16 +8,16 @@
           <hr>
           <div class="table-responsive pre-scrollable">
             <table id="tablaTiposDispositivos" class="table table-hover table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              </tr>
-            </tbody>
+              <thead>
+                <tr>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                </tr>
+              </tbody>
           </table>
           </div>       
       </div>

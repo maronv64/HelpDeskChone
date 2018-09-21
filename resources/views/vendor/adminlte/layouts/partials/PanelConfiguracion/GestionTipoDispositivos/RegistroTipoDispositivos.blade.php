@@ -2,9 +2,9 @@
 <div class="panel-group" id="accordion1">
     <div class="panel panel-default">
       <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion1" href="#collapse2" >
-        <h4>
-            GESTION DE TIPO DE DISPOSITIVOS
-        </h4>
+            <p>
+                GESTION DE TIPO DE DISPOSITIVOS
+            </p>
       </div>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">

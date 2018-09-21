@@ -90,4 +90,8 @@ class TipoDispositivoController extends Controller
     {
         //
     }
+    public function mostrardispositivos(){
+        $tipoDispositivo= TipoDispositivo::All();
+        return response()->json($tipoDispositivo);
+    }
 }

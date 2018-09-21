@@ -2,9 +2,7 @@
 <div class="panel-group" id="accordion2">
     <div class="panel panel-default">
       <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion2" href="#collapse3" >
-        <h4>
             REGISTRO DE AREAS
-        </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">

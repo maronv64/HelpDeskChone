@@ -135,7 +135,7 @@ class DispositivosController extends Controller
         return response()->json($dispositivo);
     }
 
-    public function consultar_dispositivos_asignados(){
+    public function consultar_dispositivos_disponibles(){
         $dispositivos= Dispositivos::where('asignado','0')->get();
         $tipos= DB::table('tipodispositivos')->get();
         $consulta = array(
@@ -145,12 +145,12 @@ class DispositivosController extends Controller
         return response()->json($consulta);
     }
 
+    public function consultar_dispositivos_de_usuario($id_usuario){
+        $consulta = Asignacion_Dispositivos::with('dispositivos')->where('usuario_idusuario',$id_usuario)->get();
+        return response()->json($consulta);
+    }
 
-    // public function CargarDatos2(){
-    //     $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('estado_del','1')
-    //                                                                                 ->orderBy('created_at','desc')
-    //                                                                                 ->get();//where('estado_del','1')->get();
-    //     return response()->json($peticiones);
-    // }
+    
+
 }
 

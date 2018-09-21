@@ -1,5 +1,3 @@
-                  <p> <h3>Gestion de tipos de usuarios</h3></p>
-                  <hr>
                   <form id="frm_registrardispositivo"  method="post">
                 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -18,6 +16,6 @@
                                 <a class="btn btn-primary btn-block rounded">Almacenar</a>
                             </div>
                         </div>
-                    </div>
-                        
+                    </div>                    
                   </form>
+                  @include('adminlte::layouts.partials.PanelConfiguracion.GestionTipoUsuarios.Tabla')  

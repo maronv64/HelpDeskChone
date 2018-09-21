@@ -11,10 +11,10 @@ class Asignacion_Dispositivos extends Model
     public $timestamps=false;
 
     public function usuario(){
-		return $this->hasOne('App\Usuarios' ,'id', 'usuario_idusuario');
+		return $this->hasOne('App\Usuarios' ,'id', 'usuario_idUsuario');
     }
         
     public function dispositivos(){
-        return $this->hasOne('App\Dispositivos' ,'iddispositivos', 'dispositivos_iddispositivos');
+        return $this->hasOne('App\Dispositivos' ,'iddispositivos', 'dispositivos_iddispositivos')->with('tipoDispositivo');
     }
 }

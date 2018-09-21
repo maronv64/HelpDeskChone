@@ -26,8 +26,8 @@ Route::get('/obtenerDispositivos/{id?}','DispositivosController@buscarDispositiv
 
 //rutas para asignacion de dispositivos
 Route::resource('/asignacionDispositivos','AsignacionDispositivosController');
-Route::get('/consultar_dispositivos_asignados','DispositivosController@consultar_dispositivos_asignados');
-
+Route::get('/consultar_dispositivos_disponibles','DispositivosController@consultar_dispositivos_disponibles');
+Route::get('/consultar_dispositivos_de_usuario/{id}','DispositivosController@consultar_dispositivos_de_usuario');
 
 //la plantilla hace uso de estas rutas
 Route::group(['middleware' => 'auth'], function () {
@@ -122,8 +122,11 @@ Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
 Route::get('/mostrarobservacion/{idasignacion}','AsigTareasController@mostrarobservacion');
 
 //Rutas de tipo de usuarios
-Route::resource('/TipoUsuarios','TipoUsuariosController');
+//Route::resource('/TipoUsuarios','TipoUsuariosController');
+Route::get('/TipoUsuarios', function () {
+    return view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig');
+});
 
 
-
+//view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 

@@ -2,9 +2,7 @@
 <div class="panel-group" id="accordion3">
     <div class="panel panel-default">
       <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion3" href="#collapse4" >
-        <h4>
             INGRESO DE TIPOS DE USUARIOS
-        </h4>
       </div>
       <div id="collapse4" class="panel-collapse collapse">
         <div class="panel-body">

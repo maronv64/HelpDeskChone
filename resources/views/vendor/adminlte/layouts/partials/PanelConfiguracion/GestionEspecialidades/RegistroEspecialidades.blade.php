@@ -2,9 +2,7 @@
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
-        <h4>
             INGRESO DE ESPECIALIDADES
-        </h4>
       </div>
       <div id="collapse1" class="panel-collapse collapse">
         <div class="panel-body">

@@ -128,6 +128,8 @@ Route::get('/TipoUsuarios', function () {
     return view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig');
 });
 
+/*######################RUTAS PARA LOS TIPOS DE DISPOSITIVOS#################################*/
+Route::get('/mostrartiposdispositivos','TipoDispositivoController@mostrardispositivos');
 
 //view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 

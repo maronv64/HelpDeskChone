@@ -28,6 +28,7 @@ Route::get('/obtenerDispositivos/{id?}','DispositivosController@buscarDispositiv
 Route::resource('/asignacionDispositivos','AsignacionDispositivosController');
 Route::get('/consultar_dispositivos_disponibles','DispositivosController@consultar_dispositivos_disponibles');
 Route::get('/consultar_dispositivos_de_usuario/{id}','DispositivosController@consultar_dispositivos_de_usuario');
+Route::delete('/eliminar_dispositivos_asignados/{id}','AsignacionDispositivosController@eliminar_dispositivos_asignados');
 
 //la plantilla hace uso de estas rutas
 Route::group(['middleware' => 'auth'], function () {

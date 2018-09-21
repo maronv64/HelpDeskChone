@@ -238,7 +238,7 @@ $('#dispositivos_asignados').on('submit',function(){
 });
 
 // $('#hola').click(function(){
-//         modificar_dispositivos_asignados();
+//  modificar_dispositivos_asignados();
 // });
     
 

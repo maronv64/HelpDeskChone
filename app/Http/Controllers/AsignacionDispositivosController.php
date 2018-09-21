@@ -108,7 +108,7 @@ class AsignacionDispositivosController extends Controller
     {
         $asignacion_Dispositivos=Dispositivos::find($asignacion_Dispositivos);
 
-        $dispositivo = Dispositivos::findOrFail($request->iddispositivo);
+        $dispositivo = Dispositivos::findOrFail($asignacion_Dispositivos->dispositivos->iddispositivo);
         $dispositivo->asignado = '0';
         $dispositivo->update();
 

@@ -1,4 +1,4 @@
-<form id="frm_ingresar_tipos_user"  method="post">
+<form id="frm_ingresar_tipo_usuario"  method="post">
 <div class="panel-group" id="accordion3">
     <div class="panel panel-default">
       <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion3" href="#collapse4" >
@@ -17,7 +17,7 @@
                         <center><h3>Ingreso de nuevos tipos de usuarios</h3></center>  
                         </div>
                         <br>
-                        <input required id="" type="text" class="form-control" placeholder="Descripcion del tipo de usuario" autocomplete="off" value="{{ old('dispositivo') }}" />
+                        <input required id="id_txt_tipo_usuario" type="text" class="form-control" placeholder="Descripcion del tipo de usuario" autocomplete="off" value="{{ old('dispositivo') }}" />
                         <br>
                         <button type="submit"  class="btn btn-primary btn-block rounded">Almacenar</button>
                     </div>

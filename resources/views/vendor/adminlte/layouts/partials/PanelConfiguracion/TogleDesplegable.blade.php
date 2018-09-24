@@ -20,4 +20,3 @@
   </div>
 </div>
 
-<script src="{{ asset('js/PanelConfiguracion/GestionPanelTipoDispositivos.js') }}" defer></script>

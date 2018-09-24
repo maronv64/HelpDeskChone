@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-09-2018 a las 16:07:25
+-- Tiempo de generación: 24-09-2018 a las 15:52:08
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -124,20 +124,24 @@ CREATE TABLE `dispositivos` (
   `color` varchar(100) NOT NULL,
   `modelo` varchar(100) NOT NULL,
   `marca` varchar(100) NOT NULL,
-  `cod_activo` varchar(100) NOT NULL
+  `cod_activo` varchar(100) NOT NULL,
+  `asignado` varchar(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `dispositivos`
 --
 
-INSERT INTO `dispositivos` (`iddispositivos`, `idtipodispositivos`, `nombredispositivo`, `serie`, `color`, `modelo`, `marca`, `cod_activo`) VALUES
-(21, 3, 'asdfdsf', 'sadfasd', 'asdf', 'asdf', 'asdf', 'Inactivo'),
-(22, 3, 'asdfadsf', 'asdfasdf', 'asdfsdf', 'sdfgfsd', 'asdf', 'Inactivo'),
-(23, 2, 'adsfasdf', '123456', 'asdf', 'asdf', 'asdf', 'Activo'),
-(24, 2, 'Computer', '456456', 'black', '735645', 'Hola', 'Activo'),
-(25, 1, 'asdfsad', 'asdf', 'asdfsad', 'asdfsda', 'asdf', 'Activo'),
-(26, 3, 'asdfsda', 'sadfsad', 'asdfsadf', 'asdfsadf', 'asdfsaf', 'Activo');
+INSERT INTO `dispositivos` (`iddispositivos`, `idtipodispositivos`, `nombredispositivo`, `serie`, `color`, `modelo`, `marca`, `cod_activo`, `asignado`) VALUES
+(21, 3, 'Computador', '32546423', 'Azul', 'lm73', 'Intel', 'Inactivo', '0'),
+(22, 3, 'Impresora', '54987987', 'Negro', 'lm750', 'Epson', 'Activo', '0'),
+(23, 3, 'aaaaa', '123456', 'asdf', 'asdf', 'asdf', 'Activo', '0'),
+(24, 2, 'Computer', '456456', 'black', '735645', 'Hola', 'Activo', '1'),
+(25, 1, 'asdfsad', 'asdf', 'asdfsad', 'asdfsda', 'asdf', 'Activo', '0'),
+(26, 3, 'asdfsda', 'sadfsad', 'asdfsadf', 'asdfsadf', 'asdfsaf', 'Activo', '0'),
+(27, 3, 'da', 'sda', 'da', 'dsa', 'da', 'Activo', '0'),
+(28, 1, 'dsfgsdfg', 'dfsg', 'dsfg', 'sdfg', 'dfgssdffg', 'Activo', '0'),
+(29, 1, 'fdsg', 'sdfg', 'sdfg', 'gdsfg', 'sdfg', 'Activo', '0');
 
 -- --------------------------------------------------------
 
@@ -156,7 +160,7 @@ CREATE TABLE `especialidad` (
 
 INSERT INTO `especialidad` (`idespecialidad`, `descripcion`) VALUES
 (2, 'Sistemas'),
-(3, 'Tecnologia'),
+(3, 'Tecnología'),
 (4, 'Redes');
 
 -- --------------------------------------------------------
@@ -176,9 +180,9 @@ CREATE TABLE `estado` (
 --
 
 INSERT INTO `estado` (`idestado`, `descripcion`, `estado_del`) VALUES
-(1, 'Pendiente', '1'),
-(2, 'Asignada', '1'),
-(3, 'Finalizado', '1');
+(1, 'Asignada', '1'),
+(2, 'Pendiente', '1'),
+(3, 'Finalizada', '1');
 
 -- --------------------------------------------------------
 
@@ -201,8 +205,14 @@ INSERT INTO `extra_tecnico` (`idextra_tecnico`, `idusuario`, `especialidad`) VAL
 (72, 193, 'Mantenimiento'),
 (77, 197, 'Mantenimiento'),
 (78, 204, 'Sistemas'),
-(79, 206, 'Tecnologia'),
-(80, 207, 'Redes');
+(79, 206, 'Tecnología'),
+(80, 207, 'Redes'),
+(81, 209, 'Sistemas'),
+(82, 210, 'Sistemas'),
+(83, 211, 'Sistemas'),
+(84, 212, 'Sistemas'),
+(85, 213, 'Sistemas'),
+(86, 214, 'Sistemas');
 
 -- --------------------------------------------------------
 
@@ -266,49 +276,29 @@ CREATE TABLE `peticion` (
   `idestado` int(11) NOT NULL,
   `idtipopeticion` int(11) NOT NULL,
   `idusuario` int(10) NOT NULL,
-  `descripcion` varchar(200) DEFAULT NULL,
-  `estado_del` varchar(45) DEFAULT NULL
+  `descripcion` varchar(1000) DEFAULT NULL,
+  `estado_del` varchar(45) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `peticion`
 --
 
-INSERT INTO `peticion` (`idpeticion`, `idprioridad`, `idestado`, `idtipopeticion`, `idusuario`, `descripcion`, `estado_del`) VALUES
-(2, 1, 1, 1, 144, 'hola', '1'),
-(11, 1, 2, 2, 161, 'gfdgdfgdfg', '1'),
-(12, 1, 2, 2, 162, 'fgdfgdfgdf', '1'),
-(13, 2, 1, 2, 162, 'trthrthrth', '1'),
-(14, 1, 1, 1, 199, 'kjhkjhikj', '1'),
-(15, 1, 1, 1, 199, 'kjhkjhikj', '1'),
-(16, 2, 2, 2, 203, 'fgdfgdsfg', '1'),
-(17, 2, 2, 2, 203, 'fgdfgdsfg', '1'),
-(18, 1, 1, 1, 200, 'hggff', '1'),
-(19, 1, 1, 1, 200, 'hggff', '1'),
-(20, 1, 1, 1, 200, 'hgfhgf', '1'),
-(21, 1, 1, 1, 200, 'hgfhgf', '1'),
-(22, 1, 2, 2, 199, 'jhghjhjghjg', '1'),
-(23, 1, 2, 2, 199, 'jhghjhjghjg', '1'),
-(24, 2, 2, 1, 203, 'sdfsdfsdf', '1'),
-(25, 2, 2, 1, 203, 'sdfsdfsdf', '1'),
-(26, 1, 1, 1, 152, 'maron', '1'),
-(27, 1, 1, 1, 152, 'maron', '1'),
-(28, 3, 2, 2, 148, 'fsdfsdfsdfs', '1'),
-(29, 3, 2, 2, 148, 'fsdfsdfsdfs', '1'),
-(30, 2, 3, 1, 152, 'gyhdfghfdgh', '1'),
-(31, 2, 3, 1, 152, 'gyhdfghfdgh', '1'),
-(32, 2, 2, 2, 152, 'fgsdfgdfgdfg', '1'),
-(33, 2, 2, 2, 152, 'fgsdfgdfgdfg', '1'),
-(34, 2, 2, 1, 152, 'fdgfgdfg', '1'),
-(35, 2, 2, 1, 152, 'fdgfgdfg', '1'),
-(36, 1, 3, 2, 206, 'sdfsdfsdf', '1'),
-(37, 1, 3, 2, 206, 'sdfsdfsdf', '1'),
-(38, 2, 2, 2, 203, 'sdfgdfg', '1'),
-(39, 2, 2, 2, 203, 'sdfgdfg', '1'),
-(40, 2, 2, 1, 152, 'sdfsdfsdf', '1'),
-(41, 2, 2, 1, 152, 'sdfsdfsdf', '1'),
-(42, 2, 2, 2, 206, 'aqwdfaSDASDA', '1'),
-(43, 2, 2, 2, 206, 'aqwdfaSDASDA', '1');
+INSERT INTO `peticion` (`idpeticion`, `idprioridad`, `idestado`, `idtipopeticion`, `idusuario`, `descripcion`, `estado_del`, `created_at`, `updated_at`) VALUES
+(2, 1, 3, 1, 144, 'hola que tal', '0', '2018-09-18 20:12:35', NULL),
+(26, 1, 2, 2, 152, 'maron', '1', '2018-09-18 20:12:35', NULL),
+(27, 1, 2, 1, 152, 'maron', '1', '2018-09-18 20:12:35', NULL),
+(44, 2, 1, 1, 152, 'hola que haces', '1', '2018-09-18 20:12:35', NULL),
+(45, 2, 2, 2, 203, 'prueba maron vera', '0', '2018-09-18 20:12:35', NULL),
+(46, 3, 2, 1, 152, 'se me daño la pc tgthtrhththrtwr6h6ryuwr57yuj6rw3ure7nji7b7r5uivf6fu6ri7uiuthfergregreg5rgregregregrgrgyrhbytjh6hthrthrehrthgnhgfngfdhj6bu7tc v7tckf7kvj7t767g7t', '0', '2018-09-18 20:27:04', NULL),
+(47, 2, 2, 1, 144, 'hola como estan todos', '0', '2018-09-19 20:15:36', NULL),
+(48, 2, 2, 1, 144, 'moshi moshi', '0', '2018-09-19 20:22:35', NULL),
+(49, 2, 1, 1, 144, 'wwwwwww', '1', '2018-09-19 22:03:03', NULL),
+(50, 1, 2, 1, 199, 'hola hola', '0', '2018-09-19 22:42:26', NULL),
+(51, 2, 1, 2, 199, 'Un formato de solicitud de mantenimiento es una solicitud que se hace por escrito  para  exponer las fallas, o defectos técnicos de algún  objeto, producto o aparato y solicitar su reparación, dirigido a la entidad responsable de ello, ya sea esta gubernamental, (en casos de mantenimientos de calles, escuelas o edificios públicos), a una fábrica o empresa, (en caso de productos defectuosos o incompletos), a una persona o empresa especializada (como en el caso del mantenimiento de edificios privados por parte de empresas que prestan el servicio de mantenimiento, o de parte de trabajadores individuales como fontaneros o electricistas).  URL del artículo: https://www.ejemplode.com/11-escritos/2766-ejemplo_de_formato_de_solicitud_de_mantenimiento.html Nota completa: Ejemplo de Formato de solicitud de mantenimiento', '1', '2018-09-20 02:34:21', NULL),
+(52, 1, 2, 1, 200, 'dfsdfsdfsdfsdf', '1', '2018-09-22 00:10:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -448,13 +438,13 @@ INSERT INTO `users` (`id`, `name`, `apellidos`, `cedula`, `sexo`, `celular`, `em
 (144, 'Luis', 'Coaboy', '1315700631', 'Masculino', '0982284179', 'luis@hotmail.com', '$2y$10$DbcPyiYIusYpKxPVC80o1.PHKHYmobZ/fIqpZrbeqdPHiHcAj6zl6', 4, 'Activo', 1, 'g2PLc3YI4e14qBCaKDKfhI01qLN0BsMVUgl6GbfoPcH5wzHhDguLe5GDB6fw', NULL, NULL),
 (148, 'junior', 'parraga', '1313402925', 'Masculino', '0990987071', 'junior_pg1995@hotmail.com', '$2y$10$q/4.N8wqEBttpnjbOoBJoO3qmlTj2fC1TMK/nTqyrFSZDJfhqdvdy', 5, 'Activo', 1, 'HBJc2f9AIH3oGrIcQzCod7irP0XpodFUsQqjIKBzQ5k1lCX3VwUh6xNbCeHg', NULL, NULL),
 (150, 'Gabriel', 'Pachard', '1315221562', 'Femenino', '0979932503', 'pachard@hotmail.com', '$2y$10$OQCetQywbKScrk.IDYjDKea7LuRBk5VXD2.IuM/w8msiuyYEBCe/2', 3, 'Inactivo', 1, NULL, NULL, NULL),
-(152, 'Cesar', 'Andrade', '1311190027', 'Masculino', '0989873765', 'cesar@hotmail.com', '$2y$10$RNbK.WDTzhVQgdtodQT9quWNCHuSbBvYCSdjc8s5p1CJAVPoAf2Jy', 2, 'Activo', 1, 'nSb7WzCguVLlU67SujtVsGykKct1naIV7FEIgIIm3KJ1C8kWmYjZzV1RwaZn', NULL, NULL),
+(152, 'Cesar', 'Andrade', '1311190027', 'Masculino', '0989873765', 'cesar@hotmail.com', '$2y$10$RNbK.WDTzhVQgdtodQT9quWNCHuSbBvYCSdjc8s5p1CJAVPoAf2Jy', 1, 'Activo', 1, 'rgZQqBM7Ah02pc7nmvh6WtUybf2mmLZ9cemx8CEp9DyoBLtrpquhMoWqKoXz', NULL, NULL),
 (161, 'jose', 'sabando', '1315221562', 'Femenino', '0979932503', 'leonardo21@hotmail.com', '$2y$10$DHp9jij809P.71K5jeMXq.jjIS9eOOf0nB/9l2qtc1zYfBtKIiYwa', 5, 'Inactivo', 2, 'q4eHTwIIGLNHv7OCaaJXoee6dyECaPs8esHB8E3XeWGnE6s6ZHCZhu7ti42o', NULL, NULL),
 (162, 'jose', '1', '1315221562', 'Masculino', '0979932503', 'leonardo31@hotmail.com', '$2y$10$kOWuW2lzFPUmNsWL54Ckw.w2PhjHRnDW5d0XiCq.OyIWgay9nl40y', 5, 'Inactivo', 1, NULL, NULL, NULL),
 (193, '2', '2', '2', 'Femenino', '0979932503', 'leonardo13@hotmail.com', '$2y$10$CMnUCzo2n2uaelv.daTuPOqHHQp/l5A.cnf6hoLv4CYO9CgF.eyg2', 5, 'Inactivo', 1, NULL, NULL, NULL),
 (197, 'jose', 'sabando', 'q', 'Femenino', '0979932503', 'cesar@hotmail.com', '$2y$10$A2tGMiUBra2dNvT2yy.VxexeqXhxI7eKuRlByqPy4d0fRtg7OEigO', 5, 'Inactivo', 1, NULL, NULL, NULL),
 (198, 'Leonardo', 'Sabando', '131522', 'Femenino', '0979932503', 'leonardo1@hotmail.com', '$2y$10$J5uC5dZa0ajf177mbg6yjOodPFThy/hBedmkd6PMHCcXRKPe6YfF6', 2, 'Inactivo', 1, NULL, NULL, NULL),
-(199, 'Leonardo', 'Sabando', '1315221562', 'Masculino', '0979932503', 'leonardo@hotmail.com', '$2y$10$sRmon2bdqGgd5zXGkxrk1eM0j/mjBTDd8aUm46Tpw5Wgk2KmyiA72', 2, 'Activo', 2, 'LfzZCwaz3GbcHSCVA7C3qGmSiXg1pOPbQVnV3aRMt6yyRWSa76ZqxSgN76Yq', NULL, NULL),
+(199, 'Leonardo', 'Sabando', '1315221562', 'Masculino', '0979932503', 'leonardo@hotmail.com', '$2y$10$sRmon2bdqGgd5zXGkxrk1eM0j/mjBTDd8aUm46Tpw5Wgk2KmyiA72', 2, 'Activo', 2, 'wE44P2lfkayRqq8kXgmORBXojscpkeiYgo0DXpYR1fvzxtpCU0ZIT20Jd6HT', NULL, NULL),
 (200, 'stefy', 'kuffo', '1313909025', 'Femenino', '0982456179', 'stefy@hotmail.com', '$2y$10$x9x.sf61LK77a9LOa3r8Y.6CU1o7jxg/cDxOEzbS2u4HVKu8b5IRW', 1, 'Activo', 2, 'Rb64PwPD52dYKKYbGwj7GLGCiAUMWFqGBTRHYmCVwyd1vWYebYil5IjKv49n', NULL, NULL),
 (201, 'Gabriel', 'Pachard', '1313808027', 'Masculino', '0546856179', 'gabriel@hotmail.com', '$2y$10$2OGWOjxhyb5Q.Kqaxivmau/wWbIhhN50OMqn6ynzMw4aXe.5ywVBq', 2, 'Activo', 2, NULL, NULL, NULL),
 (202, 'Maron', 'Vera', '1312929124', 'Masculino', '0945862187', 'maron@hotmail.com', '$2y$10$3qzXQ.FjB3ZnNkjLfWOXEuNhB6n9k1.iKNVmwdwxPP/wEGxUdZU4q', 4, 'Activo', 2, NULL, NULL, NULL),
@@ -462,7 +452,14 @@ INSERT INTO `users` (`id`, `name`, `apellidos`, `cedula`, `sexo`, `celular`, `em
 (204, 'Adrian', 'Alcívar', '1375487594', 'Masculino', '0982454578', 'adrian@hotmail.com', '$2y$10$3ViIhkRs7qIjp.r2lZs22eY9AbxhUx2v5DPY45mXQ7TxLCfEzf0ie', 5, 'Activo', 2, NULL, NULL, NULL),
 (205, 'Joselin', 'Loor', '1375486542', 'Femenino', '0982475694', 'joselin@hotmail.com', '$2y$10$4grcXSSDaWAe8vro/AitSO6xaeVABgI6m9fbRgPstrS8DbLpojPZe', 3, 'Activo', 2, NULL, NULL, NULL),
 (206, 'Pamela', 'Zambrano', '1313904216', 'Femenino', '0945215821', 'pamela@hotmail.com', '$2y$10$PrSrW0SeMBXKOd7pKsmbPOKuUsCAWgcDbnM4eVgQqfUrg9LBW.YQ.', 5, 'Activo', 2, NULL, NULL, NULL),
-(207, 'Daniela', 'Loor', '1374213613', 'Femenino', '0982444521', 'daniela@hotmail.com', '$2y$10$ncbh6zjijEMgoeG2NkGU5OBafG.hd9F5n1LeinT/t5g.K6/w47oJy', 5, 'Inactivo', 2, NULL, NULL, NULL);
+(207, 'Daniela', 'Loor', '1374213613', 'Femenino', '0982444521', 'daniela@hotmail.com', '$2y$10$ncbh6zjijEMgoeG2NkGU5OBafG.hd9F5n1LeinT/t5g.K6/w47oJy', 5, 'Inactivo', 2, NULL, NULL, NULL),
+(208, 'marona', 'dsa', 'das', 'Masculino', 'das', 'leonardo@hotmail.com', '$2y$10$cuEXjoch3p6uK/t3zBhn3u5duVKs/bAn6IqzKk36Ezj9gRUiEJMz.', 1, 'Activo', 1, NULL, NULL, NULL),
+(209, 'Yesenia', 'Zambrano', '1375484527', 'Femenino', '0982412563', 'yesenia@hotmail.com', '$2y$10$V2RRnIRmARVdW2kKe6/MpOL.nEQNBzFVHb3xWz.M1GhkGgVtKNa4K', 5, 'Activo', 1, NULL, NULL, NULL),
+(210, 'Luis', 'Alcívar', '1374245213', 'Masculino', '0982442779', 'luis@hotmail.com', '$2y$10$pme4BC0nAAoTRHKSQjS/qOHg99l8A33TyI5z1CkrcTY2EcuME0SLG', 5, 'Activo', 1, NULL, NULL, NULL),
+(211, 'Servio', 'Zambrano', '1375486457', 'Masculino', '0982445452', 'servio@hotmail.com', '$2y$10$ncnBWW0Hny/D8aHyaMp95ufjzFYLYz23vzU3ijyFT41iInt7sCt3W', 5, 'Activo', 1, NULL, NULL, NULL),
+(212, 'Juan', 'Loor', '1375487542', 'Masculino', '0982445452', 'juan@hotmail.com', '$2y$10$qN0RfoHehjXjG2/10HI9YuBg/TXNN23yEDPQslMaeWM66dPtHCmUW', 5, 'Activo', 1, NULL, NULL, NULL),
+(213, 'Rosa', 'Alcívar', '1375487452', 'Femenino', '0982445412', 'rosa@hotmail.com', '$2y$10$arPEBrPnpEbwAAwsVj1FsO7msgxW9F4Q6bwlbY5gtsncaxoF/zwbG', 5, 'Activo', 1, NULL, NULL, NULL),
+(214, 'Mario', 'Alcívar', '1375484562', 'Masculino', '0982444521', 'mario@hotmail.com', '$2y$10$PrTTEcNYPp6FlKkl6hDwTu.ZrP5AFvnakwsx2EHLIg0sFhFYKz0uO', 5, 'Activo', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -472,53 +469,28 @@ INSERT INTO `users` (`id`, `name`, `apellidos`, `cedula`, `sexo`, `celular`, `em
 
 CREATE TABLE `user_asignacion` (
   `iduser_asignacion` int(11) NOT NULL,
-  `asignacion_idasignacion` int(11) DEFAULT NULL,
-  `usuario_idUsuario` int(11) DEFAULT NULL
+  `usuario_idUsuario` int(11) DEFAULT NULL,
+  `peticion_idpeticion` int(11) DEFAULT NULL,
+  `FechaRegistro` date DEFAULT NULL,
+  `FechaInicio` date DEFAULT NULL,
+  `FechaLimite` date DEFAULT NULL,
+  `Observacion` varchar(3000) DEFAULT NULL,
+  `HoraInicial` time NOT NULL,
+  `HoraLimite` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `user_asignacion`
 --
 
-INSERT INTO `user_asignacion` (`iduser_asignacion`, `asignacion_idasignacion`, `usuario_idUsuario`) VALUES
-(8, 1, 207),
-(9, 1, 207),
-(10, 2, 148),
-(11, 2, 204),
-(12, 1, 200),
-(13, 1, 202),
-(14, 15, 148),
-(15, 15, 206),
-(16, 16, 206),
-(17, 16, 148),
-(18, 16, 204),
-(19, 17, 148),
-(20, 17, 206),
-(21, 18, 148),
-(22, 18, 206),
-(23, 19, 204),
-(24, 19, 148),
-(25, 22, 148),
-(26, 22, 204),
-(27, 24, 206),
-(28, 24, 148),
-(29, 29, 204),
-(30, 29, 148),
-(31, 29, 206),
-(32, 30, 204),
-(33, 31, 204),
-(34, 36, 206),
-(35, 36, 204),
-(36, 37, 148),
-(37, 37, 206),
-(38, 38, 148),
-(39, 38, 206),
-(40, 40, 148),
-(41, 40, 204),
-(42, 41, 148),
-(43, 41, 206),
-(44, 43, 204),
-(45, 43, 148);
+INSERT INTO `user_asignacion` (`iduser_asignacion`, `usuario_idUsuario`, `peticion_idpeticion`, `FechaRegistro`, `FechaInicio`, `FechaLimite`, `Observacion`, `HoraInicial`, `HoraLimite`) VALUES
+(197, 148, 49, '2018-09-19', '2018-09-19', '2018-09-14', 'Dolor de Cabeza', '20:26:00', '03:02:00'),
+(198, 204, 49, '2018-09-19', '2018-09-21', '2018-09-29', 'Para Reparar', '10:20:00', '13:25:00'),
+(199, 209, 49, '2018-09-19', '2018-09-19', '2018-09-21', 'Dolor en la pierna', '20:40:00', '05:59:00'),
+(200, 148, 44, '2018-09-19', '2018-09-19', '2018-09-15', 'Un formato de solicitud de mantenimiento es una solicitud que se hace por escrito  para  exponer las fallas, o defectos técnicos de algún  objeto, producto o aparato y solicitar su reparación, dirigido a la entidad responsable de ello, ya sea esta gubernamental, (en casos de mantenimientos de calles, escuelas o edificios públicos), a una fábrica o empresa, (en caso de productos defectuosos o incompletos), a una persona o empresa especializada (como en el caso del mantenimiento de edificios privados por parte de empresas que prestan el servicio de mantenimiento, o de parte de trabajadores individuales como fontaneros o electricistas).\n\nURL del artículo: https://www.ejemplode.com/11-escritos/2766-ejemplo_de_formato_de_solicitud_de_mantenimiento.html\nNota completa: Ejemplo de Formato de solicitud de mantenimiento', '21:14:00', '04:23:00'),
+(201, 204, 27, '2018-09-19', '2018-09-01', '2018-09-05', '$(\"#actualizarclave\").on(\'change\', function(e){\n    if (this.checked) {\n        $(\"#passwordupdiv\").prop(\'hidden\',false);\n        $(\"#passwordup\").prop(\'disabled\',false);\n        $(\"#passwordup\").prop(\'required\',true);\n        $(\"#actualizarclave\").val(\'1\');\n\n    } else {\n        $(\"#passwordupdiv\").prop(\'hidden\',true);\n        $(\"#passwordup\").prop(\'disabled\',true);\n        $(\"#passwordup\").prop(\'required\',false);\n        $(\"#actualizarclave\").val(\'0\');\n    \n    }\n});', '03:21:00', '03:21:00'),
+(202, 206, 27, '2018-09-19', '2018-09-08', '2018-09-09', 'dasdasdasdasd', '03:42:00', '23:04:00'),
+(203, 210, 51, '2018-09-20', '2018-09-20', '2018-09-13', 'Hola que tal', '14:04:00', '03:02:00');
 
 -- --------------------------------------------------------
 
@@ -533,6 +505,13 @@ CREATE TABLE `usuario_dispositivo` (
   `usuario_idUsuario` int(11) DEFAULT NULL,
   `dispositivos_iddispositivos` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario_dispositivo`
+--
+
+INSERT INTO `usuario_dispositivo` (`idusuario_dispositivo`, `fecha_inicio`, `fecha_fin`, `usuario_idUsuario`, `dispositivos_iddispositivos`) VALUES
+(32, '2018-09-20', '2018-09-30', 148, 24);
 
 -- --------------------------------------------------------
 
@@ -561,9 +540,7 @@ ALTER TABLE `area`
 -- Indices de la tabla `asignacion`
 --
 ALTER TABLE `asignacion`
-  ADD PRIMARY KEY (`idasignacion`,`Ficha_idFicha`,`peticion_idpeticion`),
-  ADD KEY `fk_asignacion_Ficha1_idx` (`Ficha_idFicha`),
-  ADD KEY `fk_asignacion_peticion1_idx` (`peticion_idpeticion`);
+  ADD PRIMARY KEY (`idasignacion`,`Ficha_idFicha`,`peticion_idpeticion`);
 
 --
 -- Indices de la tabla `dispositivos`
@@ -664,7 +641,7 @@ ALTER TABLE `users`
 ALTER TABLE `user_asignacion`
   ADD PRIMARY KEY (`iduser_asignacion`),
   ADD KEY `fk_usuario_asig1111_idx` (`usuario_idUsuario`),
-  ADD KEY `fk_asig_usuaroi1111_idx` (`asignacion_idasignacion`);
+  ADD KEY `fk_peticion_asig_idx` (`peticion_idpeticion`);
 
 --
 -- Indices de la tabla `usuario_dispositivo`
@@ -704,7 +681,7 @@ ALTER TABLE `asignacion`
 -- AUTO_INCREMENT de la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
-  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidad`
@@ -722,7 +699,7 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT de la tabla `extra_tecnico`
 --
 ALTER TABLE `extra_tecnico`
-  MODIFY `idextra_tecnico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `idextra_tecnico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `ficha`
@@ -740,7 +717,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `peticion`
 --
 ALTER TABLE `peticion`
-  MODIFY `idpeticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idpeticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `prioridad`
@@ -782,19 +759,19 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
 -- AUTO_INCREMENT de la tabla `user_asignacion`
 --
 ALTER TABLE `user_asignacion`
-  MODIFY `iduser_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `iduser_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_dispositivo`
 --
 ALTER TABLE `usuario_dispositivo`
-  MODIFY `idusuario_dispositivo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idusuario_dispositivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_software`
@@ -805,13 +782,6 @@ ALTER TABLE `usuario_software`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `asignacion`
---
-ALTER TABLE `asignacion`
-  ADD CONSTRAINT `fk_asignacion_Ficha1` FOREIGN KEY (`Ficha_idFicha`) REFERENCES `ficha` (`idFicha`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_asignacion_peticion1` FOREIGN KEY (`peticion_idpeticion`) REFERENCES `peticion` (`idpeticion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `dispositivos`
@@ -851,7 +821,7 @@ ALTER TABLE `users`
 -- Filtros para la tabla `user_asignacion`
 --
 ALTER TABLE `user_asignacion`
-  ADD CONSTRAINT `fk_asig_usuaroi1111` FOREIGN KEY (`asignacion_idasignacion`) REFERENCES `asignacion` (`idasignacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_peticion_asig` FOREIGN KEY (`peticion_idpeticion`) REFERENCES `peticion` (`idpeticion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_usuario_asig1111` FOREIGN KEY (`usuario_idUsuario`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

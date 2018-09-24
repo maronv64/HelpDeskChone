@@ -52,7 +52,7 @@ Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
 Route::get('/datospeticion/{id?}','PeticionController@datospeticion');
 Route::get('/peticionesFiltroAbmin/{consul?}/{datos?}','PeticionController@peticionesFiltroAbmin');
-
+Route::get('/peticionesFiltroNorm/{consul?}/{datos?}','PeticionController@peticionesFiltroNorm');//peticionesFiltroNorm
 //Consultas de las Peticiones de Cada Usuario
 //index
 Route::get('/peticionesNorm','PeticionController@PNorm');

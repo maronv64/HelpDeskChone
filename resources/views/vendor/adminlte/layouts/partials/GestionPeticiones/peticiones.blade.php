@@ -227,8 +227,8 @@
                             </select>
                         </div>
                     </div>
-                    <div id="" class="col-md-8">
-                        
+                    <div id="contenedor" class="col-md-8" >
+                        <input type="hidden" class="form-control" id="dtpFechaFiltro2" value = "<?php echo date("Y-m-d");?>" />
                         <div class="row">
                             <div id="panelBuscar" class="col-md-6">
                                 <!-- <div class="form-group has-feedback">                                                                   

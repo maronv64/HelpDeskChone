@@ -160,6 +160,7 @@ class PeticionController extends Controller
 
     public function peticionesFiltroAbmin($tipobusqueda='',Request $request)
     {
+        //return response()->json($request);  
         if ($tipobusqueda=='Todas') {
             # code...
             $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
@@ -181,7 +182,7 @@ class PeticionController extends Controller
                                                                                         ->orderBy('created_at','desc')
                                                                                         ->get();//where('estado_del','1')->get();
             return response()->json($peticiones);
-
+        
         }else if ($tipobusqueda=='Prioridad') {
             # code...
             $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
@@ -195,6 +196,7 @@ class PeticionController extends Controller
 
         }else if ($tipobusqueda=='Estado') {
             # code...
+            # code...                                          
             $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
                                                                                                 ['estado_del','1'],
                                                                                                 ['idestado',$request->idestado],
@@ -204,17 +206,43 @@ class PeticionController extends Controller
                                                                                         ->get();//where('estado_del','1')->get();
             return response()->json($peticiones);
 
-        }else if ($tipobusqueda=='Usuario') {
+        }else if ($tipobusqueda=='Usuario') { 
+            
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('estado_del','1')
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            
+            foreach ($peticiones as $peticion) {
+                # code...
+                 
+                 if ($peticion->usuario->name==$request->username) {
+                     # code...
+                     //dd($peticion->usuario->name);
+                     $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                         ['estado_del','1'],
+                                                                                                         ['idusuario',$peticion->usuario->id]
+                                                                                                         ])
+                                                                                                 ->orderBy('created_at','desc')
+                                                                                                 ->get();//where('estado_del','1')->get();
+            
+                 }
+            }
+            
+            return response()->json($peticiones);
+           
+        }else if ($tipobusqueda=='Fecha') {
             # code...
+            
             $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
                                                                                                 ['estado_del','1'],
-                                                                                                ['usuario.name','like',"%$request->username%"]
+                                                                                                ['created_at','like',"%$request->created_at%"],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
                                                                                                 ])
                                                                                         ->orderBy('created_at','desc')
                                                                                         ->get();//where('estado_del','1')->get();
             return response()->json($peticiones);
         }
-
+        
        
     }
 
@@ -237,6 +265,74 @@ class PeticionController extends Controller
         return response()->json($peticiones);
     }
 
+    public function peticionesFiltroNorm($tipobusqueda='',Request $request)
+    {
+        //return response()->json($request);  
+        if ($tipobusqueda=='Todas') {
+            # code...
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['idusuario',$request->idusuario],
+                                                                                                ['estado_del','1'],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+
+        }else 
+        if ($tipobusqueda=='TipoPeticion') {
+            # code...
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['idusuario',$request->idusuario],
+                                                                                                ['estado_del','1'],
+                                                                                                ['idtipopeticion',$request->idtipopeticion],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+        
+        }else if ($tipobusqueda=='Prioridad') {
+            # code...
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['idusuario',$request->idusuario],
+                                                                                                ['estado_del','1'],
+                                                                                                ['idprioridad',$request->idprioridad],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+
+        }else if ($tipobusqueda=='Estado') {
+            # code...
+            # code...                                          
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['idusuario',$request->idusuario],
+                                                                                                ['estado_del','1'],
+                                                                                                ['idestado',$request->idestado],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+
+        }else if ($tipobusqueda=='Fecha') {
+            # code...
+            
+            $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where([
+                                                                                                ['idusuario',$request->idusuario],
+                                                                                                ['estado_del','1'],
+                                                                                                ['created_at','like',"%$request->created_at%"],
+                                                                                                ['descripcion','like',"%$request->descripcion%"]
+                                                                                                ])
+                                                                                        ->orderBy('created_at','desc')
+                                                                                        ->get();//where('estado_del','1')->get();
+            return response()->json($peticiones);
+        }
+        
+       
+    }
 
 
 

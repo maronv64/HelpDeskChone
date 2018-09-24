@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Asignacion_Dispositivos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Dispositivos;
 
 class AsignacionDispositivosController extends Controller
 {
@@ -44,8 +45,14 @@ class AsignacionDispositivosController extends Controller
         $asignacion_Dispositivos->dispositivos_iddispositivos=$request->iddispositivo;
         $asignacion_Dispositivos->fecha_inicio=date("Y-m-d",strtotime( $request->fecha_inicio));
         $asignacion_Dispositivos->fecha_fin=date("Y-m-d",strtotime( $request->fecha_fin));
+
+        $dispositivo = Dispositivos::findOrFail($request->iddispositivo);
+        $dispositivo->asignado = '1';
+        $dispositivo->update();
+
         $asignacion_Dispositivos->save();
         return response()->json($asignacion_Dispositivos);
+
     }
 
     /**
@@ -92,8 +99,22 @@ class AsignacionDispositivosController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(Asignacion_Dispositivos $asignacion_Dispositivos)
+    public function destroy()
     {
         //
     }
+
+    public function eliminar_dispositivos_asignados($request)
+    {
+        $asignacion_Dispositivos=Asignacion_Dispositivos::where('dispositivos_iddispositivos',$request)->firstOrFail();
+
+        $dispositivo = Dispositivos::findOrFail($request);
+        $dispositivo->asignado = '0';
+        $dispositivo->update();
+
+        $asignacion_Dispositivos->delete();
+    }
+
+
+
 }

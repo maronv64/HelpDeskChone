@@ -1,20 +1,20 @@
-<form id="frm_ingresar_tipos_user"  method="post">
-<div class="panel-group" id="accordion3">
+<form id="frm_ingresar_especialidades"  method="post">
+  <div class="panel-group" id="accordion">
     <div class="panel panel-default">
-      <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion3" href="#collapse4" >
-            INGRESO DE TIPOS DE USUARIOS
+      <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
+            INGRESO DE ESPECIALIDADES
       </div>
-      <div id="collapse4" class="panel-collapse collapse">
+      <div id="collapse1" class="panel-collapse collapse">
         <div class="panel-body">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="col-md-8">
-                    <img src="img/imagenes/Cuentasusuarios.png" alt="" class="img-responsive img-rounded">
+                    <img src="img/imagenes/especializacion.jpg" alt="" class="img-responsive img-rounded">
                 </div>
                 <div class="col-md-4">
                     <div class="form-group has-feedback">
                         <div>
-                        <center><h3>Ingreso de nuevos tipos de usuarios</h3></center>  
+                        <center><h3>Ingreso de nuevas especialidaes</h3></center>  
                         </div>
                         <br>
                         <input required id="" type="text" class="form-control" placeholder="Descripcion del tipo de usuario" autocomplete="off" value="{{ old('dispositivo') }}" />
@@ -28,4 +28,4 @@
     </div>
   </div> 
 </form>
-@include('adminlte::layouts.partials.PanelConfiguracion.GestionTipoUsuarios.Tabla')  
+@include('adminlte::layouts.partials.PanelConfiguracion.GestionEspecialidades.TablaEspecialidades')  

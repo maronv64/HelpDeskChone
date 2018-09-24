@@ -23,7 +23,7 @@ function BandejadePeticiones(){
             //añade la descripcion de la prioridad
             fila+= '<td>'+item.tipo_peticion.descripcion  +'</td>';
             //añade la descripcion del estado
-            fila+= '<td>'+'00-00-00' +'</td>';
+            fila+= '<td>'+item.created_at +'</td>';
             //añade la nombre del usuario
             fila+= '<td>'+item.estado.descripcion +'</td>';
             //añade la nombre del area
@@ -163,7 +163,7 @@ function datospeticion(val){
             document.getElementById('usuariop').innerHTML = item.usuario.name +" "+item.usuario.apellidos;
             document.getElementById('areap').innerHTML =  item.usuario.area.nombre;
             document.getElementById('tipopp').innerHTML = item.tipo_peticion.descripcion;
-            document.getElementById('fechap').innerHTML = '00-00-00';
+            document.getElementById('fechap').innerHTML = item.created_at;
             document.getElementById('prioridadp').innerHTML = item.prioridad.descripcion;
             document.getElementById('estadop').innerHTML =  item.estado.descripcion;
             document.getElementById('descripcionp').innerHTML = item.descripcion;

@@ -93,6 +93,8 @@ $('#cmbTipoBusqueda').change(function () {
         
         $('#dtpFechaFiltro').val($('#dtpFechaFiltro2').val());
 
+    }if ($('#cmbTipoBusqueda').val()=='Fecha') {
+        $('#panelBuscartxt').html('');
     }
     
 

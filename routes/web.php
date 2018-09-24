@@ -125,12 +125,15 @@ Route::get('/consultarPeticionEstado/{idusuario}','AsigTareasController@consulta
 
 //Rutas de tipo de usuarios
 //Route::resource('/TipoUsuarios','TipoUsuariosController');
+Route::post('/tiposdeusuarios','TipoUsuarioController@store');
 Route::get('/TipoUsuarios', function () {
     return view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig');
 });
 
 /*######################RUTAS PARA LOS TIPOS DE DISPOSITIVOS#################################*/
+Route::post('/tiposdispositivos','TipoDispositivoController@store');
 Route::get('/mostrartiposdispositivos','TipoDispositivoController@mostrardispositivos');
+
 
 //view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 

@@ -16,4 +16,9 @@
            </div>
     </div>
 </div>
+<script src="{{ asset('js/PanelConfiguracion/GestionPanelTipoDispositivos.js') }}" defer></script>
+<script src="{{ asset('js/PanelConfiguracion/GestionPanelEspecialidad.js') }}" defer></script>
+<script src="{{ asset('js/PanelConfiguracion/GestionPanelTipoUsuario.js') }}" defer></script>
+<script src="{{ asset('js/PanelConfiguracion/GestionPanelAreas.js') }}" defer></script>
+
 @endsection

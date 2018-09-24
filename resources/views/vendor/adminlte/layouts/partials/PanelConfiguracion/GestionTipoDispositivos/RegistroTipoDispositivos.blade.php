@@ -19,7 +19,7 @@
                         <center><h3>Ingreso de nuevos tipos de dispositivos</h3></center>  
                         </div>
                         <br>
-                        <input required id="" type="text" class="form-control" placeholder="Descripcion del tipo de usuario" autocomplete="off" value="{{ old('') }}" />
+                        <input required id="id_txt_tipo_dispositivo" type="text" class="form-control" placeholder="Descripcion del tipo de dispositivo" autocomplete="off" value="{{ old('') }}" />
                         <br>
                         <button type="submit"  class="btn btn-primary btn-block rounded">Almacenar</button>
                     </div>

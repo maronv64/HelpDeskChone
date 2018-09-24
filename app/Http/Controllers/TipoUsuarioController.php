@@ -38,7 +38,10 @@ class TipoUsuarioController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $tipousuario = new Tipo_Usuario();
+        $tipousuario->descripcion=$request->descripcion;
+        $tipousuario->save();
+        return $tipousuario;
     }
 
     /**

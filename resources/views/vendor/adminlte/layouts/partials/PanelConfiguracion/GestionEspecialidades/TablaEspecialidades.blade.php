@@ -7,7 +7,7 @@
            
           <hr>
           <div class="table-responsive pre-scrollable">
-            <table id="tablaTiposUsuarios" class="table table-hover table-bordered">
+            <table id="tablaEspecialidades" class="table table-hover table-bordered">
             <thead>
               <tr>
                 <th scope="col">Descripcion</th>
@@ -20,4 +20,4 @@
             </tbody>
           </table>
           </div>       
-      </div>
+</div>

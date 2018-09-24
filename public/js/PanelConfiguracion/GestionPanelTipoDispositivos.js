@@ -1,12 +1,17 @@
 $('#id_toggle_tipo_dispositivos').click(function(event)
 	{
-		MostrarTiposUsuarios();
+		MostrarTiposDispositivos();
 });
-function MostrarTiposUsuarios(){
+
+$('#frm_ingresar_tipos_dispositivos').on('submit',function(e){
+	e.preventDefault();
+	guardarTipoDispositivo();
+})
+
+function MostrarTiposDispositivos(){
     $('#tablaTiposDispositivos tbody tr').empty();
     $.get('mostrartiposdispositivos',function(data){
         $.each(data, function(i,item){
-            debugger
             var out="";
             out+="<tr>";
             out+="<td>"+item.descripcion+"</td>";
@@ -18,37 +23,29 @@ function MostrarTiposUsuarios(){
     );
 }
 
-// function cargarListaTipos() {
-// 	$('#tablaDispositivos tbody tr').empty();
-// 	$.ajax({
-// 		url: 'obtenerDispositivos',
-// 		type: 'GET',
-// 		dataType: 'json',
-// 	})
-// 	.done(function(datos) {
-// 		$.each(datos.dispositivos, function(index, val) {
-//             var out="";
-//             if (val.cod_activo=="Activo") {
-//                 out+="<tr>";
-//                 out+="<td>"+val.nombredispositivo+"</td>";
-//                 $.each(datos.tipos, function(index, val2) {
-//                 if (val2.idtipodispositivos==val.idtipodispositivos) {
-//                     out+="<td>"+val2.descripcion+"</td>";
-//                 }
-//                 });
-//                 out+="<td>"+val.serie+"</td>";
-//                 out+="<td>"+val.color+"</td>";
-//                 out+="<td>"+val.modelo+"</td>";
-//                 out+="<td>"+val.marca+"</td>";
-//                 out+="<td class='text-success'>"+val.cod_activo+"</td>";
-//                 out+="<td><center><a class='fa fa-edit btn btn-info' onclick='modal("+val.iddispositivos+")' title='Modificar estado del dispositivo'></a> <a class='glyphicon glyphicon-trash btn btn-danger' onclick='modificar("+val.iddispositivos+",1)' title='Desactivar disponibilidad del dispositivo'></a></center></td>";
-//                 //<span class='glyphicon glyphicon-phone form-control-feedback'></span>
-//                 out+="</tr>";
-//             }
-//             $('#tablaDispositivos tbody tr:last').after(out);
-// 	    })
-// 	})
-// 	.fail(function() {
-// 		console.log("error");
-// 	})
-// };
+function guardarTipoDispositivo() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }); 
+    var FrmData = {
+        descripcion:$('#id_txt_tipo_dispositivo').val(),
+    }
+    $.ajax({
+        url:'tiposdispositivos', // Url que se envia para la solicitud
+        method: 'POST',             // Tipo de solicitud que se enviará, llamado como método
+        data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+        dataType: 'json',
+        success: function(requestData)   // Una función a ser llamada si la solicitud tiene éxito
+        {
+            alertify.success("DATOS INGRESADOS CORRECTAMENTE");
+            MostrarTiposDispositivos();
+            $('#id_txt_tipo_dispositivo').val('')
+        },
+        fail:function(){
+            alertify.error("HA OCURRIDO UN ERROR");
+            $('#id_txt_tipo_dispositivo').val('')
+        }
+    });
+}

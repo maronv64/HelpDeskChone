@@ -39,7 +39,10 @@ class TipoDispositivoController extends Controller
 
     public function store(Request $request)
     {
-            
+        $tipodispositivo = new TipoDispositivo();
+        $tipodispositivo->descripcion=$request->descripcion;
+        $tipodispositivo->save();
+        return $tipodispositivo;
     }
 
     /**

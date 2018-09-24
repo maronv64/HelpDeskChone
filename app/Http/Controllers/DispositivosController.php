@@ -147,8 +147,5 @@ class DispositivosController extends Controller
         $consulta = Asignacion_Dispositivos::with('dispositivos')->where('usuario_idusuario',$id_usuario)->get();
         return response()->json($consulta);
     }
-
-
-
 }
 

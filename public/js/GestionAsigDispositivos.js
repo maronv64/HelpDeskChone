@@ -187,7 +187,6 @@ function guardarAsignaciones(){
             success: function(requestData) 
             {
                 alertify.success("DATOS INGRESADOS CORRECTAMENTE");
-                $('#modalAsignacion').modal('hide');
             },
         });
     });

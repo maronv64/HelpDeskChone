@@ -6,10 +6,10 @@
 
 $('#cmbTipoBusqueda').change(function () {
     //alert("hoa");
-    $('#panelBuscar').html('');
-    $('#panelBuscartxt').html('');
+    $('#panelBuscarN').html('');
+    $('#panelBuscartxtN').html('');
 
-    CargarPeticiones2();  // funcion del archivo GestionPeticiones4.js
+    CargarPeticionesNorm();  // funcion del archivo GestionPeticiones4.js
 
 
     var orden='';   //para crear los combos
@@ -24,17 +24,17 @@ $('#cmbTipoBusqueda').change(function () {
         orden2+='    <input type="text" class="form-control" placeholder="Escriba aquí" onkeyup="txtFiltroGeneral_KeyUp()" id="txtFiltroGeneral" required />      ';
         orden2+='</div> ';
 
-        $('#panelBuscartxt').append( orden2 );
+        $('#panelBuscartxtN').append( orden2 );
     // }
 
     if ($('#cmbTipoBusqueda').val()=='Todas') {
-        $('#panelBuscartxt').html('');
+        $('#panelBuscartxtN').html('');
         orden3+='<div class="form-group has-feedback">                                                                   ';
         orden3+='    <label> <b>Escriba la Busqueda:</b></label>                                                         ';
         orden3+='    <input type="text" class="form-control" placeholder="Escriba aquí" onkeyup="txtFiltroGeneral_KeyUp()" id="txtFiltroGeneral" required />';
         orden3+='</div> ';
 
-        $('#panelBuscar').append( orden3 );
+        $('#panelBuscarN').append( orden3 );
         
 
     }else if ($('#cmbTipoBusqueda').val()=='TipoPeticion') {
@@ -45,7 +45,7 @@ $('#cmbTipoBusqueda').change(function () {
         orden+='    </select>                                                                   '; 
         orden+=' </div>                                                                         ';  
 
-        $('#panelBuscar').append( orden );
+        $('#panelBuscarN').append( orden );
         cargarCmbTipoPeticionBusqueda();
 
 
@@ -57,7 +57,7 @@ $('#cmbTipoBusqueda').change(function () {
         orden+='    </select>                                                                   '; 
         orden+=' </div>                                                                         ';  
 
-        $('#panelBuscar').append( orden );
+        $('#panelBuscarN').append( orden );
 
         cargarCmbPrioridadBusqueda();
         
@@ -69,19 +69,10 @@ $('#cmbTipoBusqueda').change(function () {
         orden+='    </select>                                                                   '; 
         orden+=' </div>                                                                         ';  
 
-        $('#panelBuscar').append( orden );
+        $('#panelBuscarN').append( orden );
 
         cargarCmbEstadoBusqueda();
         
-    }if ($('#cmbTipoBusqueda').val()=='Usuario') {
-        $('#panelBuscartxt').html('');
-        orden3+='<div class="form-group has-feedback">                                                                   ';
-        orden3+='    <label> <b>Escriba la Busqueda:</b></label>                                                         ';
-        orden3+='    <input type="text" class="form-control" placeholder="Escriba aquí" onkeyup="txtFiltroGeneral_KeyUp()" id="txtFiltroGeneral" required />';
-        orden3+='</div> ';
-
-        $('#panelBuscar').append( orden3 );
-
     }if ($('#cmbTipoBusqueda').val()=='Fecha') {
         //var fecha= '<?php echo date("Y-m-d");?>';
         orden+=' <div class="form-group has-feedback">                                          ';
@@ -89,12 +80,10 @@ $('#cmbTipoBusqueda').change(function () {
         orden+='    <input type="date" class="form-control" id="dtpFechaFiltro" onchange="cmbTipoBusqueda_onChanged()" required />';    
         orden+=' </div>                                                                         ';  
 
-        $('#panelBuscar').append( orden );
+        $('#panelBuscarN').append( orden );
         
-        $('#dtpFechaFiltro').val($('#dtpFechaFiltro2').val());
+        $('#dtpFechaFiltro').val($('#dtpFechaFiltro2N').val());
 
-    }if ($('#cmbTipoBusqueda').val()=='Fecha') {
-        $('#panelBuscartxt').html('');
     }
     
 
@@ -107,7 +96,7 @@ function crear_txtFiltroGeneral() {
         orden+='    <label> <b>Escriba la Busqueda:</b></label>                                                         ';
         orden+='    <input type="text" class="form-control" placeholder="Escriba aquí"  onkeyup="txtFiltroGeneral_KeyUp()" id="txtFiltroGeneral" required />      ';
         orden+='</div> ';
-        $('#panelBuscar').append( orden );
+        $('#panelBuscarN').append( orden );
 }
 
 function cargarCmbTipoPeticionBusqueda() {
@@ -189,7 +178,7 @@ function cmbTipoBusqueda_onChanged(){
         idprioridad:    $('#cmbPrioridadBusqueda').val(),
         idestado:       $('#cmbEstadoBusqueda').val(),
         idtipopeticion: $('#cmbTipoPeticionBusqueda').val(),
-        username:       $('#txtFiltroGeneral').val(),
+        idusuario:       $('#idmiuser').val(),
         descripcion:    $('#txtFiltroGeneral').val(),
         created_at:     $('#dtpFechaFiltro').val(),
     }
@@ -214,7 +203,7 @@ function txtFiltroGeneral_KeyUp() {
         idprioridad:    $('#cmbPrioridadBusqueda').val(),
         idestado:       $('#cmbEstadoBusqueda').val(),
         idtipopeticion: $('#cmbTipoPeticionBusqueda').val(),
-        username:       $('#txtFiltroGeneral').val(),
+        idusuario:       $('#idmiuser').val(),
         descripcion:    $('#txtFiltroGeneral').val(),
         created_at:     $('#dtpFechaFiltro').val(),
     }
@@ -240,46 +229,42 @@ function SuperFiltro(tipoConsulta,FrmData) {
     });
 
     $.ajax({
-        url: 'peticionesFiltroAbmin/'+tipoConsulta+'/'+FrmData,// Url que se envia para la solicitud esta en el web php es la ruta
+        url: 'peticionesFiltroNorm/'+tipoConsulta+'/'+FrmData,// Url que se envia para la solicitud esta en el web php es la ruta
         method: "GET",             // Tipo de solicitud que se enviará, llamado como método
         data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
         success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
         {  
            console.log(data);
-           $('#dgvPeticiones').html('');
+           $('#dgvMisPeticiones').html('');
            $.each(data, function(a, item) { // recorremos cada uno de los datos que retorna el objero json n valores
-  
-            var fila ="";
-
-            fila+= '<tr>';
-            //
-            fila+= '<td>'+item.descripcion  +'</td>';
-            //añade la descripcion del tipo de peticion
-            fila+= '<td>'+item.tipo_peticion.descripcion  +'</td>';
-            //añade la descripcion de la prioridad
-            fila+= '<td>'+item.prioridad.descripcion  +'</td>';
-            //añade la descripcion del estado
-            fila+= '<td>'+item.estado.descripcion  +'</td>';
-            //añade la nombre del usuario
-            fila+= '<td>'+item.usuario.name  +'</td>';
-            //añade la nombre del area
-            fila+= '<td>'+item.usuario.area.nombre  +'</td>';
-            //
-            //añade la nombre del area
-            fila+= '<td>'+item.created_at  +'</td>';
-            //añade la nombre del area
-            fila+= '<td>'+item.update_at  +'</td>';
-            //
-            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalModicarPeticion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
-                    "<button type='button' class='btn btn-danger' onClick='eliminarPeticion("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
-            //
-            fila+= '</tr>';
-
-            $('#dgvPeticiones').append(//identificamos ala nota que queremos add esta otra nota        
-                fila									
-            );
-        
-        });  
+               
+              
+               
+               var fila ="";
+   
+               fila+= '<tr>';
+               //
+               fila+= '<td>'+item.descripcion  +'</td>';
+               //añade la descripcion del tipo de peticion
+               fila+= '<td>'+item.tipo_peticion.descripcion  +'</td>';
+               //añade la descripcion de la prioridad
+               fila+= '<td>'+item.prioridad.descripcion  +'</td>';
+               //añade la descripcion del estado
+               fila+= '<td>'+item.estado.descripcion  +'</td>';
+               //
+                //añade la fecha
+                fila+= '<td>'+item.created_at  +'</td>';
+                //
+               fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='verModalModicarPeticion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>"+
+                       "<button type='button' class='btn btn-danger' onClick='eliminarPeticion("+item.idpeticion+")'><i class='fa fa-trash'></i></button> </center> </td></tr>";
+               //
+               fila+= '</tr>';
+   
+               $('#dgvMisPeticiones').append(//identificamos ala nota que queremos add esta otra nota        
+                    fila									
+               );
+               
+           });   
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
@@ -288,39 +273,4 @@ function SuperFiltro(tipoConsulta,FrmData) {
     });  
 }
 
-// <div class="col-md-3">
-//                 <div class="form-group has-feedback">
-//                     <label> <b>Tipo de Busqueda:</b></label>
-//                     <select id="cmbTipoBusqueda"   class="form-control" required>
-//                         <!-- <option disabled selected>Seleccione el tipo de Peticion</option> -->
-//                         <option value="TipoPeticion" selected>Por Tipo de Peticion</option>
-//                         <option value="Prioridad" >Por Prioridad</option>
-//                         <option value="Estado" >Por Estado</option>
-//                         <option value="Usuario" >Por Usario</option>
-//                         <option value="Fecha" >Por Fecha</option>
-//                         <option value="Todas" >Por todas las anteriores</option>
 
-//                     </select>
-//                     <!-- <input type="date" class="form-control" id="fechaFiltroP" name="fechainicialAsig"required value="<?php echo date("Y-m-d");?>" /> -->
-//                 </div>
-//             </div>
-
-//             <div class="col-md-3">
-//                 <div class="form-group has-feedback">
-//                     <label> <b>Fecha Filtro:</b></label>
-//                     <input type="date" class="form-control" id="fechaFiltroP" name="fechainicialAsig"required value="<?php echo date("Y-m-d");?>" />
-//                 </div>
-//             </div>
-            
-//             <div class="col-md-3">
-//                 <div class="form-group has-feedback">
-//                     <label> <b>Escriba la Busqueda:</b></label>
-//                     <input type="text" class="form-control" placeholder="Describa la peticion"  id="txtBuscarP" required />
-//                     </div>
-//                 </div>
-//             </div>
-
-
-$('#txtDescripcion').keyup(function(){
-    $('#txtFiltroGeneral').val($('#txtDescripcion').val() );
-});

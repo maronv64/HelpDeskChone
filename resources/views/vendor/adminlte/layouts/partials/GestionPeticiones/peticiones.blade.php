@@ -103,6 +103,7 @@
 
                 <!-----------------------------------------formulario------------------------------------------------------------------>
                 <div class="register-box-body"  >
+                <p> <h2><center> Administrador de Peticiones </center></h2></p>
                   <p> <h3>Registre una nueva Peticion</h3></p>
                   <hr>
                   <form enctype="multipart/form-data">
@@ -227,8 +228,8 @@
                             </select>
                         </div>
                     </div>
-                    <div id="" class="col-md-8">
-                        
+                    <div id="contenedor" class="col-md-8" >
+                        <input type="hidden" class="form-control" id="dtpFechaFiltro2" value = "<?php echo date("Y-m-d");?>" />
                         <div class="row">
                             <div id="panelBuscar" class="col-md-6">
                                 <!-- <div class="form-group has-feedback">                                                                   

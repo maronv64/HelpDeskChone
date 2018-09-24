@@ -104,11 +104,11 @@ class AsignacionDispositivosController extends Controller
         //
     }
 
-    public function eliminar_dispositivos_asignados($asignacion_Dispositivos)
+    public function eliminar_dispositivos_asignados($request)
     {
-        $asignacion_Dispositivos=Dispositivos::find($asignacion_Dispositivos);
+        $asignacion_Dispositivos=Asignacion_Dispositivos::where('dispositivos_iddispositivos',$request)->firstOrFail();
 
-        $dispositivo = Dispositivos::findOrFail($asignacion_Dispositivos->dispositivos->iddispositivo);
+        $dispositivo = Dispositivos::findOrFail($request);
         $dispositivo->asignado = '0';
         $dispositivo->update();
 

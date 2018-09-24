@@ -438,7 +438,7 @@ $( "#btnActualizarPeticion" ).click(function() {
         //         " descripcion: "+FrmData.descripcion
         //         )
     } else{
-debugger
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

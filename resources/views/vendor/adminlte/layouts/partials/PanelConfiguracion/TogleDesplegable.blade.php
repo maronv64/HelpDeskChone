@@ -1,3 +1,5 @@
+@include('adminlte::layouts.partials.PanelConfiguracion.ModalModificacionPanel') 
+
 <ul class="nav nav-tabs">
   <li class="active"><a id="id_toggle_tipo_usuarios" data-toggle="tab" href="#menuTipoUsuarios">Tipos de usuarios</a></li>
   <li><a id="id_toggle_areas" data-toggle="tab" href="#menuAreas">Areas</a></li>

@@ -103,6 +103,7 @@
 
                 <!-----------------------------------------formulario------------------------------------------------------------------>
                 <div class="register-box-body"  >
+                <p> <h2><center> Administrador de Peticiones </center></h2></p>
                   <p> <h3>Registre una nueva Peticion</h3></p>
                   <hr>
                   <form enctype="multipart/form-data">

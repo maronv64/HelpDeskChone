@@ -14,7 +14,7 @@ function MostrarEspecialidades(){
                 var out="";
                 out+="<tr>";
                 out+="<td>"+item.descripcion+"</td>";
-                out+="<td><center><a class='fa fa-edit btn btn-info' onclick='ModalPanelConfiguracion()' title='Modificar datos del registro'></a></center></td>";
+                out+="<td><center><a class='fa fa-edit btn btn-info' onclick='ModalPanelConfiguracion(2)' title='Modificar datos del registro'></a></center></td>";
                 out+="</tr>";
                 $('#tablaEspecialidades tbody tr:last').after(out);
             }); 

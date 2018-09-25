@@ -66,7 +66,8 @@ function cargartablatecnicos(data, filacod){
           "<tr id='filaid"+filacod+"'><td hidden>"+ data.id +"</td>\
         <td>"+data.name +" "+ data.apellidos+"</td>\
          <td>"+data.extratecnicos.especialidad+"</td>\
-         <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='cambiariconoboton("+data.id+","+filacod+")'><i id='ibotoagra"+filacod+"' class='fa fa-arrow-right'></i></button>\
+         <td class='row' style='text-align: center'><button id='botonagregar"+filacod+"'  type='button'  class='btn btn-info btn-sm'  onClick='cambiariconoboton("+data.id+","+filacod+")'><i id='ibotoagra"+filacod+"' class='fa fa-arrow-right'></i></button>\
+         <td class='row' style='text-align: center'><button id='tareaboton' data-toggle='modal' data-target='#modalvertareas' type='button' class='btn btn-success btn-sm' onClick='tablaportareas("+data.id+")'><i  class='fa fa-eye'></i> Ver</button>\
          </tr>"
     );
 }
@@ -277,7 +278,7 @@ function AsignacionInsert(iduser){
     });  
 }
 
-function  mostrarasignacionesporpeticion(idpeticion){
+ function  mostrarasignacionesporpeticion(idpeticion){
     $.get('mostrarasignaciones/'+idpeticion, function (data) {
         $("#tablaasignacionporpeticion").html("");
         $.each(data, function(i, item) { //recorre el data 3
@@ -286,19 +287,87 @@ function  mostrarasignacionesporpeticion(idpeticion){
     });
 }
 
+
 function cargartablaasignacionporpeticion(data){
     $("#tablaasignacionporpeticion").append(
-        "<tr><td hidden>"+ data.id +"</td>\
-        <td>"+ data.name +" "+ data.apellidos +"</td>\
+          "<tr><td hidden>"+ data.id +"</td>\
+          <td>"+ data.name +" "+ data.apellidos +"</td>\
         <td>"+data.FechaInicio +" - "+ data.HoraInicial+"</td>\
-        <td>"+data.FechaLimite +" - "+ data.HoraLimite+"</td>\
-        <td class='row' style='text-align: center'><button data-toggle='modal' data-target='#modalobser' onClick='mostarobservacion("+data.iduser_asignacion+")'  type='button'class='btn btn-success'></i>Ver</button>\
-        </tr>"
+       <td>"+data.FechaLimite +" - "+ data.HoraLimite+"</td>\
+         <td class='row' style='text-align: center'><button data-toggle='modal' data-target='#modalobser' onClick='mostarobservacion("+data.iduser_asignacion+")'  type='button'class='btn btn-success'></i>Ver</button>\
+         </tr>"
     );
 }
 
 function mostarobservacion(idasignacion){
-    $.get('mostrarobservacion/'+idasignacion, function (data) {
-    document.getElementById('mostrarinforobserasig').innerHTML = data.Observacion;
-    });
+
+      $.get('mostrarobservacion/'+idasignacion, function (data) {
+        document.getElementById('mostrarinforobserasig').innerHTML = data.Observacion;
+       });
 }
+
+
+function tablaportareas(iduser){
+
+      $.get('consultarPeticionEstado/'+iduser, function (data) {
+        console.log(data);
+        $("#tablavertareas").html("");
+        $.each(data, function(i, item) { //recorre el data 3
+        $("#tablavertareas").append(
+        "<tr><td>"+ item.nombre+"</td>\
+        <td>"+item.FechaInicio +" - "+ item.HoraInicial+"</td>\
+        <td>"+item.FechaLimite +" - "+ item.HoraLimite+"</td>\
+        </tr>"
+    );
+        });      
+    });
+
+}
+
+function tablamisasignaciones(iduser){
+      $.get('consultarPeticionEstado/'+iduser, function (data) {
+        $("#tablamisasignaciones").html("");
+        $.each(data, function(i, item) { //recorre el data 3
+        $("#tablamisasignaciones").append(
+        "<tr><td>"+ item.nombre+"</td>\
+        <td>"+"" +" - "+ ""+"</td>\
+        <td>"+item.FechaInicio +" - "+ item.HoraInicial+"</td>\
+        <td>"+item.FechaLimite +" - "+ item.HoraLimite+"</td>\
+        <td>"+""+"</td>\
+        <td>"+""+"</td>\
+        <td>"+""+"</td>\
+        <td>"+item.Observacion+"</td>\
+        </tr>"
+    );
+        });      
+    });
+
+}
+
+
+function mostrarasigportectnico(){
+   $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: 'idususario',  // Url que se envia para la solicitud esta en el web php es la ruta
+            method: "get",             // Tipo de solicitud que se enviará, llamado como métod              // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+            success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+            {  
+              tablamisasignaciones(data);
+            },
+            error: function () {   
+         
+        
+            }
+
+});
+}
+
+
+
+
+
+

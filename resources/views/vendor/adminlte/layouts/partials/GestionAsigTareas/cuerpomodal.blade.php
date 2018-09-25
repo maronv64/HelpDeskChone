@@ -26,7 +26,8 @@
                                     <tr>
                                       <th scope="col" style="text-align: center">Técnico</th>
                                       <th scope="col" style="text-align: center">Especialidad</th>
-                                      <th scope="col" style="text-align: center">Acciones</th>
+                                      <th scope="col" style="text-align: center">Asignar</th>
+                                      <th scope="col" style="text-align: center">Tareas</th>
                                     </tr>
                                   </thead>
                                   <tbody id="tablaasignartecnico">

@@ -47,6 +47,6 @@
 @include('adminlte::layouts.partials.GestionAsigTareas.modalasignacion')  
 @include('adminlte::layouts.partials.GestionAsigTareas.modaldatospeticion') 
 @include('adminlte::layouts.partials.GestionAsigTareas.modalmuestraobservacion') 
-
+@include('adminlte::layouts.partials.GestionAsigTareas.modalvertareas') 
 <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
 @endsection

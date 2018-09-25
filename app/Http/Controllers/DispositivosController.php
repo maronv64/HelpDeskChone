@@ -50,6 +50,7 @@ class DispositivosController extends Controller
         $dispositivo->modelo=$request->modelo;
         $dispositivo->marca=$request->marca;
         $dispositivo->cod_activo=$request->cod_activo;
+        $dispositivo->num_activo=$request->num_activo;
         $dispositivo->save();
         return $dispositivo;
     }
@@ -97,6 +98,7 @@ class DispositivosController extends Controller
             $dispositivo->color=$request->color;
             $dispositivo->modelo=$request->modelo;
             $dispositivo->marca=$request->marca;
+            $dispositivo->num_activo=$request->num_activo;
         endif;
         $dispositivo->cod_activo=$request->cod_activo;
         $dispositivo->save();

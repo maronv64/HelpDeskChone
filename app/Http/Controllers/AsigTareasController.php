@@ -6,10 +6,12 @@ use App\AsigTareas;
 use App\UsuarioAsig;
 use App\Peticion;
 use App\Estado;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AsigTareasController extends Controller
 {
@@ -23,6 +25,16 @@ class AsigTareasController extends Controller
     {
          return view('adminlte::layouts.partials.GestionAsigTareas.Asignacion');
     }
+
+    public function misasignaciones()
+    {
+
+         return view('adminlte::layouts.partials.GestionAsigTareas.misasignaciones');
+    }
+     public function idususario(){
+     $id=Auth::user()->id;
+     return $id;
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -44,6 +56,47 @@ class AsigTareasController extends Controller
 
     public function store(Request $request)
     {
+        /*Consultar por usuario donde estan asignados*/
+        $userasig=DB::table('user_asignacion')
+        ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
+        ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
+        ->join('estado', 'estado.idestado', '=', 'peticion.idestado')
+        ->where([['user_asignacion.usuario_idUsuario','=',$request->idusuario],['estado.descripcion','=','Asignada']])
+        ->get();
+
+        
+        if($userasig!=null){
+            foreach ($userasig as $dato) {
+                $finicialUser = strtotime($dato->FechaInicio);
+                $ffnicialUser = strtotime($dato->FechaLimite);
+                $fiinicialIngreso = strtotime($request->FechaInicial);
+                $ffinicialIngreso = strtotime($request->FechaLimite);
+                if($finicialUser == $fiinicialIngreso && $fiinicialIngreso == $ffinicialIngreso){ //Comparar en el mismo dia
+                    $horalimiteUser = strtotime($dato->HoraLimite);
+                    $horaInicioUser = strtotime($dato->HoraInicial);
+                    $horaInicuiIngreso = strtotime($request->HoraInicial);
+                    $horafinalIngreso = strtotime($request->HoraLimite);
+                    if(($horaInicuiIngreso <= $horalimiteUser && $horaInicuiIngreso>=$horaInicioUser) ||($horafinalIngreso>=$horaInicioUser && $horafinalIngreso <= $horalimiteUser)){ //Si la hora de inicio es menor a la hora de limite entonces no se puede asignar
+                    return 1;
+                    }
+                }
+            }
+        }
+
+        $datos = DB::table('user_asignacion')
+        ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
+        ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
+        ->where('user_asignacion.peticion_idpeticion','=', $request->idpeticion )
+        ->get();
+        if($datos!=null){
+        foreach ($datos as $item) {
+            if($item->id==$request->idusuario){
+            return 0;
+        }
+        }
+        }
+        $date = Carbon::now();
+        $date = $date->format('Y-m-d');
         $asignacion = new AsigTareas();
         $asignacion->peticion_idpeticion=$request->idpeticion;
         $asignacion->usuario_idUsuario=$request->idusuario;
@@ -54,7 +107,11 @@ class AsigTareasController extends Controller
         $asignacion->HoraLimite=date("H:i:s",strtotime( $request->HoraLimite));
         $asignacion->observacion=$request->observacion;
         $asignacion->save();
-        return response()->json($asignacion);
+        $peticion= Peticion::find($asignacion->peticion_idpeticion);
+        $estado= Estado::where('descripcion', 'Asignada')->first();
+        $peticion->idestado=$estado->idestado;
+        $peticion->save();
+      
     }
 
     public function guardarUsuariosAsignacion($idusuario,$idasig){
@@ -129,25 +186,15 @@ class AsigTareasController extends Controller
 
      }
 
-       public function consultarPeticionEstado($idusuario){
+       public function consultarPeticionEstado(request $request, $idusuario){
          $datos=DB::table('user_asignacion')
         ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
         ->join('peticion', 'peticion.idpeticion', '=', 'user_asignacion.peticion_idpeticion')
         ->join('estado', 'estado.idestado', '=', 'peticion.idestado')
-        ->where([['user_asignacion.usuario_idUsuario','=',$idusuario],['estado.descripcion','=','Pendiente']])
-
+        ->join('area', 'area.idarea', '=', 'users.idarea')
+         ->join('prioridad', 'prioridad.idprioridad', '=', 'peticion.idprioridad')
+        ->where([['user_asignacion.usuario_idUsuario','=',$idusuario],['estado.descripcion','=','Asignada']])
         ->get();
-        dd($datos);
         return response()->json($datos);
-        /*$fa = strtotime(date("Y-m-d"));
-        foreach ($matricula as $item) {
-            $ff = strtotime($item->fecha_fin);
-            if($ff <= $fa){ // la matrciula esta caducada
-                $objMatricula = Matricula_vehiculo::find($item->idmatricula_vehiculo);
-                $objMatricula->estado = "Caducada";
-                $objMatricula->save();
-            }
-        }*/
-
      }
 }

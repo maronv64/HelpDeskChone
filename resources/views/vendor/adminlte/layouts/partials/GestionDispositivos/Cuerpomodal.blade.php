@@ -4,6 +4,13 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group has-feedback">
+                    <label for="">Codigo del activo</label>
+                    <input autocomplete="off" id="modal_num_activo" type="text" class="form-control" value="{{ old('modal_num_activo') }}" required/>
+                    <span class="glyphicon glyphicon-book form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group has-feedback">
                     <label for="">Descripcion</label>
                     <input autocomplete="off" id="modal_descripcion" type="text" class="form-control" value="{{ old('modal_descripcion') }}" required/>
                     <span class="glyphicon glyphicon-phone form-control-feedback"></span>
@@ -22,6 +29,8 @@
                     <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 <div class="form-group has-feedback">
                     <label for="">Serie</label>
@@ -29,8 +38,6 @@
                     <span class="fa fa-barcode form-control-feedback"></span>
                 </div>
             </div> 
-        </div>
-        <div class="row">
             <div class="col-md-4">
                 <div class="form-group has-feedback">
                     <label for="">Color</label>
@@ -45,6 +52,8 @@
                     <span class="fa fa-car form-control-feedback"></span>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 <div class="form-group has-feedback">
                     <label for="">Marca</label>

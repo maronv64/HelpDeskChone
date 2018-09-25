@@ -38,7 +38,14 @@ class AreaController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $area = new Area();
+        $area->nombre=$request->nombre;
+        $area->correo=$request->correo;
+        $area->extencion=$request->extencion;
+        $area->siglas=$request->siglas;
+        $area->estado_del='1';
+        $area->save();
+        return $area;
     }
 
     /**
@@ -99,5 +106,10 @@ class AreaController extends Controller
     {
         $areas = Area::where('estado_del','1')->get();
         return response()->json($areas);
+    }
+    public function buscar($id_busqueda)
+    {
+        $resultado = Area::find($id_busqueda);
+        return response()->json($resultado);
     }
 }

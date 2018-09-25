@@ -100,16 +100,23 @@ Route::get('/listaTecnicos','UsuariosController@listaTecnicos');
 /*###################*GESTIONES DE TIPO USUARIOS*###########################*/
 Route::GET('/mostrartiposusuarios', 'TipoUsuarioController@mostrartiposusuarios');
 Route::GET('/mostrarextratecnico', 'ExtraTecnicoController@mostrarextratecnico');
+Route::get('/buscartipoususarios','TipoUsuarioController@buscar');
 
 
 /*######################RUTAS PARA LAS AREAS#################################*/
 Route::GET('/mostrarareas', 'AreaController@mostrarareas');
+Route::resource('/areasIngresos','AreaController');
+Route::get('/buscarareas','AreaController@buscar');
+
 
 /*######################RUTAS PARA LOS TÉCNICOS#################################*/
 Route::resource('/extratecnico', 'ExtraTecnicoController');
 
+
 /*######################RUTAS PARA  LA ESPECIALIDAD#################################*/
 Route::get('/mostrarespecialidad','EspecialidadController@mostrarespecialidad');
+Route::resource('/especialidadIngreso','EspecialidadController');
+Route::get('/buscarespecialidades','EspecialidadController@buscar');
 
 
 /*######################RUTAS PARA LA ASIGNACIÓN DE TAREAS#################################*/
@@ -121,6 +128,8 @@ Route::get('/mostrarasignaciones/{idpeticion}','AsigTareasController@mostrarasig
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
 Route::get('/mostrarobservacion/{idasignacion}','AsigTareasController@mostrarobservacion');
 Route::get('/consultarPeticionEstado/{idusuario}','AsigTareasController@consultarPeticionEstado');
+Route::get('/misasignaciones','AsigTareasController@misasignaciones');
+Route::get('/idususario','AsigTareasController@idususario');
 
 
 //Rutas de tipo de usuarios
@@ -133,6 +142,8 @@ Route::get('/TipoUsuarios', function () {
 /*######################RUTAS PARA LOS TIPOS DE DISPOSITIVOS#################################*/
 Route::post('/tiposdispositivos','TipoDispositivoController@store');
 Route::get('/mostrartiposdispositivos','TipoDispositivoController@mostrardispositivos');
+Route::get('/buscartipodispositivo','TipoDispositivoController@buscar');
+
 
 
 //view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')

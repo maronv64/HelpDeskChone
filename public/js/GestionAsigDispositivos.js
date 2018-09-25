@@ -160,12 +160,12 @@ function filtro_dispositivos() {
 }
 
 function guardarAsignaciones(){
-    var arreglo = new Array();
+    var arreglo = new Array(), v = false;
     $('#tablaDispositivosA tbody tr').each( function(){
         var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
-            if(id_dispositivo != 0){
-                arreglo.push(id_dispositivo);
-            }
+        if(id_dispositivo != 0){
+            arreglo.push(id_dispositivo);
+        }
     });
     $(arreglo).each(function (index, element) {
         $.ajaxSetup({
@@ -176,8 +176,7 @@ function guardarAsignaciones(){
         var FrmData = {
             idusuario:$('#asignar_dispositivos').val(),
             iddispositivo:element,
-            fecha_inicio:$('#fechaRecivido').val(),
-            fecha_fin:$('#fechaEntrega').val(),
+            fecha_inicio:$('#fechaEmisión').val(),
         }
         $.ajax({
             url:'asignacionDispositivos', 
@@ -187,14 +186,20 @@ function guardarAsignaciones(){
             success: function(requestData) 
             {
                 alertify.success("DATOS INGRESADOS CORRECTAMENTE");
+                cargarListaDispositivos();
+                cargarListaDispositivosPorUsuario($('#asignar_dispositivos').val());
             },
+            error: function () 
+            {     
+                alertify.error("HA OCURRIDO UN ERROR");
+            }
         });
     });
 }
 
 $('#asignar_dispositivos').on('submit',function(e){
 	e.preventDefault();
-	guardarAsignaciones();
+    guardarAsignaciones();
 });
 
 function modificar_dispositivos_asignados(){
@@ -221,8 +226,13 @@ function modificar_dispositivos_asignados(){
                     success: function(requestData) 
                     {
                         alertify.success("DATOS ELIMINADOS CORRECTAMENTE");
-                        $('#modalAsignacion').modal('hide');
+                        cargarListaDispositivos();
+                        cargarListaDispositivosPorUsuario($('#asignar_dispositivos').val());
                     },
+                    error: function () 
+                    {     
+                        alertify.error("HA OCURRIDO UN ERROR");
+                    }
                 });
             }
         });
@@ -232,7 +242,4 @@ function modificar_dispositivos_asignados(){
 $('#dispositivos_asignados').on('submit',function(e){
     e.preventDefault();
     modificar_dispositivos_asignados();
-    cargarListaDispositivos();
 });
-
-

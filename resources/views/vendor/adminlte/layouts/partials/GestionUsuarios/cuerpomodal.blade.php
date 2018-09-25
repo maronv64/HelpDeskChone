@@ -45,19 +45,8 @@
                                   <div class="form-group has-feedback" id="idareaup" >
                                       <label> <b>Área:</b></label>
                                       <select class="form-control" required name="idareaup" id="cmb_areaup" >
-                                  
                                       </select>      
-                                   <!--    <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
                                   </div>
-                                <!--   <div class="form-group has-feedback">
-                                      <label> <b>Estado:</b></label>
-                                      <select class="form-control" id="estadoup" name="estadoup" required >
-                                        <option>Activo</option>
-                                        <option>Inactivo</option>
-                                      </select>
-                                          
-                                 <span class="glyphicon glyphicon-user form-control-feedback"></span> 
-                                  </div> -->
                               </div>
                           </div>
                           <div class="row">

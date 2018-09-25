@@ -51,6 +51,7 @@ function cargarListaDispositivos() {
             if (val.cod_activo=="Activo") {
                 id_fila = id_fila + 1;
                 out+="<tr id='numero_fila"+id_fila+"'>";
+                out+="<td>"+val.num_activo+"</td>";                
                 out+="<td>"+val.nombredispositivo+"</td>";
                 $.each(datos.tipos, function(index, val2) {
                     if (val2.idtipodispositivos==val.idtipodispositivos) {
@@ -86,6 +87,7 @@ function cargarListaDispositivosPorUsuario(id_usuario) {
             var out="";
             id_fila = id_fila - 1;
             out+="<tr id='numero_fila"+id_fila+"'>";
+            out+="<td>"+val.dispositivos.num_activo+"</td>";
             out+="<td>"+val.dispositivos.nombredispositivo+"</td>";
             out+="<td>"+val.dispositivos.tipo_dispositivo.descripcion+"</td>";
             out+="<td>"+val.dispositivos.serie+"</td>";
@@ -162,7 +164,7 @@ function filtro_dispositivos() {
 function guardarAsignaciones(){
     var arreglo = new Array(), v = false;
     $('#tablaDispositivosA tbody tr').each( function(){
-        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        var id_dispositivo = ($(this).find("td").eq(8).find("button").val());
         if(id_dispositivo != 0){
             arreglo.push(id_dispositivo);
         }
@@ -205,14 +207,13 @@ $('#asignar_dispositivos').on('submit',function(e){
 function modificar_dispositivos_asignados(){
     var arr = new Array();
     $('#tablaDispositivosA2 tbody tr').each( function(){
-        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        var id_dispositivo = ($(this).find("td").eq(8).find("button").val());
         if(id_dispositivo != 0){
             arr.push(id_dispositivo);
         }
     });
-    console.log(arr);
     $('#tablaDispositivosA2 tbody tr').each( function(){
-        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        var id_dispositivo = ($(this).find("td").eq(8).find("button").val());
         $(arr).each(function (index, element) {
             if(id_dispositivo == element){
                 $.ajaxSetup({

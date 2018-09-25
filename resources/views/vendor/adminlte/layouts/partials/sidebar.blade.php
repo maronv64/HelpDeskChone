@@ -8,7 +8,9 @@
         @if (! Auth::guest())
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="img/avatar5.png" class="img-circle" alt="User Image" />
+                    @if(isset(Auth::user()->img))
+                    <img src="{{ Auth::user()->img }}" class="img-circle" alt="User Image" />
+                    @endif
                 </div>
                 <div class="pull-left info">
                     <p>{{ Auth::user()->name }}</p>
@@ -29,6 +31,7 @@
         </form>
         <!-- /.search form -->
 
+       
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
@@ -53,22 +56,29 @@
 
                 </ul> -->
             </li>
+              <li class="treeview">
+                <a href="{{ url('/misasignaciones') }}"><i class='fa fa-tachometer'></i> <span>Mis Asignaciones</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
+          <!--       <ul class="treeview-menu">
+                    <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
+                    <li><a href="#">Dashboard Peticiones</a></li>
+                    <li><a href="#">Dashboard SLA</a></li>
+                    <li><a href="#">Dashboard Prioridad</a></li>
+
+                </ul> -->
+            </li>
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-list-alt'></i> <span>PETICIONES</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <!-- <li><a href="{{ url('/dispositivos') }}">Dispositivos</a></li>
                     <li><a href="#">Asignar Dispositivos</a></li> -->
                     <!-- si no esta logeado -->
-                    @if (Auth::guest()) 
-                    
-                    @else
+            
                         <li><a href="{{ url('/peticionesNorm') }}">MIS PETICIONES</a></li>
                         <!-- <a href="{{ url('/peticionesNorm') }}"><i class='fa fa-tachometer'></i> <span>PETICIONES</span></a> -->
-                        @if (Auth::user()->idtipousuario)
+              
                             <li><a href="{{ url('/peticiones') }}">ADMIN PETICIONES</a></li>
                             <!-- <a href="{{ url('/peticiones') }}"><i class='fa fa-tachometer'></i> <span>PETICIONES ADMIN</span></a> -->
-                        @endif 
-                    @endif
+       
 
 
                 </ul>
@@ -85,11 +95,9 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-bar-chart-o'></i> <span>REGISTRO</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                     @if (! Auth::guest())
-                     @if( Auth::user()->idtipousuario =='2')
+               
                     <li><a href="{{ url('/register') }}"><i class='fa fa-bar-chart-o'></i>Usuarios</a></li>
-                     @endif
-                     @endif
+                 
                    <!-- <li><a href="#">Areas</a></li>-->
                    <!-- <li><a href="{{ url('/peticiones') }}">Peticiones</a></li>-->
                    <!-- <li><a href="#">Fichas</a></li>-->

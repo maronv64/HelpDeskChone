@@ -2,8 +2,10 @@
 $(document).ready(function()
        {
           BandejadePeticiones();
-          mostrartecnicos();
-          
+          mostrartecnicos();  
+          mostrarasigportectnico();
+
+                
         
 
  });
@@ -298,6 +300,10 @@ function AsignacionInsert(iduser){
             {  
               if(data=="0"){
                 alertify.error("Técnico ya asignado");
+              }else if(data=="1"){
+                $("#modalvertareas").modal("show");
+                tablaportareas(iduser);
+                //alert("Este Tëcnico no puede ser asignado en este horario porque tiene tareas.");
               }else{
                  mensaje1 = "Datos guardados correctamente";
                  alertify.success(mensaje1);
@@ -342,3 +348,73 @@ function mostarobservacion(idasignacion){
         document.getElementById('mostrarinforobserasig').innerHTML = data.Observacion;
        });
 }
+
+
+function tablaportareas(iduser){
+
+      $.get('consultarPeticionEstado/'+iduser, function (data) {
+        console.log(data);
+        $("#tablavertareas").html("");
+        $.each(data, function(i, item) { //recorre el data 3
+        $("#tablavertareas").append(
+        "<tr><td>"+ item.nombre+"</td>\
+        <td>"+item.FechaInicio +" - "+ item.HoraInicial+"</td>\
+        <td>"+item.FechaLimite +" - "+ item.HoraLimite+"</td>\
+        </tr>"
+    );
+        });      
+    });
+
+}
+
+function tablamisasignaciones(iduser){
+      $.get('consultarPeticionEstado/'+iduser, function (data) {
+        $("#tablamisasignaciones").html("");
+        $.each(data, function(i, item) { //recorre el data 3
+        $("#tablamisasignaciones").append(
+        "<tr><td>"+ item.nombre+"</td>\
+        <td>"+"" +" - "+ ""+"</td>\
+        <td>"+item.FechaInicio +" - "+ item.HoraInicial+"</td>\
+        <td>"+item.FechaLimite +" - "+ item.HoraLimite+"</td>\
+        <td>"+""+"</td>\
+        <td>"+""+"</td>\
+        <td>"+""+"</td>\
+        <td>"+item.Observacion+"</td>\
+        </tr>"
+    );
+        });      
+    });
+
+}
+
+
+function mostrarasigportectnico(){
+   $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: 'idususario',  // Url que se envia para la solicitud esta en el web php es la ruta
+            method: "get",             // Tipo de solicitud que se enviará, llamado como métod              // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
+            success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
+            {  
+              tablamisasignaciones(data);
+            },
+            error: function () {   
+         
+        
+            }
+
+});
+}
+
+
+function mostrartablatareas(){
+  $("#tareastabla").prop("hidden",false);
+
+}
+
+
+
+

@@ -144,7 +144,8 @@ Route::post('/tiposdispositivos','TipoDispositivoController@store');
 Route::get('/mostrartiposdispositivos','TipoDispositivoController@mostrardispositivos');
 Route::get('/buscartipodispositivo','TipoDispositivoController@buscar');
 
-
+/*######################RUTAS PARA LAS FICHAS#################################*/
+Route::resource('/fichas','FichasController');
 
 //view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 

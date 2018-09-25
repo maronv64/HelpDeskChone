@@ -105,7 +105,7 @@
             </li>
          
 
-             <li class="treeview">
+            <li class="treeview">
                 <a href="#"><i class='fa fa-bar-chart-o'></i> <span>INFORMES</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="#">Informe Peticiones</a></li>
@@ -113,6 +113,18 @@
                     <li><a href="#">Informe Asignaciones</a></li>
                     <li><a href="#">Informe Productividad</a></li>
                 </ul>
+            </li>
+
+            </li>
+              <li class="treeview">
+                <a href="{{ url('/fichas') }}"><i class='fa fa-tachometer'></i> <span>Ficha</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
+          <!--       <ul class="treeview-menu">
+                    <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
+                    <li><a href="#">Dashboard Peticiones</a></li>
+                    <li><a href="#">Dashboard SLA</a></li>
+                    <li><a href="#">Dashboard Prioridad</a></li>
+
+                </ul> -->
             </li>
 
             <li class="treeview">

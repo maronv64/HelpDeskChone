@@ -121,6 +121,8 @@ Route::get('/mostrarasignaciones/{idpeticion}','AsigTareasController@mostrarasig
 Route::GET('/desencriptarclave', 'UsuariosController@desencriptarclave');
 Route::get('/mostrarobservacion/{idasignacion}','AsigTareasController@mostrarobservacion');
 Route::get('/consultarPeticionEstado/{idusuario}','AsigTareasController@consultarPeticionEstado');
+Route::get('/misasignaciones','AsigTareasController@misasignaciones');
+Route::get('/idususario','AsigTareasController@idususario');
 
 
 //Rutas de tipo de usuarios

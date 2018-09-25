@@ -118,7 +118,7 @@
                                       <th scope="col" style="text-align: center">Técnico</th>
                                       <th scope="col" style="text-align: center">Fecha/Hora Inicial</th>
                                       <th scope="col" style="text-align: center">Fecha/Hora Limite</th>
-                                      <th scope="col" style="text-align: center">Acción</th>
+                                      <th scope="col" style="text-align: center">Observación</th>
                                     </tr>
                                   </thead>
                                   <tbody id="tablaasignacionporpeticion">

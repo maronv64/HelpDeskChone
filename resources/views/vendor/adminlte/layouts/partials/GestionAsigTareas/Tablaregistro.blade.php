@@ -1,11 +1,10 @@
-
           <div class="row" >
             <div class="col-md-10">
-              <p> <h3>Lista de Peticiones</h3></p>              
+              <p> <h3>Bandeja de Peticiones</h3></p>              
             </div>
           </div>
           <hr>
-            <div class="row">
+       <!--      <div class="row">
             <div class="col-md-12">
                   <input type="text" class="form-control form-control-sm" placeholder="Buscar Peticiones" onkeyup="" id="buscar_peticiones">
                   <div class="input-group-prepend">
@@ -14,7 +13,7 @@
                     </span>
                   </div>                                                 
             </div> 
-          </div>
+          </div> -->
 
           <div class="table-responsive pre-scrollable">
           
@@ -26,10 +25,6 @@
                 <th scope="col">Tipo Petición</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Estado</th>
-<!--                 <th scope="col">Tipo Usuario</th>
-                <th scope="col">Especialización</th>
-                <th scope="col">Área</th>
-                <th scope="col">Email</th> -->
                 <th scope="col" colspan="2" style="text-align: center">Acciones</th>
               </tr>
             </thead>

@@ -50,6 +50,11 @@ class UsuariosController extends Controller
         $user->celular = $request->celular;
         $user->email = $request->email;
         $user->estado = "Activo";
+        if($request->sexo=="Masculino"){
+             $user->img = "img/avatar5.png";
+        }else{
+            $user->img = "img/avatar3.png";
+        }
         $user->idtipousuario = $request->idtipousuario;
         // $user->idextratecnico = $request->idextratecnico;
         $user->idarea = $request->idarea;
@@ -190,19 +195,20 @@ class UsuariosController extends Controller
         ->where('suelo.idsuelo','=', $request->botonplani )
         ->select(DB::raw('*'))
         ->get();*/
-        $repuestos = Usuarios::with(['tipo_usuario','area','extratecnicos'])
+        $usuarios = Usuarios::with(['tipo_usuario','area','extratecnicos'])
             ->join('tipo_usuario','users.idtipousuario','=','tipo_usuario.idtipo_Usuario')
             ->join('area','users.idarea','=','area.idarea')
-            //->join('extra_tecnico','extra_tecnico.idusuario','=','users.id')
-            ->where('estado','Activo')
-            ->where('name', 'like', "%$busqueda%")
+            ->where([['estado','Activo'],['name', 'like', "%$busqueda%"]])
+            ->orwhere([['estado','Activo'],['apellidos', 'like', "%$busqueda%"]])
+            ->orwhere([['estado','Activo'],['cedula', 'like', "%$busqueda%"]])
+             ->orwhere([['estado','Activo'],['area.nombre', 'like', "%$busqueda%"]])
             /*->where('tipo_usuario.descripcion', 'like', "%$busqueda%")
             ->where('area.nombre', 'like', "%$busqueda%")
             ->orWhere('apellidos','like',"%$busqueda%")
             ->orWhere('sexo','like',"%$busqueda%")
             ->orWhere('estado','like',"%$busqueda%")*/
             ->get();
-        return response()->json($repuestos);
+        return response()->json($usuarios);
     }
 
     /* Cargar Usuaruios*/

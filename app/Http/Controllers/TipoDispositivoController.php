@@ -97,4 +97,9 @@ class TipoDispositivoController extends Controller
         $tipoDispositivo= TipoDispositivo::All();
         return response()->json($tipoDispositivo);
     }
+    public function buscar($id_busqueda)
+    {
+        $resultado = TipoDispositivo::find($id_busqueda);
+        return response()->json($resultado);
+    }
 }

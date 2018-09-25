@@ -133,7 +133,7 @@
                 <table class="table table-hover table-striped">
                     <thead>
                     <tr>
-                        <th>Fecha y Hora de Peticion</th>
+                        <th>Fecha de Peticion</th>
                         <th>Solicitud</th>
                         <th>Tecnico Asignado</th>
                         <th >Fecha y Hora Inicio</th>

@@ -15,7 +15,7 @@
                 <div class="register-box-body" align="center"  >  
 
 
-                	<img  src="img/imagenes/Help_Desk.png">
+                	<img class="img-responsive" src="img/imagenes/Help_Desk.png">
                 	<h1>Help <b>Desk</b></h1>
 
                 </div>

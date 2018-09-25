@@ -84,6 +84,7 @@ $('#cmbTipoBusqueda').change(function () {
 
     }if ($('#cmbTipoBusqueda').val()=='Fecha') {
         //var fecha= '<?php echo date("Y-m-d");?>';
+        $('#panelBuscar').html('');
         orden+=' <div class="form-group has-feedback">                                          ';
         orden+='    <label> <b>Fecha Filtro:</b></label>                                          ';
         orden+='    <input type="date" class="form-control" id="dtpFechaFiltro" onchange="cmbTipoBusqueda_onChanged()" required />';    
@@ -93,9 +94,20 @@ $('#cmbTipoBusqueda').change(function () {
         
         $('#dtpFechaFiltro').val($('#dtpFechaFiltro2').val());
 
-    }if ($('#cmbTipoBusqueda').val()=='Fecha') {
-        $('#panelBuscartxt').html('');
-    }
+    }//if ($('#cmbTipoBusqueda').val()=='Fecha') {
+    //     $('#panelBuscartxt').html('');
+
+    //     orden+=' <div class="form-group has-feedback">                                          ';
+    //     orden+='    <label> <b>Fecha Filtro:</b></label>                                          ';
+    //     orden+='    <input type="date" class="form-control" id="dtpFechaFiltro" onchange="cmbTipoBusqueda_onChanged()" required />';    
+    //     orden+=' </div>                                                                         ';  
+
+
+    //     $('#panelBuscar').append( orden );
+        
+    //     $('#dtpFechaFiltro').val($('#dtpFechaFiltro2').val());
+ 
+    // }
     
 
 });

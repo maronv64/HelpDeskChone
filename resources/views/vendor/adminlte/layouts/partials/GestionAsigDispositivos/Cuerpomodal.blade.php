@@ -13,23 +13,17 @@
             </div>
             @include('adminlte::layouts.partials.GestionAsigDispositivos.TablaDispositivosA')
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group has-feedback">
-                        <label> <b>Fecha de Recibido:</b></label>
-                        <input type="date" class="form-control" id="fechaRecivido"required value="<?php echo date("Y-m-d");?>"/>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group has-feedback">
-                        <label> <b>Fecha de Entrega:</b></label>
-                        <input type="date" class="form-control" id="fechaEntrega"required />
+                        <label> <b>Fecha de Emisión:</b></label>
+                        <input type="date" class="form-control" id="fechaEmisión"required value="<?php echo date("Y-m-d");?>"/>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+        </div>
+        <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Asignar</button>
                 <button type="button" class="btn btn-secondary" onclick="" data-dismiss="modal">Cerrar</button>
-            </div>
         </div>
     </form>
 </div>

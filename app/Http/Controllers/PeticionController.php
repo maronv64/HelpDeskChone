@@ -80,7 +80,11 @@ class PeticionController extends Controller
         $peticion->estado_del='0';
         $estado = Estado::where('descripcion','like',"%final%")->firstOrFail();
         $peticion->idestado=$estado->idestado;
-        $peticion->update_at= Carbon::now()->toDateTimeString();
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 0fa4f1147983a9b343030324df4c028a34cccff6
+        $peticion->updated_at= Carbon::now()->toDateTimeString();
         $peticion->update();
     }
 

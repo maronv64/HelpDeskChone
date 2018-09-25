@@ -68,10 +68,10 @@ class AsigTareasController extends Controller
         if($userasig!=null){
             foreach ($userasig as $dato) {
                 $finicialUser = strtotime($dato->FechaInicio);
-                $ffnicialUser = strtotime($dato->FechaLimite);
+                $ffinallUser = strtotime($dato->FechaLimite);
                 $fiinicialIngreso = strtotime($request->FechaInicial);
-                $ffinicialIngreso = strtotime($request->FechaLimite);
-                if($finicialUser == $fiinicialIngreso && $fiinicialIngreso == $ffinicialIngreso){ //Comparar en el mismo dia
+                $ffinalIngreso = strtotime($request->FechaLimite);
+                if($finicialUser == $fiinicialIngreso && $ffinalIngreso == $ffinallUser){ //Comparar en el mismo dia
                     $horalimiteUser = strtotime($dato->HoraLimite);
                     $horaInicioUser = strtotime($dato->HoraInicial);
                     $horaInicuiIngreso = strtotime($request->HoraInicial);

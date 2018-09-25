@@ -267,7 +267,7 @@ function CargarUsuariosPorArea(idarea,consulta){
             //añade el email
             fila+= '<td>'+item.email  +'</td>';
             //añade el boton
-            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='pasarDatosUsuario("+item.id+")'><i class='fa fa-edit'></i></button>";
+            fila+= "<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal' data-target='#actualizarusuariomodal' onClick='pasarDatosUsuario("+item.id+")'><i class='fa fa-check-square'></i></button>";
          
             //
             fila+= '</tr>';

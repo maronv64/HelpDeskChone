@@ -44,7 +44,7 @@
                                     <!-- campo de Descripcion -->
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback">
-                                            <label for="">Descripcion:</label>
+                                            <label for="">Observación:</label>
                                             <input id="txtDescripcionN"  type="text" class="form-control" placeholder="Describa su peticion"  required/>
                                             <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                                         </div>
@@ -136,7 +136,7 @@
                 <thead>
                 <tr>
 
-                    <th scope="col">Descripcion</th>
+                    <th scope="col">Observación</th>
                     <th scope="col">Tipo de Peticion</th>
                     <th scope="col">Prioridad</th>
                     <th scope="col">Estado</th>

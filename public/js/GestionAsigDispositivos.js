@@ -51,6 +51,7 @@ function cargarListaDispositivos() {
             if (val.cod_activo=="Activo") {
                 id_fila = id_fila + 1;
                 out+="<tr id='numero_fila"+id_fila+"'>";
+                out+="<td>"+val.num_activo+"</td>";                
                 out+="<td>"+val.nombredispositivo+"</td>";
                 $.each(datos.tipos, function(index, val2) {
                     if (val2.idtipodispositivos==val.idtipodispositivos) {
@@ -86,6 +87,7 @@ function cargarListaDispositivosPorUsuario(id_usuario) {
             var out="";
             id_fila = id_fila - 1;
             out+="<tr id='numero_fila"+id_fila+"'>";
+            out+="<td>"+val.dispositivos.num_activo+"</td>";
             out+="<td>"+val.dispositivos.nombredispositivo+"</td>";
             out+="<td>"+val.dispositivos.tipo_dispositivo.descripcion+"</td>";
             out+="<td>"+val.dispositivos.serie+"</td>";
@@ -160,12 +162,12 @@ function filtro_dispositivos() {
 }
 
 function guardarAsignaciones(){
-    var arreglo = new Array();
+    var arreglo = new Array(), v = false;
     $('#tablaDispositivosA tbody tr').each( function(){
-        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
-            if(id_dispositivo != 0){
-                arreglo.push(id_dispositivo);
-            }
+        var id_dispositivo = ($(this).find("td").eq(8).find("button").val());
+        if(id_dispositivo != 0){
+            arreglo.push(id_dispositivo);
+        }
     });
     $(arreglo).each(function (index, element) {
         $.ajaxSetup({
@@ -176,8 +178,7 @@ function guardarAsignaciones(){
         var FrmData = {
             idusuario:$('#asignar_dispositivos').val(),
             iddispositivo:element,
-            fecha_inicio:$('#fechaRecivido').val(),
-            fecha_fin:$('#fechaEntrega').val(),
+            fecha_inicio:$('#fechaEmisión').val(),
         }
         $.ajax({
             url:'asignacionDispositivos', 
@@ -187,27 +188,32 @@ function guardarAsignaciones(){
             success: function(requestData) 
             {
                 alertify.success("DATOS INGRESADOS CORRECTAMENTE");
+                cargarListaDispositivos();
+                cargarListaDispositivosPorUsuario($('#asignar_dispositivos').val());
             },
+            error: function () 
+            {     
+                alertify.error("HA OCURRIDO UN ERROR");
+            }
         });
     });
 }
 
 $('#asignar_dispositivos').on('submit',function(e){
 	e.preventDefault();
-	guardarAsignaciones();
+    guardarAsignaciones();
 });
 
 function modificar_dispositivos_asignados(){
     var arr = new Array();
     $('#tablaDispositivosA2 tbody tr').each( function(){
-        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        var id_dispositivo = ($(this).find("td").eq(8).find("button").val());
         if(id_dispositivo != 0){
             arr.push(id_dispositivo);
         }
     });
-    console.log(arr);
     $('#tablaDispositivosA2 tbody tr').each( function(){
-        var id_dispositivo = ($(this).find("td").eq(7).find("button").val());
+        var id_dispositivo = ($(this).find("td").eq(8).find("button").val());
         $(arr).each(function (index, element) {
             if(id_dispositivo == element){
                 $.ajaxSetup({
@@ -221,8 +227,13 @@ function modificar_dispositivos_asignados(){
                     success: function(requestData) 
                     {
                         alertify.success("DATOS ELIMINADOS CORRECTAMENTE");
-                        $('#modalAsignacion').modal('hide');
+                        cargarListaDispositivos();
+                        cargarListaDispositivosPorUsuario($('#asignar_dispositivos').val());
                     },
+                    error: function () 
+                    {     
+                        alertify.error("HA OCURRIDO UN ERROR");
+                    }
                 });
             }
         });
@@ -232,7 +243,4 @@ function modificar_dispositivos_asignados(){
 $('#dispositivos_asignados').on('submit',function(e){
     e.preventDefault();
     modificar_dispositivos_asignados();
-    cargarListaDispositivos();
 });
-
-

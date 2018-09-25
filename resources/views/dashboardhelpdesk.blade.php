@@ -58,7 +58,7 @@
                         
                         <i class="fa fa-check-square-o" style="padding-right: 50px;"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Ver <i class="fa fa-eye"></i></a>
+                    <br>
             </div>
             
         
@@ -73,7 +73,7 @@
                     <div class="icon">
                         <i class="fa fa-info"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Ver <i class="fa fa-eye"></i></a>
+                    <br>
                 </div>
             </div>
             <!-- ./col -->
@@ -87,7 +87,7 @@
                     <div class="icon">
                         <i class="fa fa-flag-o"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Ver <i class="fa fa-eye"></i></a>
+                    <br>
                 </div>
             </div>
             <!-- ./col -->
@@ -101,7 +101,7 @@
                     <div class="icon">
                         <i class="fa fa-flag-o"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Ver <i class="fa fa-eye"></i></a>
+                    <br>
                 </div>
             </div>
 
@@ -115,7 +115,7 @@
                     <div class="icon">
                         <i class="fa fa-flag-o"></i>
                     </div>
-                        <a href="#" class="small-box-footer">Ver <i class="fa fa-eye"></i>  </a>
+                    <br>
                 </div>
             </div>
 
@@ -133,12 +133,12 @@
                 <table class="table table-hover table-striped">
                     <thead>
                     <tr>
-                        <th>Fecha y Hora de Peticion</th>
+                        <th>Fecha de Peticion</th>
                         <th>Solicitud</th>
                         <th>Tecnico Asignado</th>
                         <th >Fecha y Hora Inicio</th>
                         <th>Fecha y Hora Fin</th>
-                        <th>Estado</th>
+                        <th>Prioridad</th>
                     </tr>
                     </thead>
                     <tbody>

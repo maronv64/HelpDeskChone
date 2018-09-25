@@ -4,10 +4,8 @@
             @include('adminlte::layouts.partials.GestionAsigDispositivos.TablaDispositivosA2')
         </div>
         <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Asignar</button>
+                <button type="submit" class="btn btn-primary">Quitar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <!-- <button type="button"  id='hola' class="btn btn-secondary" data-dismiss="">hola</button> -->
-                
         </div>
     </form>
 </div>

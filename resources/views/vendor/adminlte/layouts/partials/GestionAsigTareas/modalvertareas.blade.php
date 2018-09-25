@@ -8,19 +8,18 @@
       <div class="modal-body">
             <div class="row">
               <div class="col-md-12" align="center">
-                <p>Este Técnico tiene tareas pendientes en este horario</p>
               </div>
             </div>
              <div class="row">
               <div class="col-md-12" align="center">
-                <button  class="btn btn-primary" onclick="mostrartablatareas();"> Ver</button>
+         
               </div>
             </div>
 
             <div class="row">
               <br>
               <div class="col-md-12">
-                <div class="table-responsive pre-scrollable" style="height: 150px" id="tareastabla" hidden >
+                <div class="table-responsive pre-scrollable" style="height: 150px" id="tareastabla"  >
                 
                 <table class="table table-hover table-bordered"  >
                   <thead>

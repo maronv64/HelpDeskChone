@@ -3,9 +3,10 @@
     <table id="tablaDispositivosA2" class="table table-hover table-bordered">
       <thead>
         <tr>
-          <th scope="col" colspan = "8" style = "text-align:center">Listados de Dispositivos</th>
+          <th scope="col" colspan = "9" style = "text-align:center">Listados de Dispositivos</th>
         </tr>
         <tr>
+          <th scope="col">Número Activo</th>
           <th scope="col">Descripcion</th>
           <th scope="col">Tipo de dispositivo</th>
           <th scope="col">Serie</th>

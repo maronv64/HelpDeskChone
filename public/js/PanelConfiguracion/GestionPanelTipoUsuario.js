@@ -13,7 +13,7 @@ function MostrarTiposUsuarios(){
             var out="";
             out+="<tr>";
             out+="<td>"+item.descripcion+"</td>";
-            out+="<td><center><a class='fa fa-edit btn btn-info' title='Modificar estado del dispositivo'></a></center></td>";
+            out+="<td><center><a class='fa fa-edit btn btn-info' onclick='ModalPanelConfiguracion()' title='Modificar datos del registro'></a></center></td>";
             out+="</tr>";
             $('#tablaTiposUsuarios tbody tr:last').after(out);
             });
@@ -45,4 +45,11 @@ function guardarTipoUsuario() {
             $('#id_txt_tipo_usuario').val('')
         }
     });
+}
+
+////////////////////////////////////////////Panel Configuracion objetos//////////////////////////////////
+
+function ModalPanelConfiguracion() {
+    $('#id_modal_panel_actualizacion').modal('show');
+    
 }

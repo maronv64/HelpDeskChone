@@ -78,7 +78,8 @@ function guardar() {
         color:$('#add_color').val(),
         modelo:$('#add_modelo').val(),
         marca:$('#add_marca').val(),
-        cod_activo:actividad, 
+        cod_activo:actividad,
+        num_activo:$('#add_num_activo').val(),
     }
     $.ajax({
         url:'dispositivos', // Url que se envia para la solicitud
@@ -117,6 +118,7 @@ function modificar(iddispositivo, exp) {
             modelo:$('#modal_modelo').val(),
             marca:$('#modal_marca').val(),
             cod_activo:actividad,
+            num_activo:$('#modal_num_activo').val(),
         }
         ReferenciaModificar(FrmData, iddispositivo);
     }
@@ -135,6 +137,7 @@ function modificar(iddispositivo, exp) {
         modelo:'',
         marca:'',
         cod_activo:actividad,
+        num_activo:'',
     }
     ReferenciaModificar(FrmData, $("#btn-modal-dispo-si").val());
     $("#id_modal_conf_elim").modal('hide');
@@ -187,6 +190,8 @@ function modal(id_dispositivo)
             $('#modal_color').val(response.color)
             $('#modal_modelo').val(response.modelo)
             $('#modal_marca').val(response.marca)
+            $('#modal_num_activo').val(response.num_activo)
+            
         }
     });
 }
@@ -220,6 +225,7 @@ function cargarListaDispositivos() {
             var out="";
             if (val.cod_activo=="Activo") {
                 out+="<tr>";
+                out+="<td>"+val.num_activo+"</td>";
                 out+="<td>"+val.nombredispositivo+"</td>";
                 $.each(datos.tipos, function(index, val2) {
                 if (val2.idtipodispositivos==val.idtipodispositivos) {

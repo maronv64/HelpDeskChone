@@ -39,7 +39,10 @@ class EspecialidadController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $especialidad = new Especialidad();
+        $especialidad->descripcion=$request->descripcion;
+        $especialidad->save();
+        return $especialidad;
     }
 
     /**
@@ -94,5 +97,11 @@ class EspecialidadController extends Controller
     public function mostrarespecialidad(){
         $especialidad= Especialidad::All();
         return response()->json($especialidad);
+    }
+    
+    public function buscar($id_busqueda)
+    {
+        $resultado = Especialidad::find($id_busqueda);
+        return response()->json($resultado);
     }
 }

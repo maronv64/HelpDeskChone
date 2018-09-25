@@ -97,4 +97,9 @@ class TipoUsuarioController extends Controller
         $tipouser = Tipo_Usuario::All();
         return response()->json($tipouser); 
     }
+    public function buscar($id_busqueda)
+    {
+        $resultado = Tipo_Usuario::find($id_busqueda);
+        return response()->json($resultado);
+    }
 }

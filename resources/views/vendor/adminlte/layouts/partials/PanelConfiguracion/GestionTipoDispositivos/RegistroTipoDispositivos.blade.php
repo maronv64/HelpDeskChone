@@ -3,7 +3,7 @@
     <div class="panel panel-default">
       <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion1" href="#collapse2" >
             <p>
-                GESTION DE TIPO DE DISPOSITIVOS
+                GESTIÓN DE TIPO DE DISPOSITIVOS
             </p>
       </div>
       <div id="collapse2" class="panel-collapse collapse">
@@ -19,7 +19,7 @@
                         <center><h3>Ingreso de nuevos tipos de dispositivos</h3></center>  
                         </div>
                         <br>
-                        <input required id="id_txt_tipo_dispositivo" type="text" class="form-control" placeholder="Descripcion del tipo de dispositivo" autocomplete="off" value="{{ old('') }}" />
+                        <input required id="id_txt_tipo_dispositivo" type="text" class="form-control" placeholder="Descripción del tipo de dispositivo" autocomplete="off" value="{{ old('') }}" />
                         <br>
                         <button type="submit"  class="btn btn-primary btn-block rounded">Almacenar</button>
                     </div>

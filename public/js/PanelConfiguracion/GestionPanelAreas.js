@@ -7,6 +7,7 @@ $('#frm_ingresar_areas').on('submit',function(e){
 	e.preventDefault();
 	guardarAreas();
 })
+///////////Muestra las areas//////////
 function MostrarAreas(){
     $('#tabla_Areas tbody tr').empty();
     $.get('mostrarareas',function(data){

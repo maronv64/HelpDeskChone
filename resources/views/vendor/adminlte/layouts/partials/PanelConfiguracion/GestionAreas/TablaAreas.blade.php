@@ -10,7 +10,7 @@
             <table id="tabla_Areas" class="table table-hover table-bordered">
             <thead>
               <tr>
-                <th scope="col">Nombre del area</th>
+                <th scope="col">Nombre del área</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Extensión</th>
                 <th scope="col">Siglas</th>

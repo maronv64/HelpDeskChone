@@ -10,7 +10,7 @@
             <table id="tablaTiposUsuarios" class="table table-hover table-bordered">
             <thead>
               <tr>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Descripción</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>

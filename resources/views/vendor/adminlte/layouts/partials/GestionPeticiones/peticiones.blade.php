@@ -113,11 +113,20 @@
                        
                         <div class="row">
                             <!-- campo de Descripcion -->
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <div class="form-group has-feedback">
                                     <label for="">Observación:</label>
                                     <input id="txtDescripcion"  type="text" class="form-control" placeholder="Describa su peticion"  required/>
                                     <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <!-- combo  de Prioridad -->
+                            <div class="col-md-4">
+                                <div class="form-group has-feedback">  
+                                    <label for="">Prioridad:</label>           
+                                    <select id="cmbPrioridades"   class="form-control" required>
+                                    <option disabled selected>Seleccione la Prioridad</option>
+                                    </select>                                  
                                 </div>
                             </div>
 
@@ -134,24 +143,29 @@
                                     
                                 </div>
                             </div>
-                            <!-- combo  de Prioridad -->
                             <div class="col-md-4">
-                                <div class="form-group has-feedback">  
-                                    <label for="">Prioridad:</label>           
-                                    <select id="cmbPrioridades"   class="form-control" required>
-                                    <option disabled selected>Seleccione la Prioridad</option>
-                                    </select>                                  
+                                <div class="form-group has-feedback">
+                                    <label for="">TiempoEstimado</label>
+                                    <select id="txtTiempoEstimado"   class="form-control" disabled>
+                                    </select>    
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group has-feedback">
+                                    <label for="">Tolerancia</label>
+                                    <select id="txtTolerancia"   class="form-control" disabled>
+                                    </select> 
                                 </div>
                             </div>
                             <!-- combo de Tipo de Estado -->
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <div class="form-group has-feedback">
                                     <label for="">Estado:</label>             
                                     <select id="cmbEstados"   class="form-control" required>
                                     <option disabled selected>Seleccione el Estado</option>
                                     </select>                                  
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="row">

@@ -31,9 +31,10 @@ class PeticionController extends Controller
     
     public function store(Request $request)
     {
+        $estado = Estado::where('descripcion','like','pendien')->firstOrFail();
         $peticion = new Peticion();
         $peticion->idprioridad = $request->idprioridad;
-        $peticion->idestado = $request->idestado;
+        $peticion->idestado = $estado->idestado;
         $peticion->idtipopeticion = $request->idtipopeticion;
         $peticion->idusuario = $request->idusuario;
         $peticion->descripcion = $request->descripcion;
@@ -80,10 +81,6 @@ class PeticionController extends Controller
         $peticion->estado_del='0';
         $estado = Estado::where('descripcion','like',"%final%")->firstOrFail();
         $peticion->idestado=$estado->idestado;
-<<<<<<< HEAD
-        
-=======
->>>>>>> 0fa4f1147983a9b343030324df4c028a34cccff6
         $peticion->updated_at= Carbon::now()->toDateTimeString();
         $peticion->update();
     }

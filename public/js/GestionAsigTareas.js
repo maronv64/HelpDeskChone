@@ -305,11 +305,17 @@ function cargartablaasignacionporpeticion(data){
     );
 }
 
+
+
 function mostarobservacion(idasignacion){
 
       $.get('mostrarobservacion/'+idasignacion, function (data) {
         document.getElementById('mostrarinforobserasig').innerHTML = data.Observacion;
        });
+}
+
+function mostarobservacionPeticion(observacion){
+        document.getElementById('mostrarobserpeticion').innerHTML = observacion;
 }
 
 
@@ -331,18 +337,20 @@ function tablaportareas(iduser){
 }
 
 function tablamisasignaciones(iduser){
-      $.get('peticionesNormCargarDatos/'+iduser, function (data) {
+      $.get('CargarMisAsignaciones/'+iduser, function (data) {
+        console.log(data);
         $("#tablamisasignaciones").html("");
-        $.each(data, function(i, item) { //recorre el data 3
+        $.each(data.mis_asignaciones, function(i, item) { //recorre el data 3
         $("#tablamisasignaciones").append(
-        "<tr><td>"+ item.nombre+"</td>\
-        <td>"+"" +" - "+ ""+"</td>\
+        "<tr><td>"+ item.peticion.usuario.area.nombre+"</td>\
+        <td>"+item.peticion.usuario.name +" "+item.peticion.usuario.apellidos+"</td>\
         <td>"+item.FechaInicio +" - "+ item.HoraInicial+"</td>\
         <td>"+item.FechaLimite +" - "+ item.HoraLimite+"</td>\
-        <td>"+""+"</td>\
-        <td>"+""+"</td>\
-        <td>"+""+"</td>\
+        <td>"+item.peticion.prioridad.descripcion+"</td>\
+        <td>"+item.peticion.tipo_peticion.descripcion+"</td>\
+        <td>"+item.peticion.descripcion+"</td>\
         <td>"+item.Observacion+"</td>\
+  <td class='row' style='text-align: center'><button id='botonobserpeticion' onClick='mostrarmodalpeticion2()'  type='button' class='btn btn-success btn-sm' ><i  class='fa fa-eye'></i> Ver</button></td>\
         </tr>"
     );
         });      
@@ -362,7 +370,7 @@ function mostrarasigportectnico(){
             method: "get",             // Tipo de solicitud que se enviará, llamado como métod              // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
-              
+
               tablamisasignaciones(data);
             },
             error: function () {   
@@ -376,3 +384,7 @@ function mostrarasigportectnico(){
 
 
 
+function mostrarmodalpeticion2(){
+
+    $('#modalobserpeticion222232222').modal('show');
+  }

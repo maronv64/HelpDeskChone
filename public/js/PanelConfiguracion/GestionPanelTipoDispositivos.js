@@ -15,7 +15,7 @@ function MostrarTiposDispositivos(){
             var out="";
             out+="<tr>";
             out+="<td>"+item.descripcion+"</td>";
-            out+="<td><center><a class='fa fa-edit btn btn-info' onclick='ModalPanelConfiguracion()' title='Modificar datos del registro'></a></center></td>";
+            out+="<td><center><a class='fa fa-edit btn btn-info' onclick='ModalPanelConfiguracion(3)' title='Modificar datos del registro'></a></center></td>";
             out+="</tr>";
             $('#tablaTiposDispositivos tbody tr:last').after(out);
         });

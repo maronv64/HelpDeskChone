@@ -79,7 +79,10 @@ class EspecialidadController extends Controller
 
     public function update(Request $request, Especialidad $especialidad)
     {
-        //
+        $especialidad = Especialidad::find($request->idespecialidad);
+        $especialidad->descripcion=$request->descripcion;
+        $especialidad->save();
+        return $especialidad;
     }
 
     /**

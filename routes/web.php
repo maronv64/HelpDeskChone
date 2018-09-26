@@ -100,13 +100,13 @@ Route::get('/listaTecnicos','UsuariosController@listaTecnicos');
 /*###################*GESTIONES DE TIPO USUARIOS*###########################*/
 Route::GET('/mostrartiposusuarios', 'TipoUsuarioController@mostrartiposusuarios');
 Route::GET('/mostrarextratecnico', 'ExtraTecnicoController@mostrarextratecnico');
-Route::get('/buscartipoususarios','TipoUsuarioController@buscar');
+Route::get('/buscartipousuarios/{id}','TipoUsuarioController@buscar');
 
 
 /*######################RUTAS PARA LAS AREAS#################################*/
 Route::GET('/mostrarareas', 'AreaController@mostrarareas');
 Route::resource('/areasIngresos','AreaController');
-Route::get('/buscarareas','AreaController@buscar');
+Route::get('/buscarareas/{id}','AreaController@buscar');
 
 
 /*######################RUTAS PARA LOS TÉCNICOS#################################*/
@@ -116,7 +116,7 @@ Route::resource('/extratecnico', 'ExtraTecnicoController');
 /*######################RUTAS PARA  LA ESPECIALIDAD#################################*/
 Route::get('/mostrarespecialidad','EspecialidadController@mostrarespecialidad');
 Route::resource('/especialidadIngreso','EspecialidadController');
-Route::get('/buscarespecialidades','EspecialidadController@buscar');
+Route::get('/buscarespecialidades/{id}','EspecialidadController@buscar');
 
 
 /*######################RUTAS PARA LA ASIGNACIÓN DE TAREAS#################################*/
@@ -138,11 +138,14 @@ Route::post('/tiposdeusuarios','TipoUsuarioController@store');
 Route::get('/TipoUsuarios', function () {
     return view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig');
 });
+Route::resource('/tiposdeusuariosUp','TipoUsuarioController');
+
 
 /*######################RUTAS PARA LOS TIPOS DE DISPOSITIVOS#################################*/
 Route::post('/tiposdispositivos','TipoDispositivoController@store');
 Route::get('/mostrartiposdispositivos','TipoDispositivoController@mostrardispositivos');
-Route::get('/buscartipodispositivo','TipoDispositivoController@buscar');
+Route::get('/buscartipodispositivo/{id}','TipoDispositivoController@buscar');
+Route::resource('/tiposdispositivosUp','TipoDispositivoController');
 
 
 

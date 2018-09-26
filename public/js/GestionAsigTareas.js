@@ -261,15 +261,20 @@ function AsignacionInsert(iduser){
         method: "POST",             // Tipo de solicitud que se enviará, llamado como método
         data: FrmData,               // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
         success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
-        {  
-            if(data=="0"){
-            alertify.error("Técnico ya asignado");
-            }else{
-                mensaje1 = "Datos guardados correctamente";
-                alertify.success(mensaje1);
-                    limpiarmodalasignacion();
-                mostrarasignacionesporpeticion($('#idpeticionasig').val());
-            }
+        {
+              if(data=="0"){
+                alertify.error("Técnico ya asignado");
+              }else if(data=="1"){
+                  alertify.error("El técnico no puede ser asignado en este horario");
+                //$("#modalvertareas").modal("show");
+                //tablaportareas(iduser);
+                //alert("Este Tëcnico no puede ser asignado en este horario porque tiene tareas.");
+              }else{
+                 mensaje1 = "Datos guardados correctamente";
+                 alertify.success(mensaje1);
+                      limpiarmodalasignacion();
+                  mostrarasignacionesporpeticion($('#idpeticionasig').val());
+              }
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";

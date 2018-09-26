@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Tipo_Usuario;
+use App\Fichas;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class TipoUsuarioController extends Controller
+class FichasController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        //
+          return view('adminlte::layouts.partials.GestionFichas.fichas');
     }
 
     /**
@@ -23,7 +23,6 @@ class TipoUsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
         //
@@ -35,23 +34,18 @@ class TipoUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
-        $tipousuario = new Tipo_Usuario();
-        $tipousuario->descripcion=$request->descripcion;
-        $tipousuario->save();
-        return $tipousuario;
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tipo_Usuario  $tipo_Usuario
+     * @param  \App\Fichas  $fichas
      * @return \Illuminate\Http\Response
      */
-    
-    public function show(Tipo_Usuario $tipo_Usuario)
+    public function show(Fichas $fichas)
     {
         //
     }
@@ -59,11 +53,10 @@ class TipoUsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tipo_Usuario  $tipo_Usuario
+     * @param  \App\Fichas  $fichas
      * @return \Illuminate\Http\Response
      */
-    
-    public function edit(Tipo_Usuario $tipo_Usuario)
+    public function edit(Fichas $fichas)
     {
         //
     }
@@ -72,37 +65,22 @@ class TipoUsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tipo_Usuario  $tipo_Usuario
+     * @param  \App\Fichas  $fichas
      * @return \Illuminate\Http\Response
      */
-
-    public function update(Request $request, Tipo_Usuario $tipo_Usuario)
+    public function update(Request $request, Fichas $fichas)
     {
-        $tipoUsuario = Tipo_Usuario::find($request->idtipo_Usuario);
-        $tipoUsuario->descripcion=$request->descripcion;
-        $tipoUsuario->save();
-        return $tipoUsuario;
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tipo_Usuario  $tipo_Usuario
+     * @param  \App\Fichas  $fichas
      * @return \Illuminate\Http\Response
      */
-    
-    public function destroy(Tipo_Usuario $tipo_Usuario)
+    public function destroy(Fichas $fichas)
     {
         //
-    }
-
-    public function mostrartiposusuarios(){
-        $tipouser = Tipo_Usuario::All();
-        return response()->json($tipouser); 
-    }
-    public function buscar($id_busqueda)
-    {
-        $resultado = Tipo_Usuario::find($id_busqueda);
-        return response()->json($resultado);
     }
 }

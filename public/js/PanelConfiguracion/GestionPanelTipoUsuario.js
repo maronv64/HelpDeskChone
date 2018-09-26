@@ -55,7 +55,7 @@ function ModalPanelConfiguracion(num, id) {
     if(num==1){
         ///////////Se ejecuta si es llamado desde tipos de usuarios///////////
         agregar+="<label>Descripción del tipo de usuario</label>"
-        agregar+="<input type='text' class='form-control form-control-sm' placeholder='Descripción' id='modif_descrip_tipo_usu' required>"
+        agregar+="<input type='text' autocomplete='off' class='form-control form-control-sm' placeholder='Descripción' id='modif_descrip_tipo_usu' required>"
         $('#id_titulo_panel').text('Datos del tipo de usuario');
         $('#id_ingresar_todo_aqui').empty();
         $('#id_ingresar_todo_aqui').html(agregar);
@@ -67,7 +67,7 @@ function ModalPanelConfiguracion(num, id) {
         if (num==2) {
             ////////////Se ejecuta si se la llama desde especialidades////////////
             agregar+="<label>Descripción de la especialidad</label>"
-            agregar+="<input type='text' class='form-control form-control-sm' placeholder='Descripción' id='modif_descrip_especi' required>"
+            agregar+="<input type='text' autocomplete='off' class='form-control form-control-sm' placeholder='Descripción' id='modif_descrip_especi' required>"
             $('#id_titulo_panel').text('Datos de especialidad');
             $('#id_ingresar_todo_aqui').empty();
             $('#id_ingresar_todo_aqui').html(agregar);
@@ -80,7 +80,7 @@ function ModalPanelConfiguracion(num, id) {
             if (num==3) {
                 ///////////Se ejecuta si se la llama desde el tipo de dispositivo/////////////
                 agregar+="<label>Descripción del tipo de dispositivo</label>"
-                agregar+="<input type='text' class='form-control form-control-sm' placeholder='Descripción' id='modif_descrip_tipo_disp' required>"
+                agregar+="<input type='text' autocomplete='off' class='form-control form-control-sm' placeholder='Descripción' id='modif_descrip_tipo_disp' required>"
                 $('#id_titulo_panel').text('Datos del tipo de dispositivo');
                 $('#id_ingresar_todo_aqui').empty();
                 $('#id_ingresar_todo_aqui').html(agregar);
@@ -92,13 +92,13 @@ function ModalPanelConfiguracion(num, id) {
                 if(num==4){
                     ////////////Se ejecuta si se llama desde el formulario de áreas///////////
                     agregar+="<label>Nombre del área</label>"
-                    agregar+="<input type='text' class='form-control form-control-sm' placeholder=''  id='modif_nomb_area' required>"
+                    agregar+="<input type='text' autocomplete='off' class='form-control form-control-sm' placeholder=''  id='modif_nomb_area' required>"
                     agregar+="<label>Correo</label>"
-                    agregar+="<input type='text' class='form-control form-control-sm' placeholder=''  id='modif_correo_area' required>"
+                    agregar+="<input type='text' autocomplete='off' class='form-control form-control-sm' placeholder=''  id='modif_correo_area' required>"
                     agregar+="<label>Extensión</label>"
-                    agregar+="<input type='text' class='form-control form-control-sm' placeholder=''  id='modif_extension_area' required>"
+                    agregar+="<input type='text' autocomplete='off' class='form-control form-control-sm' placeholder=''  id='modif_extension_area' required>"
                     agregar+="<label>Siglas</label>"
-                    agregar+="<input type='text' class='form-control form-control-sm' placeholder=''  id='modif_siglas_area' required>"
+                    agregar+="<input type='text' autocomplete='off' class='form-control form-control-sm' placeholder=''  id='modif_siglas_area' required>"
                     $('#id_titulo_panel').text('Datos del tipo de dispositivo');
                     $('#id_ingresar_todo_aqui').empty();
                     $('#id_ingresar_todo_aqui').html(agregar);
@@ -122,11 +122,6 @@ function eliminarClasesIconos() {
     $( "#id_icono_mostrar").removeClass("fa fa-user");
     $( "#id_icono_mostrar").removeClass("fa fa-laptop");
 }
-
-$('#formmodalactualizarPanel').on('submit',function(e){
-	e.preventDefault();
-	alert("");
-});
 
 /////////////////Funciones para llenar datos en el modal////////////////////////
 function tipoUsuarioFind(id) {
@@ -175,52 +170,40 @@ function areaFind(id) {
 }
 
 function modificarDatosPanel() {
+    debugger
     var FrmData;
-    switch ($( "#id_modalPanel_cerrar").val()) {
-        case 1:
+    var ruta='', id=$("#id_modalPanel_validar").val();
+    switch ($("#id_modalPanel_cerrar").val()) {
+        case '1':
             FrmData = {
-                idtipo_Usuario:$( "#id_modalPanel_validar").val(),
+                idtipo_Usuario:$("#id_modalPanel_validar").val(),
                 descripcion:$( "#modif_descrip_tipo_usu").val(),
             }
+            ruta='tiposdeusuariosUp';
             break;
-        case 2:
+        case '2':
             FrmData = {
-                idDispositivo:$( "#id_modalPanel_validar").val(),
-                nombredispositivo:'',
-                idtipodispositivos:'',
-                serie:'',
-                color:'',
-                modelo:'',
-                marca:'',
-                cod_activo:actividad,
-                num_activo:'',
-            }
+                idespecialidad:$("#id_modalPanel_validar").val(),
+                descripcion:$( "#modif_descrip_especi").val(),
+                }
+                ruta='especialidadIngreso';
             break;
-        case 3:
+        case '3':
             FrmData = {
-                idDispositivo:$( "#id_modalPanel_validar").val(),
-                nombredispositivo:'',
-                idtipodispositivos:'',
-                serie:'',
-                color:'',
-                modelo:'',
-                marca:'',
-                cod_activo:actividad,
-                num_activo:'',
+                idtipodispositivos:$("#id_modalPanel_validar").val(),
+                descripcion:$( "#modif_descrip_tipo_disp").val(),
             }
+            ruta='tiposdispositivosUp';
             break;
-        case 4:
+        case '4':
             FrmData = {
-                idDispositivo:$( "#id_modalPanel_validar").val(),
-                nombredispositivo:'',
-                idtipodispositivos:'',
-                serie:'',
-                color:'',
-                modelo:'',
-                marca:'',
-                cod_activo:actividad,
-                num_activo:'',
+                idarea:$("#id_modalPanel_validar").val(),
+                nombre:$("#modif_nomb_area").val(),
+                correo:$("#modif_correo_area").val(),
+                extencion:$("#modif_extension_area").val(),
+                siglas:$("#modif_siglas_area").val(),
             }
+            ruta='areasIngresos';
             break;
     
         default:
@@ -232,19 +215,27 @@ function modificarDatosPanel() {
         }
     }); 
     $.ajax({
-        url: 'dispositivos', // Url que se envia para la solicitud esta en el web php es la ruta
+        url: ruta+'/'+id, // Url que se envia para la solicitud esta en el web php es la ruta
         method: "PUT",             // Tipo de solicitud que se enviará, llamado como método
         data: FrmData,   
             success: function (datos) {
             mensaje = "DATOS MODIFICADOS CORRECTAMENTE";
             alertify.success(mensaje);
-            $('#miModalnuevo').modal('hide');
-            cargarListaDispositivos();
+            $('#id_modal_panel_actualizacion').modal('hide');
         },
         error: function () {     
             mensaje = "HA OCURRIDO UN ERROR";
             alertify.error(mensaje);
-            $('#miModalnuevo').modal('hide');
+            $('#id_modal_panel_actualizacion').modal('hide');
         }
     });
 }
+
+$('#formmodalactualizarPanel').on('submit',function(e){
+	e.preventDefault();
+    modificarDatosPanel();
+    MostrarTiposDispositivos();
+    MostrarEspecialidades();
+    MostrarAreas();
+    MostrarTiposUsuarios();
+});

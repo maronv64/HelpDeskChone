@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 //Rutas de Maron Vera ------------------------------------------------------------------------------------------------
 //holaaaaaa  nonnooooooooo maron 
-
+Route::get('/CargarMisAsignaciones/{id?}','UsuariosController@CargarMisAsignaciones');
 Route::get('/prueba_eliminar/{id?}','PeticionController@prueba_eliminar');
 
 //Rutas de las Peticiones

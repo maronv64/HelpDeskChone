@@ -82,7 +82,14 @@ class AreaController extends Controller
 
     public function update(Request $request, Area $area)
     {
-        //
+        $area = Area::find($request->idarea);
+        $area->nombre=$request->nombre;
+        $area->correo=$request->correo;
+        $area->extencion=$request->extencion;
+        $area->siglas=$request->siglas;
+        $area->estado_del='1';
+        $area->save();
+        return $area;
     }
 
     /**

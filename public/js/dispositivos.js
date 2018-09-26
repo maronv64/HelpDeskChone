@@ -42,7 +42,6 @@ function Validar_campos() {
         return true;
     }
 }
-
 //VERIFICA SI LOS CAMPOS DEL MODAL SE ENCUENTRAN CON INFORMACION
 function Validar_campos_modal() {
     if ($('#modal_descripcion').val()==''||
@@ -96,7 +95,6 @@ function guardar() {
         }
     });
 }
-
 //Funcion para modificar los valores de la base de datos por los cambiados en el modal
 function modificar(iddispositivo, exp) {
     var actividad='Activo';
@@ -123,7 +121,6 @@ function modificar(iddispositivo, exp) {
         ReferenciaModificar(FrmData, iddispositivo);
     }
  }
-
  //Muestra un modal para confirmar eliminacion de dispositivos
  $("#btn-modal-dispo-si").on("click", function(){
     var FrmData;

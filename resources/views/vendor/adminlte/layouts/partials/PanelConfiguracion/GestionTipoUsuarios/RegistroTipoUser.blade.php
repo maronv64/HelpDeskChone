@@ -17,7 +17,7 @@
                         <center><h3>Ingreso de nuevos tipos de usuarios</h3></center>  
                         </div>
                         <br>
-                        <input required id="id_txt_tipo_usuario" type="text" class="form-control" placeholder="Descripcion del tipo de usuario" autocomplete="off" value="{{ old('dispositivo') }}" />
+                        <input required id="id_txt_tipo_usuario" type="text" class="form-control" placeholder="Descripción del tipo de usuario" autocomplete="off" value="{{ old('dispositivo') }}" />
                         <br>
                         <button type="submit"  class="btn btn-primary btn-block rounded">Almacenar</button>
                     </div>

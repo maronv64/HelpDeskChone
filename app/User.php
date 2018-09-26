@@ -36,4 +36,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Tipo_Usuario','idtipo_Usuario','idtipousuario');
     }
     
+    public function misAsignaciones(){
+        return $this->hasMany('App\UsuarioAsig','usuario_idUsuario','id')->with('Peticion');
+    }
+
 }

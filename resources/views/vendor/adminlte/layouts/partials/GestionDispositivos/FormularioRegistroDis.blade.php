@@ -6,13 +6,13 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
-                                <input autocomplete="off" id="add_num_activo" type="text" class="form-control" placeholder="Numero del activo" value="{{ old('num_activo') }}" required/>
+                                <input autocomplete="off" id="add_num_activo" type="text" class="form-control" placeholder="Número del activo" value="{{ old('num_activo') }}" required/>
                                 <span class="glyphicon glyphicon-book form-control-feedback"></span>
                             </div>
                         </div>
                       <div class="col-md-4">
                         <div class="form-group has-feedback">
-                          <input autocomplete="off" required id="add_nom_dispositivo" name="input_nom_dispositivo" type="text" class="form-control" placeholder="Descripcion del dispositivo" value="{{ old('dispositivo') }}" />
+                          <input autocomplete="off" required id="add_nom_dispositivo" name="input_nom_dispositivo" type="text" class="form-control" placeholder="Descripción del dispositivo" value="{{ old('dispositivo') }}" />
                           <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                         </div>
                       </div>
@@ -33,7 +33,7 @@
                            <div class="row">
                                 <div class="col-md-4">
                                    <div class="form-group has-feedback">
-                                      <input autocomplete="off" id="add_num_serie" name="input_num_serie" type="text" class="form-control" placeholder="Numero de serie" value="{{ old('num_serie') }}" required/>
+                                      <input autocomplete="off" id="add_num_serie" name="input_num_serie" type="text" class="form-control" placeholder="Número de serie" value="{{ old('num_serie') }}" required/>
                                       <span class="fa fa-barcode form-control-feedback"></span>
                                   </div>
                                 </div>

@@ -129,8 +129,8 @@ function CargarEstados()
 {
     $.get('estadosCargarDatos', function (data) { 
         
-        $('#cmbEstados').html('');
-        $('#cmbEstados').html('<option disabled selected>Seleccione el Estado</option>');
+        //$('#cmbEstados').html('');
+        //$('#cmbEstados').html('<option disabled selected>Seleccione el Estado</option>');
         // cmb del modal
         $('#cmbEstadosModal').html('');
 
@@ -143,9 +143,9 @@ function CargarEstados()
             fila+= '<option value='+ item.idestado +'>'+ item.descripcion +'</option>';
 
             
-            $('#cmbEstados').append(  
-                 fila									
-            );
+            //$('#cmbEstados').append(  
+              //   fila									
+            //);
             // cmb del modal
             $('#cmbEstadosModal').append(  
                 fila									
@@ -195,6 +195,9 @@ function CargarTipoPeticiones()
     $.get('tipopeticionesCargarDatos', function (data) { 
 
         $('#cmbTipoPeticiones').html('');
+        $('#txtTiempoEstimado').html('');
+        $('#txtTolerancia').html('');
+
         $('#cmbTipoPeticiones').html('<option disabled selected>Seleccione el tipo de Peticion</option>');
 
         //cmb del modal
@@ -205,10 +208,13 @@ function CargarTipoPeticiones()
             
             //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
             var fila ="";
+            var fila2="";
+            var fila3="";
 
             fila+= '<option value='+ item.idtipopeticion +'>'+ item.descripcion +'</option>';
+            fila2+= '<option value='+ item.idtipopeticion +'>'+ item.tiempoestimado +'</option>';
+            fila3+= '<option value='+ item.idtipopeticion +'>'+ item.tolerancia +'</option>';
 
-            
             $('#cmbTipoPeticiones').append(  
                  fila									
             );
@@ -217,10 +223,18 @@ function CargarTipoPeticiones()
                 fila									
            );
 
+            $('#txtTiempoEstimado').append(fila2);
+            $('#txtTolerancia').append(fila3);
+
         });  
 
     }); 
 }
+
+$('#cmbTipoPeticiones').change(function() { 
+    $('#txtTiempoEstimado').val($('#cmbTipoPeticiones').val());
+    $('#txtTolerancia').val($('#cmbTipoPeticiones').val());
+});
 
 function CargarAreas()
 {
@@ -324,7 +338,8 @@ function mensaje(id)
 
 // envento al cargar la vista
 window.onload = function() {
-    window.onload=CargarEstados(),
+    window.onload=
+    CargarEstados(),
     CargarPeticiones2(),
     CargarPrioridades(),
     CargarTipoPeticiones()
@@ -364,7 +379,7 @@ $('#cmbAreas').change(function() {
 $('#btnEnviarP').click(function() {
     var FrmData = {
         idprioridad:    $('#cmbPrioridades').val(),
-        idestado:       $('#cmbEstados').val(),
+        idestado:       '',//$('#cmbEstados').val(),
         idtipopeticion: $('#cmbTipoPeticiones').val(),
         idusuario:      $('#iduser').val(),
         descripcion:    $('#txtDescripcion').val(),

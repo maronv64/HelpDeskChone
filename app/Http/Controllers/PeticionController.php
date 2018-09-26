@@ -31,9 +31,10 @@ class PeticionController extends Controller
     
     public function store(Request $request)
     {
+        $estado = Estado::where('descripcion','like','pendien')->firstOrFail();
         $peticion = new Peticion();
         $peticion->idprioridad = $request->idprioridad;
-        $peticion->idestado = $request->idestado;
+        $peticion->idestado = $estado->idestado;
         $peticion->idtipopeticion = $request->idtipopeticion;
         $peticion->idusuario = $request->idusuario;
         $peticion->descripcion = $request->descripcion;

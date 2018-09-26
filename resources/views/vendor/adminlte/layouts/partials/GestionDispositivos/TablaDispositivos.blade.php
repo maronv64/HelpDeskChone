@@ -10,8 +10,8 @@
             <table id="tablaDispositivos" class="table table-hover table-bordered">
             <thead>
               <tr>
-                <th scope="col">Codigo del activo</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Código del activo</th>
+                <th scope="col">Descripción</th>
                 <th scope="col">Tipo de dispositivo</th>
                 <th scope="col">Serie</th>
                 <th scope="col">Color</th>

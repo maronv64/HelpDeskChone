@@ -247,35 +247,16 @@ class UsuariosController extends Controller
         // //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
         // return response()->json($user);                                             
     }
-            
-    // public function usuariosFiltroPorArea($idarea,$consul='')
-    // {
-    //     $users = User::with('area','tipo_usuario')  ->where([
-    //                                                         ['idarea',$idarea],
-    //                                                         ['estado','activo'],
-    //                                                         ['name','like',"%$consul%"]
-    //                                                         ])
-    //                                                 ->orwhere([
-    //                                                         ['idarea',$idarea],
-    //                                                         ['estado','activo'],
-    //                                                         ['apellidos','like',"%$consul%"]
-    //                                                         ])
-    //                                                 ->orwhere([
-    //                                                         ['idarea',$idarea],
-    //                                                         ['estado','activo'],
-    //                                                         ['cedula','like',"%$consul%"]
-    //                                                         ])
-    //                                                 ->get();
-    //     return response()->json($users);
-    // }
-    // public function usuarioBuscar($id)
-    // {
-    //     $buscar = new User();
-    //     $buscar->id=$id;
-    //     //$userall = Usuarios::with(['tipo_usuario','area','extratecnicos'])->find($user->id);
-    //     $users = User::with('area','tipo_usuario')  -> find($buscar->id);
-    //     return response()->json($users);
-    // }       
+   
+    public function CargarMisAsignaciones($id)
+    {
+        $buscar = new User();
+        $buscar->id=$id;
+        $users = User::with('misAsignaciones')  -> find($buscar->id);
+        //dd($users);
+        return response()->json($users);
+    }
+
 }
 
 /**

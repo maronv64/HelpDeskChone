@@ -78,7 +78,10 @@ class TipoUsuarioController extends Controller
 
     public function update(Request $request, Tipo_Usuario $tipo_Usuario)
     {
-        //
+        $tipoUsuario = Tipo_Usuario::find($request->idtipo_Usuario);
+        $tipoUsuario->descripcion=$request->descripcion;
+        $tipoUsuario->save();
+        return $tipoUsuario;
     }
 
     /**

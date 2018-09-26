@@ -3,6 +3,7 @@ $(document).ready(function()
     {
         BandejadePeticiones();
         mostrartecnicos();
+        mostrarasigportectnico();
  });
 
 /*FUNCIÓN PARA CARGAR LAS PAETICIONES QUE SE ENCUENTRAN DISPONIBLES */
@@ -330,7 +331,7 @@ function tablaportareas(iduser){
 }
 
 function tablamisasignaciones(iduser){
-      $.get('consultarPeticionEstado/'+iduser, function (data) {
+      $.get('peticionesNormCargarDatos/'+iduser, function (data) {
         $("#tablamisasignaciones").html("");
         $.each(data, function(i, item) { //recorre el data 3
         $("#tablamisasignaciones").append(
@@ -361,6 +362,7 @@ function mostrarasigportectnico(){
             method: "get",             // Tipo de solicitud que se enviará, llamado como métod              // Datos enviados al servidor, un conjunto de pares clave / valor (es decir, campos de formulario y valores)
             success: function (data)   // Una función a ser llamada si la solicitud tiene éxito
             {  
+              
               tablamisasignaciones(data);
             },
             error: function () {   
@@ -370,8 +372,6 @@ function mostrarasigportectnico(){
 
 });
 }
-
-
 
 
 

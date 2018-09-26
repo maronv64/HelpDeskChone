@@ -5,4 +5,5 @@
 <script src="{{ asset('/js/GestionAsigTareas.js') }}"></script>
 <script src="{{ asset('/js/GestionPeticiones.js') }}"></script>
 <script src="{{ asset('/js/GestionAsigTareas.js') }}"></script>
+<script src="{{ asset('/js/gestionFicha.js') }}"></script>
 <script src="{{ asset('/js/moment.js') }}"></script>

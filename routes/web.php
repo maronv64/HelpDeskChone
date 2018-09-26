@@ -147,7 +147,8 @@ Route::get('/mostrartiposdispositivos','TipoDispositivoController@mostrardisposi
 Route::get('/buscartipodispositivo/{id}','TipoDispositivoController@buscar');
 Route::resource('/tiposdispositivosUp','TipoDispositivoController');
 
-
+/*######################RUTAS PARA LAS FICHAS#################################*/
+Route::resource('/fichas','FichasController');
 
 //view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 

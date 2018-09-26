@@ -4,17 +4,6 @@
             </div>
           </div>
           <hr>
-       <!--      <div class="row">
-            <div class="col-md-12">
-                  <input type="text" class="form-control form-control-sm" placeholder="Buscar Peticiones" onkeyup="" id="buscar_peticiones">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">
-                      <br>
-                    </span>
-                  </div>                                                 
-            </div> 
-          </div> -->
-
           <div class="table-responsive pre-scrollable">
           
           <table class="table table-hover table-bordered">

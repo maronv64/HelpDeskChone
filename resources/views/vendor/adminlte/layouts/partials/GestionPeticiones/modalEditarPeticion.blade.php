@@ -22,8 +22,8 @@
                             <div class="row">                                                            <!-- campo de Descripcion -->
                                 <div class="col-md-12">
                                     <div class="form-group has-feedback">
-                                        <label for="">Descripcion:</label>
-                                        <input id="txtDescripcionModal"  type="text" class="form-control" placeholder="Describa su peticion"  required/>
+                                        <label for="">Observación:</label>
+                                        <textarea id="txtDescripcionModal"  type="text" class="form-control" placeholder="Alguna Observación?"  required></textarea>
                                         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                                     </div>
                                 </div>
@@ -49,14 +49,14 @@
                                     </div>
                                 </div>
                                                             <!-- combo de Tipo de Estado -->
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <div class="form-group has-feedback">
                                         <label for="">Estado:</label>             
                                         <select id="cmbEstadosModal"   class="form-control" required>
                                             <option disabled selected>Seleccione el Estado</option>
                                         </select>                                  
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
 

@@ -10,6 +10,7 @@
 
             <div id="verModalModicarPeticion">
             @include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticion')
+            @include('adminlte::layouts.partials.GestionPeticiones.modalObservacion')
             </div>
 
 
@@ -116,7 +117,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-feedback">
                                     <label for="">Observación:</label>
-                                    <textarea class="form-control" placeholder="Describa su peticion"  id="txtDescripcion" rows="5" style="resize: none" required ></textarea>
+                                    <textarea class="form-control" placeholder="Alguna Observación?"  id="txtDescripcion" rows="5" style="resize: none" required ></textarea>
                                 </div>
                             </div>
                             <!-- combo  de Prioridad -->

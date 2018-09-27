@@ -53,6 +53,8 @@ Route::resource('/peticiones','PeticionController');
 
 //Rutas para consumo de datos de Peticiones 
 //Consultas Generales
+//CargarEstaPeticion
+Route::get('/CargarEstaPeticion/{id?}','PeticionController@CargarEstaPeticion');
 Route::get('/peticionesCargarDatos','PeticionController@CargarDatos');
 Route::get('/peticionesCargarDatos2','PeticionController@CargarDatos2');
 Route::get('/datospeticion/{id?}','PeticionController@datospeticion');

@@ -314,8 +314,21 @@ function mostarobservacion(idasignacion){
        });
 }
 
-function mostarobservacionPeticion(observacion){
-        document.getElementById('mostrarobserpeticion').innerHTML = observacion;
+function mostarobservacionPeticion(idpeticion){
+
+    $.get('mostrarobservacionpeticion/'+idpeticion, function (data) {
+         document.getElementById('mostrarobserpeticion').innerHTML = data.descripcion;
+       });
+      
+}
+
+function mostarobservacionAsignacion(idasignacion){
+
+    $.get('mostrarobservacion/'+idasignacion, function (data) {
+        console.log(data);
+         document.getElementById('mostrarobseraasig').innerHTML = data.Observacion;
+       });
+      
 }
 
 
@@ -336,22 +349,52 @@ function tablaportareas(iduser){
 
 }
 
+
 function tablamisasignaciones(iduser){
+
+var hoy;
+       $.get('fechaactual', function (data) {
+
+        tmphoy = data.split('/');
+        hoy = tmphoy[2]+tmphoy[1]+tmphoy[0];
+       });   
+
+
+        //fecha_actual = new Date(fecha_actual);
       $.get('CargarMisAsignaciones/'+iduser, function (data) {
-        console.log(data);
+
+        
         $("#tablamisasignaciones").html("");
         $.each(data.mis_asignaciones, function(i, item) { //recorre el data 3
+                var contenido = "<td class='row' style='text-align: center'><a  title='Funciona' style='height: 40px;width:40px;background-color: #31B404;border-radius: 50%;display: inline-block;'><i style='margin-top: 8px;color: white' class='fa fa-check fa-fw fa-2x'></i></a></td>";
+        inp1 = item.FechaInicio;
+        inp2 = item.FechaLimite;
+
+       //   var Fecha1 = new Date(parseInt(inp2[2]),parseInt(inp2[1]-1),parseInt(inp2[0]));
+        // convierte las fechas a yyyymmdd
+        tmp = inp1.split('/');
+        fini = tmp[2]+tmp[1]+tmp[0];
+        tmp = inp2.split('/');
+        ffin = tmp[2]+tmp[1]+tmp[0];
+        // la comparación
+        alert(ffin);
+        alert(hoy);
+        if(ffin<hoy){
+           contenido= "<td class='row' style='text-align: center'><a  title='Funciona' style='height: 40px;width:40px;background-color: #31B404;border-radius: 50%;display: inline-block;'><i style='margin-top: 8px;color: white' class='fa fa-check fa-fw fa-2x'></i></a></td>";
+        }else{
+             contenido = "<td class='row' style='text-align: center'><a  title='Funciona' style='height: 40px;width:40px;background-color: #DF0101;border-radius: 50%;display: inline-block;'><i style='margin-top: 8px;color: white' class='fa fa-times fa-fw fa-2x'></i></a></td>";
+        }
         $("#tablamisasignaciones").append(
         "<tr><td>"+ item.peticion.usuario.area.nombre+"</td>\
         <td>"+item.peticion.usuario.name +" "+item.peticion.usuario.apellidos+"</td>\
-        <td>"+item.FechaInicio +" - "+ item.HoraInicial+"</td>\
-        <td>"+item.FechaLimite +" - "+ item.HoraLimite+"</td>\
         <td>"+item.peticion.prioridad.descripcion+"</td>\
         <td>"+item.peticion.tipo_peticion.descripcion+"</td>\
-        <td>"+item.peticion.descripcion+"</td>\
-        <td>"+item.Observacion+"</td>\
-  <td class='row' style='text-align: center'><button id='botonobserpeticion' onClick='mostrarmodalpeticion2()'  type='button' class='btn btn-success btn-sm' ><i  class='fa fa-eye'></i> Ver</button></td>\
-        </tr>"
+        <td class='row' style='text-align: center'><button id='botonobserpeticion' data-toggle='modal' data-target='#modalobpeticion' onClick='mostarobservacionPeticion("+item.peticion.idpeticion+")'  type='button' class='btn btn-success btn-sm' ><i  class='fa fa-eye'></i> Ver</button></td>\
+        <td class='row' style='text-align: center'><button id='botonobserasig' data-toggle='modal' data-target='#modalobasig' onClick='mostarobservacionAsignacion("+item.iduser_asignacion+")'  type='button' class='btn btn-success btn-sm' ><i  class='fa fa-eye'></i> Ver</button></td>\
+        <td>"+item.FechaInicio +" - "+ item.HoraInicial+"</td>\
+        <td>"+item.FechaLimite +" - "+ item.HoraLimite+"</td>"+
+        contenido+
+        "</tr>"
     );
         });      
     });
@@ -383,8 +426,3 @@ function mostrarasigportectnico(){
 
 
 
-
-function mostrarmodalpeticion2(){
-
-    $('#modalobserpeticion222232222').modal('show');
-  }

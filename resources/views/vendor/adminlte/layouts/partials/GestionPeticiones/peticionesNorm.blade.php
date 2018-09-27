@@ -39,18 +39,6 @@
                         <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         -->
                             <div class="row">
-                            
-                                <div class="row">
-                                    <!-- campo de Descripcion -->
-                                    <div class="col-md-12">
-                                        <div class="form-group has-feedback">
-                                            <label for="">Observación:</label>
-                                            <input id="txtDescripcionN"  type="text" class="form-control" placeholder="Describa su peticion"  required/>
-                                            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 
                                 <div class="row">
                                     <!-- combo de Tipo de Peticion -->
@@ -78,6 +66,18 @@
                                             <div class="col-md-12">
                                                 <a id="btnEnviarPN" class=" btn btn-primary btn-block btn-flat " title="">Enviar Peticion</a>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <!-- campo de Descripcion -->
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback">
+                                            <label for="">Observación:</label>
+                                            <input id="txtDescripcionN"  type="text" class="form-control" placeholder="Describa su peticion" />
+                                            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                                         </div>
                                     </div>
 

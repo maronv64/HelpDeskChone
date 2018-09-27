@@ -186,6 +186,12 @@ class AsigTareasController extends Controller
 
      }
 
+      public function mostrarobservacionpeticion($idpeticion){
+        $datos= Peticion::find($idpeticion);
+        return response()->json($datos);
+
+      }
+
        public function consultarPeticionEstado(request $request, $idusuario){
          $datos=DB::table('user_asignacion')
         ->join('users', 'users.id', '=', 'user_asignacion.usuario_idUsuario')
@@ -196,5 +202,10 @@ class AsigTareasController extends Controller
         ->where([['user_asignacion.usuario_idUsuario','=',$idusuario],['estado.descripcion','=','Asignada']])
         ->get();
         return response()->json($datos);
+     }
+     public function fechaactual(){
+         $date = Carbon::now();
+        $date = $date->format('Y-m-d');
+        return response()->json($date);
      }
 }

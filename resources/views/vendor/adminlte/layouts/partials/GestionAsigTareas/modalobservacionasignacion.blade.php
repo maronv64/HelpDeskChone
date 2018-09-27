@@ -1,4 +1,4 @@
-<div class="modal" tabindex="-1" role="dialog" id="modalobpeticion">
+<div class="modal" tabindex="-1" role="dialog" id="modalobasig">
   <div class="modal-dialog modal-sg" role="document">
     <div class="modal-content">
       <div class="modal-header" align="center">
@@ -9,7 +9,7 @@
         
           <div class="row" align="center">
             <div class="col-md-12">
-             <p id="mostrarobserpeticion" style="font-size: 18px;  color: black "></p>
+             <p id="mostrarobseraasig" style="font-size: 18px;  color: black "></p>
              </div>
           </div>
         </div>

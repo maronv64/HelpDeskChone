@@ -116,8 +116,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-feedback">
                                     <label for="">Observación:</label>
-                                    <input id="txtDescripcion"  type="text" class="form-control" placeholder="Describa su peticion"  required/>
-                                    <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                                    <textarea class="form-control" placeholder="Describa su peticion"  id="txtDescripcion" rows="5" style="resize: none" required ></textarea>
                                 </div>
                             </div>
                             <!-- combo  de Prioridad -->

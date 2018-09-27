@@ -8,6 +8,7 @@
 
                     <div id="verModalModicarPeticion">
                     @include('adminlte::layouts.partials.GestionPeticiones.modalEditarPeticionNorm')
+                    @include('adminlte::layouts.partials.GestionPeticiones.modalObservacion')
                     </div>
 
                     <!-- si no esta logeado -->
@@ -76,8 +77,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback">
                                             <label for="">Observación:</label>
-                                            <input id="txtDescripcionN"  type="text" class="form-control" placeholder="Describa su peticion" />
-                                            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                                            <textarea id="txtDescripcionN"  type="text" class="form-control" placeholder="Alguna Observación?" > </textarea>
+                                            <!--<span class="glyphicon glyphicon-phone form-control-feedback"></span>-->
                                         </div>
                                     </div>
 

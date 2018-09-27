@@ -93,7 +93,8 @@ function CargarPeticiones2(){
 
             fila+= '<tr>';
             //
-            fila+= '<td>'+item.descripcion  +'</td>';
+            //fila+= '<td>'+item.descripcion  +'</td>';
+            fila+="<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal'  onClick='verObservacion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>";
             //añade la descripcion del tipo de peticion
             fila+= '<td>'+item.tipo_peticion.descripcion  +'</td>';
             //añade la descripcion de la prioridad
@@ -125,36 +126,45 @@ function CargarPeticiones2(){
 
 }
 
-function CargarEstados()
-{
-    $.get('estadosCargarDatos', function (data) { 
+function verObservacion(id)
+{    
+    $.get('peticiones/'+id, function (data) { 
+        $('#txtObservacion').html(data.descripcion);
+        $('#modalObservacion').modal('show');
+    });  
+
+}
+
+// function CargarEstados()
+// {
+//     $.get('estadosCargarDatos', function (data) { 
         
-        //$('#cmbEstados').html('');
-        //$('#cmbEstados').html('<option disabled selected>Seleccione el Estado</option>');
-        // cmb del modal
-        $('#cmbEstadosModal').html('');
+//         //$('#cmbEstados').html('');
+//         //$('#cmbEstados').html('<option disabled selected>Seleccione el Estado</option>');
+//         // cmb del modal
+//         $('#cmbEstadosModal').html('');
 
-        $.each(data, function(a, item) { 
+//         $.each(data, function(a, item) { 
            
            
-            //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
-            var fila ="";
+//             //$('#cmbEstados').html('<option disabled selected>Seleccione el tipo de Peticion</option> ');
+//             var fila ="";
 
-            fila+= '<option value='+ item.idestado +'>'+ item.descripcion +'</option>';
+//             fila+= '<option value='+ item.idestado +'>'+ item.descripcion +'</option>';
 
             
-            //$('#cmbEstados').append(  
-              //   fila									
-            //);
-            // cmb del modal
-            $('#cmbEstadosModal').append(  
-                fila									
-           );
+//             //$('#cmbEstados').append(  
+//               //   fila									
+//             //);
+//             // cmb del modal
+//             $('#cmbEstadosModal').append(  
+//                 fila									
+//            );
 
-        });  
+//         });  
 
-    }); 
-}
+//     }); 
+// }
 
 function CargarPrioridades()
 {
@@ -339,7 +349,7 @@ function mensaje(id)
 // envento al cargar la vista
 window.onload = function() {
     window.onload=
-    CargarEstados(),
+    //CargarEstados(),
     CargarPeticiones2(),
     CargarPrioridades(),
     CargarTipoPeticiones()
@@ -426,7 +436,7 @@ $( "#btnActualizarPeticion" ).click(function() {
     var FrmData = {
         idpeticion:     $('#var_idpeticion').val(),
         idprioridad:    $('#cmbPrioridadesModal').val(),
-        idestado:       $('#cmbEstadosModal').val(),
+        idestado:       '',//$('#cmbEstadosModal').val(),
         idtipopeticion: $('#cmbTipoPeticionesModal').val(),
         idusuario:      $('#iduser').val(),
         descripcion:    $('#txtDescripcionModal').val(),
@@ -438,7 +448,7 @@ $( "#btnActualizarPeticion" ).click(function() {
     if (
         esta_vacio($('#var_idpeticion').val())      ||  
         esta_vacio($('#cmbPrioridadesModal').val())      ||
-        esta_vacio($('#cmbEstadosModal').val())          || 
+        //esta_vacio($('#cmbEstadosModal').val())          || 
         esta_vacio($('#cmbTipoPeticionesModal').val())   || 
         ($('#txtUsuarioModal').val()=="Usuario")         || 
         esta_vacio($('#txtDescripcionModal').val()) 
@@ -491,7 +501,7 @@ function traerPeticion(id) {
     $.get('peticiones/'+id, function (data) { 
         $('#txtDescripcionModal').val(data.descripcion); 
         $('#cmbTipoPeticionesModal').val(data.idtipopeticion);
-        $('#cmbEstadosModal').val(data.idestado);
+        //$('#cmbEstadosModal').val(data.idestado);
         $('#cmbPrioridadesModal').val(data.idprioridad);
         $('#iduser').val(data.usuario.id);
         $('#txtUsuarioModal').val(data.usuario.name+ " " +data.usuario.apellidos); 

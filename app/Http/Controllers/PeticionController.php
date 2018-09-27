@@ -67,7 +67,7 @@ class PeticionController extends Controller
     {
         $peticion = Peticion::findOrFail($request->idpeticion);
         $peticion->idprioridad = $request->idprioridad;
-        $peticion->idestado = $request->idestado;
+        //$peticion->idestado = $request->idestado;
         $peticion->idtipopeticion = $request->idtipopeticion;
         $peticion->idusuario = $request->idusuario;
         $peticion->descripcion = $request->descripcion;
@@ -158,6 +158,12 @@ class PeticionController extends Controller
         $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->get();//where('estado_del','1')->get();
         return response()->json($peticiones);    
     }
+
+    // public function CargarEstaPeticion($id='')
+    // {
+    //     $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->firstOrFail();//where('estado_del','1')->get();
+    //     return response()->json($peticiones);    
+    // }
 
     public function peticionesFiltroAbmin($tipobusqueda='',Request $request)
     {

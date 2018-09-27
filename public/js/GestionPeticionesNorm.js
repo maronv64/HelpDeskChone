@@ -89,7 +89,8 @@ function CargarPeticionesNorm(){
 
             fila+= '<tr>';
             //
-            fila+= '<td>'+item.descripcion  +'</td>';
+            //fila+= '<td>'+item.descripcion  +'</td>';
+            fila+="<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal'  onClick='verObservacion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>";            
             //añade la descripcion del tipo de peticion
             fila+= '<td>'+item.tipo_peticion.descripcion  +'</td>';
             //añade la descripcion de la prioridad
@@ -113,6 +114,17 @@ function CargarPeticionesNorm(){
 
     }); 
 
+}
+function verObservacion(id)
+{
+    //alert(id);
+    //$( "#modalObservacion" ).modal('show');
+    
+    $.get('peticiones/'+id, function (data) { 
+            $('#txtObservacion').html(data.descripcion);
+            $('#modalObservacion').modal('show');
+    });  
+    
 }
 
 //-----------------------------otras funciones-------------------------

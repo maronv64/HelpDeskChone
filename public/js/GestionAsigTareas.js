@@ -354,7 +354,6 @@ function tablamisasignaciones(iduser){
 
 var hoy;
        $.get('fechaactual', function (data) {
-
         tmphoy = data.split('/');
         hoy = tmphoy[2]+tmphoy[1]+tmphoy[0];
        });   
@@ -377,8 +376,6 @@ var hoy;
         tmp = inp2.split('/');
         ffin = tmp[2]+tmp[1]+tmp[0];
         // la comparación
-        alert(ffin);
-        alert(hoy);
         if(ffin<hoy){
            contenido= "<td class='row' style='text-align: center'><a  title='Funciona' style='height: 40px;width:40px;background-color: #31B404;border-radius: 50%;display: inline-block;'><i style='margin-top: 8px;color: white' class='fa fa-check fa-fw fa-2x'></i></a></td>";
         }else{

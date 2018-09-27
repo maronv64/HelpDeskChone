@@ -23,6 +23,8 @@ Route::get('/probando', function () {
 Route::resource('/dispositivos','DispositivosController');
 Route::get('/obtenerDispositivos','DispositivosController@obtenerlista');
 Route::get('/obtenerDispositivos/{id?}','DispositivosController@buscarDispositivo');
+Route::get('/todosdispositivos','DispositivosController@todosdispositivos');
+
 
 //rutas para asignacion de dispositivos
 Route::resource('/asignacionDispositivos','AsignacionDispositivosController');
@@ -152,3 +154,5 @@ Route::resource('/fichas','FichasController');
 
 //view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 
+//Dashboard productividad
+Route::get('/dashboardproductividad','DashboardProductividadController@index');

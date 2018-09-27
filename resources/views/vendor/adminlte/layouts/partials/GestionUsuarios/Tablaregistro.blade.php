@@ -7,12 +7,15 @@
           <hr>
             <div class="row">
             <div class="col-md-6">
+              <div class="form-group has-feedback">
                   <input type="text" class="form-control form-control-sm" placeholder="Buscar Usuarios" onkeyup="buscar_usuarios()" id="buscar_usuarios">
+                   <span class="glyphicon glyphicon-search form-control-feedback"></span>
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
                       <br>
                     </span>
-                  </div>                                                 
+                  </div>   
+                  </div>                                              
             </div> 
           </div>
 

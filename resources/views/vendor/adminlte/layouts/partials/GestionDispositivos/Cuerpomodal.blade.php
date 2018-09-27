@@ -4,14 +4,14 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group has-feedback">
-                    <label for="">Codigo del activo</label>
+                    <label for="">Código del activo</label>
                     <input autocomplete="off" id="modal_num_activo" type="text" class="form-control" value="{{ old('modal_num_activo') }}" required/>
                     <span class="glyphicon glyphicon-book form-control-feedback"></span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group has-feedback">
-                    <label for="">Descripcion</label>
+                    <label for="">Descripción</label>
                     <input autocomplete="off" id="modal_descripcion" type="text" class="form-control" value="{{ old('modal_descripcion') }}" required/>
                     <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                 </div>

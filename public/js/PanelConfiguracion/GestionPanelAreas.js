@@ -7,6 +7,7 @@ $('#frm_ingresar_areas').on('submit',function(e){
 	e.preventDefault();
 	guardarAreas();
 })
+///////////Muestra las areas//////////
 function MostrarAreas(){
     $('#tabla_Areas tbody tr').empty();
     $.get('mostrarareas',function(data){
@@ -17,7 +18,7 @@ function MostrarAreas(){
                 out+="<td>"+item.correo+"</td>";
                 out+="<td>"+item.extencion+"</td>";
                 out+="<td>"+item.siglas+"</td>";
-                out+="<td><center><a class='fa fa-edit btn btn-info' onclick='ModalPanelConfiguracion(4)' title='Modificar datos del registro'></a></center></td>";
+                out+="<td><center><a class='fa fa-edit btn btn-info' onclick='ModalPanelConfiguracion(4,"+item.idarea+")' title='Modificar datos del registro'></a></center></td>";
                 out+="</tr>";
                 $('#tabla_Areas tbody tr:last').after(out);
             });  

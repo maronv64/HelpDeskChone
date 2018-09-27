@@ -2,7 +2,7 @@
 <div class="panel-group" id="accordion2">
     <div class="panel panel-default">
       <div class="bg-info expand btn btn-block" data-toggle="collapse" data-parent="#accordion2" href="#collapse3" >
-            REGISTRO DE AREAS
+            REGISTRO DE ÁREAS
       </div>
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group has-feedback">
-                        <input autocomplete="off" required id="id_nombre_areas" type="text" class="form-control" placeholder="Nombre del area" value="{{ old('id_nombre_areas') }}" />
+                        <input autocomplete="off" required id="id_nombre_areas" type="text" class="form-control" placeholder="Nombre del área" value="{{ old('id_nombre_areas') }}" />
                         <span class="glyphicon glyphicon-home form-control-feedback"></span>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group has-feedback">
-                        <input autocomplete="off" id="id_ext_telef_areas" type="text" class="form-control" placeholder="Extensión telefonica" value="{{ old('id_ext_telef_areas') }}" required />
+                        <input autocomplete="off" id="id_ext_telef_areas" type="text" class="form-control" placeholder="Extensión telefónica" value="{{ old('id_ext_telef_areas') }}" required />
                         <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
                     </div>
                 </div>

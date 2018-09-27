@@ -79,7 +79,10 @@ class TipoDispositivoController extends Controller
 
     public function update(Request $request, TipoDispositivo $tipoDispositivo)
     {
-        //
+        $tipoDispositivo = TipoDispositivo::find($request->idtipodispositivos);
+        $tipoDispositivo->descripcion=$request->descripcion;
+        $tipoDispositivo->save();
+        return $tipoDispositivo;
     }
 
     /**

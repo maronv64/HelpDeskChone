@@ -69,4 +69,5 @@
 </div>
 
 <!--MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN-->
+@include('adminlte::layouts.partials.GestionAsigTareas.modalobserpeticion')
 @endsection

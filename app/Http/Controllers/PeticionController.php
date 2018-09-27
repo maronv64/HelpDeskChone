@@ -159,11 +159,11 @@ class PeticionController extends Controller
         return response()->json($peticiones);    
     }
 
-    public function CargarEstaPeticion($id='')
-    {
-        $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->firstOrFail();//where('estado_del','1')->get();
-        return response()->json($peticiones);    
-    }
+    // public function CargarEstaPeticion($id='')
+    // {
+    //     $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->firstOrFail();//where('estado_del','1')->get();
+    //     return response()->json($peticiones);    
+    // }
 
     public function peticionesFiltroAbmin($tipobusqueda='',Request $request)
     {

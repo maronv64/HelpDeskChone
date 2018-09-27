@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2018 a las 17:11:46
+-- Tiempo de generación: 28-09-2018 a las 00:01:55
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -62,7 +62,7 @@ CREATE TABLE `area` (
 INSERT INTO `area` (`idarea`, `nombre`, `correo`, `extencion`, `siglas`, `estado_del`) VALUES
 (1, 'Rentas', 'hola@hola.com', 'nose', 'hola', '1'),
 (2, 'Tecnología', 'leonardo@homail', '1256', 'LAS', '1'),
-(3, 'edas', 'asdas@hotma', 'asd', 'asd', '1'),
+(3, 'ASLK', 'asdas@hotma', 'asd', 'asd', '1'),
 (4, 'Ventas', 'ventas@hotmail.com', '54621', 'VGC', '1');
 
 -- --------------------------------------------------------
@@ -155,15 +155,17 @@ CREATE TABLE `dispositivos` (
 
 INSERT INTO `dispositivos` (`iddispositivos`, `idtipodispositivos`, `nombredispositivo`, `serie`, `color`, `modelo`, `marca`, `cod_activo`, `asignado`, `num_activo`) VALUES
 (21, 3, 'Computador', '32546423', 'Azul', 'lm73', 'Intel', 'Inactivo', '0', 5456),
-(22, 3, 'Impresora', '54987987', 'Negro', 'lm750', 'Epson', 'Activo', '1', 984654),
+(22, 3, 'Impresora', '54987987', 'Negro', 'lm750', 'Epson', 'Activo', '0', 984654),
 (23, 3, 'aaaaa', '123456', 'asdf', 'asdf', 'asdf', 'Activo', '0', 78894),
-(24, 2, 'Computer', '456456', 'black', '735645', 'Hola', 'Activo', '1', 0),
-(25, 1, 'asdfsad', 'asdf', 'asdfsad', 'asdfsda', 'asdf', 'Activo', '1', 0),
-(26, 3, 'asdfsda', 'sadfsad', 'asdfsadf', 'asdfsadf', 'asdfsaf', 'Activo', '0', 0),
-(27, 3, 'da', 'sda', 'da', 'dsa', 'da', 'Activo', '1', 0),
-(28, 1, 'dsfgsdfg', 'dfsg', 'dsfg', 'sdfg', 'dfgssdffg', 'Activo', '0', 0),
-(29, 1, 'fdsg', 'sdfg', 'sdfg', 'gdsfg', 'sdfg', 'Activo', '1', 0),
-(30, 3, 'numero de activo', '55', 'ghjj', 'yhgf', 'hfg', 'Activo', '0', 0);
+(24, 2, 'Computer', '456456', 'black', '735645', 'Hola', 'Activo', '1', 564654),
+(25, 1, 'asdfsad', 'asdf', 'asdfsad', 'asdfsda', 'asdf', 'Activo', '0', 987564),
+(26, 3, 'asdfsda', 'sadfsad', 'asdfsadf', 'asdfsadf', 'asdfsaf', 'Activo', '0', 5887987),
+(27, 3, 'da', 'sda', 'da', 'dsa', 'da', 'Activo', '0', 654551),
+(28, 1, 'dsfgsdfg', 'dfsg', 'dsfg', 'sdfg', 'dfgssdffg', 'Activo', '0', 654894),
+(29, 1, 'fdsg', 'sdfg', 'sdfg', 'gdsfg', 'sdfg', 'Activo', '0', 4984984),
+(30, 3, 'numero de activo', '55', 'ghjj', 'yhgf', 'hfg', 'Activo', '0', 649474),
+(31, 2, 'asdfsad', 'dsaf', 'asdf', 'sadf', 'asdf', 'Activo', '0', 684654),
+(32, 1, 'fgd', '543', 'gf', 'gf', 'fdg', 'Activo', '0', 56);
 
 -- --------------------------------------------------------
 
@@ -185,7 +187,7 @@ INSERT INTO `especialidad` (`idespecialidad`, `descripcion`) VALUES
 (3, 'Tecnología'),
 (4, 'Redes'),
 (5, 'Pruebas'),
-(6, 'Prueba2');
+(6, 'Prueba');
 
 -- --------------------------------------------------------
 
@@ -236,7 +238,8 @@ INSERT INTO `extra_tecnico` (`idextra_tecnico`, `idusuario`, `especialidad`) VAL
 (83, 211, 'Sistemas'),
 (84, 212, 'Sistemas'),
 (85, 213, 'Sistemas'),
-(86, 214, 'Sistemas');
+(86, 214, 'Sistemas'),
+(87, 217, 'Redes');
 
 -- --------------------------------------------------------
 
@@ -314,17 +317,24 @@ INSERT INTO `peticion` (`idpeticion`, `idprioridad`, `idestado`, `idtipopeticion
 (2, 1, 3, 1, 144, 'hola que tal', '0', '2018-09-18 20:12:35', NULL),
 (26, 1, 1, 2, 152, 'maron', '1', '2018-09-18 20:12:35', NULL),
 (27, 1, 1, 1, 152, 'maron', '1', '2018-09-18 20:12:35', NULL),
-(44, 2, 1, 1, 152, 'hola que haces', '1', '2018-09-18 20:12:35', NULL),
-(45, 2, 2, 2, 203, 'prueba maron vera', '0', '2018-09-18 20:12:35', NULL),
-(46, 3, 2, 1, 152, 'se me daño la pc tgthtrhththrtwr6h6ryuwr57yuj6rw3ure7nji7b7r5uivf6fu6ri7uiuthfergregreg5rgregregregrgrgyrhbytjh6hthrthrehrthgnhgfngfdhj6bu7tc v7tckf7kvj7t767g7t', '0', '2018-09-18 20:27:04', NULL),
-(47, 2, 2, 1, 144, 'hola como estan todos', '0', '2018-09-19 20:15:36', NULL),
-(48, 2, 2, 1, 144, 'moshi moshi', '0', '2018-09-19 20:22:35', NULL),
-(49, 2, 1, 1, 144, 'wwwwwww', '1', '2018-09-19 22:03:03', NULL),
+(44, 1, 1, 1, 152, 'hola que haces', '1', '2018-09-18 20:12:35', NULL),
+(45, 1, 2, 2, 203, 'prueba maron vera', '0', '2018-09-18 20:12:35', NULL),
+(46, 1, 2, 1, 152, 'se me daño la pc tgthtrhththrtwr6h6ryuwr57yuj6rw3ure7nji7b7r5uivf6fu6ri7uiuthfergregreg5rgregregregrgrgyrhbytjh6hthrthrehrthgnhgfngfdhj6bu7tc v7tckf7kvj7t767g7t', '0', '2018-09-18 20:27:04', NULL),
+(47, 1, 2, 1, 144, 'hola como estan todos', '0', '2018-09-19 20:15:36', NULL),
+(48, 1, 2, 1, 144, 'moshi moshi', '0', '2018-09-19 20:22:35', NULL),
+(49, 1, 1, 1, 144, 'wwwwwww', '1', '2018-09-19 22:03:03', NULL),
 (50, 1, 2, 1, 199, 'hola hola', '0', '2018-09-19 22:42:26', NULL),
-(51, 2, 1, 2, 199, 'Un formato de solicitud de mantenimiento es una solicitud que se hace por escrito  para  exponer las fallas, o defectos técnicos de algún  objeto, producto o aparato y solicitar su reparación, dirigido a la entidad responsable de ello, ya sea esta gubernamental, (en casos de mantenimientos de calles, escuelas o edificios públicos), a una fábrica o empresa, (en caso de productos defectuosos o incompletos), a una persona o empresa especializada (como en el caso del mantenimiento de edificios privados por parte de empresas que prestan el servicio de mantenimiento, o de parte de trabajadores individuales como fontaneros o electricistas).  URL del artículo: https://www.ejemplode.com/11-escritos/2766-ejemplo_de_formato_de_solicitud_de_mantenimiento.html Nota completa: Ejemplo de Formato de solicitud de mantenimiento', '1', '2018-09-20 02:34:21', NULL),
+(51, 1, 1, 2, 199, 'Un formato de solicitud de mantenimiento es una solicitud que se hace por escrito  para  exponer las fallas, o defectos técnicos de algún  objeto, producto o aparato y solicitar su reparación, dirigido a la entidad responsable de ello, ya sea esta gubernamental, (en casos de mantenimientos de calles, escuelas o edificios públicos), a una fábrica o empresa, (en caso de productos defectuosos o incompletos), a una persona o empresa especializada (como en el caso del mantenimiento de edificios privados por parte de empresas que prestan el servicio de mantenimiento, o de parte de trabajadores individuales como fontaneros o electricistas).  URL del artículo: https://www.ejemplode.com/11-escritos/2766-ejemplo_de_formato_de_solicitud_de_mantenimiento.html Nota completa: Ejemplo de Formato de solicitud de mantenimiento', '1', '2018-09-20 02:34:21', NULL),
 (52, 1, 1, 1, 200, 'dfsdfsdfsdfsdf', '1', '2018-09-22 00:10:27', NULL),
-(53, 2, 1, 2, 213, 'fsadfsd', '1', '2018-09-25 18:42:44', NULL),
-(54, 1, 1, 2, 213, 'fsadfsd', '1', '2018-09-25 18:42:57', NULL);
+(53, 1, 1, 2, 213, 'fsadfsd', '1', '2018-09-25 18:42:44', NULL),
+(54, 1, 3, 1, 213, 'fsadfsd', '0', '2018-09-25 18:42:57', '2018-09-28 00:18:09'),
+(55, 2, 1, 2, 144, 'a', '1', '2018-09-26 00:53:13', NULL),
+(56, 3, 2, 2, 210, 'b', '1', '2018-09-26 00:54:20', NULL),
+(57, 2, 1, 2, 152, 'Por Nuestra Santa Madre Iglesia. Señor, mira con benevolencia a tu siervo Su Santidad Francisco, cabeza de tu iglesia. Concédele la gracia de edificarla con su palabra y con su ejemplo.', '1', '2018-09-26 01:01:57', NULL),
+(58, 2, 1, 1, 215, 'La Biblia es Nuestra Mejor guía para la Oración. Este articulo contiene una Lista de Versículos como Ejemplos de peticiones de Oración a Dios.', '1', '2018-09-26 01:03:13', NULL),
+(59, 2, 3, 1, 209, '62562', '0', '2018-09-26 01:05:53', '2018-09-26 01:16:36'),
+(60, 2, 3, 1, 216, 'fdgewgwe4gewgewgewgwege4wwefwefgwe', '0', '2018-09-26 01:06:39', '2018-09-26 01:34:46'),
+(61, 2, 3, 1, 210, '25602155', '0', '2018-09-26 01:08:37', '2018-09-26 01:18:38');
 
 -- --------------------------------------------------------
 
@@ -389,6 +399,8 @@ INSERT INTO `tipodispositivos` (`idtipodispositivos`, `descripcion`) VALUES
 CREATE TABLE `tipopeticion` (
   `idtipopeticion` int(11) NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
+  `tiempoestimado` varchar(45) DEFAULT NULL,
+  `tolerancia` varchar(45) DEFAULT NULL,
   `estado_del` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -396,9 +408,9 @@ CREATE TABLE `tipopeticion` (
 -- Volcado de datos para la tabla `tipopeticion`
 --
 
-INSERT INTO `tipopeticion` (`idtipopeticion`, `descripcion`, `estado_del`) VALUES
-(1, 'Mantenimiento Correctivo', '1'),
-(2, 'Mantenimiento Preventivo', '1');
+INSERT INTO `tipopeticion` (`idtipopeticion`, `descripcion`, `tiempoestimado`, `tolerancia`, `estado_del`) VALUES
+(1, 'Mantenimiento Correctivo', '1', '1', '1'),
+(2, 'Mantenimiento Preventivo', '2', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -465,31 +477,32 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `apellidos`, `cedula`, `sexo`, `celular`, `email`, `password`, `idtipousuario`, `estado`, `idarea`, `remember_token`, `created_at`, `updated_at`, `img`) VALUES
 (144, 'Luis', 'Coaboy', '1315700631', 'Masculino', '0982284179', 'luis@hotmail.com', '$2y$10$DbcPyiYIusYpKxPVC80o1.PHKHYmobZ/fIqpZrbeqdPHiHcAj6zl6', 4, 'Activo', 1, 'g2PLc3YI4e14qBCaKDKfhI01qLN0BsMVUgl6GbfoPcH5wzHhDguLe5GDB6fw', NULL, NULL, ''),
 (148, 'junior', 'parraga', '1313402925', 'Masculino', '0990987071', 'junior_pg1995@hotmail.com', '$2y$10$q/4.N8wqEBttpnjbOoBJoO3qmlTj2fC1TMK/nTqyrFSZDJfhqdvdy', 5, 'Activo', 1, 'HBJc2f9AIH3oGrIcQzCod7irP0XpodFUsQqjIKBzQ5k1lCX3VwUh6xNbCeHg', NULL, NULL, ''),
-(150, 'Gabriel', 'Pachard', '1315221562', 'Femenino', '0979932503', 'pachard@hotmail.com', '$2y$10$OQCetQywbKScrk.IDYjDKea7LuRBk5VXD2.IuM/w8msiuyYEBCe/2', 3, 'Inactivo', 1, NULL, NULL, NULL, ''),
-(152, 'Cesar', 'Andrade', '1311190027', 'Masculino', '0989873765', 'cesar@hotmail.com', '$2y$10$RNbK.WDTzhVQgdtodQT9quWNCHuSbBvYCSdjc8s5p1CJAVPoAf2Jy', 1, 'Activo', 1, 'rgZQqBM7Ah02pc7nmvh6WtUybf2mmLZ9cemx8CEp9DyoBLtrpquhMoWqKoXz', NULL, NULL, ''),
-(161, 'jose', 'sabando', '1315221562', 'Femenino', '0979932503', 'leonardo21@hotmail.com', '$2y$10$DHp9jij809P.71K5jeMXq.jjIS9eOOf0nB/9l2qtc1zYfBtKIiYwa', 5, 'Inactivo', 2, 'q4eHTwIIGLNHv7OCaaJXoee6dyECaPs8esHB8E3XeWGnE6s6ZHCZhu7ti42o', NULL, NULL, ''),
-(162, 'jose', '1', '1315221562', 'Masculino', '0979932503', 'leonardo31@hotmail.com', '$2y$10$kOWuW2lzFPUmNsWL54Ckw.w2PhjHRnDW5d0XiCq.OyIWgay9nl40y', 5, 'Inactivo', 1, NULL, NULL, NULL, ''),
-(193, '2', '2', '2', 'Femenino', '0979932503', 'leonardo13@hotmail.com', '$2y$10$CMnUCzo2n2uaelv.daTuPOqHHQp/l5A.cnf6hoLv4CYO9CgF.eyg2', 5, 'Inactivo', 1, NULL, NULL, NULL, ''),
-(197, 'jose', 'sabando', 'q', 'Femenino', '0979932503', 'cesar@hotmail.com', '$2y$10$A2tGMiUBra2dNvT2yy.VxexeqXhxI7eKuRlByqPy4d0fRtg7OEigO', 5, 'Inactivo', 1, NULL, NULL, NULL, ''),
-(198, 'Leonardo', 'Sabando', '131522', 'Femenino', '0979932503', 'leonardo1@hotmail.com', '$2y$10$J5uC5dZa0ajf177mbg6yjOodPFThy/hBedmkd6PMHCcXRKPe6YfF6', 2, 'Inactivo', 1, NULL, NULL, NULL, ''),
-(199, 'Leonardo', 'Sabando', '1315221562', 'Masculino', '0979932503', 'leonardo@hotmail.com', '$2y$10$sRmon2bdqGgd5zXGkxrk1eM0j/mjBTDd8aUm46Tpw5Wgk2KmyiA72', 2, 'Activo', 2, 'nVt3imM2qS70kGyIc6ARJiiiGsFmlRp8Wcqtz1zq425oZjHhRHwi9CYDbNev', NULL, NULL, ''),
-(200, 'stefy', 'kuffo', '1313909025', 'Femenino', '0982456179', 'stefy@hotmail.com', '$2y$10$x9x.sf61LK77a9LOa3r8Y.6CU1o7jxg/cDxOEzbS2u4HVKu8b5IRW', 1, 'Activo', 2, 'Rb64PwPD52dYKKYbGwj7GLGCiAUMWFqGBTRHYmCVwyd1vWYebYil5IjKv49n', NULL, NULL, ''),
-(201, 'Gabriel', 'Pachard', '1313808027', 'Masculino', '0546856179', 'gabriel@hotmail.com', '$2y$10$2OGWOjxhyb5Q.Kqaxivmau/wWbIhhN50OMqn6ynzMw4aXe.5ywVBq', 2, 'Activo', 2, NULL, NULL, NULL, ''),
-(202, 'Maron', 'Vera', '1312929124', 'Masculino', '0945862187', 'maron@hotmail.com', '$2y$10$3qzXQ.FjB3ZnNkjLfWOXEuNhB6n9k1.iKNVmwdwxPP/wEGxUdZU4q', 4, 'Activo', 2, NULL, NULL, NULL, ''),
-(203, 'Sara', 'Zambrano', '1375486213', 'Femenino', '0982445821', 'sara@hotmail.com', '$2y$10$C8/88N9zVe1GEaprfi1n9ur2murmZiT7m5.Hf8fLV84KIRBKdUeme', 1, 'Activo', 2, NULL, NULL, NULL, ''),
-(204, 'Adrian', 'Alcívar', '1375487594', 'Masculino', '0982454578', 'adrian@hotmail.com', '$2y$10$3ViIhkRs7qIjp.r2lZs22eY9AbxhUx2v5DPY45mXQ7TxLCfEzf0ie', 5, 'Activo', 2, NULL, NULL, NULL, ''),
-(205, 'Joselin', 'Loor', '1375486542', 'Femenino', '0982475694', 'joselin@hotmail.com', '$2y$10$4grcXSSDaWAe8vro/AitSO6xaeVABgI6m9fbRgPstrS8DbLpojPZe', 3, 'Activo', 2, NULL, NULL, NULL, ''),
-(206, 'Pamela', 'Zambrano', '1313904216', 'Femenino', '0945215821', 'pamela@hotmail.com', '$2y$10$PrSrW0SeMBXKOd7pKsmbPOKuUsCAWgcDbnM4eVgQqfUrg9LBW.YQ.', 5, 'Activo', 2, NULL, NULL, NULL, ''),
-(207, 'Daniela', 'Loor', '1374213613', 'Femenino', '0982444521', 'daniela@hotmail.com', '$2y$10$ncbh6zjijEMgoeG2NkGU5OBafG.hd9F5n1LeinT/t5g.K6/w47oJy', 5, 'Inactivo', 2, NULL, NULL, NULL, ''),
-(208, 'marona', 'dsa', 'das', 'Masculino', 'das', 'leonardo@hotmail.com', '$2y$10$cuEXjoch3p6uK/t3zBhn3u5duVKs/bAn6IqzKk36Ezj9gRUiEJMz.', 1, 'Activo', 1, NULL, NULL, NULL, ''),
-(209, 'Yesenia', 'Zambrano', '1375484527', 'Femenino', '0982412563', 'yesenia@hotmail.com', '$2y$10$V2RRnIRmARVdW2kKe6/MpOL.nEQNBzFVHb3xWz.M1GhkGgVtKNa4K', 5, 'Activo', 1, NULL, NULL, NULL, ''),
-(210, 'Luis', 'Alcívar', '1374245213', 'Masculino', '0982442779', 'luis@hotmail.com', '$2y$10$pme4BC0nAAoTRHKSQjS/qOHg99l8A33TyI5z1CkrcTY2EcuME0SLG', 5, 'Activo', 1, NULL, NULL, NULL, ''),
-(211, 'Servio', 'Zambrano', '1375486457', 'Masculino', '0982445452', 'servio@hotmail.com', '$2y$10$ncnBWW0Hny/D8aHyaMp95ufjzFYLYz23vzU3ijyFT41iInt7sCt3W', 5, 'Activo', 1, NULL, NULL, NULL, ''),
-(212, 'Juan', 'Loor', '1375487542', 'Masculino', '0982445452', 'juan@hotmail.com', '$2y$10$qN0RfoHehjXjG2/10HI9YuBg/TXNN23yEDPQslMaeWM66dPtHCmUW', 5, 'Activo', 1, NULL, NULL, NULL, ''),
-(213, 'Rosa', 'Alcívar', '1375487452', 'Femenino', '0982445412', 'rosa@hotmail.com', '$2y$10$arPEBrPnpEbwAAwsVj1FsO7msgxW9F4Q6bwlbY5gtsncaxoF/zwbG', 5, 'Activo', 1, 'WeBbZvNXXqhwnQ9xUfLT7yTYqiMwqlsch9OsaFajGKPtLxNinY1NsJPluNQn', NULL, NULL, ''),
-(214, 'Mario', 'Alcívar', '1375484562', 'Masculino', '0982444521', 'mario@hotmail.com', '$2y$10$PrTTEcNYPp6FlKkl6hDwTu.ZrP5AFvnakwsx2EHLIg0sFhFYKz0uO', 5, 'Activo', 1, 'D2ZjbDWQ19q15n3eDrLnLQIaXf9rBiyms6BYBFtsR9hyr9ly9riZ5cYmIrxe', NULL, NULL, ''),
+(150, 'Gabriel', 'Pachard', '1315221562', 'Femenino', '0979932503', 'pachard@hotmail.com', '$2y$10$OQCetQywbKScrk.IDYjDKea7LuRBk5VXD2.IuM/w8msiuyYEBCe/2', 3, 'Inactivo', 1, 'ZszMV5kYsl94IO15OsZPgz8npTgf1j8F8RE7ki0DdUvTOYlTjIgIcq5nhZ9Y', NULL, NULL, 'img/avatar3.png'),
+(152, 'Cesar', 'Andrade', '1311190027', 'Masculino', '0989873765', 'cesar@hotmail.com', '$2y$10$RNbK.WDTzhVQgdtodQT9quWNCHuSbBvYCSdjc8s5p1CJAVPoAf2Jy', 1, 'Activo', 1, 'rgZQqBM7Ah02pc7nmvh6WtUybf2mmLZ9cemx8CEp9DyoBLtrpquhMoWqKoXz', NULL, NULL, 'img/avatar3.png'),
+(161, 'jose', 'sabando', '1315221562', 'Femenino', '0979932503', 'leonardo21@hotmail.com', '$2y$10$DHp9jij809P.71K5jeMXq.jjIS9eOOf0nB/9l2qtc1zYfBtKIiYwa', 5, 'Inactivo', 2, 'q4eHTwIIGLNHv7OCaaJXoee6dyECaPs8esHB8E3XeWGnE6s6ZHCZhu7ti42o', NULL, NULL, 'img/avatar5.png'),
+(162, 'jose', '1', '1315221562', 'Masculino', '0979932503', 'leonardo31@hotmail.com', '$2y$10$kOWuW2lzFPUmNsWL54Ckw.w2PhjHRnDW5d0XiCq.OyIWgay9nl40y', 5, 'Inactivo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(193, '2', '2', '2', 'Femenino', '0979932503', 'leonardo13@hotmail.com', '$2y$10$CMnUCzo2n2uaelv.daTuPOqHHQp/l5A.cnf6hoLv4CYO9CgF.eyg2', 5, 'Inactivo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(197, 'jose', 'sabando', 'q', 'Femenino', '0979932503', 'cesar@hotmail.com', '$2y$10$A2tGMiUBra2dNvT2yy.VxexeqXhxI7eKuRlByqPy4d0fRtg7OEigO', 5, 'Inactivo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(198, 'Leonardo', 'Sabando', '131522', 'Femenino', '0979932503', 'leonardo1@hotmail.com', '$2y$10$J5uC5dZa0ajf177mbg6yjOodPFThy/hBedmkd6PMHCcXRKPe6YfF6', 2, 'Inactivo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(199, 'Leonardo', 'Sabando', '1315221562', 'Masculino', '0979932503', 'leonardo@hotmail.com', '$2y$10$sRmon2bdqGgd5zXGkxrk1eM0j/mjBTDd8aUm46Tpw5Wgk2KmyiA72', 2, 'Activo', 2, 'XiYaQiXzSBSO4QQySkjqSZYnkzn8wycoOQNRoGeXikYHVEcwO0SQAlFWqt1M', NULL, NULL, 'img/avatar5.png'),
+(200, 'stefy', 'kuffo', '1313909025', 'Femenino', '0982456179', 'stefy@hotmail.com', '$2y$10$x9x.sf61LK77a9LOa3r8Y.6CU1o7jxg/cDxOEzbS2u4HVKu8b5IRW', 1, 'Activo', 2, 'Rb64PwPD52dYKKYbGwj7GLGCiAUMWFqGBTRHYmCVwyd1vWYebYil5IjKv49n', NULL, NULL, 'img/avatar5.png'),
+(201, 'Gabriel', 'Pachard', '1313808027', 'Masculino', '0546856179', 'gabriel@hotmail.com', '$2y$10$2OGWOjxhyb5Q.Kqaxivmau/wWbIhhN50OMqn6ynzMw4aXe.5ywVBq', 2, 'Activo', 2, NULL, NULL, NULL, 'img/avatar5.png'),
+(202, 'Maron', 'Vera', '1312929124', 'Masculino', '0945862187', 'maron@hotmail.com', '$2y$10$3qzXQ.FjB3ZnNkjLfWOXEuNhB6n9k1.iKNVmwdwxPP/wEGxUdZU4q', 4, 'Activo', 2, NULL, NULL, NULL, 'img/avatar5.png'),
+(203, 'Sara', 'Zambrano', '1375486213', 'Femenino', '0982445821', 'sara@hotmail.com', '$2y$10$C8/88N9zVe1GEaprfi1n9ur2murmZiT7m5.Hf8fLV84KIRBKdUeme', 1, 'Activo', 2, NULL, NULL, NULL, 'img/avatar5.png'),
+(204, 'Adrian', 'Alcívar', '1375487594', 'Masculino', '0982454578', 'adrian@hotmail.com', '$2y$10$3ViIhkRs7qIjp.r2lZs22eY9AbxhUx2v5DPY45mXQ7TxLCfEzf0ie', 5, 'Activo', 2, NULL, NULL, NULL, 'img/avatar5.png'),
+(205, 'Joselin', 'Loor', '1375486542', 'Femenino', '0982475694', 'joselin@hotmail.com', '$2y$10$4grcXSSDaWAe8vro/AitSO6xaeVABgI6m9fbRgPstrS8DbLpojPZe', 3, 'Activo', 2, NULL, NULL, NULL, 'img/avatar5.png'),
+(206, 'Pamela', 'Zambrano', '1313904216', 'Femenino', '0945215821', 'pamela@hotmail.com', '$2y$10$PrSrW0SeMBXKOd7pKsmbPOKuUsCAWgcDbnM4eVgQqfUrg9LBW.YQ.', 5, 'Activo', 2, NULL, NULL, NULL, 'img/avatar5.png'),
+(207, 'Daniela', 'Loor', '1374213613', 'Femenino', '0982444521', 'daniela@hotmail.com', '$2y$10$ncbh6zjijEMgoeG2NkGU5OBafG.hd9F5n1LeinT/t5g.K6/w47oJy', 5, 'Inactivo', 2, NULL, NULL, NULL, 'img/avatar5.png'),
+(208, 'marona', 'dsa', 'das', 'Masculino', 'das', 'leonardo@hotmail.com', '$2y$10$cuEXjoch3p6uK/t3zBhn3u5duVKs/bAn6IqzKk36Ezj9gRUiEJMz.', 1, 'Activo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(209, 'Yesenia', 'Zambrano', '1375484527', 'Femenino', '0982412563', 'yesenia@hotmail.com', '$2y$10$V2RRnIRmARVdW2kKe6/MpOL.nEQNBzFVHb3xWz.M1GhkGgVtKNa4K', 5, 'Activo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(210, 'Luis', 'Alcívar', '1374245213', 'Masculino', '0982442779', 'luis@hotmail.com', '$2y$10$pme4BC0nAAoTRHKSQjS/qOHg99l8A33TyI5z1CkrcTY2EcuME0SLG', 5, 'Activo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(211, 'Servio', 'Zambrano', '1375486457', 'Masculino', '0982445452', 'servio@hotmail.com', '$2y$10$ncnBWW0Hny/D8aHyaMp95ufjzFYLYz23vzU3ijyFT41iInt7sCt3W', 5, 'Activo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(212, 'Juan', 'Loor', '1375487542', 'Masculino', '0982445452', 'juan@hotmail.com', '$2y$10$qN0RfoHehjXjG2/10HI9YuBg/TXNN23yEDPQslMaeWM66dPtHCmUW', 5, 'Activo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(213, 'Rosa', 'Alcívar', '1375487452', 'Femenino', '0982445412', 'rosa@hotmail.com', '$2y$10$arPEBrPnpEbwAAwsVj1FsO7msgxW9F4Q6bwlbY5gtsncaxoF/zwbG', 5, 'Activo', 1, '6CgECUnMacC1M4oliqtRY9gR6VAXjpG7aAUBOCcRNv3MDa0AHQmZ706e48Yf', NULL, NULL, 'img/avatar5.png'),
+(214, 'Mario', 'Alcívar', '1375484562', 'Masculino', '0982444521', 'mario@hotmail.com', '$2y$10$PrTTEcNYPp6FlKkl6hDwTu.ZrP5AFvnakwsx2EHLIg0sFhFYKz0uO', 5, 'Activo', 1, 'D2ZjbDWQ19q15n3eDrLnLQIaXf9rBiyms6BYBFtsR9hyr9ly9riZ5cYmIrxe', NULL, NULL, 'img/avatar5.png'),
 (215, 'Valentina', 'Pachard', '1313909452', 'Femenino', '0982456452', 'valentina@hotmail.com', '$2y$10$F6h75UeRX2DSV3sn6n9v9egLY9NBJ3wvuM9TNqmNGgBDjPD8P7d6u', 1, 'Activo', 1, '4hNvZWPJ1XaUTQR1grh7nTxx2Jb9iXgq6VlgfFEXcerEtMJ4k13gbZ4C82RD', NULL, NULL, 'img/avatar3.png'),
-(216, 'Jose', 'Loor', '1313904521', 'Masculino', '0982445412', 'jose@hotmail.com', '$2y$10$RMJflloO2MQypGuJ1VMfwu38mR9rE8vOVfHbxCWGh7hcMRCEZgJmG', 1, 'Activo', 1, NULL, NULL, NULL, 'img/avatar5.png');
+(216, 'Jose', 'Loor', '1313904521', 'Masculino', '0982445412', 'jose@hotmail.com', '$2y$10$RMJflloO2MQypGuJ1VMfwu38mR9rE8vOVfHbxCWGh7hcMRCEZgJmG', 1, 'Activo', 1, NULL, NULL, NULL, 'img/avatar5.png'),
+(217, 'Jose Leonardo', 'Sabando Valencia', '1315221562', 'Masculino', '0979932503', 'leonard23@hotmail.com', '$2y$10$JlHWlvGl7NBjYpWbIWGul.cfliA/Wuis0NDE1eFBIHhXhiUwJGsnG', 5, 'Activo', 3, NULL, NULL, NULL, 'img/avatar5.png');
 
 -- --------------------------------------------------------
 
@@ -514,18 +527,28 @@ CREATE TABLE `user_asignacion` (
 --
 
 INSERT INTO `user_asignacion` (`iduser_asignacion`, `usuario_idUsuario`, `peticion_idpeticion`, `FechaRegistro`, `FechaInicio`, `FechaLimite`, `Observacion`, `HoraInicial`, `HoraLimite`) VALUES
-(197, 148, 49, '2018-09-19', '2018-09-19', '2018-09-14', 'Dolor de Cabeza', '20:26:00', '03:02:00'),
+(197, 148, 44, '2018-09-19', '2018-09-19', '2018-09-14', 'Dolor de Cabeza', '20:26:00', '03:02:00'),
 (198, 204, 49, '2018-09-19', '2018-09-21', '2018-09-29', 'Para Reparar', '10:20:00', '13:25:00'),
 (199, 209, 49, '2018-09-19', '2018-09-19', '2018-09-21', 'Dolor en la pierna', '20:40:00', '05:59:00'),
 (200, 148, 44, '2018-09-19', '2018-09-19', '2018-09-15', 'Un formato de solicitud de mantenimiento es una solicitud que se hace por escrito  para  exponer las fallas, o defectos técnicos de algún  objeto, producto o aparato y solicitar su reparación, dirigido a la entidad responsable de ello, ya sea esta gubernamental, (en casos de mantenimientos de calles, escuelas o edificios públicos), a una fábrica o empresa, (en caso de productos defectuosos o incompletos), a una persona o empresa especializada (como en el caso del mantenimiento de edificios privados por parte de empresas que prestan el servicio de mantenimiento, o de parte de trabajadores individuales como fontaneros o electricistas).\n\nURL del artículo: https://www.ejemplode.com/11-escritos/2766-ejemplo_de_formato_de_solicitud_de_mantenimiento.html\nNota completa: Ejemplo de Formato de solicitud de mantenimiento', '21:14:00', '04:23:00'),
-(201, 204, 27, '2018-09-19', '2018-09-01', '2018-09-05', '$(\"#actualizarclave\").on(\'change\', function(e){\n    if (this.checked) {\n        $(\"#passwordupdiv\").prop(\'hidden\',false);\n        $(\"#passwordup\").prop(\'disabled\',false);\n        $(\"#passwordup\").prop(\'required\',true);\n        $(\"#actualizarclave\").val(\'1\');\n\n    } else {\n        $(\"#passwordupdiv\").prop(\'hidden\',true);\n        $(\"#passwordup\").prop(\'disabled\',true);\n        $(\"#passwordup\").prop(\'required\',false);\n        $(\"#actualizarclave\").val(\'0\');\n    \n    }\n});', '03:21:00', '03:21:00'),
+(201, 204, 27, '2018-09-19', '2018-09-01', '2018-09-05', 'hola que haces!', '03:21:00', '03:21:00'),
 (202, 206, 27, '2018-09-19', '2018-09-08', '2018-09-09', 'dasdasdasdasd', '03:42:00', '23:04:00'),
 (203, 210, 51, '2018-09-20', '2018-09-20', '2018-09-13', 'Hola que tal', '14:04:00', '03:02:00'),
 (204, 213, 52, '2018-09-25', '2018-09-24', '2018-09-25', 'fsd', '14:30:00', '17:00:00'),
 (205, 213, 27, '2018-09-25', '2018-09-24', '2018-09-25', '´piuouo', '14:30:00', '17:00:00'),
-(206, 213, 51, '2018-09-25', '2018-09-25', '2018-09-25', 'yrtyhrt', '14:30:00', '17:00:00'),
+(206, 213, 51, '2018-09-25', '2018-09-25', '2018-09-29', 'yrtyhrt', '14:30:00', '17:00:00'),
 (207, 213, 49, '2018-09-25', '2018-09-24', '2018-09-25', 'dsfdsf', '14:30:00', '17:00:00'),
-(208, 204, 26, '2018-09-25', '2018-09-25', '2018-09-13', 'hgjgh', '15:00:00', '17:00:00');
+(208, 204, 26, '2018-09-25', '2018-09-25', '2018-09-13', 'hgjgh', '15:00:00', '17:00:00'),
+(209, 206, 26, '2018-09-25', '2018-09-15', '2018-09-25', 'dsa', '03:02:00', '03:02:00'),
+(210, 210, 52, '2018-09-25', '2018-09-20', '2018-09-13', 'dsadsa', '15:00:00', '16:00:00'),
+(211, 204, 53, '2018-09-25', '2018-09-25', '2018-09-25', 'sfdsdf', '10:00:00', '12:00:00'),
+(212, 213, 60, '2018-09-25', '2018-09-25', '2018-08-31', 'ikjukhj', '23:45:00', '05:45:00'),
+(213, 212, 60, '2018-09-25', '2018-09-25', '2018-09-25', 'Holasdhlaksjh', '10:00:00', '12:00:00'),
+(214, 206, 53, '2018-09-26', '2018-09-26', '2018-09-26', 'fsdf', '04:03:00', '04:03:00'),
+(215, 204, 57, '2018-09-27', '2018-09-27', '2018-09-27', 'gdfgfd', '07:21:00', '12:00:00'),
+(216, 204, 55, '2018-09-27', '2018-09-27', '2018-09-27', 'hjghjhgjg', '14:30:00', '16:00:00'),
+(217, 204, 58, '2018-09-27', '2018-09-27', '2018-09-27', 'hjdfsfgdsfd', '16:35:00', '17:00:00'),
+(218, 206, 58, '2018-09-27', '2018-09-27', '2018-09-27', 'dfgdf', '21:30:00', '23:23:00');
 
 -- --------------------------------------------------------
 
@@ -546,11 +569,7 @@ CREATE TABLE `usuario_dispositivo` (
 --
 
 INSERT INTO `usuario_dispositivo` (`idusuario_dispositivo`, `fecha_inicio`, `fecha_fin`, `usuario_idUsuario`, `dispositivos_iddispositivos`) VALUES
-(32, '2018-09-20', '2018-09-30', 148, 24),
-(46, '2018-09-25', '2018-09-22', 144, 27),
-(47, '2018-09-25', '2018-09-15', 144, 29),
-(49, '2018-09-25', '2018-09-22', 144, 22),
-(50, '2018-09-25', '2018-09-22', 144, 25);
+(32, '2018-09-20', '2018-09-30', 148, 24);
 
 -- --------------------------------------------------------
 
@@ -630,10 +649,11 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `peticion`
   ADD PRIMARY KEY (`idpeticion`,`idprioridad`,`idestado`,`idtipopeticion`,`idusuario`),
-  ADD KEY `fk_peticion_prioridad1_idx` (`idprioridad`),
   ADD KEY `fk_peticion_estado1_idx` (`idestado`),
   ADD KEY `fk_peticion_tipopeticion1_idx` (`idtipopeticion`),
-  ADD KEY `fk_peticion_usuario1_idx` (`idusuario`);
+  ADD KEY `fk_peticion_usuario1_idx` (`idusuario`),
+  ADD KEY `fk_peticion_prioridad111_idx` (`idprioridad`),
+  ADD KEY `fk_peticion_prioriadad_idx` (`idprioridad`);
 
 --
 -- Indices de la tabla `prioridad`
@@ -732,7 +752,7 @@ ALTER TABLE `asignacion`
 -- AUTO_INCREMENT de la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
-  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidad`
@@ -750,7 +770,7 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT de la tabla `extra_tecnico`
 --
 ALTER TABLE `extra_tecnico`
-  MODIFY `idextra_tecnico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `idextra_tecnico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de la tabla `ficha`
@@ -768,7 +788,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `peticion`
 --
 ALTER TABLE `peticion`
-  MODIFY `idpeticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `idpeticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `prioridad`
@@ -810,19 +830,19 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 
 --
 -- AUTO_INCREMENT de la tabla `user_asignacion`
 --
 ALTER TABLE `user_asignacion`
-  MODIFY `iduser_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
+  MODIFY `iduser_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_dispositivo`
 --
 ALTER TABLE `usuario_dispositivo`
-  MODIFY `idusuario_dispositivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `idusuario_dispositivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_software`
@@ -851,7 +871,6 @@ ALTER TABLE `extra_tecnico`
 --
 ALTER TABLE `peticion`
   ADD CONSTRAINT `fk_peticion_estado1` FOREIGN KEY (`idestado`) REFERENCES `estado` (`idestado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_peticion_prioridad1` FOREIGN KEY (`idprioridad`) REFERENCES `prioridad` (`idprioridad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_peticion_tipopeticion1` FOREIGN KEY (`idtipopeticion`) REFERENCES `tipopeticion` (`idtipopeticion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_peticion_usuario1` FOREIGN KEY (`idusuario`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

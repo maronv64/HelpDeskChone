@@ -227,8 +227,7 @@ class AsigTareasController extends Controller
 
       $hora=new DateTime();
       // $hora = (localtime(time(),true));
-      $hora->modify('-5 hours'); 
-        $hora->modify($tolerancia); 
+        $hora->modify('-$tolerancia hours'); 
      //   $hora = strtotime ( '+5hours' , strtotime ($hora) ) ; 
           $hora = $hora->format('H:i');
 

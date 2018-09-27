@@ -40,7 +40,7 @@
                 <a href="#"><i class='fa fa-tachometer'></i> <span>DASHBOARD</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                 <li><a href="{{url('/dashboardhelpdesk')}}"><i class='fa fa-spinner'></i>Dashboard HelpDesk</a></li>   
-                <li><a href="#"><i class="fa fa-pie-chart"></i>Dashboard Productividad</a> </li>
+                <li><a href="{{url('/dashboardproductividad')}}"><i class="fa fa-pie-chart"></i>Dashboard Productividad</a> </li>
                 </ul>
             </li>
              <li class="treeview">
@@ -54,7 +54,7 @@
                 </ul> -->
             </li>
               <li class="treeview">
-                <a href="{{ url('/misasignaciones') }}"><i class='fa fa-th-list'></i> <span>Mis Asignaciones</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
+                <a href="{{ url('/misasignaciones') }}"><i class='fa fa-th-list'></i> <span>MIS ASIGNACIONES</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
           <!--       <ul class="treeview-menu">
                     <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
                     <li><a href="#">Dashboard Peticiones</a></li>
@@ -114,7 +114,7 @@
 
             </li>
               <li class="treeview">
-                <a href="{{ url('/fichas') }}"><i class='fa fa-tachometer'></i> <span>Ficha</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
+                <a href="{{ url('/fichas') }}"><i class='fa fa-tachometer'></i> <span>FICHA</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
           <!--       <ul class="treeview-menu">
                     <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
                     <li><a href="#">Dashboard Peticiones</a></li>

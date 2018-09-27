@@ -149,3 +149,5 @@ Route::resource('/fichas','FichasController');
 
 //view('adminlte::layouts.partials.PanelConfiguracion.PanelConfig')
 
+//Dashboard productividad
+Route::get('/dashboardproductividad','DashboardProductividadController@index');

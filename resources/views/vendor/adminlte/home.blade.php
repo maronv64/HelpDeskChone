@@ -13,8 +13,6 @@
           <div id="app">
               <div class="">
                 <div class="register-box-body" align="center"  >  
-
-
                 	<img class="img-responsive" src="img/imagenes/Help_Desk.png">
                 	<h1>Help <b>Desk</b></h1>
 

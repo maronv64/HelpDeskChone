@@ -6,7 +6,7 @@
         <div class="modal-content">
 
             <div class="modal-header" align="center">
-                <h3  class="modal-title"><b><i class="fa fa-user"></i>  Actualización Peticion</b></h3>
+                <h3  class="modal-title"><b><i class="fa fa-user"></i>  Actualizar Petición</b></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             </div>
                         <!-- -->

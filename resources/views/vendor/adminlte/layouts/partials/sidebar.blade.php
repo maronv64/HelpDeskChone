@@ -114,7 +114,7 @@
 
             </li>
               <li class="treeview">
-                <a href="{{ url('/fichas') }}"><i class='fa fa-tachometer'></i> <span>FICHA</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
+                <a href="{{ url('/fichas') }}"><i class='fa fa fa-file-o'></i> <span>FICHA</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>
           <!--       <ul class="treeview-menu">
                     <li><a href="#"><i class='fa fa-bar-chart-o'></i>Dashboard HelpDesk</a></li>
                     <li><a href="#">Dashboard Peticiones</a></li>

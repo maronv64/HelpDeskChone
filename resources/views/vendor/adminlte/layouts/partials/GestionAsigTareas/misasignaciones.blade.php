@@ -16,21 +16,6 @@
         <div class="">
             <div id="app">
                 <div class="">
-                    <!--   <div class="register-logo">
-                        <a href="{{ url('/home') }}"><b>Help</b>Desk</a>
-                    </div> 
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif-->
-
-
                     <div class="register-box-body"  >
    
                         <div class="row" >
@@ -93,6 +78,7 @@
                                       <th scope="col" style="text-align: center">Observacion Asignación</th>
                                       <th scope="col" style="text-align: center">Fecha/Hora Inicio</th>
                                       <th scope="col" style="text-align: center">Fecha/Hora Limite</th>
+                                      <th scope="col" style="text-align: center">Tolerancia</th>
                                        <th scope="col" style="text-align: center">Alerta</th>
                                   </tr>
                                 </thead>

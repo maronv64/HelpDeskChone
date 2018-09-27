@@ -136,6 +136,9 @@ Route::get('/misasignaciones','AsigTareasController@misasignaciones');
 Route::get('/idususario','AsigTareasController@idususario');
 Route::get('/mostrarobservacionpeticion/{idpeticion}','AsigTareasController@mostrarobservacionpeticion');
 Route::get('/fechaactual','AsigTareasController@fechaactual');
+Route::get('/horaactual','AsigTareasController@horaactual');
+Route::get('/horatolerante/{tolerancia}','AsigTareasController@horatolerante');
+
 
 
 //Rutas de tipo de usuarios

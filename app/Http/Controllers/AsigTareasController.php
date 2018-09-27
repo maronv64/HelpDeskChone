@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class AsigTareasController extends Controller
 {
@@ -207,5 +208,29 @@ class AsigTareasController extends Controller
          $date = Carbon::now();
         $date = $date->format('Y-m-d');
         return response()->json($date);
+     }
+
+       public function horaactual(){
+       // $hora = Carbon::now();
+        $hora=new DateTime();
+     
+      // $hora = (localtime(time(),true));
+        $hora->modify('-5 hours'); 
+     //   $hora = strtotime ( '+5hours' , strtotime ($hora) ) ; 
+          $hora = $hora->format('H:i');
+
+        return response()->json($hora);
+     }
+
+    public function horatolerante($tolerancia){
+       // $hora = Carbon::now();
+
+      $hora=new DateTime();
+      // $hora = (localtime(time(),true));
+        $hora->modify('-$tolerancia hours'); 
+     //   $hora = strtotime ( '+5hours' , strtotime ($hora) ) ; 
+          $hora = $hora->format('H:i');
+
+        return response()->json($hora);
      }
 }

@@ -125,13 +125,8 @@
             </li>
 
             <li class="treeview">
-                <a href="#"><i class='fa  fa-wrench'></i> <span>CONFIGURACIÓN</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('/TipoUsuarios') }}"><i class="fa fa-user-plus"></i> Tipo de usuarios</a></li>
-                    <li><a href="#"><i class="fa fa-th-large"></i> Areas</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Especialidad</a></li>
-                    <li><a href="#"><i class="fa fa-desktop"></i> Tipo de dispositivos</a></li>
-                </ul>
+                <a href="{{ url('/TipoUsuarios') }}"><i class='fa  fa-wrench'></i> <span>CONFIGURACIÓN</span> </a>
+     
             </li>
 
         </ul><!-- /.sidebar-menu -->

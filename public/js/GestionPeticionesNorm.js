@@ -176,7 +176,7 @@ $('#btnEnviarPN').click(function() {
             mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
             CargarPeticionesNorm();     
             alert(mensaje1);
-            
+            limpiarTexto();
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
@@ -189,6 +189,12 @@ $('#btnEnviarPN').click(function() {
     //     CargarPeticiones2();
     // });
 });
+function limpiarTexto() {
+    $('#txtDescripcionN').val('');
+    CargarPrioridades();
+    CargarTipoPeticiones();
+    
+}
 //----------------------eliminar una peticion
 function eliminarPeticion(id) {
 

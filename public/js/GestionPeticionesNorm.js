@@ -155,7 +155,7 @@ function esta_vacio(cadena)
 $('#btnEnviarPN').click(function() {
     var FrmData = {
         idprioridad:    $('#cmbPrioridadesN').val(),
-        idestado:       1,
+        idestado:       '',
         idtipopeticion: $('#cmbTipoPeticionesN').val(),
         idusuario:      $('#idmiuser').val(),
         descripcion:    $('#txtDescripcionN').val(),
@@ -176,7 +176,7 @@ $('#btnEnviarPN').click(function() {
             mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
             CargarPeticionesNorm();     
             alert(mensaje1);
-            
+            limpiarTexto();
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
@@ -189,6 +189,12 @@ $('#btnEnviarPN').click(function() {
     //     CargarPeticiones2();
     // });
 });
+function limpiarTexto() {
+    $('#txtDescripcionN').val('');
+    CargarPrioridades();
+    CargarTipoPeticiones();
+    
+}
 //----------------------eliminar una peticion
 function eliminarPeticion(id) {
 
@@ -225,7 +231,7 @@ $( "#btnActualizarPeticionNM" ).click(function() {
     var FrmData = {
         idpeticion:     $('#var_idpeticionN').val(),
         idprioridad:    $('#cmbPrioridadesNM').val(),
-        idestado:       1,
+        idestado:       '',
         idtipopeticion: $('#cmbTipoPeticionesNM').val(),
         idusuario:      $('#idmiuser').val(),
         descripcion:    $('#txtDescripcionNM').val(),

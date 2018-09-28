@@ -31,13 +31,18 @@ class PeticionController extends Controller
     
     public function store(Request $request)
     {
-        $estado = Estado::where('descripcion','like','pendien')->firstOrFail();
+        //dd($request);
+
+        $estado = Estado::where('descripcion','like','pendiente')->firstOrFail();
+        //return response()->json($estado);
         $peticion = new Peticion();
         $peticion->idprioridad = $request->idprioridad;
+        
         $peticion->idestado = $estado->idestado;
         $peticion->idtipopeticion = $request->idtipopeticion;
         $peticion->idusuario = $request->idusuario;
         $peticion->descripcion = $request->descripcion;
+        
         $peticion->estado_del = '1';
         $peticion->created_at= Carbon::now()->toDateTimeString();
         if ($peticion->save()) {
@@ -163,7 +168,7 @@ class PeticionController extends Controller
     // {
     //     $peticiones = Peticion::with('prioridad','estado','tipo_peticion','usuario')->where('idpeticion',$id)->firstOrFail();//where('estado_del','1')->get();
     //     return response()->json($peticiones);    
-    // }
+    // }d
 
     public function peticionesFiltroAbmin($tipobusqueda='',Request $request)
     {

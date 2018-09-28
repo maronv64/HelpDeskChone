@@ -90,7 +90,7 @@ function CargarPeticionesNorm(){
             fila+= '<tr>';
             //
             //fila+= '<td>'+item.descripcion  +'</td>';
-            fila+="<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal'  onClick='verObservacion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>";            
+            fila+="<td class='row'> <center> <button type='button' class='btn btn-success btn-sm' data-toggle='modal'  onClick='verObservacion("+item.idpeticion+")'><i class='fa fa-eye'></i>Ver</button>";            
             //añade la descripcion del tipo de peticion
             fila+= '<td>'+item.tipo_peticion.descripcion  +'</td>';
             //añade la descripcion de la prioridad
@@ -175,12 +175,12 @@ $('#btnEnviarPN').click(function() {
         {  
             mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
             CargarPeticionesNorm();     
-            alert(mensaje1);
+            alertify.success(mensaje1);
             limpiarTexto();
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
-            alert(mensaje);
+            alertify.success(mensaje);
         }
     });  
 
@@ -216,12 +216,12 @@ function eliminarPeticion(id) {
         {  
             mensaje1 = "DATOS ELIMINADOS CON EXITO";
             CargarPeticionesNorm();     
-            alert(mensaje1);
+            alertify.success(mensaje1);
             
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
-            alert(mensaje);
+            alertify.success(mensaje);
         }
     });  
 }
@@ -247,7 +247,7 @@ $( "#btnActualizarPeticionNM" ).click(function() {
         esta_vacio($('#txtDescripcionNM').val()) 
         )
     {
-        alert('LLçlene todos los campos por favor');
+        alertify.success('Llene todos los campos por favor');
     } else{
 
         $.ajaxSetup({
@@ -264,12 +264,12 @@ $( "#btnActualizarPeticionNM" ).click(function() {
             {  
                 mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
                 CargarPeticionesNorm();     
-                alert(mensaje1);
+             alertify.success(mensaje1);
                 
             },
             error: function () {     
                 mensaje = "OCURRIO UN ERROR";
-                alert(mensaje);
+                alertify.error(mensaje);
             }
         });  
     

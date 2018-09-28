@@ -296,7 +296,7 @@ function SuperFiltro(tipoConsulta,FrmData) {
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
-            alert(mensaje);
+            alertify.success(mensaje);
         }
     });  
 }

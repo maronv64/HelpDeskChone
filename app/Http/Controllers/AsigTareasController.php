@@ -223,14 +223,9 @@ class AsigTareasController extends Controller
      }
 
     public function horatolerante($tolerancia){
-       // $hora = Carbon::now();
-
-      $hora=new DateTime();
-      // $hora = (localtime(time(),true));
-        $hora->modify('-$tolerancia hours'); 
-     //   $hora = strtotime ( '+5hours' , strtotime ($hora) ) ; 
-          $hora = $hora->format('H:i');
-
-        return response()->json($hora);
+          $Hora = Time(); // Hora actual   
+          $Hora = Time() + (60*60 * $tolerancia)- (60*60 * 5);   
+          $Hora = date('H:i',$Hora); // + 12 horas
+          return response()->json($Hora);
      }
 }

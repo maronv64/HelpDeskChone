@@ -37,11 +37,11 @@
             <li class="header"><strong><h6>MENU</h6></strong></li>
             <!-- Optionally, you can add icons to the links -->
             <li class="treeview">
-                <a href="#"><i class='fa fa-tachometer'></i> <span>DASHBOARD</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
+                <a href="{{url('/dashboardhelpdesk')}}"><i class='fa fa-tachometer'></i> <span>DASHBOARD</span> </a>
+                <!--  <ul class="treeview-menu">
                 <li><a href="{{url('/dashboardhelpdesk')}}"><i class='fa fa-spinner'></i>Dashboard HelpDesk</a></li>   
-                <li><a href="{{url('/dashboardproductividad')}}"><i class="fa fa-pie-chart"></i>Dashboard Productividad</a> </li>
-                </ul>
+               
+                </ul>-->
             </li>
              <li class="treeview">
                 <a href="{{ url('/asigtareas') }}"><i class="fa fa-check"></i> <span>ASIGNAR TAREAS</span> <!-- <i class="fa fa-angle-left pull-right"></i> --></a>

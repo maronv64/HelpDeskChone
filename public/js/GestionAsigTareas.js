@@ -440,7 +440,6 @@ function tablamisasignaciones(iduser){
 
 }
 
-
 function mostrarasigportectnico(){
    $.ajaxSetup({
             headers: {

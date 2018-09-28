@@ -94,7 +94,7 @@ function CargarPeticiones2(){
             fila+= '<tr>';
             //
             //fila+= '<td>'+item.descripcion  +'</td>';
-            fila+="<td class='row'> <center> <button type='button' class='btn btn-info' data-toggle='modal'  onClick='verObservacion("+item.idpeticion+")'><i class='fa fa-edit'></i></button>";
+            fila+="<td class='row'> <center> <button type='button' class='btn btn-success btn-sm' data-toggle='modal'  onClick='verObservacion("+item.idpeticion+")'><i class='fa fa-eye'></i>Ver</button>";
             //añade la descripcion del tipo de peticion
             fila+= '<td>'+item.tipo_peticion.descripcion  +'</td>';
             //añade la descripcion de la prioridad
@@ -342,7 +342,7 @@ function verModalModicarPeticion(id) {
 
 function mensaje(id)
 {
-    alert('este es el id: '+id);
+  
 }
 ///-------------------------- eventos ------------------------
 
@@ -409,12 +409,12 @@ $('#btnEnviarP').click(function() {
         {  
             mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
             CargarPeticiones2();     
-            alert(mensaje1);
+             alertify.success(mensaje1);
             
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
-            alert(mensaje);
+             alertify.error(mensaje);
         }
     });  
 
@@ -454,7 +454,7 @@ $( "#btnActualizarPeticion" ).click(function() {
         esta_vacio($('#txtDescripcionModal').val()) 
         )
     {
-        alert('Llene todos los campos por favor');
+         alertify.error('Llene todos los campos por favor');
         // alert(  " idpeticion: "+FrmData.idpeticion+
         //         " idprioridad: "+FrmData.idprioridad+
         //         " idestado: "+FrmData.idestado+
@@ -478,12 +478,13 @@ $( "#btnActualizarPeticion" ).click(function() {
             {  
                 mensaje1 = "DATOS GUARDADOS CORRECTAMENTE";
                 CargarPeticiones2();     
-                alert(mensaje1);
+                alertify.success(mensaje1);
+                
                 
             },
             error: function () {     
                 mensaje = "OCURRIO UN ERROR";
-                alert(mensaje);
+                alertify.error(mensaje);
             }
         });  
     
@@ -529,12 +530,12 @@ function eliminarPeticion(id) {
         {  
             mensaje1 = "DATOS ELIMINADOS CON EXITO";
             CargarPeticiones2();     
-            alert(mensaje1);
+            alertify.success(mensaje1);
             
         },
         error: function () {     
             mensaje = "OCURRIO UN ERROR";
-            alert(mensaje);
+            alertify.success(mensaje);
         }
     });  
 }

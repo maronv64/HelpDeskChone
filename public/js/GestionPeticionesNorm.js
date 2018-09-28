@@ -155,7 +155,7 @@ function esta_vacio(cadena)
 $('#btnEnviarPN').click(function() {
     var FrmData = {
         idprioridad:    $('#cmbPrioridadesN').val(),
-        idestado:       1,
+        idestado:       '',
         idtipopeticion: $('#cmbTipoPeticionesN').val(),
         idusuario:      $('#idmiuser').val(),
         descripcion:    $('#txtDescripcionN').val(),
@@ -225,7 +225,7 @@ $( "#btnActualizarPeticionNM" ).click(function() {
     var FrmData = {
         idpeticion:     $('#var_idpeticionN').val(),
         idprioridad:    $('#cmbPrioridadesNM').val(),
-        idestado:       1,
+        idestado:       '',
         idtipopeticion: $('#cmbTipoPeticionesNM').val(),
         idusuario:      $('#idmiuser').val(),
         descripcion:    $('#txtDescripcionNM').val(),
